@@ -12,7 +12,7 @@ function Packages(props) {
                     <PackageDetails hidepricingpackage={props.hidepricingpackage} showfeecalculator={props.showfeecalculator} />
                 </div>
                 <div className="p-2 bd-highlight" style={{ display: (props.isMobile ? "" : 'none') }} >
-                    <PackageDetailsMobile />
+                    <PackageDetailsMobile hidepricingpackage={props.hidepricingpackage}/>
                 </div>
             </div>
         </div>

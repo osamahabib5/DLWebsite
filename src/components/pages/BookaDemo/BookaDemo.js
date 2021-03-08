@@ -60,7 +60,7 @@ function BookaDemo() {
             <Container>
                 <Row>
                     <Col>
-                        <div className="bookademoheader">
+                        <div className="bookademoheader" style = {{padding: isMobile ? "2rem" : ""}}>
                             <DemoTitle />
                         </div>
                     </Col>
