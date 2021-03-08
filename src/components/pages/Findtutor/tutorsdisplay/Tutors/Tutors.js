@@ -19,7 +19,7 @@ function Tutors(props) {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-    });
+    },[props.dataarr]);
   
     const rowslength = isMobile ? 2 : 4;
     const rows = [...Array(Math.ceil(props.dataarr.length / rowslength))];

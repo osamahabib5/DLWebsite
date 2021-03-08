@@ -8,7 +8,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { TutorsContext } from "../../../../Provider";
 
 function Tutorsdisplay() {
-    const { results, loading, stopLoading, startLoading, parent_location } = useContext(TutorsContext);
+    const { results, loading, stopLoading, startLoading } = useContext(TutorsContext);
     const [isMobile, setmobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {

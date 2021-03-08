@@ -29,9 +29,9 @@ function PricingFilters(props) {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        // props.showtutoroptions();
+        
         await axios.post(url, advancedfilter).then(response=>{
-            console.log("Fee Calculator Response: "+JSON.stringify(response.data))
+            console.log("Fee Calculator Response: "+JSON.stringify(response.data.data))
             getFilteredTeachersList(response.data.data.teachers)
             setadvancedfilters({
                 class_type: "",
@@ -39,6 +39,7 @@ function PricingFilters(props) {
                 tutor_type: "",
                 hours_per_week : 2
             })
+            props.showtutoroptions();
         }).catch(error=>{
             console.log("Filters Error: "+ error)
         })
