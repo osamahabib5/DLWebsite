@@ -1,15 +1,29 @@
-import React, { useState } from 'react'
-import { Container, Row, Col, Form, FormCheck } from 'react-bootstrap'
-import SelectedPricePackage from '../Leads/SelectedPricePackage'
+import React, { useContext, useState } from 'react'
+import { Container, Row, Col, Form, FormCheck, Button } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
-function PricingFilters() {
-    const [advancedfilter, setadvancedfilters] = useState([{ class_type: '' }])
-    const changeValue = (e) => {
+import { TutorsContext } from '../../../../Provider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+function PricingFilters(props) {
+    const { setOptedPackage, parent_country } = useContext(TutorsContext)
+    const [advancedfilter, setadvancedfilters] = useState([{ class_type: '', subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country }])
+    const handleOnChange = (e) => {
         setadvancedfilters({
             ...advancedfilter,
-            class_type: e.target.value
+            [e.target.name]: e.target.value
         })
-        console.log("FIlters: " + JSON.stringify(advancedfilter))
+        console.log("HandleOnChange: " + JSON.stringify(advancedfilter))
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.showtutoroptions();
+    }
+    const onChangePackage = (e) => {
+        e.target.value === "3_month" ? setOptedPackage(2) : setOptedPackage(1)
+        setadvancedfilters({
+            ...advancedfilter,
+            subscription: e.target.value
+        })
     }
     return (
         <Container>
@@ -21,33 +35,28 @@ function PricingFilters() {
             <Row>
                 <Col>
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="3 Months Package">
+                        <Form.Control as="select" defaultValue="3 Months Package" onChange={onChangePackage}>
                             <option>Which package do you want to select?</option>
-                            <option>Monthly Package</option>
-                            <option>3 Months Package</option>
+                            <option value="1_month">Monthly Package</option>
+                            <option value="3_month">3 Months Package</option>
                         </Form.Control>
                     </Form.Group>
                 </Col>
                 <Col>
-                </Col>
-                <Col>
-                    {/* <SelectedPricePackage /> */}
                 </Col>
             </Row>
             <Form>
                 <Form.Row>
                     <Col>
                         {['radio'].map((type) => (
-                            <div key={`default-${type}`} className="mb-3">
+                            <div key={`default-${type}`} className="mb-3" onChange={handleOnChange} name = "class_type">
                                 <FormCheck.Label>Class Type</FormCheck.Label>
                                 <Col>
                                 </Col>
-                                <Form.Check inline label="Small Batches" value="batch" checked={advancedfilter.class_type === "batch"}
-                                    onChange={changeValue}
+                                <Form.Check inline label="Small Batches" value="batch"
+
                                     type={type} id={`inline-${type}-1`} />
                                 <Form.Check inline label="One-on-One" value="one_on_one"
-                                    checked={advancedfilter.class_type === "one_on_one"}
-                                    onChange={changeValue}
                                     type={type} id={`inline-${type}-2`} />
                             </div>
                         ))}
@@ -56,16 +65,16 @@ function PricingFilters() {
                 <Form.Row>
                     <Col>
                         {['radio'].map((type) => (
-                            <div key={`default-${type}`} className="mb-3">
+                            <div key={`default-${type}`} className="mb-3" name = "tutor_type">
                                 <FormCheck.Label>Tutor Type</FormCheck.Label>
                                 <Col>
                                 </Col>
                                 <Form.Check inline label="Standard Tutor" value="standard" checked={advancedfilter.class_type === "standard"}
-                                    onChange={changeValue}
+                                    onChange={handleOnChange}
                                     type={type} id={`inline-${type}-1`} />
                                 <Form.Check inline label="Super Tutor" value="super"
                                     checked={advancedfilter.class_type === "super"}
-                                    onChange={changeValue}
+                                    onChange={handleOnChange}
                                     type={type} id={`inline-${type}-2`} />
                             </div>
                         ))}
@@ -89,7 +98,12 @@ function PricingFilters() {
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">
-                <p className = "skipbooking">Skip</p>
+                <Button onClick={handleSubmit}>Select Tutor
+                <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
+                </Button>
+            </Row>
+            <Row className="justify-content-md-center">
+                <p className="skipbooking">Skip</p>
             </Row>
         </Container>
     )

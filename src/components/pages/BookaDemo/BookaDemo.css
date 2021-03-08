@@ -252,3 +252,10 @@
     height: auto;
     margin-bottom: 0rem!important;
 }
+.pricingfilters .form-check-inline, label {
+    margin-left: 2rem;
+}
+.pricingfilters .justify-content-md-center .btn-primary, .btn-primary:active, .btn-primary:hover {
+    width: 160px;
+    height: 48px;
+}

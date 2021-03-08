@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import SelectedPricePackage from './SelectedPricePackage'
 import baseUrl from "../../../../baseUrl/baseUrl";
 import axios from "axios";
 import { TutorsContext } from "../../../../Provider";

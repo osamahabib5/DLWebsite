@@ -5,19 +5,21 @@ import DemoTitle from './DemoTitle/DemoTitle'
 import Packages from './Packages/Packages'
 import { TutorsContext } from "../../../Provider";
 import Leads from './Leads/Leads'
-// import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import PricingFilters from './PricingFilters/PricingFilters'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
-function BookaDemo() {
-    // let { path, url } = useRouteMatch();
-
-    const [hidepackages, setpackages] = useState(false);
+import ShowTutors from "./ShowTutors/ShowTutors";
+function BookaDemo() { const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
-    const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
-    const hidepricingpackage = ()=>{
+    const [showtutors, setshowtutors] = useState(false);
+    const { parent_country, setParentLocation, setParentCity } = useContext(TutorsContext)
+    const hidepricingpackage = () => {
         setpackages(true)
         setleadform(true);
+    }
+    const showtutoroptions = () => {
+        setshowtutors(true);
+        setsuccessfullead(false);
     }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
@@ -35,8 +37,6 @@ function BookaDemo() {
         if (!parent_country) {
             fetchlocation()
         }
-        // setpackages(false);
-        // setleadform(false);
     }, [])
     return (
         <div className="bookademo">
@@ -48,10 +48,17 @@ function BookaDemo() {
                         </div>
                     </Col>
                 </Row>
+                {showtutors ? <Row>
+                    <Col>
+                        <div className="show_tutors">
+                            <ShowTutors />
+                        </div>
+                    </Col>
+                </Row> : ''}
                 {!hidepackages ? <Row>
                     <Col>
                         <div className="packages">
-                            <Packages parent_country={parent_country} hidepricingpackage = {hidepricingpackage}/>
+                            <Packages parent_country={parent_country} hidepricingpackage={hidepricingpackage} />
                         </div>
                     </Col>
                 </Row> : ''}
@@ -69,8 +76,11 @@ function BookaDemo() {
                 {successfullead ? <Row>
                     <Col>
                         <div className="pricingfilters">
-                            <PricingFilters />
+                            <PricingFilters showtutoroptions = {showtutoroptions}/>
                         </div>
+                    </Col>
+                    <Col>
+                        <SelectedPricePackage />
                     </Col>
                 </Row> : ""}
             </Container>
