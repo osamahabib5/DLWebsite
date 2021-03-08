@@ -88,6 +88,9 @@ function PricingFilters() {
                     <NumericInput min={1} max={100} value={1} style={{ width: "50px" }} />
                 </Form.Group>
             </Form>
+            <Row className="justify-content-md-center">
+                <p className = "skipbooking">Skip</p>
+            </Row>
         </Container>
     )
 }

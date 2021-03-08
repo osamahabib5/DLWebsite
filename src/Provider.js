@@ -6,7 +6,8 @@ const initialState = {
     subjects_list: [],
     parent_country: "",
     parent_city: "",
-    lead_id: 0
+    lead_id: 0,
+    opted_package: 0
 }
 
 const actions = {
@@ -17,7 +18,8 @@ const actions = {
     FETCHSUBJECTS: 'FETCHSUBJECTS',
     GETLOCATION: 'GETLOCATION',
     GETCITY: 'GETCITY',
-    GETLEAD: 'GETLEAD'
+    GETLEAD: 'GETLEAD',
+    GETPRICINGPACKAGE : 'GETPRICINGPACKAGE'
 }
 
 function reducer(state, action) {
@@ -63,6 +65,11 @@ function reducer(state, action) {
                 ...state,
                 parent_city: action.value
             }
+        case actions.GETPRICINGPACKAGE:
+            return {
+                ...state,
+                opted_package: action.value
+            }
         default:
             return state;
     }
@@ -78,6 +85,7 @@ function Provider({ children }) {
         parent_country: state.parent_country,
         parent_city: state.parent_city,
         lead_id: state.lead_id,
+        opted_package: state.opted_package,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -87,6 +95,7 @@ function Provider({ children }) {
         setParentLocation: (value) => { dispatch({ type: actions.GETLOCATION, value }) },
         setLeadId: (value) => { dispatch({ type: actions.GETLEAD, value }) },
         setParentCity: (value) => { dispatch({ type: actions.GETCITY, value }) },
+        setOptedPackage: (value) => { dispatch({ type: actions.GETPRICINGPACKAGE, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

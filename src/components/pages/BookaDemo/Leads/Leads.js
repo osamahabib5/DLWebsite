@@ -72,9 +72,9 @@ function Leads(props) {
                             </Button>
                         </Form>
                     </Col>
-                    <Col>
+                    {/* <Col>
                         <SelectedPricePackage />
-                    </Col>
+                    </Col> */}
                 </Row>
             </Container>
         </div>

@@ -164,14 +164,13 @@
     color: #000000;
 }
 
-.bookademo .leads .selectedpackage {
+.bookademo  .selectedpackage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -8rem;
 }
 
-.bookademo .leads .selectedpackage .card {
+.bookademo .selectedpackage .card {
     width: 360px;
     height: 400px;
     left: calc(50% - 360px/2 - 11.5px);
@@ -180,18 +179,18 @@
     border-radius: 7px 7px 0px 0px;
 }
 
-.bookademo .leads .selectedpackage .card .list-group-item {
+.bookademo .selectedpackage .card .list-group-item {
     color: black;
     align-self: center;
     text-align: center;
 }
 
-.bookademo .leads .selectedpackage .card .list-group-item .flex-row {
+.bookademo .selectedpackage .card .list-group-item .flex-row {
     background: none;
     height: 23px;
 }
 
-.bookademo .leads .selectedpackage .card .list-group-item .flex-row .startingat {
+.bookademo .selectedpackage .card .list-group-item .flex-row .startingat {
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
@@ -201,11 +200,11 @@
     margin-top: 0.5rem;
 }
 
-.bookademo .leads .selectedpackage .card .list-group-item .flex-row .p-2 {
+.bookademo  .selectedpackage .card .list-group-item .flex-row .p-2 {
     padding: 0.5rem!important;
 }
 
-.bookademo .leads .selectedpackage .card .list-group-item .flex-row .packagerate {
+.bookademo .selectedpackage .card .list-group-item .flex-row .packagerate {
     font-family: Avenir;
     font-style: normal;
     font-weight: 800;
@@ -214,7 +213,7 @@
     color: #000000;
 }
 
-.bookademo .leads .selectedpackage .card .package_specification .list-group-item {
+.bookademo .selectedpackage .card .package_specification .list-group-item {
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
@@ -224,7 +223,7 @@
     justify-content: center;
 }
 
-.bookademo .leads .selectedpackage .parentlocation {
+.bookademo .selectedpackage .parentlocation {
     font-family: Avenir-Next;
     font-style: normal;
     font-weight: 300;

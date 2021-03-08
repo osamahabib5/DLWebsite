@@ -7,13 +7,14 @@ import { TutorsContext } from "../../../Provider";
 import Leads from './Leads/Leads'
 // import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import PricingFilters from './PricingFilters/PricingFilters'
+import SelectedPricePackage from './Leads/SelectedPricePackage'
 function BookaDemo() {
     // let { path, url } = useRouteMatch();
 
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
-    const { parent_country, setParentLocation, setParentCity } = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
     const hidepricingpackage = ()=>{
         setpackages(true)
         setleadform(true);
@@ -27,6 +28,7 @@ function BookaDemo() {
                 console.log("Error: " + error);
             }).then(data => {
                 setParentLocation(data.country_name);
+                setParentCity(data.city);
             })
     }
     useEffect(() => {
@@ -59,6 +61,9 @@ function BookaDemo() {
                             <Leads fetchlocation={fetchlocation} hidepackages={hidepackages} setsuccessfullead={setsuccessfullead}
                                 setleadform={setleadform} />
                         </div>
+                    </Col>
+                    <Col>
+                        <SelectedPricePackage />
                     </Col>
                 </Row> : ''}
                 {successfullead ? <Row>

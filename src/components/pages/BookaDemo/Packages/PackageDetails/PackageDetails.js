@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { CardDeck, Card, ListGroup, Button } from 'react-bootstrap';
+import { TutorsContext } from '../../../../../Provider';
 import Available_Packages from '../../Available_Packages';
 function PackageDetails(props) {
+    const{setOptedPackage} = useContext(TutorsContext);
     return (
         <div className="packagedetails">
             <CardDeck>
@@ -10,7 +12,10 @@ function PackageDetails(props) {
                     border: "2px solid #FCCFCB",
                     boxSizing: "border-box",
                     borderRadius: " 7px 7px 0px 0px"
-                }} onClick={props.hidepricingpackage}>
+                }} onClick={()=>{
+                    props.hidepricingpackage();
+                    setOptedPackage(1)
+                }}>
                     <Card.Header style={{ background: "#FCCFCB" }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
@@ -45,7 +50,10 @@ function PackageDetails(props) {
                     border: "2px solid #5E6981",
                     boxSizing: "border-box",
                     borderRadius: " 7px 7px 0px 0px"
-                }} onClick={props.hidepricingpackage}>
+                }} onClick={()=>{
+                    props.hidepricingpackage();
+                    setOptedPackage(2)
+                }}>
                     <Card.Header style={{ background: "#5E6981" }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
