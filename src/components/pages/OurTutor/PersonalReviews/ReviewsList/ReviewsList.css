@@ -1,0 +1,30 @@
+.review {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    /* or 150% */
+    color: #000000;
+    text-align: left;
+}
+
+.parent-name {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #777777;
+    margin-top: -1rem;
+    text-align: left;
+}
+
+@media only screen and (max-width: 769px) {
+    .review {
+        text-align: left;
+    }
+    .parent-name {
+        text-align: left;
+    }
+}

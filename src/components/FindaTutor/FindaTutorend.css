@@ -1,0 +1,59 @@
+.col-sm {
+    align-self: center;
+    margin-top: 11px;
+}
+
+@media only screen and (max-width: 769px) {
+    .row {
+        flex-direction: column-reverse;
+    }
+    .web-content {
+        display: none;
+    }
+    .mobile-content {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 22px;
+        /* identical to box height */
+        align-self: center;
+        color: #363E50;
+        text-align: left;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .mobile-content {
+        display: none;
+    }
+    .web-content {
+        /* identical to box height */
+        color: #363E50;
+        align-self: center;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 30px;
+        margin-top: 1.5rem;
+        /* identical to box height */
+    }
+}
+
+.btn btn-primary {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    /* Fill color / Triggers */
+    background: #FF4646;
+    border-radius: 6px;
+}
+
+.Tutor-button {
+    align-self: center;
+    display: flex;
+    padding-inline: 4.5rem;
+}

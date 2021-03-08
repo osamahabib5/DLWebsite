@@ -1,0 +1,44 @@
+.notification_bar {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: #FF4646;
+    position: sticky;
+    top: 0;
+    z-index: 300;
+}
+
+@media only screen and (max-width: 769px) {
+    .notification_bar {
+        display: none;
+    }
+}
+
+d-flex justify-content-end {
+    position: absolute;
+    height: 32px;
+    left: 38.68%;
+    right: 38.61%;
+    top: calc(50% - 32px/2);
+}
+
+.justify-content-center {
+    color: white;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    align-self: center;
+}
+
+.image {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}

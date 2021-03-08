@@ -1,0 +1,91 @@
+@media only screen and (min-width: 769px) {
+    .kits-title {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+        margin-top: 5rem;
+    }
+    .kits-description {
+        font-family: Avenir-Next;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 36px;
+        /* or 129% */
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    .kit {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 14px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+        margin-top: 5rem;
+    }
+    .kits-text {
+        background: #DA7F7F;
+        border-radius: 0px 15px 15px 0px;
+        height: 100px;
+        width: 353px;
+        height: 100px;
+        left: 0px;
+        top: 0px;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .kits-title {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 10px;
+        line-height: 14px;
+        /* identical to box height */
+        display: flex;
+        align-items: center;
+        color: #000000;
+        margin-top: 5rem;
+    }
+    .kits-description {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 26px;
+        /* or 162% */
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    .kit {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 10px;
+        line-height: 14px;
+        /* identical to box height */
+        display: flex;
+        align-items: center;
+        color: #000000;
+        margin-top: 2rem;
+    }
+    .kits-text {
+        background: #DA7F7F;
+        border-radius: 0px 15px 15px 0px;
+        height: 100px;
+        width: 353px;
+        height: 100px;
+        left: 0px;
+        top: 0px;
+    }
+}

@@ -1,0 +1,110 @@
+.carousel-caption {
+    text-align: end;
+    color: black;
+    position: absolute;
+}
+
+.carousel-indicators {
+    justify-content: center;
+}
+
+.h3, h3 {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.initials {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #000000;
+}
+
+.testimonial {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: right;
+    color: #000000;
+}
+
+.carousel-control-next-icon {
+    background-image: url(../images/Right.png);
+    width: 56px;
+    height: 56px;
+}
+
+.carousel-control-prev-icon {
+    background-image: url(../images/Left.png);
+    width: 56px;
+    height: 56px;
+}
+
+@media only screen and (max-width: 769px) {
+    .carousel-caption {
+        position: unset;
+        background: #00ABBD;
+        text-align: left;
+        padding: 4rem;
+    }
+    .h3, h3 {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 10px;
+        line-height: 14px;
+        color: white;
+    }
+    .testimonial {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 26px;
+        color: #FFFFFF;
+        text-align: left;
+    }
+    .initials {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 10px;
+        line-height: 14px;
+        color: #FFFFFF;
+        justify-content: flex-start;
+    }
+    .carousel-control-next-icon{
+        display: none;
+    }
+    .carousel-control-prev-icon{
+        display: none;
+    }
+}
+.carousel-indicators li {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 7.47px;
+    height: 8px;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
+    border-radius: 50%;
+}

@@ -1,0 +1,16 @@
+.reviewform .form-control {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    /* identical to box height, or 178% */
+    /* Text Color / Color #1 */
+    color: #000000;
+    text-align: left;
+}
+
+
+.reviewform .react-responsive-modal-modal{
+   width: 500px!important;
+}

@@ -1,0 +1,146 @@
+.tutor-info {
+    margin: auto;
+    margin-top: 9rem;
+    width: 80%;
+    background: white;
+}
+
+.tutor-intro .card {
+    border: 0px;
+    border-radius: 0rem;
+    background: white;
+    width: 18rem;
+}
+
+.tutor-intro .btn-primary, .btn-primary:active, .btn-primary:hover {
+    border: 0px;
+    box-sizing: border-box;
+    border-radius: 0px;
+    background: white!important;
+    color: #00ABBD;
+    border-radius: 6px;
+    height: 48px;
+    width: 100%;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #00ABBD;
+    
+}
+
+.tutor-intro .btn-primary:hover {
+    border: 1px solid #00ABBD;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 100%!important;
+}
+.teacher-option .btn-primary:hover {
+    border: 1px solid #00ABBD;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+.Tutor-Name .flex-column {
+    background: white;
+}
+
+.Tutor-Name .flex-row {
+    background: white;
+}
+
+.Tutor-Name .p-2 {
+    align-self: flex-start;
+}
+
+.teaching-methods .flex-column {
+    text-align: left;
+    background: white;
+}
+
+.teaching-methods .btn {
+    border: 1px solid #C9CCD4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000000;
+}
+
+.personal-reviews .flex-column {
+    background: white;
+    align-items: flex-start;
+}
+
+@media only screen and (max-width: 769px) {
+    .tutor-intro .card-body {
+        display: none;
+    }
+    .teacher-description {
+        margin-top: -2rem;
+    }
+    .tutor-info {
+        margin-left: 1rem
+    }
+    .Tutor-Name {
+        display: none;
+    }
+    .tutor-intro .card {
+        width: 12rem;
+    }
+    .tutor-info {
+        width: 100%;
+        margin-top: 3.5rem;
+    }
+    .tutor-info .row {
+        flex-direction: column;
+    }
+    .name .flex-column {
+        background: white;
+        text-align: left;
+        margin-top: 1rem;
+    }
+    .teacher-option .btn-primary, .btn-primary:active, .btn-primary:hover {
+        border: 0px;
+        box-sizing: border-box;
+        border-radius: 0px;
+        background: white!important;
+        color: #00ABBD!important;
+        border-radius: 6px;
+        height: 48px;
+        width: 100%;
+        font-family: Inter;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .tutor-intro .card-img, .card-img-top {
+        width: 90%;
+        margin-top: 2rem;
+    }
+    .Tutor-Name .teaching-methods .container {
+        margin-top: -2rem;
+    }
+}
+
+.tutor-info .flex-row {
+    background: white;
+}
+
+@media only screen and (min-width: 769px) {
+    .teacher-option {
+        display: none;
+    }
+    .teacher-credentials{
+        margin-bottom: 5rem;
+    }
+    .tutor-intro .card-img, .card-img-top {
+        width: 100%;
+        margin: auto;
+    }
+    .name {
+        display: none;
+    }
+}

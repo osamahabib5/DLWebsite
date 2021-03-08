@@ -1,0 +1,122 @@
+.contact-heading {
+    font-family: Avenir-Next;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.third {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.align-items-center {
+    background: #EDF0F5;
+}
+
+@media only screen and (min-width: 769px) {
+    .Mobile-description {
+        display: none;
+    }
+    .Description {
+        font-family: Avenir-Next;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        /* or 133% */
+        color: #000000;
+    }
+    .form-mobile{
+        display: none;
+    }
+    .Image-Mobile{
+        display: none;
+    }
+    .Image-Window{
+        width: 73%;
+    }
+    .img-fluid {
+        height: 100%;
+    }
+    .col-auto {
+        width: 75%;
+        margin-top: 1rem;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .align-items-center {
+        flex-direction: column;
+        background: #EDF0F5;
+    }
+    .Image-Window{
+        display: none;
+    }    
+    .Description {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 26px;
+        text-align: left;
+        color: #000000;
+    }
+    .contact-heading {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 10px;
+        line-height: 14px;
+        color: #000000;
+    }
+    .description-class{
+        display: none;
+    }
+    .col-auto{
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    /* .form-window{
+        display: none;
+    } */
+}
+
+.tutor-window {
+    align-self: flex-start;
+    background: #EDF0F5;
+    padding: 2rem;
+    margin-top: 3rem;
+    text-align: start;
+}
+
+.tutor-mobile {
+    align-self: center;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:hover {
+    border-color: #00ABBD;
+    ;
+    background: #00ABBD;
+    border-radius: 6px;
+    height: 48px;
+    width: 100%;
+}
+
+.flex-row {
+    background: #EDF0F5;
+}
+
+.container{
+    padding-left: 0;
+}

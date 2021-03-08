@@ -1,0 +1,87 @@
+.heading {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    color: black;
+    margin-top: 9.5rem;
+}
+
+.Approach-content {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 33px;
+    color: black;
+}
+
+.details {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    color: black;
+}
+
+@media only screen and (min-width: 769px) {
+    .w-100 {
+        display: none;
+    }
+    
+}
+
+
+.title {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Fill Color / Color #6 */
+    color: #000000;
+}
+
+.title-description {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    /* Fill Color / Color #6 */
+    color: #000000;
+}
+
+@media only screen and (min-width: 320px) {
+   
+    .card-deck {
+        display: flex;
+        flex-flow: row wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .card-deck .card {
+        flex: 1 0;
+        margin-right: 15px;
+        margin-bottom: 0;
+        margin-left: 15px;
+        border: 0;
+    }
+    .card-title{
+        margin: auto;
+    }
+    
+}
+@media only screen and (min-width: 769px) {
+.card-body{
+    max-height: 100%;
+}
+    
+}
+.card-body{
+    max-height: 100%;
+}

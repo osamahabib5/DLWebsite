@@ -1,0 +1,71 @@
+.review-form .form-control, input {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    color: #000000;
+    text-align: left;
+    background-image: none!important;
+    text-indent: 0px!important;
+}
+
+.review-form .form-control, label {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.review-form .form-control, textarea {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.react-responsive-modal-modal .btn-primary, .btn-primary:active, .btn-primary:hover {
+    border-radius: 6px;
+    height: 48px;
+    width: 50%!important;
+    align-items: center;
+}
+
+.react-responsive-modal-modal .form-control {
+    background-image: none!important;
+    text-indent: 0px!important;
+}
+
+.react-responsive-modal-modal .PhoneInputInput {
+    background-image: none!important;
+    text-indent: 0px!important;
+    font-size: 15px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+@media only screen and (min-width: 769px) {
+    .react-responsive-modal-modal {
+        width: 500px;
+    }
+}
+
+.CheckParent h1 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.CheckParent .checkingparent {
+    margin-top: 2rem;
+    margin-right: 2rem;
+}
+.react-responsive-modal-modal textarea.form-control{
+    height: 120px;
+    margin-left: 2rem;
+    width: 91%;
+}

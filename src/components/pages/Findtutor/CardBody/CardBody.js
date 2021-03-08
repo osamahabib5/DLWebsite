@@ -1,0 +1,179 @@
+import React, { useState, useEffect, useContext } from 'react'
+import { Form, Col, InputGroup, FormControl, Button, ListGroup } from 'react-bootstrap';
+import axios from 'axios';
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import baseUrl from '../../../../baseUrl/baseUrl';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated'
+import { TutorsContext } from "../../../../Provider";
+
+function CardBody(props) {
+    const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects } = useContext(TutorsContext)
+    const [filter, showfilters] = useState(false);
+    const animatedComponents = makeAnimated();
+    const subjects_url = baseUrl + '/api/getSubjects'
+    const filter_url = baseUrl + '/api/teachers/search'
+    const grade_url = baseUrl + '/api/getGrades'
+    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "" });
+    const heightMarks = {
+        1000: "1000",
+        5000: "5000",
+        10000: "10000",
+        15000: "15000",
+        20000: "20000",
+        25000: "25000",
+        30000: "30000",
+        35000: "35000",
+        40000: "40000",
+        45000: "45000",
+        50000: "50000"
+
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        startLoading();
+        console.log("Filters: " + JSON.stringify(filters))
+        await axios({
+            method: 'get',
+            url: filter_url,
+            params: filters
+        })
+            .then(function (response) {
+                const item = response.data.data;
+                setresults(item);
+                setTimeout(()=>fillFilters({
+                    teacher_name: '',
+                    budget: 0,
+                    subjects: [],
+                    grade: ""
+                }),7000);
+                props.scrolltotutors();
+            })
+            .catch(function (error) {
+                console.log("Error's Response: " + error);
+                stopLoading();
+            });
+    }
+
+    const onChangeSubject = (data) => {
+        const arr = [];
+        data.forEach(data => {
+            arr.push(data.value)
+        })
+        fillFilters({
+            ...filters,
+            subjects: arr
+        })
+    }
+
+
+    useEffect(async () => {
+        const response = await fetch(subjects_url);
+        const data = await response.json();
+        const item = data.data;
+        const options = item.map(d => ({
+            "value": d,
+            "label": d
+        }))
+        fetchSubjects(options)
+
+        const grades_response = await fetch(grade_url);
+        const grades_data = await grades_response.json();
+        const gradeslist = grades_data.data
+        fetchGrades(gradeslist)
+    }, [])
+    return (
+        <Form>
+            <Form.Row >
+                <Col style={{ marginTop: "0.5rem" }}>
+                    <Form.Group controlId="formGridState">
+                        <Form.Control as="select" defaultValue="Grade 1" value = {filters.grade} onChange={(e) => fillFilters({
+                            ...filters,
+                            grade: e.target.value
+                        })} placeholder="Filter by Grade">
+                            <option>Filter By Grades....</option>
+                            {fetched_grades ? fetched_grades.map((val,index) => (
+                                <option key = {index}>
+                                    {val}
+                                </option>
+                            )) : ''}
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+
+                <Col style={{ marginTop: "1rem" }}>
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            value = {filters.teacher_name}
+                            placeholder="Search for a Specific Tutor"
+                            aria-label="Username"
+                            aria-describedby="basic-addon1"
+                            name="teacher_name"
+                            bsPrefix="search-tutor"
+                            onChange={(e) => fillFilters({ 
+                                ...filters,
+                                teacher_name: e.target.value })}
+                        />
+                    </InputGroup>
+                </Col>
+                <Col style={{ marginTop: "1.3rem" }} onClick={handleSubmit}>
+                    <Button >
+                        Search
+                    </Button>
+                </Col>
+            </Form.Row>
+            <Form.Row>
+
+                <Col >
+                    <Form.Group controlId="formGridState">
+                        <Form.Control as="select" defaultValue="Filter by grade level" name="methods">
+                            <option>Teaching Methods</option>
+                            <option>Teacher's Home</option>
+                            <option>Online</option>
+                            <option>Student's Home</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Col>
+                <Col style={{ marginLeft: "1.5rem" }}>
+                    {subjects_list ? <Select
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        isMulti
+                        options={subjects_list}
+                        placeholder="Which subjects you are looking for?"
+                        name="subjects"
+                        value={filter.subjects}
+                        onChange={onChangeSubject}
+                    /> : <div>
+                            ..Loading
+                    </div>}
+                </Col>
+                <Col>
+                    <p className="advancedfilters" onClick={() => showfilters((prevState) => !prevState)}>
+                        Advanced Filters
+                    </p>
+                </Col>
+            </Form.Row>
+            {filter ? <Form.Row >
+                <Col>
+                    <Form.Label style={{ marginLeft: "1rem" }}>
+                        Price Range
+                    </Form.Label>
+                    <Slider
+                        value={filters.budget}
+                        min={1000}
+                        max={50000}
+                        onChange={(e) => fillFilters({
+                            ...filters,
+                            budget: e })}
+                        marks={heightMarks}
+                    />
+                </Col>
+
+            </Form.Row> : ''}
+        </Form>
+    )
+}
+export default CardBody
+

@@ -1,0 +1,26 @@
+.ourtutor-body-mobile {
+    margin-top: -4rem;
+    padding: 1rem;
+}
+
+.ourtutor-body-mobile .our-tutors {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 14px;
+    color: #000000;
+}
+
+.ourtutor-body-mobile .our-tutors-description {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 26px;
+    /* or 162% */
+    color: #000000;
+}
+/* .ourtutor-body-mobile .form-check-inline {
+    margin-left: 2rem;
+} */

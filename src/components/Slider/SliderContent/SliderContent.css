@@ -1,0 +1,35 @@
+.main-testimonial {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 14px;
+    color: white;
+}
+
+.statement {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 26px;
+    /* or 162% */
+    display: flex;
+    align-items: center;
+    color: #FFFFFF
+}
+
+.ending {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 14px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+.slider-content .container{
+    padding: 3rem;
+}

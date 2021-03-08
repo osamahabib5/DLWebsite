@@ -1,0 +1,38 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    flex: 1;
+}
+
+.p-2 {
+    padding: 0rem!important;
+}
+
+.header-components {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 769px) {
+    .header-components {
+        flex-direction: column-reverse;
+    }
+}
+
+a {
+    color: white;
+}
+a:active, a:hover{
+    color: white;
+    text-decoration: none;
+}
+.card-img{
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+    border: none;
+    border-radius: none;
+}

@@ -1,0 +1,232 @@
+.coursesimage .card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+    border-radius: calc(.25rem - 1px);
+    margin-top: 4rem;
+    margin-left: 2rem;
+}
+
+.find-a-tutor .btn-primary, .btn-primary:active, .btn-primary:hover {
+    background: #FF4646;
+    border-radius: 6px;
+    border-color: #EDF0F5;
+    padding-inline: 3rem;
+}
+
+.find-a-tutor {
+    background: #EDF0F5;
+}
+
+.courses-video {
+    margin-top: 20rem;
+}
+
+.products .card-img-overlay .card-title {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.products .flex-column {
+    align-self: flex-start;
+    text-align: left;
+    background: #EDF0F5;
+    max-width: 90%;
+    margin-left: 5rem;
+}
+
+.products {
+    background: #EDF0F5;
+}
+
+.coursesimage .card .list-group {
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.products .card-img {
+    width: 50%;
+}
+
+.products .bg-dark {
+    background: #EDF0F5!important;
+    border: none;
+}
+
+.coursesimage .card-img {
+    margin-top: 3rem;
+}
+
+.coursesimage .card-mobile {
+    background: #00ABBD;
+}
+.packs-detail .justify-content-end{
+    margin-top: -16rem;
+}
+
+
+@media only screen and (min-width: 769px) {
+    .coursesimage .flex-column {
+        display: none!important;
+    }
+    .kits-details{
+        display: none;
+    }
+    .products .card-img-overlay {
+        height: 100px;
+        width: 353px;
+        background: #DA7F7F;
+        border-radius: 0px 15px 15px 0px;
+        margin: auto;
+        margin-left: 0rem;
+        margin-bottom: 2rem;
+    }
+
+    .products .card-img-overlay .card-text {
+        margin-top: 0rem;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 28px;
+        line-height: 38px;
+        color: #FFFFFF;
+    }
+    .coursesimage .card-title {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 16px;
+        display: flex;
+        color: #000000;
+        margin-top: 8rem;
+    }
+    .coursesimage .card-text {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 44px;
+        /* or 122% */
+        display: flex;
+        color: #000000;
+        margin-top: 2rem;
+    }
+    .programs-mobile {
+        display: none;
+    }
+    .video-popup{
+        display: none;
+    }
+    .find-a-tutor {
+        margin-top: 2rem;
+    }
+}
+
+.coursesimage .bg-dark {
+    background: #00ABBD!important;
+}
+
+@media only screen and (max-width: 769px) {
+    .coursesimage .card-title {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 10px;
+        line-height: 14px;
+        /* identical to box height */
+        display: flex;
+        align-items: center;
+    }
+    .products .card-img-overlay {
+        height: 70px;
+        width: 100%;
+        background: #DA7F7F;
+        border-radius: none;
+        position: relative;
+    }
+    .kits-details{
+        margin-top: 3rem;
+    }
+    .kits-details .flex-column{
+        align-items: flex-start;
+    } 
+    .kits-details .card-img-overlay{
+        position: relative;
+        background: #00ABBD;
+    } 
+    .kits-details .list-group-item{
+        color: black;
+        text-align: left;
+    }
+    .kits-details .bg-dark {
+        border: 0px;
+        border-radius: 0rem;
+    }
+    .products .card-img {
+        width: 100%;
+        height: auto;
+    }
+    .coursesimage .card-text {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 26px;
+        /* or 162% */
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+        margin-top: 2rem;
+    }
+    .coursesimage .container-fluid {
+        padding: 2rem;
+    }
+    .courses-video {
+        display: none;
+    }
+    .programs-mobile {
+        margin-top: 2rem;
+    }
+    .programs-mobile .justify-content-end {
+        justify-content: flex-start!important;
+    }
+    .programs-mobile .card-deck {
+        width: 100%;
+    }
+    .programs-mobile .card {
+        width: 250px;
+    }
+    .programs-mobile .list-group-item {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 11px;
+        /* or 92% */
+        display: flex;
+        align-items: center;
+        color: #000000;
+        text-align: left;
+    }
+    .find-a-tutor .flex-column {
+        background: #CAD2E3;
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+    .find-a-tutor .Tutor-button {
+        padding-inline: 0rem;
+        align-self: flex-start;
+    }
+    .products .flex-column {
+        margin-left: 1rem;
+    }
+}

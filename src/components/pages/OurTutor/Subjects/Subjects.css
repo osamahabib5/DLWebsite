@@ -1,0 +1,15 @@
+.subject-heading {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #777777;
+    text-align: right;
+}
+
+@media only screen and (max-width:769px){
+    .subject-heading{
+        text-align: left;
+    }
+}

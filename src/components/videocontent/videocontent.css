@@ -1,0 +1,29 @@
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25%/* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+    top: 0;
+    left: 0;
+}
+
+.ourmissionweb {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+    text-align: right;
+}
+
+.OurMission {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    color: #000000;
+    text-align: right;
+}

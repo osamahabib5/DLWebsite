@@ -1,0 +1,52 @@
+.list-group-item {
+    background-color: #ffffff00;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-style: Avenir;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+}
+
+/* .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    background: #00ABBD;
+} */
+
+.d-inline-flex {
+    display: inline-flex!important;
+    color: white;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: nowrap;
+    align-self: center;
+    margin-left: 1rem;
+}
+
+.footer-show {
+    display: none;
+    background: #00ABBD;
+    z-index: 200;
+}
+
+@media only screen and (min-width: 769px) {
+    .footer-show {
+        display: block;
+    }
+}
+
+.list-group-horizontal{
+    font-family: Avenir;
+font-style: normal;
+
+/* identical to box height, or 150% */
+
+
+color: #FFFFFF;
+}

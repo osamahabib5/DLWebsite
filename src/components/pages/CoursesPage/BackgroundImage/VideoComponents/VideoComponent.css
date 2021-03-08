@@ -1,0 +1,11 @@
+@media only screen and (max-width: 769px) {
+    .subject-mobile {
+        display: none;
+    }
+}
+@media only screen and (min-width:769px){
+    .subject-mobile{
+        margin-left: -2rem;
+            margin-top: -2rem;
+    }
+}

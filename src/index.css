@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir'), url(./fonts/AvenirLTStd-Roman.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Avenir-Next';
+  src: local('Avenir-Next'), url(./fonts//AvenirNextLTPro-Regular.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url(./fonts//Inter-Regular.ttf) format('truetype');
+}
+
+* {
+  font-family: Avenir;
+  font-style: normal;
+}
+@import "~react-image-gallery/styles/css/image-gallery.css";

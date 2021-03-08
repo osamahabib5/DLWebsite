@@ -1,0 +1,60 @@
+.popup-title {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.popup-details {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.modal-header {
+    background: #00ABBD;
+}
+
+.popup-header {
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.gallery .justify-content-end {
+    margin-top: -16rem;
+}
+
+.gallery .flex-row {
+    background: white;
+}
+
+.gallery .btn-primary, .btn-primary:active, .btn-primary:hover {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.gallery .flex-row button, input {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    /* identical to box height, or 178% */
+    text-align: center;
+    color: #000000;
+}

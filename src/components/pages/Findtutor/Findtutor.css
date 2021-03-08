@@ -1,0 +1,375 @@
+.FindATutor .ourtutor-cardtitle {
+    width: 622px;
+    height: 172px;
+    left: 300px;
+    top: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 6px;
+    margin-top: 4rem;
+}
+
+.displaytutors {
+    margin-top: 8rem;
+}
+
+.FindATutor .bg-dark {
+    margin-top: 3rem;
+    height: 480px;
+    width: 100%;
+    background: white!important;
+}
+
+@media only screen and (min-width: 769px) {
+    .FindATutor .card-img-overlay {
+        margin-left: 12rem;
+    }
+    .displaytutors .container .card-img-top {
+        width: 230px;
+        height: 230px;
+    }
+}
+
+.FindATutor .our-tutors {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.FindATutor .our-tutors-description {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 44px;
+    /* or 122% */
+    color: #000000;
+}
+
+.FindATutor .ourtutor-cardtext-window {
+    width: 1000px;
+    height: 157px;
+    left: 130px;
+    top: 270px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 6px;
+    margin-top: 3rem;
+}
+
+.ourtutor-cardtext-window .form-check-inline {
+    padding-left: 2rem;
+}
+
+.ourtutor-cardtext-window .advancedfilters {
+    cursor: pointer;
+    color: black;
+    font-size: 17px;
+    font-family: Inter;
+    margin-top: 1rem;
+}
+
+.ourtutor-cardtext-window .advancedfilters:hover {
+    font-size: 17px;
+    color: blue;
+}
+
+.ourtutor-cardtext-window .css-2b097c-container {
+    color: #000000!important;
+    margin-top: 0.7rem;
+    margin-left: -3rem;
+    width: 103%;
+}
+
+.ourtutor-cardtext-window .css-1okebmr-indicatorSeparator {
+    display: none;
+}
+
+.ourtutor-cardtext-window .css-b8ldur-Input {
+    background-image: none!important;
+}
+
+.ourtutor-cardtext-window .grades-list {
+    width: 80%;
+    margin-left: 1rem;
+    background-image: none!important;
+}
+
+.ourtutor-cardtext-window .list-group .list-group-item {
+    color: black;
+    z-index: 200;
+    border: 0.5px solid black;
+    border-style: groove;
+}
+
+.ourtutor-cardtext-window .list-group {
+    z-index: 200;
+    position: absolute;
+    width: 100%;
+}
+
+.ourtutor-cardtext-window .form-check-inline, label {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 32px;
+    /* identical to box height, or 200% */
+    color: #000000;
+    margin-left: 2.5rem;
+}
+
+.ourtutor-cardtext-window .form-group, select {
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    width: 80%;
+}
+
+.ourtutor-cardtext-window .mb-3 {
+    margin-top: 1rem;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position: 20px;
+    text-indent: 40px!important;
+    background-image: url(./Image//Shape.png);
+}
+
+.ourtutor-cardtext-window .input-group {
+    margin-top: 1rem;
+    margin-left: -2rem;
+}
+
+.ourtutor-cardtitle .css-2b097c-container {
+    color: #000000!important;
+    width: 100%;
+    margin-left: 0.5rem;
+}
+.ourtutor-cardtitle .advancedfilters{
+    cursor: pointer;
+    color: black;
+    font-size: 12px;
+    font-family: Inter;
+    text-align: center;
+}
+
+.ourtutor-cardtitle .advancedfilters:hover {
+    font-size: 12px;
+    color: blue;
+}
+
+.ourtutor-cardtext-window .input-group-text {
+    background-color: white;
+    border: 0px solid white;
+    border-radius: 0rem;
+}
+
+.ourtutor-cardtext-window .btn-primary, .btn-primary:active, .btn-primary:hover {
+    border-color: #00ABBD;
+    background: #00ABBD;
+    border-radius: 6px;
+    height: 48px;
+    width: 50%!important;
+    text-align: center!important;
+}
+
+.ourtutor-cardtext-window .search-tutor {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 32px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position: 20px;
+    text-indent: 40px!important;
+    background-image: url(./Image//Shape.png)!important;
+    /* identical to box height, or 178% */
+    color: #000000;
+    margin-top: -0.5rem;
+    width: 100%;
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.ourtutor-cardtext-window .input[type=range].range-slider {
+    background-image: none!important;
+}
+
+
+
+.ourtutor-cardtext-window .justify-content-md-center {
+    display: flex;
+}
+
+@media only screen and (max-width: 769px) {
+    .ourtutor-cardtext-window {
+        display: none;
+    }
+    .ourtutor-cardtitle .btn-primary, .btn-primary:active, .btn-primary:hover{
+        width: 100%!important;
+        margin-left: 0.5rem;
+    }
+    .displaytutors .container .card-img-top {
+        width: 150px;
+        height: 150px;
+    }
+    .displaytutors .container .card {
+        width: 110%;
+        height: 450px!important;
+    }
+    .Ourtutors .img {
+        width: 100%;
+        height: 300px;
+    }
+    .findatutor-tutorpage .Tutor-button {
+        padding-inline: 0rem;
+        align-self: flex-start;
+    }
+    .FindATutor .card-img {
+        height: 600px;
+    }
+    .ourtutor-cardtext-window .input-group-text .form-group, input {
+        background-position: 10px;
+        text-indent: 25px;
+    }
+    .FindATutor .ourtutor-cardtitle {
+        width: auto;
+        height: auto;
+    }
+    .our-tutors {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 10px;
+        line-height: 14px;
+        /* identical to box height */
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+    .our-tutors-description {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 26px;
+        /* or 162% */
+        color: #000000;
+    }
+    .FindATutor .bg-dark {
+        margin-top: 3rem;
+        height: 550px;
+        width: 100%;
+        background: white!important;
+    }
+    .findatutor-tutorpage .flex-column {
+        background: #EDF0F5;
+        padding: 1rem;
+    }
+}
+
+.findatutor-tutorpage {
+    background: #EDF0F5;
+}
+
+.findatutor-tutorpage .btn-primary, .btn-primary:active, .btn-primary:hover {
+    border-color: #FF4646;
+    background: #FF4646;
+    border-radius: 6px;
+    height: 48px;
+    width: 164px;
+}
+
+.Ourtutors {
+    margin-top: 6rem;
+}
+
+.Ourtutors .flex-row {
+    background: #FCAA93;
+}
+
+.Ourtutors .btn-info {
+    background: #FFFFFF;
+    border-radius: 6px;
+    border-color: white;
+}
+
+.Ourtutors .tutor-window {
+    background: #FCAA93;
+}
+
+.Ourtutors .btn {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Fill Color / Color #6 */
+    color: #000000;
+}
+
+.Ourtutors .flex-column {
+    background: #FCAA93;
+}
+
+.Ourtutors .tutor-mobile {
+    background: #FCAA93;
+}
+
+.displaytutors .pagination {
+    justify-content: center;
+}
+
+.displaytutors .pagination-sm .page-link {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    color: #000000;
+}
+
+.displaytutors .container .card {
+    border: none;
+    height: 550px;
+}
+
+.displaytutors .page-link {
+    border: none!important;
+}
+
+.displaytutors .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #8CD7DF;
+    border-color: #8CD7DF;
+}
+.justify-content-center .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+    background-color: #21252957;
+    border-color: #21252957;
+}
+
+.justify-content-center .btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled):active, .show>.btn-danger.dropdown-toggle {
+    color: #fff;
+    background-color: #21252957;
+    border-color: #21252957;
+}
+
+.ourtutor-cardtitle .css-1okebmr-indicatorSeparator {
+    display: none;
+}

@@ -1,0 +1,45 @@
+.programs .card-text {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 11px;
+    flex-direction: row!important;
+    justify-content: center;
+    height: 70px;
+}
+
+.programs .card {
+    max-height: 300px;
+}
+
+.card-text:last-child {
+    max-height: 0%;
+}
+
+.programs {
+    margin: auto;
+}
+
+.programs .list-group-item {
+    height: 30px;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 11px;
+    align-items: center;
+    color: #000000;
+    text-align: left;
+}
+
+.programs .card {
+    width: 250px;
+}
+
+@media only screen and (max-width: 769px) {
+    .programs {
+        display: none;
+    }
+   
+}

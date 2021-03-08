@@ -1,0 +1,24 @@
+.card-text:last-child {
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.DEscription {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 26px;
+    color: #000000;
+    text-align: left;
+}
+
+.contactheading {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 14px;
+    color: #000000;
+}

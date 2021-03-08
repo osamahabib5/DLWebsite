@@ -1,0 +1,375 @@
+.img-fluid {
+    width: 100%;
+    height: auto;
+    top: 56px;
+}
+
+@media only screen and (min-width: 769px) {
+    .mobile-text {
+        display: none;
+    }
+    .BecomeTutor .img-fluid{
+        width: 50%;
+        height: 500px;
+    }
+    .HomeImage .card-img-overlay {
+        margin-top: 16rem;
+        background: #00000047;
+        width: 668px;
+        height: 282px;
+    }
+    .flex-row {
+        display: none;
+    }
+    .slider-content {
+        display: none;
+    }
+    .OurApproach .flex-column {
+        background: #ffffff00;
+        color: black;
+        text-align: left;
+        margin-left: 9rem;
+        max-width: 80%;
+        margin-top: -6rem;
+    }
+    .Image-Slider {
+        margin-top: -7rem;
+    }
+    .HomeImage .card-text {
+        margin-top: 0rem;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 46px;
+        color: #FFFFFF;
+    }
+    .HomeImage .card-title {
+        margin-top: 4rem;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 16px;
+        color: #FFFFFF;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .image-text {
+        display: none;
+    }
+    .OurApproach .flex-column {
+        background: white;
+        color: black;
+        text-align: left;
+        margin-left: 1rem;
+        max-width: 100%;
+        margin-top: -6rem;
+    }
+    .video-align {
+        width: 100%;
+    }
+    .Tutor .Tutor-button {
+        padding-inline: 0rem;
+        align-self: flex-start;
+    }
+    .FindaTutor .Tutor-button {
+        padding-inline: 0rem;
+        align-self: flex-start;
+    }
+    .mobile-text {
+        max-width: 100%;
+        background: #00ABBD;
+        height: 160px;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 26px;
+        /* or 162% */
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+    }
+    .video-content .align-items-center {
+        flex-direction: column;
+        width: 100%;
+    }
+    .video flex-column {
+        display: none;
+    }
+    .Image-Slider {
+        margin-top: 0rem;
+    }
+}
+
+.Tutor .btn-primary {
+    color: #fff;
+    border-color: #FF4646;
+    background: #FF4646;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    color: #FFFFFF;
+    height: 48px;
+    width: 165px;
+    align-self: center;
+}
+
+.FindaTutor .btn-primary {
+    color: #fff;
+    border-color: #FF4646;
+    background: #FF4646;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    color: #FFFFFF;
+    height: 48px;
+    width: 165px;
+    align-self: center;
+}
+
+.btn-primary:hover, .btn-primary:active {
+    border-color: #FF4646;
+    background: #FF4646;
+    height: 48px;
+    width: 165px;
+}
+
+.FindTutor {
+    width: 100%;
+    background: #7a8ab1;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.04);
+    left: 0px;
+    top: 820px;
+    display: flex;
+}
+
+.content {
+    font-family: Avenir Next;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #363E50;
+}
+
+.justify-content-start {
+    height: 80px;
+}
+
+.flex-row {
+    background: #8CD7DF;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    color: #000000;
+    width: 100%;
+    text-align: center!important;
+}
+
+.video-content {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    height: 360px;
+    text-align: right;
+    color: #000000;
+    width: 50%;
+    background: #8CD7DF;
+    padding: 2.5rem;
+}
+
+.video-content-mobile {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 26px;
+    /* or 162% */
+    display: flex;
+    align-items: center;
+    color: #000000;
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    text-align: left;
+    background: #8CD7DF;
+    padding: 1rem;
+}
+
+.flex-column {
+    background: #8CD7DF;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    /* or 167% */
+    text-align: right;
+    color: #000000;
+}
+
+.p-mobile {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 14px;
+    align-self: flex-start;
+}
+
+.p-window {
+    height: 16px;
+    left: 51.11%;
+    right: 10.42%;
+    top: calc(50% - 16px/2 - 72px);
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: right;
+    color: #000000;
+    align-self: flex-end;
+}
+
+.Image-slider p {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    /* or 167% */
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+    position: fixed;
+}
+
+.slider-content {
+    background: #00ABBD;
+}
+
+.BecomeTutor {
+    flex: 1;
+}
+
+.FindaTutor {
+    padding: 1rem;
+}
+
+.Tutor .justify-content-start {
+    height: 80px;
+}
+
+.Tutor {
+    z-index: 200;
+}
+
+.HomeImage .container-fluid {
+    background: #00ABBD;
+    padding: 2rem;
+}
+
+.video-align {
+    height: auto;
+}
+
+.FindaTutor .container-fluid {
+    background: white;
+}
+
+.video-content .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+    background: #bd000000;
+}
+
+.Tutor .flex-column-reverse {
+    flex-direction: column-reverse!important;
+    padding: 22px;
+    background: #EDF0F5;
+}
+
+.video-content .align-items-center {
+    width: 100%;
+    background: #8CD7DF;
+}
+
+.mission-window {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    /* or 167% */
+    text-align: right;
+    color: #000000;
+}
+
+.missiowindow {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    /* or 167% */
+    text-align: right;
+    color: #000000;
+}
+
+.mission-mobile {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 26px;
+    align-self: flex-start;
+}
+
+.FindaTutor .flex-column {
+    background: #FFFFFF;
+}
+
+.BecomeTutor .flex-row {
+    background: #EDF0F5;
+    text-align: right!important;
+}
+
+.video .justify-content-center {
+    background: #8CD7DF;
+    flex-direction: column;
+    margin-right: 8rem;
+}
+
+.video .flex-row {
+    background: #8CD7DF;
+}
+
+.OurApproach .card-text {
+    margin-top: 0rem;
+}
+
+.HomeImage .card-img {
+    margin-top: 3rem;
+}
