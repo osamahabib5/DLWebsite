@@ -8,7 +8,7 @@ import Leads from './Leads/Leads'
 import PricingFilters from './PricingFilters/PricingFilters'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
 import ShowTutors from "./ShowTutors/ShowTutors";
-function BookaDemo() { 
+function BookaDemo() {
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
@@ -18,7 +18,16 @@ function BookaDemo() {
         setpackages(true)
         setleadform(true);
     }
-    const showfeecalculator = ()=>{
+    const [isMobile, setisMobile] = useState(false);
+    const mobileview = () => {
+        if (window.innerWidth < 769) {
+            setisMobile(true);
+        }
+        if (window.innerWidth >= 769) {
+            setisMobile(false);
+        }
+    }
+    const showfeecalculator = () => {
         setpackages(true);
         setleadform(false);
         setsuccessfullead(true);
@@ -40,6 +49,8 @@ function BookaDemo() {
             })
     }
     useEffect(() => {
+        mobileview();
+        window.addEventListener("resize", mobileview);
         if (!parent_country) {
             fetchlocation()
         }
@@ -64,7 +75,7 @@ function BookaDemo() {
                 {!hidepackages ? <Row>
                     <Col>
                         <div className="packages">
-                            <Packages parent_country={parent_country} hidepricingpackage={hidepricingpackage} showfeecalculator = {showfeecalculator}/>
+                            <Packages parent_country={parent_country} hidepricingpackage={hidepricingpackage} showfeecalculator={showfeecalculator} isMobile = {isMobile}/>
                         </div>
                     </Col>
                 </Row> : ''}
@@ -82,7 +93,7 @@ function BookaDemo() {
                 {successfullead ? <Row>
                     <Col>
                         <div className="pricingfilters">
-                            <PricingFilters showtutoroptions = {showtutoroptions}/>
+                            <PricingFilters showtutoroptions={showtutoroptions} />
                         </div>
                     </Col>
                     <Col>
