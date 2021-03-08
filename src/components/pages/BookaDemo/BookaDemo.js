@@ -8,7 +8,8 @@ import Leads from './Leads/Leads'
 import PricingFilters from './PricingFilters/PricingFilters'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
 import ShowTutors from "./ShowTutors/ShowTutors";
-function BookaDemo() { const [hidepackages, setpackages] = useState(false);
+function BookaDemo() { 
+    const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
     const [showtutors, setshowtutors] = useState(false);
@@ -16,6 +17,11 @@ function BookaDemo() { const [hidepackages, setpackages] = useState(false);
     const hidepricingpackage = () => {
         setpackages(true)
         setleadform(true);
+    }
+    const showfeecalculator = ()=>{
+        setpackages(true);
+        setleadform(false);
+        setsuccessfullead(true);
     }
     const showtutoroptions = () => {
         setshowtutors(true);
@@ -58,7 +64,7 @@ function BookaDemo() { const [hidepackages, setpackages] = useState(false);
                 {!hidepackages ? <Row>
                     <Col>
                         <div className="packages">
-                            <Packages parent_country={parent_country} hidepricingpackage={hidepricingpackage} />
+                            <Packages parent_country={parent_country} hidepricingpackage={hidepricingpackage} showfeecalculator = {showfeecalculator}/>
                         </div>
                     </Col>
                 </Row> : ''}

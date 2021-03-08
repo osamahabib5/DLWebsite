@@ -8,7 +8,7 @@ function Packages(props) {
                 <div className="p-2 bd-highlight"><ChangeLocation /></div>
                 <div className="p-2 bd-highlight"><p className = "packageselection">First, select a package to customize</p></div>
                 <div className="p-2 bd-highlight">
-                    <PackageDetails hidepricingpackage = {props.hidepricingpackage}/>
+                    <PackageDetails hidepricingpackage = {props.hidepricingpackage} showfeecalculator = {props.showfeecalculator}/>
                 </div>
             </div>
         </div>

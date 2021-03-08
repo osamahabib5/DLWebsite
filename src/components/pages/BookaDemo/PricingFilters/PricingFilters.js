@@ -1,29 +1,54 @@
 import React, { useContext, useState } from 'react'
 import { Container, Row, Col, Form, FormCheck, Button } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
+import axios from "axios";
 import { TutorsContext } from '../../../../Provider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import baseUrl from '../../../../baseUrl/baseUrl';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country } = useContext(TutorsContext)
-    const [advancedfilter, setadvancedfilters] = useState([{ class_type: '', subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country }])
+    const { setOptedPackage, parent_country, lead_id, getFilteredTeachersList } = useContext(TutorsContext)
+    const [hours, sethours] = useState(2);
+    const [days, setdays] = useState(1);
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: (hours * days), country: parent_country, lead_id: lead_id, result_type: "teachers" })
+    const { class_type } = advancedfilter;
+    const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
-        setadvancedfilters({
-            ...advancedfilter,
-            [e.target.name]: e.target.value
-        })
-        console.log("HandleOnChange: " + JSON.stringify(advancedfilter))
+        e.persist();
+        setadvancedfilters(prevState => ({
+            ...prevState,
+            class_type: e.target.value
+        }));
     }
-    const handleSubmit = (e) => {
+    const handleOnChangeTutorType = (e) => {
+        e.persist();
+        setadvancedfilters(prevState => ({
+            ...prevState,
+            tutor_type: e.target.value
+        }));
+    }
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        props.showtutoroptions();
+        // props.showtutoroptions();
+        await axios.post(url, advancedfilter).then(response=>{
+            console.log("Fee Calculator Response: "+JSON.stringify(response.data))
+            getFilteredTeachersList(response.data.data.teachers)
+            setadvancedfilters({
+                class_type: "",
+                subscription: "",
+                tutor_type: "",
+                hours_per_week : 2
+            })
+        }).catch(error=>{
+            console.log("Filters Error: "+ error)
+        })
     }
     const onChangePackage = (e) => {
         e.target.value === "3_month" ? setOptedPackage(2) : setOptedPackage(1)
-        setadvancedfilters({
-            ...advancedfilter,
+        setadvancedfilters(prevState => ({
+            ...prevState,
             subscription: e.target.value
-        })
+        }));
     }
     return (
         <Container>
@@ -49,15 +74,16 @@ function PricingFilters(props) {
                 <Form.Row>
                     <Col>
                         {['radio'].map((type) => (
-                            <div key={`default-${type}`} className="mb-3" onChange={handleOnChange} name = "class_type">
+                            <div key={`default-${type}`} className="mb-3" name="class_type">
                                 <FormCheck.Label>Class Type</FormCheck.Label>
                                 <Col>
                                 </Col>
                                 <Form.Check inline label="Small Batches" value="batch"
-
-                                    type={type} id={`inline-${type}-1`} />
+                                    checked={class_type === "batch"}
+                                    type={type} id={`inline-${type}-1`} onChange={handleOnChange} />
                                 <Form.Check inline label="One-on-One" value="one_on_one"
-                                    type={type} id={`inline-${type}-2`} />
+                                    checked={class_type === "one_on_one"}
+                                    type={type} id={`inline-${type}-2`} onChange={handleOnChange} />
                             </div>
                         ))}
                     </Col>
@@ -65,16 +91,16 @@ function PricingFilters(props) {
                 <Form.Row>
                     <Col>
                         {['radio'].map((type) => (
-                            <div key={`default-${type}`} className="mb-3" name = "tutor_type">
+                            <div key={`default-${type}`} className="mb-3" name="tutor_type">
                                 <FormCheck.Label>Tutor Type</FormCheck.Label>
                                 <Col>
                                 </Col>
-                                <Form.Check inline label="Standard Tutor" value="standard" checked={advancedfilter.class_type === "standard"}
-                                    onChange={handleOnChange}
+                                <Form.Check inline label="Standard Tutor" value="standard" checked={advancedfilter.tutor_type === "standard"}
+                                    onChange={handleOnChangeTutorType}
                                     type={type} id={`inline-${type}-1`} />
                                 <Form.Check inline label="Super Tutor" value="super"
-                                    checked={advancedfilter.class_type === "super"}
-                                    onChange={handleOnChange}
+                                    checked={advancedfilter.tutor_type === "super"}
+                                    onChange={handleOnChangeTutorType}
                                     type={type} id={`inline-${type}-2`} />
                             </div>
                         ))}
@@ -86,7 +112,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={100} value={2} style={{ width: "50px" }} />
+                    <NumericInput min={2} max={100} style={{ width: "50px" }} onChange={(e) => setdays(parseInt(e))} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
@@ -94,7 +120,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={100} value={1} style={{ width: "50px" }} />
+                    <NumericInput min={1} max={100} style={{ width: "50px" }} onChange={(e) => sethours(parseInt(e))}/>
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">

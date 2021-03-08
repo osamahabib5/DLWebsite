@@ -239,7 +239,7 @@
     margin-top: 2rem;
 }
 
-.pricingfilters .filteroptionsheading {
+.pricingfilters, .show_tutors  .filteroptionsheading {
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;

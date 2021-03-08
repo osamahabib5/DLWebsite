@@ -19,25 +19,25 @@ function Leads(props) {
     }
     const PostLead = async (e) => {
         e.preventDefault();
-        // if (!leadsdetail.name || !leadsdetail.phone) {
-        //     alert("Please fill all the values")
-        // }
-        // else {
-        //     await axios.post(postleadurl, leadsdetail).then(response => {
-        //         const leadid = JSON.stringify(response.data.data.lead_id)
-        //         console.log("Lead Id: "+ leadid)
-        //         setLeadId(leadid)
-        //         props.setleadform(false);
-        //         props.setsuccessfullead(true);
-        //         fillleaddetails({
-        //             name: "",
-        //             email: "",
-        //             phone: ""
-        //         })
-        //     })
-        // }
-        props.setleadform(false);
-        props.setsuccessfullead(true);
+        if (!leadsdetail.name || !leadsdetail.phone) {
+            alert("Please fill all the values")
+        }
+        else {
+            await axios.post(postleadurl, leadsdetail).then(response => {
+                const leadid = JSON.stringify(response.data.data.lead_id)
+                console.log("Lead Id: "+ leadid)
+                setLeadId(leadid)
+                props.setleadform(false);
+                props.setsuccessfullead(true);
+                fillleaddetails({
+                    name: "",
+                    email: "",
+                    phone: ""
+                })
+            })
+        }
+        // props.setleadform(false);
+        // props.setsuccessfullead(true);
     }
     useEffect(() => {
         if (!parent_country) {

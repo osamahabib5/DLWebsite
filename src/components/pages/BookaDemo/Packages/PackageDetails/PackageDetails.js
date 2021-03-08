@@ -40,7 +40,7 @@ function PackageDetails(props) {
                                 ))}
                             </div>
                             <ListGroup.Item>
-                                <Button style={{ width: "200px", height: "48px" }}>Customize</Button>
+                                <Button style={{ width: "200px", height: "48px" }} onClick = {props.showfeecalculator}>Customize</Button>
                             </ListGroup.Item>
                         </ListGroup>
                     </div>
@@ -77,7 +77,7 @@ function PackageDetails(props) {
                                 ))}
                             </div>
                             <ListGroup.Item >
-                                <Button style={{ width: "200px", height: "48px" }}>Customize</Button>
+                                <Button style={{ width: "200px", height: "48px" }} onClick = {props.showfeecalculator}>Customize</Button>
                             </ListGroup.Item>
                         </ListGroup>
 
