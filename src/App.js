@@ -49,7 +49,7 @@ function App() {
   if (sideDrawerOpen) {
     backdrop = <Backdrop click={handleBackdropClick} />
   } else {
-    footer = <Footer show={handleFooterClick} />
+    footer = <Footer show={handleFooterClick}/>
   }
   if (notification) {
     Notification = <NotificationToast click={closenotifications} />
@@ -61,7 +61,7 @@ function App() {
           {/* {Notification} */}
           <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
 
-          <SideDrawer show={sideDrawerOpen} />
+          <SideDrawer show={sideDrawerOpen}  handleDrawerToggleClick = {handleDrawerToggleClick}/>
 
           <Switch>
             <Route path='/programs/kitdetails'>

@@ -7,16 +7,11 @@ function PackageDetails(props) {
     return (
         <div className="packagedetails">
             <CardDeck>
-                <Card style={{
-                    backgroundColor: "#FFF8F8",
-                    border: "2px solid #FCCFCB",
-                    boxSizing: "border-box",
-                    borderRadius: " 7px 7px 0px 0px"
-                }} onClick={()=>{
+                <Card style={Available_Packages[0].styling} onClick={()=>{
                     props.hidepricingpackage();
                     setOptedPackage(1)
                 }}>
-                    <Card.Header style={{ background: "#FCCFCB" }}></Card.Header>
+                    <Card.Header style={{ background: Available_Packages[0].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
                             <ListGroup.Item>{Available_Packages[0].title}</ListGroup.Item>
@@ -45,16 +40,11 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={{
-                    backgroundColor: "#F8FAFF",
-                    border: "2px solid #5E6981",
-                    boxSizing: "border-box",
-                    borderRadius: " 7px 7px 0px 0px"
-                }} onClick={()=>{
+                <Card style= {Available_Packages[1].styling} onClick={()=>{
                     props.hidepricingpackage();
                     setOptedPackage(2)
                 }}>
-                    <Card.Header style={{ background: "#5E6981" }}></Card.Header>
+                    <Card.Header style={{ background: Available_Packages[1].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
                             <ListGroup.Item>{Available_Packages[1].title}</ListGroup.Item><ListGroup.Item>

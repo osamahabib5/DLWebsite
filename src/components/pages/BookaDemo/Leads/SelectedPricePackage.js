@@ -9,13 +9,8 @@ function SelectedPricePackage(props) {
 
     return (
         <div className="selectedpackage">
-            <Card style={{
-                backgroundColor: "#FFF8F8",
-                border: "2px solid #FCCFCB",
-                boxSizing: "border-box",
-                borderRadius: " 7px 7px 0px 0px"
-            }}>
-                <Card.Header style={{ background: "#FCCFCB" }}></Card.Header>
+            <Card style={Available_Packages[i].styling}>
+                <Card.Header style={{ background: Available_Packages[i].color }}></Card.Header>
                 <div className="d-flex justify-content-center">
                     <ListGroup variant="flush">
                         <ListGroup.Item>{Available_Packages[i].title}</ListGroup.Item>
@@ -41,7 +36,7 @@ function SelectedPricePackage(props) {
                     </ListGroup>
                 </div>
             </Card>
-            <p className="parentlocation" style = {{marginLeft: props.isMobile ? "0rem" : "9rem" }}>
+            <p className="parentlocation">
                 <ChangeLocation />
             </p>
         </div>
