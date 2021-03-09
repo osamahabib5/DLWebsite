@@ -4,7 +4,7 @@ import { TutorsContext } from '../../../../../Provider';
 import Available_Packages from '../../Available_Packages';
 import { ClipLoader } from 'react-spinners';
 function PackageDetails(props) {
-    const { setOptedPackage, parent_country , loading,startLoading} = useContext(TutorsContext);
+    const { setOptedPackage, parent_country, loading, startLoading } = useContext(TutorsContext);
     // useEffect(()=>{
     //     // window.location.reload()
     // },[])

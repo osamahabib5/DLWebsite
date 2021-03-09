@@ -4,8 +4,7 @@ import { TutorsContext } from '../../../../Provider';
 import ChangeLocation from "../../../ChangeLocation/ChangeLocation";
 import Available_Packages from '../Available_Packages';
 function SelectedPricePackage(props) {
-    const { opted_package } = useContext(TutorsContext);
-    let i = opted_package == 1 ? 0 : 1;
+    const { opted_package , parent_country} = useContext(TutorsContext);
 
     return (
         <div className="selectedpackage">
