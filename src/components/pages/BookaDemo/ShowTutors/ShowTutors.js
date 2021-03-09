@@ -15,7 +15,7 @@ function ShowTutors() {
             <Row>
                 <Col>
                     <div className="tutorslist">
-                        <Tutors dataarr={filtered_teachers_list} avatar={avatar} loading={loading} />
+                        <Tutors dataarr={filtered_teachers_list.splice(0,4)} avatar={avatar} loading={loading} />
                     </div>
                 </Col>
             </Row>

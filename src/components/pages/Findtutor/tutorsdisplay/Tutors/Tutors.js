@@ -29,7 +29,7 @@ function Tutors(props) {
             { row.map((item, index) =>
                 <Col key={index}>
                     <Link to={{
-                        pathname: `${props.url}/${item.id}`,
+                        pathname: `${props.url ? props.url : "/tutors" }/${item.id}`,
                         search: `${item.name}`
                     }}>
                         <Card key={item.id}>

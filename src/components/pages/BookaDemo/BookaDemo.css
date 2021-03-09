@@ -241,8 +241,8 @@
         margin-top: 1rem;
     }
     .pricingfilters .numericinput, b {
-       top: -0.8rem;
-       height: 40px;
+        top: -0.8rem;
+        height: 20px;
     }
     .pricingfilters, .show_tutors .filteroptionsheading {
         margin-left: 1rem;
@@ -374,11 +374,28 @@
         color: #777777;
         white-space: nowrap;
     }
+    .tutorslist .container .card-img-top {
+        width: 230px;
+        height: 230px;
+    }
+    .tutorslist .card-img, .card-img-top {
+        margin: auto;
+    }
 }
 
 @media only screen and (max-width: 769px) {
     .tutorslist .row {
         flex-direction: row;
+    }
+    .tutorslist .container .card-img-top {
+        width: 150px;
+        height: 150px;
+        margin-left: -0.5rem;
+        margin-top: -1rem;
+    }
+    .tutorslist .container .card {
+        width: 120%;
+        height: 450px!important;
     }
     .pricingfilters .justify-content-md-center .btn-primary, .btn-primary:active, .btn-primary:hover {
         align-self: center;

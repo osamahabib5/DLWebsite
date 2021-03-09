@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, getFilteredTeachersList } = useContext(TutorsContext)
+    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
     const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 10, country: parent_country, lead_id: 32062, result_type: "teachers" })
@@ -31,6 +31,7 @@ function PricingFilters(props) {
         e.preventDefault();
         await axios.post(url, advancedfilter).then(response=>{
             getFilteredTeachersList(response.data.data.teachers)
+            startLoading();
             setadvancedfilters({
                 class_type: "",
                 subscription: "",
