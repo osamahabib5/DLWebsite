@@ -29,9 +29,7 @@ function PricingFilters(props) {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log("Advanced Filters: "+ JSON.stringify(advancedfilter))
         await axios.post(url, advancedfilter).then(response=>{
-            console.log("Fee Calculator Response: "+JSON.stringify(response.data.data.teachers))
             getFilteredTeachersList(response.data.data.teachers)
             setadvancedfilters({
                 class_type: "",
@@ -45,7 +43,7 @@ function PricingFilters(props) {
         })
     }
     const onChangePackage = (e) => {
-        e.target.value === "3_month" ? setOptedPackage(2) : setOptedPackage(1)
+        e.target.value === "3_month" ? setOptedPackage(1) : setOptedPackage(0)
         setadvancedfilters(prevState => ({
             ...prevState,
             subscription: e.target.value
@@ -113,7 +111,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={100} style={{ width: "50px" }} onChange={(e) => setdays(parseInt(e))} />
+                    <NumericInput min={1} max={100} className = "numericinput" onChange={(e) => setdays(parseInt(e))} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
@@ -121,7 +119,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={100} style={{ width: "50px" }} onChange={(e) => sethours(parseInt(e))}/>
+                    <NumericInput min={2} max={100} className = "numericinput" onChange={(e) => sethours(parseInt(e))}/>
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">
