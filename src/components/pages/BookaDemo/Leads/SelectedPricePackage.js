@@ -3,7 +3,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import { TutorsContext } from '../../../../Provider';
 import ChangeLocation from "../../../ChangeLocation/ChangeLocation";
 import Available_Packages from '../Available_Packages';
-function SelectedPricePackage() {
+function SelectedPricePackage(props) {
     const { opted_package } = useContext(TutorsContext);
     let i = opted_package == 1 ? 0 : 1;
 
@@ -32,7 +32,7 @@ function SelectedPricePackage() {
                                 </div>
                             </div>
                         </ListGroup.Item>
-                        <ListGroup.Item>{Available_Packages[i].heading}</ListGroup.Item>
+                        <ListGroup.Item style = {{marginTop: props.isMobile ? "1rem" : ""}}>{Available_Packages[i].heading}</ListGroup.Item>
                         <div className="package_specification">
                             {Available_Packages[i].description.map(val => (
                                 <ListGroup.Item>{val}</ListGroup.Item>
@@ -41,7 +41,7 @@ function SelectedPricePackage() {
                     </ListGroup>
                 </div>
             </Card>
-            <p className="parentlocation">
+            <p className="parentlocation" style = {{marginLeft: props.isMobile ? "0rem" : "9rem" }}>
                 <ChangeLocation />
             </p>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import PackageDetails from './PackageDetails/PackageDetails'
 import ChangeLocation from "../../../ChangeLocation/ChangeLocation";
 import PackageDetailsMobile from './PackageDetailsMobile';

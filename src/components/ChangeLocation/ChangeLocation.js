@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { TutorsContext } from "../../Provider";
@@ -27,16 +27,16 @@ function ChangeLocation() {
         color: "#32B9BB",
         textAlign: "center",
         marginTop: "-1rem",
-        textDecoration : "underline",
+        textDecoration: "underline",
         cursor: "pointer"
     }
     const { parent_country } = useContext(TutorsContext)
     return (
         <div style={{ display: "inline!important" }}>
             <p style={parentlocation}>{<FontAwesomeIcon icon={faMapMarkerAlt} />} You are viewing prices in {parent_country}.</p>
-            <p style={changeLocation} onClick = {onOpenModal}>Change</p>
+            <p style={changeLocation} onClick={onOpenModal}>Change</p>
             <Modal open={open} onClose={onCloseModal} center>
-                <ChangeLocationPopup closeModal = {onCloseModal}/>
+                <ChangeLocationPopup closeModal={onCloseModal} />
             </Modal>
         </div>
     )

@@ -26,7 +26,7 @@ function PackageDetailsMobile(props) {
                 {Available_Packages.map((data, index) => (
                     <Carousel.Item key={index}>
                         <Carousel.Caption style={setPackagestyle(index)} >
-                            <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} />
+                            {/* <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} /> */}
                             <p className="packagemobileheading">{data.title}</p>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">

@@ -13,7 +13,7 @@ function BookaDemo() {
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
     const [showtutors, setshowtutors] = useState(false);
-    const { parent_country, setParentLocation, setParentCity } = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
     const hidepricingpackage = () => {
         setpackages(true)
         setleadform(true);
@@ -87,7 +87,7 @@ function BookaDemo() {
                         </div>
                     </Col>
                     <Col>
-                        <SelectedPricePackage />
+                        <SelectedPricePackage isMobile = {isMobile}/>
                     </Col>
                 </Row> : ''}
                 {successfullead ? <Row>

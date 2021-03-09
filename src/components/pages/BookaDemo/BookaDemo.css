@@ -70,7 +70,7 @@
     text-align: center;
 }
 
-.bookademo .packages .packagedetails .card .list-group-item .flex-row,.pricingpackagemobile .flex-row{
+.bookademo .packages .packagedetails .card .list-group-item .flex-row, .pricingpackagemobile .flex-row {
     background: none;
     height: 23px;
 }
@@ -150,39 +150,89 @@
     margin-top: 5rem;
 }
 
-.bookademo .leads .form-group .form-control, input {
-    width: 556px;
-    height: 60px;
-    border-radius: 6px;
-    border: 1px solid #C9CCD4;
-    box-sizing: border-box;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 32px;
-    color: #000000;
+@media only screen and (min-width:769px) {
+    .bookademo .selectedpackage .card .list-group-item {
+        color: black;
+        align-self: center;
+        text-align: center;
+    }
+    .bookademo .leads .form-group .form-control, input {
+        width: 556px;
+        height: 60px;
+        border-radius: 6px;
+        border: 1px solid #C9CCD4;
+        box-sizing: border-box;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 32px;
+        color: #000000;
+    }
+    .bookademo .selectedpackage .card .package_specification .list-group-item {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 16px;
+        color: #000000;
+        justify-content: center;
+    }
+    .bookademo .selectedpackage .card {
+        width: 360px;
+        height: 400px;
+        background: #FFFFFF;
+        border-radius: 7px 7px 0px 0px;
+    }
 }
 
-.bookademo  .selectedpackage {
+@media only screen and (max-width:769px) {
+    .bookademo .leads .form-group, input {
+        width: 245px;
+        height: 40px;
+        border-radius: 3px;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 18px;
+        /* identical to box height, or 150% */
+        color: #000000;
+        color: #000000;
+    }
+    .bookademo .selectedpackage .card .list-group-item {
+        color: black;
+        align-self: center;
+        text-align: center;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 10px;
+        line-height: 16px;
+        display: flex;
+        color: #000000;
+    }
+    .bookademo .selectedpackage .card .package_specification .list-group-item {
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 12px;
+        color: #000000;
+        justify-content: center;
+    }
+    .bookademo .selectedpackage .card {
+        width: 245px;
+        height: 350px;
+        background: #FFFFFF;
+        border-radius: 7px 7px 0px 0px;
+    }
+}
+
+.bookademo .selectedpackage {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.bookademo .selectedpackage .card {
-    width: 360px;
-    height: 400px;
-    left: calc(50% - 360px/2 - 11.5px);
-    top: calc(50% - 400px/2 + 10px);
-    background: #FFFFFF;
-    border-radius: 7px 7px 0px 0px;
-}
-
-.bookademo .selectedpackage .card .list-group-item {
-    color: black;
-    align-self: center;
-    text-align: center;
 }
 
 .bookademo .selectedpackage .card .list-group-item .flex-row {
@@ -200,7 +250,7 @@
     margin-top: 0.5rem;
 }
 
-.bookademo  .selectedpackage .card .list-group-item .flex-row .p-2 {
+.bookademo .selectedpackage .card .list-group-item .flex-row .p-2 {
     padding: 0.5rem!important;
 }
 
@@ -211,16 +261,6 @@
     font-size: 24px;
     line-height: 33px;
     color: #000000;
-}
-
-.bookademo .selectedpackage .card .package_specification .list-group-item {
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 16px;
-    color: #000000;
-    justify-content: center;
 }
 
 .bookademo .selectedpackage .parentlocation {
@@ -239,7 +279,7 @@
     margin-top: 2rem;
 }
 
-.pricingfilters, .show_tutors  .filteroptionsheading {
+.pricingfilters, .show_tutors .filteroptionsheading {
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
@@ -247,14 +287,17 @@
     line-height: 33px;
     color: #32B9BB;
 }
+
 .pricingfilters .form-group .form-control, input {
     width: auto;
     height: auto;
     margin-bottom: 0rem!important;
 }
+
 .pricingfilters .form-check-inline, label {
     margin-left: 2rem;
 }
+
 .pricingfilters .justify-content-md-center .btn-primary, .btn-primary:active, .btn-primary:hover {
     width: 160px;
     height: 48px;
@@ -269,7 +312,7 @@
     text-align: left;
 }
 
-@media only screen and (min-width: 769px){
+@media only screen and (min-width: 769px) {
     .tutorslist .budget {
         font-family: Inter;
         font-style: normal;
@@ -367,7 +410,7 @@
 
 .tutorslist .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
 .tutorslist .card {
@@ -378,6 +421,7 @@
     height: 550px;
     cursor: pointer;
 }
+
 .packagemobiletagline {
     font-family: Inter;
     font-style: normal;
@@ -393,6 +437,7 @@
     justify-content: center;
     margin-top: 2rem;
 }
+
 .pricingpackagemobile .packagemobileheading {
     font-family: Avenir;
     font-style: normal;

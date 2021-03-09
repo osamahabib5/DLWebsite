@@ -8,7 +8,8 @@ const initialState = {
     parent_city: "",
     lead_id: 0,
     opted_package: 0,
-    filtered_teachers_list: []
+    filtered_teachers_list: [],
+    isMobile: false
 }
 
 const actions = {
@@ -21,7 +22,8 @@ const actions = {
     GETCITY: 'GETCITY',
     GETLEAD: 'GETLEAD',
     GETPRICINGPACKAGE: 'GETPRICINGPACKAGE',
-    GETFILTEREDTEACHERS: 'GETFILTEREDTEACHERS'
+    GETFILTEREDTEACHERS: 'GETFILTEREDTEACHERS',
+    ISMOBILE: 'ISMOBILE'
 }
 
 function reducer(state, action) {
@@ -77,6 +79,11 @@ function reducer(state, action) {
                 ...state,
                 filtered_teachers_list: action.value
             }
+        case actions.ISMOBILE:
+            return {
+                ...state,
+                isMobile: action.value
+            }
         default:
             return state;
     }
@@ -93,7 +100,7 @@ function Provider({ children }) {
         parent_city: state.parent_city,
         lead_id: state.lead_id,
         opted_package: state.opted_package,
-        filtered_teachers_list : state.filtered_teachers_list,
+        filtered_teachers_list: state.filtered_teachers_list,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -104,7 +111,8 @@ function Provider({ children }) {
         setLeadId: (value) => { dispatch({ type: actions.GETLEAD, value }) },
         setParentCity: (value) => { dispatch({ type: actions.GETCITY, value }) },
         setOptedPackage: (value) => { dispatch({ type: actions.GETPRICINGPACKAGE, value }) },
-        getFilteredTeachersList: (value) => { dispatch({ type: actions.GETFILTEREDTEACHERS, value }) }
+        getFilteredTeachersList: (value) => { dispatch({ type: actions.GETFILTEREDTEACHERS, value }) },
+        setisMobile: (value)=> { dispatch({ type: actions.ISMOBILE , value}) }
     }
     return (
         <TutorsContext.Provider value={value}>
