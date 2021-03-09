@@ -9,12 +9,16 @@ import PricingFilters from './PricingFilters/PricingFilters'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
 import ShowTutors from "./ShowTutors/ShowTutors";
 import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
+import ScheduleDemo from './ScheduleDemo'
+import {  useParams} from 'react-router-dom';
 function BookaDemo() {
+    let {showLeads} = useParams();
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
     const [showtutors, setshowtutors] = useState(false);
     const [showappointmentpage, setappointmentpage] = useState(false);
+    const [scheduledemo, setscheduledemo] = useState(false);
     const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
     const hidepricingpackage = () => {
         setpackages(true)
@@ -42,6 +46,10 @@ function BookaDemo() {
         setappointmentpage(true);
         setshowtutors(false);
     }
+    const showScheduleDemo = () => {
+        setscheduledemo(true);
+        setappointmentpage(false);
+    }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
             .then(function (response) {
@@ -55,6 +63,7 @@ function BookaDemo() {
             })
     }
     useEffect(() => {
+        console.log("ShowLeads: "+ showLeads)
         mobileview();
         window.addEventListener("resize", mobileview);
         if (!parent_country) {
@@ -109,7 +118,14 @@ function BookaDemo() {
                 {showappointmentpage ? <Row>
                     <Col>
                         <div className="booking-demo-appointment">
-                            <AppointmentBooking />
+                            <AppointmentBooking showScheduleDemo = {showScheduleDemo}/>
+                        </div>
+                    </Col>
+                </Row> : ""}
+                {scheduledemo ? <Row>
+                    <Col>
+                        <div className="scheduledemo">
+                            <ScheduleDemo />
                         </div>
                     </Col>
                 </Row> : ""}

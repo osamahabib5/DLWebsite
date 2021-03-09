@@ -1,6 +1,5 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col } from "react-bootstrap";
 import './OurTutor.css'
 import TutorIntro from './TutorIntro/TutorIntro';
 import TutorName from './TutorName/TutorName';

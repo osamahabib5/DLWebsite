@@ -4,7 +4,7 @@ import { Container, Row, Col, Alert, Button, Image } from 'react-bootstrap'
 import SelectedPricePackage from '../Leads/SelectedPricePackage'
 import baseUrl from '../../../../baseUrl/baseUrl';
 
-function AppointmentBooking() {
+function AppointmentBooking(props) {
     const bookingurl = baseUrl + "/api/teacher/profile/58"
     const [imgsrc, setimgsrc] = useState("");
     const [show, setShow] = useState(true);
@@ -37,7 +37,7 @@ function AppointmentBooking() {
             <Row >
                 <Col>
                     <div className="d-flex justify-content-center">
-                        <Button style={{ width: "200px", height: "48px" }}>Schedule a Demo</Button>
+                        <Button style={{ width: "200px", height: "48px", marginBottom: "2rem" }} onClick = {props.showScheduleDemo}>Schedule a Demo</Button>
                     </div>
                 </Col>
             </Row>

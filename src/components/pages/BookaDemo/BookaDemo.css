@@ -530,7 +530,7 @@
     margin-top: 5rem;
 }
 
-.booking-demo-appointment .AppointmentConfirmationHeading {
+.booking-demo-appointment .AppointmentConfirmationHeading, .scheduledemo .AppointmentConfirmationHeading {
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
@@ -550,6 +550,7 @@
 }
 
 .booking-demo-appointment .alert .close {
-    position: absolute;
-    left: 0rem;
+    /* position: absolute;
+    left: 0rem; */
+    display: none!important;
 }

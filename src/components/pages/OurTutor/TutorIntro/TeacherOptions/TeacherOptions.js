@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Col, Row, Container } from 'react-bootstrap';
 import ReviewPopup from './ReviewPopup/ReviewPopup';
+import { Link } from 'react-router-dom';
 function TeacherOptions() {
     const [show, setShow] = useState(false);
     const [review, hideReview] = useState(true);
@@ -17,7 +18,12 @@ function TeacherOptions() {
         <Container>
             <Row>
                 <Col>
-                    <Button variant="primary">Book a Demo</Button>
+                    <Link
+                        to={{
+                            pathname: "/pricing",
+                            search : "?showLeads=true"
+                        }}
+                    ><Button variant="primary">Book a Demo</Button></Link>
                     <div style={{ marginTop: "1rem" }}></div>
                     <Button variant="primary" onClick={handleShow}>Leave a review</Button>
                     <div style={{ marginTop: "1rem" }}></div>
