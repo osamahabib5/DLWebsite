@@ -288,6 +288,11 @@
     color: #32B9BB;
 }
 
+.pricingfilters .show_tutors .btn-primary, .btn-primary:active, .btn-primary:hover {
+    width: 160px!important;
+    height: 48px!important;
+}
+
 .pricingfilters .form-group .form-control, input {
     width: auto;
     height: auto;

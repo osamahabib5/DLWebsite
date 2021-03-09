@@ -19,7 +19,7 @@ function Tutors(props) {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-    },[props.dataarr]);
+    },[]);
   
     const rowslength = isMobile ? 2 : 4;
     const rows = [...Array(Math.ceil(props.dataarr.length / rowslength))];
@@ -122,7 +122,7 @@ function Tutors(props) {
 
     return (
         <Container>
-            {props.loading ? <div className="d-flex justify-content-center">
+            {props.loading && !props.dataarr ? <div className="d-flex justify-content-center">
                 <ClipLoader size={80} color="#00ABBD" />
             </div> :
                 content

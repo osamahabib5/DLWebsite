@@ -10,7 +10,7 @@ function PricingFilters(props) {
     const { setOptedPackage, parent_country, lead_id, getFilteredTeachersList } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: (hours * days), country: parent_country, lead_id: lead_id, result_type: "teachers" })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 10, country: parent_country, lead_id: lead_id, result_type: "teachers" })
     const { class_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -29,9 +29,9 @@ function PricingFilters(props) {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
+        console.log("Advanced Filters: "+ JSON.stringify(advancedfilter))
         await axios.post(url, advancedfilter).then(response=>{
-            console.log("Fee Calculator Response: "+JSON.stringify(response.data.data))
+            console.log("Fee Calculator Response: "+JSON.stringify(response.data.data.teachers))
             getFilteredTeachersList(response.data.data.teachers)
             setadvancedfilters({
                 class_type: "",
@@ -113,7 +113,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={100} style={{ width: "50px" }} onChange={(e) => setdays(parseInt(e))} />
+                    <NumericInput min={1} max={100} style={{ width: "50px" }} onChange={(e) => setdays(parseInt(e))} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
@@ -121,7 +121,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={100} style={{ width: "50px" }} onChange={(e) => sethours(parseInt(e))}/>
+                    <NumericInput min={2} max={100} style={{ width: "50px" }} onChange={(e) => sethours(parseInt(e))}/>
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">
