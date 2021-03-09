@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList } = useContext(TutorsContext)
+    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 10, country: parent_country, lead_id: 32062, result_type: "teachers" })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: "teachers" })
     const { class_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -19,6 +19,14 @@ function PricingFilters(props) {
             ...prevState,
             class_type: e.target.value
         }));
+    }
+    const calculateHoursPerWeek = ()=>{
+        return(
+            setadvancedfilters({
+                ...advancedfilter,
+                hours_per_week: hours * days
+            })
+        )
     }
     const handleOnChangeTutorType = (e) => {
         e.persist();
@@ -29,8 +37,11 @@ function PricingFilters(props) {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
+        console.log("Filters Sent: "+JSON.stringify(advancedfilter))
         await axios.post(url, advancedfilter).then(response=>{
+            console.log("Calculator Response: "+JSON.stringify(response.data.data))
             getFilteredTeachersList(response.data.data.teachers)
+            calculateFees(response.data.data.fee_amount)
             startLoading();
             setadvancedfilters({
                 class_type: "",
@@ -129,7 +140,7 @@ function PricingFilters(props) {
                 </Button>
             </Row>
             <Row className="justify-content-md-center">
-                <p className="skipbooking">Skip</p>
+                <p className="skipbooking" onClick = {props.showtutoroptions}>Skip</p>
             </Row>
         </Container>
     )

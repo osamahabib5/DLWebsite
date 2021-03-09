@@ -84,6 +84,7 @@ function PackageDetailsMobile(props) {
                             <div style={{ marginTop: "3rem" }}>
                                 <Button onClick={props.hidepricingpackage}>Customize</Button>
                             </div>
+                           
                         </Carousel.Caption>
 
                     </Carousel.Item>

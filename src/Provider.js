@@ -9,7 +9,8 @@ const initialState = {
     lead_id: 0,
     opted_package: 0,
     filtered_teachers_list: [],
-    isMobile: false
+    isMobile: false,
+    fee_amount: 0
 }
 
 const actions = {
@@ -23,7 +24,8 @@ const actions = {
     GETLEAD: 'GETLEAD',
     GETPRICINGPACKAGE: 'GETPRICINGPACKAGE',
     GETFILTEREDTEACHERS: 'GETFILTEREDTEACHERS',
-    ISMOBILE: 'ISMOBILE'
+    ISMOBILE: 'ISMOBILE',
+    SETFEES: 'SETFEES'
 }
 
 function reducer(state, action) {
@@ -84,6 +86,11 @@ function reducer(state, action) {
                 ...state,
                 isMobile: action.value
             }
+        case actions.SETFEES:
+            return {
+                ...state,
+                fee_amount: action.value
+            }
         default:
             return state;
     }
@@ -99,6 +106,7 @@ function Provider({ children }) {
         parent_country: state.parent_country,
         parent_city: state.parent_city,
         lead_id: state.lead_id,
+        fee_amount: state.fee_amount,
         opted_package: state.opted_package,
         filtered_teachers_list: state.filtered_teachers_list,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
@@ -112,7 +120,8 @@ function Provider({ children }) {
         setParentCity: (value) => { dispatch({ type: actions.GETCITY, value }) },
         setOptedPackage: (value) => { dispatch({ type: actions.GETPRICINGPACKAGE, value }) },
         getFilteredTeachersList: (value) => { dispatch({ type: actions.GETFILTEREDTEACHERS, value }) },
-        setisMobile: (value)=> { dispatch({ type: actions.ISMOBILE , value}) }
+        setisMobile: (value) => { dispatch({ type: actions.ISMOBILE, value }) },
+        calculateFees : (value) => { dispatch({ type: actions.SETFEES, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

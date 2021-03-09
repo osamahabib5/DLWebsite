@@ -8,12 +8,14 @@ import Leads from './Leads/Leads'
 import PricingFilters from './PricingFilters/PricingFilters'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
 import ShowTutors from "./ShowTutors/ShowTutors";
+import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 function BookaDemo() {
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
     const [showtutors, setshowtutors] = useState(false);
-    const { parent_country, setParentLocation, location, setParentCity} = useContext(TutorsContext)
+    const [showappointmentpage, setappointmentpage] = useState(false);
+    const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
     const hidepricingpackage = () => {
         setpackages(true)
         setleadform(true);
@@ -35,6 +37,10 @@ function BookaDemo() {
     const showtutoroptions = () => {
         setshowtutors(true);
         setsuccessfullead(false);
+    }
+    const showAppointmentPage = () => {
+        setappointmentpage(true);
+        setshowtutors(false);
     }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
@@ -94,6 +100,16 @@ function BookaDemo() {
                     <Col>
                         <div className="pricingfilters">
                             <PricingFilters showtutoroptions={showtutoroptions} />
+                        </div>
+                    </Col>
+                    <Col>
+                        <SelectedPricePackage />
+                    </Col>
+                </Row> : ""}
+                {showappointmentpage ? <Row>
+                    <Col>
+                        <div className="booking-demo-appointment">
+                            <AppointmentBooking showAppointmentPage = {showAppointmentPage}/>
                         </div>
                     </Col>
                     <Col>
