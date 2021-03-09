@@ -45,13 +45,15 @@ function PackageDetailsMobile(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </ListGroup>
+                            <div style={{ marginTop: "3rem" }}>
+                                <Button onClick={props.hidepricingpackage}>Customize</Button>
+                            </div>
                         </Carousel.Caption>
+
                     </Carousel.Item>
                 ))}
             </Carousel>
-            <div style = {{marginTop: "3rem"}}>
-                <Button onClick = {props.hidepricingpackage}>Customize</Button>
-            </div>
+
         </div>
     )
 }

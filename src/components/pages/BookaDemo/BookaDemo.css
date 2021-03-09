@@ -24,6 +24,9 @@
 .bookademo .packages .flex-column {
     background: none;
 }
+.packages .pricingpackagemobile .carousel-indicators li {
+    background-color: grey;
+}
 
 .bookademo .packages .flex-column .parentlocation {
     font-family: Avenir-Next;
@@ -139,6 +142,7 @@
     display: flex;
     align-items: center;
     color: #32B9BB;
+    text-align: center;
 }
 
 .bookademo .leads .btn-primary, .btn-primary:active .btn-primary:hover {
@@ -168,7 +172,9 @@
         font-size: 18px;
         line-height: 32px;
         color: #000000;
+        margin-top: none;
     }
+    
     .bookademo .selectedpackage .card .package_specification .list-group-item {
         font-family: Avenir;
         font-style: normal;
@@ -199,6 +205,17 @@
         /* identical to box height, or 150% */
         color: #000000;
         color: #000000;
+        margin: auto;
+        margin-top: 1rem;
+    }
+    .bookademo .leads form{
+        margin-top: -2rem;
+    }
+    .bookademo .leads .container{
+        margin-top: -3rem;
+    }
+    .bookademo .leads .btn-primary, .btn-primary:active .btn-primary:hover{
+        margin-top: 2rem;
     }
     .bookademo .selectedpackage .card .list-group-item {
         color: black;
@@ -261,6 +278,7 @@
     font-size: 24px;
     line-height: 33px;
     color: #000000;
+    white-space: nowrap;
 }
 
 .bookademo .selectedpackage .parentlocation {
@@ -331,6 +349,9 @@
 @media only screen and (max-width: 769px) {
     .tutorslist .row {
         flex-direction: row;
+    }
+    .bookademo .bookademoheader {
+        margin-top: 0.5rem;
     }
     .tutorslist .budget {
         font-family: Inter;

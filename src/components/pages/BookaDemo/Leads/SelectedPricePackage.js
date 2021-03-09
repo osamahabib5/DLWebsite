@@ -9,27 +9,27 @@ function SelectedPricePackage(props) {
 
     return (
         <div className="selectedpackage">
-            <Card style={Available_Packages[i].styling}>
-                <Card.Header style={{ background: Available_Packages[i].color }}></Card.Header>
+            <Card style={Available_Packages[opted_package].styling}>
+                <Card.Header style={{ background: Available_Packages[opted_package].color }}></Card.Header>
                 <div className="d-flex justify-content-center">
                     <ListGroup variant="flush">
-                        <ListGroup.Item>{Available_Packages[i].title}</ListGroup.Item>
+                        <ListGroup.Item>{Available_Packages[opted_package].title}</ListGroup.Item>
                         <ListGroup.Item>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">
                                     <p className="startingat">starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
-                                    <p className="packagerate">Rs {Available_Packages[i].price}</p>
+                                    <p className="packagerate">Rs {Available_Packages[opted_package].price}</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
                         </ListGroup.Item>
-                        <ListGroup.Item style = {{marginTop: props.isMobile ? "1rem" : ""}}>{Available_Packages[i].heading}</ListGroup.Item>
+                        <ListGroup.Item style = {{marginTop: props.isMobile ? "1rem" : ""}}>{Available_Packages[opted_package].heading}</ListGroup.Item>
                         <div className="package_specification">
-                            {Available_Packages[i].description.map(val => (
+                            {Available_Packages[opted_package].description.map(val => (
                                 <ListGroup.Item>{val}</ListGroup.Item>
                             ))}
                         </div>
