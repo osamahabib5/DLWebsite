@@ -22,9 +22,9 @@ function SelectedPricePackage(props) {
                                 <div className="p-2 bd-highlight">
                                     <p className="packagerate">Rs {Available_Packages[opted_package].price}</p>
                                 </div>
-                                <div className="p-2 bd-highlight">
+                                {opted_package == 1 || opted_package == 3 ? <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
-                                </div>
+                                </div> : ""}
                             </div>
                         </ListGroup.Item>
                         <ListGroup.Item style = {{marginTop: props.isMobile ? "1rem" : ""}}>{Available_Packages[opted_package].heading}</ListGroup.Item>

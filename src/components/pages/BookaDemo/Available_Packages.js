@@ -1,4 +1,4 @@
-const pricing_packages = [{
+const Available_Packages = [{
     'id': 0,
     'title': 'MONTHLY PACKAGE',
     'price': 3000,
@@ -42,7 +42,7 @@ const pricing_packages = [{
  {
     'id': 3,
     'title': '3 MONTHS PACKAGE',
-    'price': 4400,
+    'price': 10100,
     'heading': 'Dot&Line Exclusive Premium Package',
     'description': ["2 hrs/week", "In-Person Classes & Online Classes", "Focused Attention"],
     'color': "#5E6981",
@@ -54,4 +54,4 @@ const pricing_packages = [{
     },
 }];
 
-export default pricing_packages;
+export default Available_Packages;
