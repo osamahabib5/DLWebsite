@@ -74,7 +74,7 @@ function BookaDemo() {
                 {showtutors ? <Row>
                     <Col>
                         <div className="show_tutors">
-                            <ShowTutors />
+                            <ShowTutors showAppointmentPage = {showAppointmentPage}/>
                         </div>
                     </Col>
                 </Row> : ''}
@@ -109,11 +109,8 @@ function BookaDemo() {
                 {showappointmentpage ? <Row>
                     <Col>
                         <div className="booking-demo-appointment">
-                            <AppointmentBooking showAppointmentPage = {showAppointmentPage}/>
+                            <AppointmentBooking />
                         </div>
-                    </Col>
-                    <Col>
-                        <SelectedPricePackage />
                     </Col>
                 </Row> : ""}
             </Container>

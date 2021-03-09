@@ -5,7 +5,6 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from "../../../../baseUrl/baseUrl";
 import axios from "axios";
 import { TutorsContext } from "../../../../Provider";
-import SweetAlert from 'react-bootstrap-sweetalert';
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const postleadurl = baseUrl + '/api/lead/create';

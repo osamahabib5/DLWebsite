@@ -525,3 +525,31 @@
     justify-content: center;
     color: #000000;
 }
+
+.booking-demo-appointment {
+    margin-top: 5rem;
+}
+
+.booking-demo-appointment .AppointmentConfirmationHeading {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #32B9BB;
+    justify-content: center;
+}
+
+.booking-demo-appointment .flex-row {
+    margin-top: 3rem;
+    background: none;
+    justify-content: center;
+}
+
+.booking-demo-appointment .alert .close {
+    position: absolute;
+    left: 0rem;
+}
