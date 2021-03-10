@@ -9,10 +9,10 @@ function Packages(props) {
                 <div className="p-2 bd-highlight"><ChangeLocation /></div>
                 <div className="p-2 bd-highlight"><p className="packageselection">First, select a package to customize</p></div>
                 <div className="p-2 bd-highlight" style={{ display: (props.isMobile ? "none" : '') }}>
-                    <PackageDetails hidepricingpackage={props.hidepricingpackage} showfeecalculator={props.showfeecalculator} />
+                    <PackageDetails showLeadsForm={props.showLeadsForm} showfeecalculator={props.showfeecalculator} />
                 </div>
                 <div className="p-2 bd-highlight" style={{ display: (props.isMobile ? "" : 'none') }} >
-                    <PackageDetailsMobile hidepricingpackage={props.hidepricingpackage}/>
+                    <PackageDetailsMobile showLeadsForm={props.showLeadsForm}/>
                 </div>
             </div>
         </div>

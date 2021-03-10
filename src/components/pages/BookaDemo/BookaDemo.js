@@ -11,8 +11,10 @@ import ShowTutors from "./ShowTutors/ShowTutors";
 import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 import ScheduleDemo from './ScheduleDemo'
 import {  useParams} from 'react-router-dom';
+import NavigateDemo from './NavigateDemo'
 function BookaDemo() {
     let {showLeads} = useParams();
+    const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
     const [successfullead, setsuccessfullead] = useState(false);
@@ -20,10 +22,6 @@ function BookaDemo() {
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
     const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
-    const hidepricingpackage = () => {
-        setpackages(true)
-        setleadform(true);
-    }
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -33,18 +31,44 @@ function BookaDemo() {
             setisMobile(false);
         }
     }
+    const showPricingPackages = ()=>{
+        setpackages(false)
+        setleadform(false);
+        setnavigation(false);
+    }
+    const showLeadsForm = () => {
+        setpackages(true)
+        setleadform(true);
+        setnavigation(true);
+    }
+    const hidefeecalculator = () => {
+        setpackages(true)
+        setleadform(true);
+        setsuccessfullead(false);
+    }
     const showfeecalculator = () => {
-        setpackages(true);
         setleadform(false);
         setsuccessfullead(true);
+    }
+    const hidetutoroptions = () => {
+        showfeecalculator();
+        setshowtutors(false);
     }
     const showtutoroptions = () => {
         setshowtutors(true);
         setsuccessfullead(false);
     }
+    const hideAppointmentPage = () => {
+        showtutoroptions();
+        setappointmentpage(false);
+    }
     const showAppointmentPage = () => {
         setappointmentpage(true);
         setshowtutors(false);
+    }
+    const hideScheduleDemo = () => {
+        showAppointmentPage();
+        setscheduledemo(false);
     }
     const showScheduleDemo = () => {
         setscheduledemo(true);
@@ -73,6 +97,19 @@ function BookaDemo() {
     return (
         <div className="bookademo">
             <Container>
+                {shownavigation? <Row>
+                    <Col>
+                        <NavigateDemo showleads = {showleads} showPricingPackages = {showPricingPackages} successfullead = {successfullead}
+                        hidefeecalculator = {hidefeecalculator}
+                        showtutors = {showtutors}
+                        hidetutoroptions = {hidetutoroptions}
+                        showappointmentpage = {showappointmentpage}
+                        hideAppointmentPage = {hideAppointmentPage}
+                        hideScheduleDemo = {hideScheduleDemo} 
+                        scheduledemo = {scheduledemo}
+                        />
+                    </Col>
+                </Row> : ""}
                 <Row>
                     <Col>
                         <div className="bookademoheader" style = {{padding: isMobile ? "2rem" : ""}}>
@@ -90,7 +127,7 @@ function BookaDemo() {
                 {!hidepackages ? <Row>
                     <Col>
                         <div className="packages">
-                            <Packages parent_country={parent_country} hidepricingpackage={hidepricingpackage} showfeecalculator={showfeecalculator} isMobile = {isMobile}/>
+                            <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile = {isMobile}/>
                         </div>
                     </Col>
                 </Row> : ''}

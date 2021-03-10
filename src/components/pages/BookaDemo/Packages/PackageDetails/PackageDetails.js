@@ -14,7 +14,7 @@ function PackageDetails(props) {
                 <ClipLoader size={80} color="#00ABBD" />
             </div> : parent_country === "Pakistan" ? <CardDeck>
                 <Card style={Available_Packages[0].styling} onClick={() => {
-                    props.hidepricingpackage();
+                    props.showLeadsForm();
                     setOptedPackage(0)
                 }}>
                     <Card.Header style={{ background: Available_Packages[0].color }}></Card.Header>
@@ -47,7 +47,7 @@ function PackageDetails(props) {
                     </div>
                 </Card>
                 <Card style={Available_Packages[1].styling} onClick={() => {
-                    props.hidepricingpackage();
+                    props.showLeadsForm();
                     setOptedPackage(1)
                 }}>
                     <Card.Header style={{ background: Available_Packages[1].color }}></Card.Header>
@@ -81,7 +81,7 @@ function PackageDetails(props) {
                 </Card>
             </CardDeck> : <CardDeck>
                 <Card style={Available_Packages[2].styling} onClick={() => {
-                    props.hidepricingpackage();
+                    props.showLeadsForm();
                     setOptedPackage(2)
                 }}>
                     <Card.Header style={{ background: Available_Packages[2].color }}></Card.Header>
@@ -114,7 +114,7 @@ function PackageDetails(props) {
                     </div>
                 </Card>
                 <Card style={Available_Packages[3].styling} onClick={() => {
-                    props.hidepricingpackage();
+                    props.showLeadsForm();
                     setOptedPackage(3)
                 }}>
                     <Card.Header style={{ background: Available_Packages[3].color }}></Card.Header>

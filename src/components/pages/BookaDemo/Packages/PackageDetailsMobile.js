@@ -28,7 +28,7 @@ function PackageDetailsMobile(props) {
                 {parent_country === "Pakistan" ? Available_Packages.slice(0, 2).map((data, index) => (
                     <Carousel.Item key={index}>
                         <Carousel.Caption style={setPackagestyle(index)} onClick={() => {
-                            props.hidepricingpackage();
+                            props.showLeadsForm();
                             setOptedPackage(index)
                         }}>
                             {/* <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} /> */}
@@ -51,14 +51,14 @@ function PackageDetailsMobile(props) {
                                 ))}
                             </ListGroup>
                             <div style={{ marginTop: "3rem" }}>
-                                <Button onClick={props.hidepricingpackage}>Customize</Button>
+                                <Button onClick={props.showLeadsForm}>Customize</Button>
                             </div>
                         </Carousel.Caption>
 
                     </Carousel.Item>
                 )) : Available_Packages.slice(2, 4).map((data, index) => (
                     <Carousel.Item key={index} onClick={() => {
-                        props.hidepricingpackage();
+                        props.showLeadsForm();
                         setOptedPackage(index)
                     }}>
                         <Carousel.Caption style={setPackagestyle(index)} >
@@ -82,7 +82,7 @@ function PackageDetailsMobile(props) {
                                 ))}
                             </ListGroup>
                             <div style={{ marginTop: "3rem" }}>
-                                <Button onClick={props.hidepricingpackage}>Customize</Button>
+                                <Button onClick={props.showLeadsForm}>Customize</Button>
                             </div>
                            
                         </Carousel.Caption>

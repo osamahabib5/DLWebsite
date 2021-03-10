@@ -10,7 +10,7 @@ function PricingFilters(props) {
     const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: "teachers" })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: hours * days, country: parent_country, lead_id: lead_id, result_type: "teachers" })
     const { class_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -20,14 +20,6 @@ function PricingFilters(props) {
             class_type: e.target.value
         }));
     }
-    const calculateHoursPerWeek = ()=>{
-        return(
-            setadvancedfilters({
-                ...advancedfilter,
-                hours_per_week: hours * days
-            })
-        )
-    }
     const handleOnChangeTutorType = (e) => {
         e.persist();
         setadvancedfilters(prevState => ({
@@ -35,11 +27,16 @@ function PricingFilters(props) {
             tutor_type: e.target.value
         }));
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
+        // calculateHoursPerWeek();
         e.preventDefault();
-        console.log("Filters Sent: "+JSON.stringify(advancedfilter))
-        await axios.post(url, advancedfilter).then(response=>{
-            console.log("Calculator Response: "+JSON.stringify(response.data.data))
+        setadvancedfilters(prevState =>({
+            ...prevState,
+            hours_per_week: hours * days
+        }))
+        console.log("Filters Sent: " + JSON.stringify(advancedfilter))
+        await axios.post(url, advancedfilter).then(response => {
+            console.log("Calculator Response: " + JSON.stringify(response.data.data))
             getFilteredTeachersList(response.data.data.teachers)
             calculateFees(response.data.data.fee_amount)
             startLoading();
@@ -47,11 +44,11 @@ function PricingFilters(props) {
                 class_type: "",
                 subscription: "",
                 tutor_type: "",
-                hours_per_week : 2
+                hours_per_week: 2
             })
             props.showtutoroptions();
-        }).catch(error=>{
-            console.log("Filters Error: "+ error)
+        }).catch(error => {
+            console.log("Filters Error: " + error)
         })
     }
     const onChangePackage = (e) => {
@@ -123,7 +120,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={7} size = {10} className = "numericinput" onChange={(e) => setdays(parseInt(e))} />
+                    <NumericInput min={1} max={7} size={10} className="numericinput" componentClass="input" onChange={(e)=>setdays(parseInt(e))} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
@@ -131,7 +128,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={7} size = {10} className = "numericinput" onChange={(e) => sethours(parseInt(e))}/>
+                    <NumericInput min={2} max={7} size={10} className="numericinput" componentClass="input" onChange={(e)=>sethours(parseInt(e))} />
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">
@@ -140,7 +137,7 @@ function PricingFilters(props) {
                 </Button>
             </Row>
             <Row className="justify-content-md-center">
-                <p className="skipbooking" onClick = {props.showtutoroptions}>Skip</p>
+                <p className="skipbooking" onClick={props.showtutoroptions}>Skip</p>
             </Row>
         </Container>
     )
