@@ -10,7 +10,8 @@ const initialState = {
     opted_package: 0,
     filtered_teachers_list: [],
     isMobile: false,
-    fee_amount: 0
+    fee_amount: 0,
+    timeslots: []
 }
 
 const actions = {
@@ -25,7 +26,8 @@ const actions = {
     GETPRICINGPACKAGE: 'GETPRICINGPACKAGE',
     GETFILTEREDTEACHERS: 'GETFILTEREDTEACHERS',
     ISMOBILE: 'ISMOBILE',
-    SETFEES: 'SETFEES'
+    SETFEES: 'SETFEES',
+    GETTIMESLOTS: 'GETTIMESLOTS'
 }
 
 function reducer(state, action) {
@@ -91,6 +93,11 @@ function reducer(state, action) {
                 ...state,
                 fee_amount: action.value
             }
+        case actions.GETTIMESLOTS:
+            return {
+                ...state,
+                timeslots: action.value
+            }
         default:
             return state;
     }
@@ -108,6 +115,7 @@ function Provider({ children }) {
         lead_id: state.lead_id,
         fee_amount: state.fee_amount,
         opted_package: state.opted_package,
+        timeslots: state.timeslots,
         filtered_teachers_list: state.filtered_teachers_list,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
@@ -121,7 +129,8 @@ function Provider({ children }) {
         setOptedPackage: (value) => { dispatch({ type: actions.GETPRICINGPACKAGE, value }) },
         getFilteredTeachersList: (value) => { dispatch({ type: actions.GETFILTEREDTEACHERS, value }) },
         setisMobile: (value) => { dispatch({ type: actions.ISMOBILE, value }) },
-        calculateFees : (value) => { dispatch({ type: actions.SETFEES, value }) },
+        calculateFees: (value) => { dispatch({ type: actions.SETFEES, value }) },
+        getTimeSlots: (value) => { dispatch({ type: actions.GETTIMESLOTS, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

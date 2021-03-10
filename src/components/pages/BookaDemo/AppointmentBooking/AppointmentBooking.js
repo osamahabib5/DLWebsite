@@ -3,11 +3,10 @@ import axios from 'axios';
 import { Container, Row, Col, Alert, Button, Image } from 'react-bootstrap'
 import SelectedPricePackage from '../Leads/SelectedPricePackage'
 import baseUrl from '../../../../baseUrl/baseUrl';
-
+import SelectedTeacher from '../SelectedTeacher';
 function AppointmentBooking(props) {
     const bookingurl = baseUrl + "/api/teacher/profile/58"
     const [imgsrc, setimgsrc] = useState("");
-    const [show, setShow] = useState(true);
     useEffect(async () => {
         await axios.get(bookingurl).then(response => {
             console.log("Response: " + JSON.stringify(response.data.data.image))
@@ -25,14 +24,11 @@ function AppointmentBooking(props) {
             </Row>
             <div className="d-flex flex-row bd-highlight mb-3">
                 <div className="p-2 bd-high light">
-                    <Alert variant="light" onClose={() => setShow(false)} dismissible>
-                        <Image src="https://literacy.s3.ap-south-1.amazonaws.com/uploads/tp_images/58.png" style={{ width: "146px", height: "150px" }} fluid />
-                    </Alert>
-                    <p>Test Tp 2</p>
+                    <SelectedTeacher />
                 </div>
                 <div className="p-2 bd-highlight">
                     <SelectedPricePackage />
-                </div>
+                </div> 
             </div>
             <Row >
                 <Col>

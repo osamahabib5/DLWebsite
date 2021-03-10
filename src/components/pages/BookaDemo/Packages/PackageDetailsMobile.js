@@ -81,9 +81,6 @@ function PackageDetailsMobile(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </ListGroup>
-                            <div style={{ marginTop: "3rem" }}>
-                                <Button onClick={props.showLeadsForm}>Customize</Button>
-                            </div>
                            
                         </Carousel.Caption>
 

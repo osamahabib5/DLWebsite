@@ -549,12 +549,6 @@
     justify-content: center;
 }
 
-.booking-demo-appointment .alert .close {
-    /* position: absolute;
-    left: 0rem; */
-    display: none!important;
-}
-
 .navigatedemo {
     font-family: Inter;
     font-style: normal;
@@ -569,4 +563,22 @@
     color: #000000;
     cursor: pointer;
     margin-top: 3rem;
+}
+
+.scheduledemo .timeslots .btn-primary, .btn-primary:hover,.btn-primary:active {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #000000;
+    background: #FFFFFF;
+    border-radius: 6px;
+    width: 164px;
+    height: 48px;
+    margin-top: 0.5rem;
 }

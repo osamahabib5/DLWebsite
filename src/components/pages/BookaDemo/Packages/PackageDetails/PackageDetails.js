@@ -40,9 +40,6 @@ function PackageDetails(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </div>
-                            <ListGroup.Item>
-                                <Button style={{ width: "200px", height: "48px" }} onClick={props.showfeecalculator}>Customize</Button>
-                            </ListGroup.Item>
                         </ListGroup>
                     </div>
                 </Card>
@@ -72,9 +69,6 @@ function PackageDetails(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </div>
-                            <ListGroup.Item >
-                                <Button style={{ width: "200px", height: "48px" }} onClick={props.showfeecalculator}>Customize</Button>
-                            </ListGroup.Item>
                         </ListGroup>
 
                     </div>
@@ -107,9 +101,6 @@ function PackageDetails(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </div>
-                            <ListGroup.Item>
-                                <Button style={{ width: "200px", height: "48px" }} onClick={props.showfeecalculator}>Customize</Button>
-                            </ListGroup.Item>
                         </ListGroup>
                     </div>
                 </Card>
@@ -139,9 +130,6 @@ function PackageDetails(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </div>
-                            <ListGroup.Item >
-                                <Button style={{ width: "200px", height: "48px" }} onClick={props.showfeecalculator}>Customize</Button>
-                            </ListGroup.Item>
                         </ListGroup>
 
                     </div>

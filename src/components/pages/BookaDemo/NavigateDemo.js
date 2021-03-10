@@ -19,7 +19,6 @@ function NavigateDemo(props) {
         if (props.showleads) {
             props.showPricingPackages();
         }
-
     }
     return (
         <div className="navigatedemo" onClick={goBack}>

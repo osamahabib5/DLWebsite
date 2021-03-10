@@ -10,10 +10,9 @@ import SelectedPricePackage from './Leads/SelectedPricePackage'
 import ShowTutors from "./ShowTutors/ShowTutors";
 import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 import ScheduleDemo from './ScheduleDemo'
-import {  useParams} from 'react-router-dom';
 import NavigateDemo from './NavigateDemo'
 function BookaDemo() {
-    let {showLeads} = useParams();
+    // let {showLeads} = useParams();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
@@ -21,8 +20,9 @@ function BookaDemo() {
     const [showtutors, setshowtutors] = useState(false);
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
-    const { parent_country, setParentLocation, setParentCity} = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTimeSlots, timeslots} = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
+   
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setisMobile(true);
@@ -87,7 +87,6 @@ function BookaDemo() {
             })
     }
     useEffect(() => {
-        console.log("ShowLeads: "+ showLeads)
         mobileview();
         window.addEventListener("resize", mobileview);
         if (!parent_country) {
