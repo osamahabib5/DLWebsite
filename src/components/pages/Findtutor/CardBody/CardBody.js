@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Form, Col, InputGroup, FormControl, Button, ListGroup } from 'react-bootstrap';
+import { Form, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
 import axios from 'axios';
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -118,9 +118,12 @@ function CardBody(props) {
                     </InputGroup>
                 </Col>
                 <Col style={{ marginTop: "1.3rem" }} onClick={handleSubmit}>
-                    <Button >
+                    {/* <Button >
                         Search
-                    </Button>
+                    </Button> */}
+                    <button className = "btn button-cta button-blue">
+                        Search
+                    </button>
                 </Col>
             </Form.Row>
             <Form.Row>

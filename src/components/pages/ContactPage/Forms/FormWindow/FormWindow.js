@@ -1,6 +1,6 @@
 import React ,{useEffect,useState}from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button, Col, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Col, InputGroup, FormControl } from 'react-bootstrap';
 import './FormWindow.css'
 import axios from 'axios';
 import baseUrl from '../../../../../baseUrl/baseUrl'
@@ -117,9 +117,9 @@ function FormWindow() {
                 </Form.Row>
                 <Form.Row className="align-items-center">
                     <Col xs="auto">
-                        <Button type="submit" className="mb-2" onClick = {handleSubmit}>
+                        <button type="submit" className="btn button-contact" onClick = {handleSubmit}>
                             Submit
-                                </Button>
+                        </button>
                     </Col>
                 </Form.Row>
             </Form>

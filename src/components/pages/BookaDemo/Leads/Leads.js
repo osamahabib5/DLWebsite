@@ -21,6 +21,9 @@ function Leads(props) {
         if (!leadsdetail.name || !leadsdetail.phone) {
             alert("Please fill all the values")
         }
+        else if (leadsdetail.email && (!leadsdetail.email.includes("@") || !leadsdetail.email.includes(".com"))) {
+            alert("Please enter a valid email")
+        }
         else {
             await axios.post(postleadurl, leadsdetail).then(response => {
                 const leadid = JSON.stringify(response.data.data.lead_id)
@@ -64,15 +67,14 @@ function Leads(props) {
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Control type="number" placeholder="Phone Number" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
                             </Form.Group>
-                            <Button variant="primary" type="submit" onClick={PostLead}>
-                                Submit
+                            <div style = {{marginTop: "4rem"}}>
+                                <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>
+                                    Submit
                                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
-                            </Button>
+                                </button>
+                            </div>
                         </Form>
                     </Col>
-                    {/* <Col>
-                        <SelectedPricePackage />
-                    </Col> */}
                 </Row>
             </Container>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Container, Row, Col, Alert, Button, Image } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import SelectedPricePackage from '../Leads/SelectedPricePackage'
 import baseUrl from '../../../../baseUrl/baseUrl';
 import SelectedTeacher from '../SelectedTeacher';
@@ -33,7 +33,7 @@ function AppointmentBooking(props) {
             <Row >
                 <Col>
                     <div className="d-flex justify-content-center">
-                        <Button style={{ width: "200px", height: "48px", marginBottom: "2rem" }} onClick = {props.showScheduleDemo}>Schedule a Demo</Button>
+                        <button className = "btn button-cta button-blue" style={{ width: "200px", height: "48px", marginBottom: "2rem" }} onClick = {props.showScheduleDemo}>Schedule a Demo</button>
                     </div>
                 </Col>
             </Row>

@@ -23,7 +23,7 @@ function FindaTutorEnd(props) {
                 <p className = "mobile-content">{props.displaytext}</p>
             </div>
             <div className = "Tutor-button">
-                <button type="button" className="btn btn-primary">Find a Tutor</button>
+                <button type="button" className="btn button-cta button-red">Find a Tutor</button>
             </div>
             
         </div>

@@ -104,47 +104,6 @@
     }
 }
 
-.Tutor .btn-primary {
-    color: #fff;
-    border-color: #FF4646;
-    background: #FF4646;
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-    text-align: center;
-    color: #FFFFFF;
-    height: 48px;
-    width: 165px;
-    align-self: center;
-}
-
-.FindaTutor .btn-primary {
-    color: #fff;
-    border-color: #FF4646;
-    background: #FF4646;
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-    text-align: center;
-    color: #FFFFFF;
-    height: 48px;
-    width: 165px;
-    align-self: center;
-}
-
-.btn-primary:hover, .btn-primary:active {
-    border-color: #FF4646;
-    background: #FF4646;
-    height: 48px;
-    width: 165px;
-}
-
 .FindTutor {
     width: 100%;
     background: #7a8ab1;

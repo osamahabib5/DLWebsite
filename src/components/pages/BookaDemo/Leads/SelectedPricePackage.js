@@ -4,7 +4,7 @@ import { TutorsContext } from '../../../../Provider';
 import ChangeLocation from "../../../ChangeLocation/ChangeLocation";
 import Available_Packages from '../Available_Packages';
 function SelectedPricePackage(props) {
-    const { opted_package , parent_country} = useContext(TutorsContext);
+    const { opted_package , parent_country, fee_amount} = useContext(TutorsContext);
 
     return (
         <div className="selectedpackage">
@@ -19,7 +19,7 @@ function SelectedPricePackage(props) {
                                     <p className="startingat">starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
-                                    <p className="packagerate">Rs {Available_Packages[opted_package].price}</p>
+                                    <p className="packagerate">Rs {fee_amount ? fee_amount : Available_Packages[opted_package].price}</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
@@ -35,9 +35,9 @@ function SelectedPricePackage(props) {
                     </ListGroup>
                 </div>
             </Card>
-            <p className="parentlocation">
+            {/* <p className="parentlocation">
                 <ChangeLocation />
-            </p>
+            </p> */}
         </div>
     )
 }

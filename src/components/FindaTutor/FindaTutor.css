@@ -20,7 +20,7 @@
         align-self: center;
         color: #363E50;
     }
-    .Tutor-button{
+    .Tutor-button {
         padding-inline: none;
     }
 }
@@ -43,15 +43,22 @@
     }
 }
 
-.btn btn-primary {
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-    /* Fill color / Triggers */
-    background: #FF4646;
+.button-cta {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
     border-radius: 6px;
+    width: 165px;
+    height: 48px;
+}
+
+.button-red, .button-red:hover {
+    background: #FF4646;
+    color: white;
 }
 
 .Tutor-button {

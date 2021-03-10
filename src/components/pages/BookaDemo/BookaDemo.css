@@ -125,11 +125,6 @@
     justify-content: center;
 }
 
-.bookademo .packages .packagedetails .card .list-group-item .btn-primary:hover {
-    height: auto!important;
-    width: 100%!important;
-}
-
 .bookademo .skipbooking {
     font-family: Inter;
     font-style: normal;
@@ -159,14 +154,7 @@
     text-align: center;
 }
 
-.bookademo .leads .btn-primary, .btn-primary:active .btn-primary:hover {
-    border-color: #00ABBD;
-    background: #00ABBD;
-    border-radius: 6px;
-    height: 48px;
-    width: 160px!important;
-    margin-top: 5rem;
-}
+
 
 .pricingfilters .numericinput {
     width: 150px!important;
@@ -253,9 +241,6 @@
     .bookademo .leads .container {
         margin-top: -3rem;
     }
-    .bookademo .leads .btn-primary, .btn-primary:active .btn-primary:hover {
-        margin-top: 2rem;
-    }
     .bookademo .selectedpackage .card .list-group-item {
         color: black;
         align-self: center;
@@ -335,10 +320,6 @@
     margin-top: 2rem;
 }
 
-.pricingfilters .show_tutors .btn-primary, .btn-primary:active, .btn-primary:hover {
-    width: 160px!important;
-    height: 48px!important;
-}
 
 .pricingfilters .form-group .form-control, input {
     width: auto;
@@ -348,11 +329,6 @@
 
 .pricingfilters .form-check-inline, label {
     margin-left: 2rem;
-}
-
-.pricingfilters .justify-content-md-center .btn-primary, .btn-primary:active, .btn-primary:hover {
-    width: 160px;
-    height: 48px;
 }
 
 .tutorslist .displayed-text {
@@ -396,9 +372,6 @@
     .tutorslist .container .card {
         width: 120%;
         height: 450px!important;
-    }
-    .pricingfilters .justify-content-md-center .btn-primary, .btn-primary:active, .btn-primary:hover {
-        align-self: center;
     }
     .bookademo .bookademoheader {
         margin-top: 0.5rem;
@@ -565,20 +538,3 @@
     margin-top: 3rem;
 }
 
-.scheduledemo .timeslots .btn-primary, .btn-primary:hover,.btn-primary:active {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    /* line-height: 24px;
-    align-items: center;
-    text-align: center;
-    justify-content: center; */
-    color: #000000;
-    background: #FFFFFF;
-    border-radius: 6px;
-    width: 164px;
-    height: 48px;
-    margin-top: 0.5rem;
-}
-.scheduledemo .nice-dates-day.-highlight { color: orange; }

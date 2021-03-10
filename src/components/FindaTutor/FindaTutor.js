@@ -20,7 +20,7 @@ function FindaTutorStart() {
 
         <div className={classname}>
             <div className = "Tutor-button">
-                <button type="button" className="btn btn-primary">Find a Tutor</button>
+                <button type="button" className="btn button-cta button-red">Find a Tutor</button>
             </div>
             <div className = "tutor-content">
                 <p className = "web-content">Book a free trial class now! </p>

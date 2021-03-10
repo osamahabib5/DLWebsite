@@ -5,10 +5,8 @@ import BackgroundImage from './BackgroundImage/BackgroundImage';
 import FindaTutorEnd from '../../FindaTutor/FindaTutor_End';
 import MainVideo from './Videos/MainVideo/MainVideo';
 import videos from './Videos/video_list';
-import Products from './Products/Products';
 import ModalPopup from './Videos/VideoPopup/ModalPopup';
 import ProgramSlider from './ProgramSlider/ProgramSlider';
-import PacksPopup from './Products/CoursePacks/PacksPopup/PacksPopup';
 import ReactPixel from 'react-facebook-pixel';
 function CoursePage() {
     const [source, setsource] = useState(videos[0]);
@@ -17,6 +15,7 @@ function CoursePage() {
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
+    const [displaytext, setdisplaytext] = useState("Book a free trial class now!");
     const textInput = useRef(null);
     const advancedMatching = { em: 'some@email.com' }; 
     const options = {
@@ -72,14 +71,14 @@ function CoursePage() {
                     source={source} open={open} onOpenModal={onOpenModal} onCloseModal={onCloseModal} />
             </div>
             <div className="find-a-tutor">
-                <FindaTutorEnd />
+                <FindaTutorEnd displaytext = {displaytext}/>
             </div>
-            <div className="products">
+            {/* <div className="products">
                 <Products />
             </div>
             <div className="packs-detail">
                 <PacksPopup />
-            </div>
+            </div> */}
         </div>
     )
 }

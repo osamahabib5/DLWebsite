@@ -147,7 +147,8 @@
     width: 100%;
     margin-left: 0.5rem;
 }
-.ourtutor-cardtitle .advancedfilters{
+
+.ourtutor-cardtitle .advancedfilters {
     cursor: pointer;
     color: black;
     font-size: 12px;
@@ -166,14 +167,6 @@
     border-radius: 0rem;
 }
 
-.ourtutor-cardtext-window .btn-primary, .btn-primary:active, .btn-primary:hover {
-    border-color: #00ABBD;
-    background: #00ABBD;
-    border-radius: 6px;
-    height: 48px;
-    width: 50%!important;
-    text-align: center!important;
-}
 
 .ourtutor-cardtext-window .search-tutor {
     font-family: Avenir;
@@ -200,8 +193,6 @@
     background-image: none!important;
 }
 
-
-
 .ourtutor-cardtext-window .justify-content-md-center {
     display: flex;
 }
@@ -209,10 +200,6 @@
 @media only screen and (max-width: 769px) {
     .ourtutor-cardtext-window {
         display: none;
-    }
-    .ourtutor-cardtitle .btn-primary, .btn-primary:active, .btn-primary:hover{
-        width: 100%!important;
-        margin-left: 0.5rem;
     }
     .displaytutors .container .card-img-top {
         width: 150px;
@@ -277,14 +264,6 @@
     background: #EDF0F5;
 }
 
-.findatutor-tutorpage .btn-primary, .btn-primary:active, .btn-primary:hover {
-    border-color: #FF4646;
-    background: #FF4646;
-    border-radius: 6px;
-    height: 48px;
-    width: 164px;
-}
-
 .Ourtutors {
     margin-top: 6rem;
 }
@@ -313,6 +292,11 @@
     text-align: center;
     /* Fill Color / Color #6 */
     color: #000000;
+}
+
+.button-blue {
+    background: #00ABBD;
+    border-radius: 6px;
 }
 
 .Ourtutors .flex-column {
@@ -353,6 +337,7 @@
     background-color: #8CD7DF;
     border-color: #8CD7DF;
 }
+
 .justify-content-center .btn-circle.btn-xl {
     width: 70px;
     height: 70px;

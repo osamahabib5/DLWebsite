@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { useContext } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { TutorsContext } from '../../../../Provider'
 import Tutors from '../../Findtutor/tutorsdisplay/Tutors/Tutors'
 import avatar from './avatar.jpg';
@@ -23,7 +23,7 @@ function ShowTutors(props) {
             <Row style={{ marginTop: "3rem" }}>
                 <Col>
                     <div className="d-flex justify-content-center">
-                        <Button style={{ width: "160px", height: "48px" }} onClick = {props.showAppointmentPage}>Select Tutor</Button>
+                        <button className = "btn button-cta button-blue" onClick = {props.showAppointmentPage}>Select Tutor</button>
                     </div>
                 </Col>
             </Row>

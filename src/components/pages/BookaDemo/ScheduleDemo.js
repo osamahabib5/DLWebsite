@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form } from 'react-bootstrap'
 import SelectedTeacher from './SelectedTeacher'
 import axios from "axios";
 import { TutorsContext } from '../../../Provider'
@@ -88,11 +88,11 @@ function ScheduleDemo() {
                     <p className="AppointmentConfirmationHeading">Schedule your demo with Test TP2</p>
                 </Col>
             </Row>
-            <Row>
-                <Col>
+            <Row className="justify-content-md-center">
+                <Col xs lg="3">
                     <SelectedTeacher />
                 </Col>
-                <Col>
+                <Col xs lg="3">
                     <DayPicker
                         initialMonth={new Date(2021, 3)}
                         disabledDays={[{ daysOfWeek: getDayNumber() }]}
@@ -100,14 +100,27 @@ function ScheduleDemo() {
                         onDayClick={handleDayClick}
                     />
                 </Col>
-                <Col>
+                <Col xs lg="3">
                     <div className="timeslots">
                         {timeslots && selectedday ? timeslots.map((data, index) => {
                             return (
-                                <Button key={index} style={{ background: "white", color: "black", height: "48px", width: "164px", border: "black" }}>{data}</Button>
+                                <button className = "btn button-cta button-blue" key={index} >{data}</button>
                             )
-                        }) : "" }
+                        }) : ""}
                     </div>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col xs lg="6">
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Any Comments for the teachers!</Form.Label>
+                        <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col xs lg="4">
+                    <button className = "btn button-cta button-blue">Book Demo</button>
                 </Col>
             </Row>
         </Container>

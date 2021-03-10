@@ -124,7 +124,7 @@ function Provider({ children }) {
         opted_package: state.opted_package,
         timeslots: state.timeslots,
         filtered_teachers_list: state.filtered_teachers_list,
-        days:state.days,
+        days: state.days,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -139,7 +139,7 @@ function Provider({ children }) {
         setisMobile: (value) => { dispatch({ type: actions.ISMOBILE, value }) },
         calculateFees: (value) => { dispatch({ type: actions.SETFEES, value }) },
         getTimeSlots: (value) => { dispatch({ type: actions.GETTIMESLOTS, value }) },
-        getTeacherDays: (value) => { dispatch({ type: actions.GETDAYS, value }) },
+        getTeacherDays: (value) => { dispatch({ type: actions.GETDAYS, value }) }
     }
     return (
         <TutorsContext.Provider value={value}>

@@ -9,14 +9,6 @@
     margin-top: 4rem;
     margin-left: 2rem;
 }
-
-.find-a-tutor .btn-primary, .btn-primary:active, .btn-primary:hover {
-    background: #FF4646;
-    border-radius: 6px;
-    border-color: #EDF0F5;
-    padding-inline: 3rem;
-}
-
 .find-a-tutor {
     background: #EDF0F5;
 }
