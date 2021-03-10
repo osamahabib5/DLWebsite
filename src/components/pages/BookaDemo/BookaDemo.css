@@ -570,10 +570,10 @@
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 24px;
+    /* line-height: 24px;
     align-items: center;
     text-align: center;
-    justify-content: center;
+    justify-content: center; */
     color: #000000;
     background: #FFFFFF;
     border-radius: 6px;
