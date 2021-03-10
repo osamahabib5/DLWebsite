@@ -9,7 +9,7 @@ import 'react-day-picker/lib/style.css';
 function ScheduleDemo() {
     const getTimeUrl = baseUrl + "/api/demo/getTimes/58?date=21-03-15"
     const getDateUrl = baseUrl + "/api/demo/getDays/58"
-    // const DaysList = days;
+    const DaysList = [0,1,2,3,4,5,6];
     const { timeslots, getTimeSlots, getTeacherDays, days } = useContext(TutorsContext);
     const fetchTimeSlots = async () => {
         await axios.get(getTimeUrl).then(response => {
@@ -27,29 +27,37 @@ function ScheduleDemo() {
     }
     const getDayNumber = () => {
         let i;
+        var index;
         for (i = 0; i < days.length; i++) {
             if (days[i] == "Sunday") {
-                days[i] = 0;
+                index = DaysList.indexOf(0);
+                DaysList.splice(index,1)
             }
             else if (days[i] == "Monday") {
-                days[i] = 1;
+                index = DaysList.indexOf(1);
+                DaysList.splice(index,1)
             }
             else if (days[i] == "Tuesday") {
-                days[i] = 2;
+                index = DaysList.indexOf(2);
+                DaysList.splice(index,1)
             }
             else if (days[i] == "Wednesday") {
-                days[i] = 3;
+                index = DaysList.indexOf(3);
+                DaysList.splice(index,1)
             }
             else if (days[i] == "Thursday") {
-                days[i] = 4;
+                index = DaysList.indexOf(4);
+                DaysList.splice(index,1)
             }
             else if (days[i] == "Friday") {
-                days[i] = 5;
+                index = DaysList.indexOf(5);
+                DaysList.splice(index,1)
             } else if (days[i] == "Saturday") {
-                days[i] = 6;
+                index = DaysList.indexOf(6);
+                DaysList.splice(index,1)
             }
         }
-        return days;
+        return DaysList;
     };
     useEffect(() => {
         fetchTimeSlots();
