@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Container, Row, Col, Form, FormCheck} from 'react-bootstrap'
+import { Container, Row, Col, Form, FormCheck } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
 import axios from "axios";
 import { TutorsContext } from '../../../../Provider';
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, getCalculatedFees } = useContext(TutorsContext)
+    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
     const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: hours * days, country: parent_country, lead_id: lead_id, result_type: "teachers" })
@@ -30,7 +30,7 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         e.preventDefault();
-        setadvancedfilters(prevState =>({
+        setadvancedfilters(prevState => ({
             ...prevState,
             hours_per_week: hours * days
         }))
@@ -120,7 +120,10 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={7} size={10} className="numericinput" componentClass="input" onChange={(e)=>setdays(parseInt(e))} />
+                    <NumericInput min={1} max={7} size={10} className="numericinput" onChange={(e) => setadvancedfilters({
+                        ...advancedfilter,
+                        hours_per_week: parseInt(e)
+                    })} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
@@ -128,11 +131,14 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={7} size={10} className="numericinput" componentClass="input" onChange={(e)=>sethours(parseInt(e))} />
+                    <NumericInput min={2} max={7} size={10} className="numericinput" onChange={(e) => setadvancedfilters({
+                        ...advancedfilter,
+                        hours_per_week: parseInt(e)
+                    })} />
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">
-                <button className = "btn button-cta button-blue" onClick={handleSubmit}>Select Tutor
+                <button className="btn button-cta button-blue" onClick={handleSubmit}>Select Tutor
                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
                 </button>
             </Row>

@@ -88,11 +88,11 @@ function ScheduleDemo() {
                     <p className="AppointmentConfirmationHeading">Schedule your demo with Test TP2</p>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center">
-                <Col xs lg="3">
+            <Row >
+                <Col >
                     <SelectedTeacher />
                 </Col>
-                <Col xs lg="3">
+                <Col>
                     <DayPicker
                         initialMonth={new Date(2021, 3)}
                         disabledDays={[{ daysOfWeek: getDayNumber() }]}
@@ -100,14 +100,14 @@ function ScheduleDemo() {
                         onDayClick={handleDayClick}
                     />
                 </Col>
-                <Col xs lg="3">
-                    <div className="timeslots">
-                        {timeslots && selectedday ? timeslots.map((data, index) => {
-                            return (
-                                <button className = "btn button-cta button-blue" key={index} >{data}</button>
-                            )
-                        }) : ""}
-                    </div>
+                <Col>
+                    {timeslots && selectedday ? timeslots.map((data, index) => {
+                        return (
+                            <div style={{ marginTop: "1rem" }}>
+                                <button className="btn button-cta button-white" key={index} >{data}</button>
+                            </div>
+                        )
+                    }) : ""}
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
@@ -120,7 +120,9 @@ function ScheduleDemo() {
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs lg="4">
-                    <button className = "btn button-cta button-blue">Book Demo</button>
+                    <div style={{ marginBottom: "4rem", marginTop: "3rem" }}>
+                        <button className="btn button-cta button-blue">Book Demo</button>
+                    </div>
                 </Col>
             </Row>
         </Container>

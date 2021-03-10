@@ -167,7 +167,6 @@
     border-radius: 0rem;
 }
 
-
 .ourtutor-cardtext-window .search-tutor {
     font-family: Avenir;
     font-style: normal;
@@ -297,6 +296,32 @@
 .button-blue {
     background: #00ABBD;
     border-radius: 6px;
+}
+
+.button-blue:hover {
+    color: #777777;
+}
+
+.button-white {
+    background: #FFFFFF;
+    border-radius: 6px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.button-white:active {
+    background: #00ABBD;
+    border-radius: 6px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
 }
 
 .Ourtutors .flex-column {
