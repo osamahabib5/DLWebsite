@@ -313,7 +313,7 @@
     color: #000000;
 }
 
-.button-white:focus {
+.button-white:focus, .button-white:active {
     background: #00ABBD;
     border-radius: 6px;
     font-family: Inter;

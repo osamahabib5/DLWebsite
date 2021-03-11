@@ -117,19 +117,30 @@ function ScheduleDemo() {
                 </Col>
                 <Col>
                     <DayPicker
-                        initialMonth={new Date(2021, 3)}
-                        disabledDays={[{ daysOfWeek: getDayNumber() }]}
+                        month={new Date()}
+                        disabledDays={{
+                            daysOfWeek: getDayNumber(),
+                        }}
                         selectedDays={selectedday}
                         onDayClick={handleDayClick}
+                        month={new Date()}
+                        fromMonth={new Date()}
+                        toMonth={new Date(new Date().getFullYear(),
+                            new Date().getMonth() + 1,
+                            new Date().getDate())}
+                    // minDate={new Date()}
+                    // maxDate={new Date().setMonth(new Date().getMonth() + 2)}
                     />
                 </Col>
                 <Col>
                     {timeslots && selectedday ? timeslots.map((data, index) => {
                         return (
-                            <button className="btn button-cta button-white" value={data} name="time" onClick={(e) => setdemodata({
-                                ...demodata,
-                                time: e.target.value
-                            })} key={index} >{data}</button>
+                            <button className="btn button-cta button-white" value={data} name="time" onClick={(e) => {
+                                setdemodata({
+                                    ...demodata,
+                                    time: e.target.value
+                                })
+                            }} key={index} >{data}</button>
                         )
                     }) : ""}
                 </Col>
