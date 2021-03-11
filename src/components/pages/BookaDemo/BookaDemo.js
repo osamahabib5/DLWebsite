@@ -12,6 +12,7 @@ import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 import ScheduleDemo from './ScheduleDemo'
 import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory } from 'react-router-dom';
+import ConfirmAppointment from './ConfirmAppointment'
 function BookaDemo() {
     let { id } = useParams();
     let history = useHistory();
@@ -22,9 +23,9 @@ function BookaDemo() {
     const [showtutors, setshowtutors] = useState(false);
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
+    const [confirmappointment, setconfirmappointment] = useState(false);
     const { parent_country, setParentLocation, setParentCity, getTeacherId } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setisMobile(true);
@@ -78,6 +79,10 @@ function BookaDemo() {
     const showScheduleDemo = () => {
         setscheduledemo(true);
         setappointmentpage(false);
+    }
+    const showAppointmentConfirmation = ()=>{
+        setscheduledemo(false);
+        setconfirmappointment(true);
     }
     const SelectedTeacherTrue = () => {
         if (id) {
@@ -177,7 +182,14 @@ function BookaDemo() {
                 {scheduledemo ? <Row>
                     <Col>
                         <div className="scheduledemo">
-                            <ScheduleDemo />
+                            <ScheduleDemo showAppointmentConfirmation = {showAppointmentConfirmation}/>
+                        </div>
+                    </Col>
+                </Row> : ""}
+                {confirmappointment ? <Row>
+                    <Col>
+                        <div className="confirm-appointment">
+                            <ConfirmAppointment />
                         </div>
                     </Col>
                 </Row> : ""}

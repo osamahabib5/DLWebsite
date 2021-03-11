@@ -6,7 +6,7 @@ import { TutorsContext } from '../../../Provider'
 import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-function ScheduleDemo() {
+function ScheduleDemo(props) {
     const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
@@ -51,15 +51,9 @@ function ScheduleDemo() {
             alert("Please fill all the values!")
         }
         else {
-            await axios.post(bookDemoUrl, {
-                teacher_id: demodata.teacher_id,
-                lead_id: demodata.lead_id,
-                date: demodata.date,
-                time: demodata.time,
-                note: demodata.note
-            }).then(response => {
+            await axios.post(bookDemoUrl, demodata).then(response => {
                 console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
-
+                props.showAppointmentConfirmation();
             }).catch(error => {
                 console.log(error);
             });
@@ -135,7 +129,7 @@ function ScheduleDemo() {
                     />
                 </Col>
                 <Col>
-                    {timeslots && selectedday ? timeslots.map((data, index) => {
+                    {timeslots && selectedday != undefined ? timeslots.map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" value={data} name="time" onClick={(e) => {
                                 setdemodata({

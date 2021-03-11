@@ -497,11 +497,8 @@
     color: #000000;
 }
 
-.booking-demo-appointment {
-    margin-top: 5rem;
-}
 
-.booking-demo-appointment .AppointmentConfirmationHeading, .scheduledemo .AppointmentConfirmationHeading {
+.booking-demo-appointment .AppointmentConfirmationHeading, .scheduledemo .AppointmentConfirmationHeading, .confirm-appointment .AppointmentConfirmationHeading {
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
