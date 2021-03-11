@@ -128,8 +128,6 @@ function ScheduleDemo() {
                         toMonth={new Date(new Date().getFullYear(),
                             new Date().getMonth() + 1,
                             new Date().getDate())}
-                    // minDate={new Date()}
-                    // maxDate={new Date().setMonth(new Date().getMonth() + 2)}
                     />
                 </Col>
                 <Col>
