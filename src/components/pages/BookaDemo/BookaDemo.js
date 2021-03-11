@@ -13,7 +13,7 @@ import ScheduleDemo from './ScheduleDemo'
 import NavigateDemo from './NavigateDemo'
 import {  useParams} from 'react-router-dom';
 function BookaDemo() {
-    let {id,selectteacher} = useParams();
+    let {id} = useParams();
     // let {showLeads} = useParams();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
@@ -22,7 +22,7 @@ function BookaDemo() {
     const [showtutors, setshowtutors] = useState(false);
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
-    const { parent_country, setParentLocation, setParentCity, getTimeSlots, timeslots} = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTeacherId} = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
    
     const mobileview = () => {
@@ -76,6 +76,13 @@ function BookaDemo() {
         setscheduledemo(true);
         setappointmentpage(false);
     }
+    const SelectedTeacherTrue = ()=>{
+        if (id){
+            getTeacherId(id);
+            showAppointmentPage();
+        }
+        
+    }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
             .then(function (response) {
@@ -94,7 +101,8 @@ function BookaDemo() {
         if (!parent_country) {
             fetchlocation()
         }
-    }, [])
+        SelectedTeacherTrue();
+    }, [id])
     return (
         <div className="bookademo">
             <Container>
@@ -153,7 +161,7 @@ function BookaDemo() {
                         <SelectedPricePackage />
                     </Col>
                 </Row> : ""}
-                {showappointmentpage || selectteacher ? <Row>
+                {showappointmentpage ? <Row>
                     <Col>
                         <div className="booking-demo-appointment">
                             <AppointmentBooking showScheduleDemo = {showScheduleDemo}/>

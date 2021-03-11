@@ -70,7 +70,7 @@ function App() {
           <Route path="/programs">
             <CoursePage />
           </Route>
-          <Route path="/pricing/:id/:selectedteacher" children={<BookaDemo />} />
+          <Route path="/pricing/:id" children={<BookaDemo />} />
           <Route path="/pricing">
             <BookaDemo />
           </Route>

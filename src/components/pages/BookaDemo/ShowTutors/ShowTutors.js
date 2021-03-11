@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { TutorsContext } from '../../../../Provider'
 import Tutors from '../../Findtutor/tutorsdisplay/Tutors/Tutors'
 import avatar from './avatar.jpg';
-function ShowTutors(props) {
+function ShowTutors() {
     let {  url } = useRouteMatch();
     const { filtered_teachers_list, loading } = useContext(TutorsContext)
     useEffect(()=>{
@@ -21,13 +21,6 @@ function ShowTutors(props) {
                 <Col>
                     <div className="tutorslist">
                         <Tutors dataarr={filtered_teachers_list} avatar={avatar} loading={loading} url = {url}/>
-                    </div>
-                </Col>
-            </Row>
-            <Row style={{ marginTop: "3rem" }}>
-                <Col>
-                    <div className="d-flex justify-content-center">
-                        <button className = "btn button-cta button-blue" onClick = {props.showAppointmentPage}>Select Tutor</button>
                     </div>
                 </Col>
             </Row>

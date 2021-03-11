@@ -1,7 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { useHistory } from "react-router-dom";
 function NavigateDemo(props) {
+    let history = useHistory();
     const goBack = (e) => {
         e.preventDefault();
         if (props.successfullead) {
@@ -11,6 +13,7 @@ function NavigateDemo(props) {
             props.hidetutoroptions();
         }
         if (props.showappointmentpage) {
+            history.push("/pricing")
             props.hideAppointmentPage();
         }
         if (props.scheduledemo) {
