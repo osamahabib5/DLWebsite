@@ -21,7 +21,10 @@ function SelectedTeacher() {
         <div>
             {teacher_info ? <div>
                 <Image src={teacher_info.image ? teacher_info.image : avatar} style={{ width: "146px", height: "150px" }} fluid />
-                <p>{teacher_info.name.toString()}</p>
+                <div style = {{marginTop: "2rem"}}>
+                    <p className="teacher-info-name">{teacher_info.name.toString()}</p>
+                    <p>{teacher_info.timezone.toString()}</p>
+                </div>
             </div> : ""}
         </div >
     )
