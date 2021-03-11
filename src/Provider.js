@@ -112,7 +112,7 @@ function reducer(state, action) {
         case actions.GETTEACHERID:
             return {
                 ...state,
-                teacher_id: action.value
+                teacher_id: parseInt(action.value)
             }
         case actions.GETTEACHERINFO:
             return {

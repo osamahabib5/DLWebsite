@@ -19,11 +19,11 @@ function SelectedTeacher() {
     }, [])
     return (
         <div>
-            {teacher_info ? <div>
+            {teacher_info ? <div style = {{marginRight: "3rem"}}>
                 <Image src={teacher_info.image ? teacher_info.image : avatar} style={{ width: "146px", height: "150px" }} fluid />
                 <div style = {{marginTop: "2rem"}}>
                     <p className="teacher-info-name">{teacher_info.name.toString()}</p>
-                    <p>{teacher_info.timezone.toString()}</p>
+                    <p className = "teacher-timezone">{teacher_info.timezone.toString()}{teacher_info.location.toString()}</p>
                 </div>
             </div> : ""}
         </div >

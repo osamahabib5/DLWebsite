@@ -7,24 +7,18 @@ import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 function ScheduleDemo() {
-    //     teacher_id*
-    // // lead_id*
-    // date* - string
-    // time* - string
-    // note - text/string
-
-    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id } = useContext(TutorsContext);
-    const [date, setdate] = useState("");
+    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info } = useContext(TutorsContext);
+    const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
     const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [selectedday, setSelectedday] = useState(null)
-    const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selectedday, time: "", note: "" })
+    const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
     const DaysList = [0, 1, 2, 3, 4, 5, 6];
     const fetchTimeSlots = async () => {
         await axios.get(getTimeUrl, {
             params: {
-                date: date
+                date: selecteddate
             }
         }).then(response => {
             getTimeSlots(response.data.data.times)
@@ -34,15 +28,20 @@ function ScheduleDemo() {
     }
     const handleDayClick = (day, { selected }) => {
         setSelectedday(selected ? undefined : day)
+
         var d = new Date(selected ? undefined : day);
         var month = '' + (d.getMonth() + 1);
         var day = '' + d.getDate();
-        var year = d.getFullYear().toString().substring(2, 4);
+        var year = d.getFullYear().toString();
         if (month.length < 2)
             month = '0' + month;
         if (day.length < 2)
             day = '0' + day;
-        setdate([year, month, day].join('-'));
+        setselecteddate([year, month, day].join('-'));
+        setdemodata({
+            ...demodata,
+            date: selecteddate
+        })
         fetchTimeSlots();
     }
     const BookDemo = async (e) => {
@@ -52,7 +51,13 @@ function ScheduleDemo() {
             alert("Please fill all the values!")
         }
         else {
-            await axios.post(bookDemoUrl, demodata).then(response => {
+            await axios.post(bookDemoUrl, {
+                teacher_id: demodata.teacher_id,
+                lead_id: demodata.lead_id,
+                date: demodata.date,
+                time: demodata.time,
+                note: demodata.note
+            }).then(response => {
                 console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
 
             }).catch(error => {
@@ -103,12 +108,12 @@ function ScheduleDemo() {
     };
     useEffect(() => {
         fetchDays();
-    }, [date])
+    }, [selecteddate])
     return (
         <Container>
             <Row>
                 <Col>
-                    <p className="AppointmentConfirmationHeading">Schedule your demo with Test TP2</p>
+                    <p className="AppointmentConfirmationHeading">Schedule your demo with {teacher_info ? teacher_info.name : "Test TP2"}</p>
                 </Col>
             </Row>
             <Row >
@@ -118,9 +123,8 @@ function ScheduleDemo() {
                 <Col>
                     <DayPicker
                         month={new Date()}
-                        disabledDays={{
-                            daysOfWeek: getDayNumber(),
-                        }}
+                        disabledDays={[
+                            { daysOfWeek: getDayNumber() }, { before: new Date() }]}
                         selectedDays={selectedday}
                         onDayClick={handleDayClick}
                         month={new Date()}

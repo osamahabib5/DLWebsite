@@ -34,7 +34,6 @@ function PricingFilters(props) {
             ...prevState,
             hours_per_week: hours * days
         }))
-        console.log("Filters Sent: " + JSON.stringify(advancedfilter))
         await axios.post(url, advancedfilter).then(response => {
             console.log("Calculator Response: " + JSON.stringify(response.data.data))
             getFilteredTeachersList(response.data.data.teachers)
