@@ -1,20 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import SelectedPricePackage from '../Leads/SelectedPricePackage'
-import baseUrl from '../../../../baseUrl/baseUrl';
 import SelectedTeacher from '../SelectedTeacher';
 function AppointmentBooking(props) {
-    const bookingurl = baseUrl + "/api/teacher/profile/58"
-    const [imgsrc, setimgsrc] = useState("");
-    useEffect(async () => {
-        await axios.get(bookingurl).then(response => {
-            console.log("Response: " + JSON.stringify(response.data.data.image))
-            setimgsrc(JSON.stringify(response.data.data.image));
-        }).catch(error => {
-            console.log("Fetching teacher error: " + error)
-        })
-    }, [imgsrc])
     return (
         <Container>
             <Row className="justify-content-md-center">
@@ -33,7 +21,7 @@ function AppointmentBooking(props) {
             <Row >
                 <Col>
                     <div className="d-flex justify-content-center">
-                        <button className = "btn button-cta button-blue" style={{ width: "200px", height: "48px", marginBottom: "2rem" }} onClick = {props.showScheduleDemo}>Schedule a Demo</button>
+                        <button className = "btn button-cta button-blue" onClick = {props.showScheduleDemo}>Schedule a Demo</button>
                     </div>
                 </Col>
             </Row>

@@ -7,12 +7,19 @@ import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 function ScheduleDemo() {
+    //     teacher_id*
+    // // lead_id*
+    // date* - string
+    // time* - string
+    // note - text/string
+
     const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id } = useContext(TutorsContext);
     const [date, setdate] = useState("");
-    // const [finalbooking]
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
     const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
+    const bookDemoUrl = baseUrl + "/api/demo/book";
     const [selectedday, setSelectedday] = useState(null)
+    const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selectedday, time: "", note: "" })
     const DaysList = [0, 1, 2, 3, 4, 5, 6];
     const fetchTimeSlots = async () => {
         await axios.get(getTimeUrl, {
@@ -38,8 +45,20 @@ function ScheduleDemo() {
         setdate([year, month, day].join('-'));
         fetchTimeSlots();
     }
-    const BookDemo = (e)=>{
+    const BookDemo = async (e) => {
         e.preventDefault();
+        console.log(JSON.stringify(demodata))
+        if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
+            alert("Please fill all the values!")
+        }
+        else {
+            await axios.post(bookDemoUrl, demodata).then(response => {
+                console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
+
+            }).catch(error => {
+                console.log(error);
+            });
+        }
     }
     const fetchDays = async () => {
         await axios.get(getDateUrl).then(response => {
@@ -107,9 +126,10 @@ function ScheduleDemo() {
                 <Col>
                     {timeslots && selectedday ? timeslots.map((data, index) => {
                         return (
-
-                            <button className="btn button-cta button-white" value={data} onClick={(e) => console.log(e.target.value)} key={index} >{data}</button>
-
+                            <button className="btn button-cta button-white" value={data} name="time" onClick={(e) => setdemodata({
+                                ...demodata,
+                                time: e.target.value
+                            })} key={index} >{data}</button>
                         )
                     }) : ""}
                 </Col>
@@ -118,14 +138,17 @@ function ScheduleDemo() {
                 <Col xs lg="6">
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Any Comments for the teachers!</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" value={demodata.note} onChange={(e) => setdemodata({
+                            ...demodata,
+                            note: e.target.value
+                        })} name="note" rows={3} />
                     </Form.Group>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs lg="4">
                     <div style={{ marginBottom: "4rem", marginTop: "3rem" }}>
-                        <button className="btn button-cta button-blue" onClick = {BookDemo}>Book Demo</button>
+                        <button className="btn button-cta button-blue" onClick={BookDemo}>Book Demo</button>
                     </div>
                 </Col>
             </Row>

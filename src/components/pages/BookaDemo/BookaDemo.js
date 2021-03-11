@@ -101,6 +101,7 @@ function BookaDemo() {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
+        reloadPage();
         window.addEventListener("reload", reloadPage);
         if (!parent_country) {
             fetchlocation()

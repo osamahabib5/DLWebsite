@@ -279,6 +279,7 @@
 .bookademo .selectedpackage .card .list-group-item .flex-row {
     background: none;
     height: 23px;
+    margin-top: -1rem;
 }
 
 .bookademo .selectedpackage .card .list-group-item .flex-row .startingat {
