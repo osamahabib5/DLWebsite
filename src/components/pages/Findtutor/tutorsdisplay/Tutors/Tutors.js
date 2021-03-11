@@ -18,8 +18,8 @@ function Tutors(props) {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-    },[]);
-  
+    }, []);
+
     const rowslength = isMobile ? 2 : 4;
     const rows = [...Array(Math.ceil(props.dataarr.length / rowslength))];
     const productRows = rows.map((row, idx) => props.dataarr.slice(idx * rowslength, idx * rowslength + rowslength));
@@ -28,8 +28,8 @@ function Tutors(props) {
             { row.map((item, index) =>
                 <Col key={index}>
                     <Link to={{
-                        pathname: `${props.url ? props.url : "/tutors" }/${item.id}`,
-                        search: `${item.name}`
+                        pathname: `${props.url}` ? `${props.url}/${item.id}/${"selectedteacher"}` : `${"/tutors"}/${item.id}`,
+                        search: `${props.url}`? "" : `${item.name}`
                     }}>
                         <Card key={item.id}>
                             <Card.Body>
@@ -104,7 +104,7 @@ function Tutors(props) {
                                         </p>
 
                                     </div>
-                                    {item.min_budget ? 
+                                    {item.min_budget ?
                                         <div className="p-2 bd-highlight" style={{ marginTop: "1rem", position: "absolute", bottom: "0px" }}>
                                             <p className="budget">
                                                 Starting from Rs. {item.min_budget}

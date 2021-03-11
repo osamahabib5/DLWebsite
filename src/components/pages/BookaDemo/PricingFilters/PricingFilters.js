@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees } = useContext(TutorsContext)
+    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, getTeacherId } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: hours * days, country: parent_country, lead_id: lead_id, result_type: "teachers" })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: "teachers" })
     const { class_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -120,21 +120,28 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={7} size={10} className="numericinput" onChange={(e) => setadvancedfilters({
-                        ...advancedfilter,
-                        hours_per_week: parseInt(e)
-                    })} />
+                    <NumericInput min={1} value={days} max={7} size={10} className="numericinput" onChange={(e) => {
+                        setdays(parseInt(e));
+                        setadvancedfilters(prevState => ({
+                            ...prevState,
+                            hours_per_week: hours * days
+                        }))
+                    }} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
                         <Form.Label>How long do you want the classes to be taken?</Form.Label>
+                        {hours || days ? <Form.Label>(Hours Per Week: {advancedfilter.hours_per_week}) </Form.Label> : ""}
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={7} size={10} className="numericinput" onChange={(e) => setadvancedfilters({
-                        ...advancedfilter,
-                        hours_per_week: parseInt(e)
-                    })} />
+                    <NumericInput min={2} max={7} value={hours} size={10} className="numericinput" onChange={(e) => {
+                        sethours(parseInt(e));
+                        setadvancedfilters(prevState => ({
+                            ...prevState,
+                            hours_per_week: hours * days
+                        }))
+                    }} />
                 </Form.Group>
             </Form>
             <Row className="justify-content-md-center">

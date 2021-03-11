@@ -49,61 +49,62 @@ function App() {
   if (sideDrawerOpen) {
     backdrop = <Backdrop click={handleBackdropClick} />
   } else {
-    footer = <Footer show={handleFooterClick}/>
+    footer = <Footer show={handleFooterClick} />
   }
   if (notification) {
     Notification = <NotificationToast click={closenotifications} />
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
   return (
-      <div className="page-container">
-        <div className="content-wrap">
-          {/* {Notification} */}
-          <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
+    <div className="page-container">
+      <div className="content-wrap">
+        {/* {Notification} */}
+        <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
 
-          <SideDrawer show={sideDrawerOpen}  handleDrawerToggleClick = {handleDrawerToggleClick}/>
+        <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
-          <Switch>
-            <Route path='/programs/kitdetails'>
-              <CourseDetails />
-            </Route>
-            <Route path="/programs">
-              <CoursePage />
-            </Route>
-            <Route path="/pricing">
-              <BookaDemo />
-            </Route>
-            <Route path="/tutors/:id" children={<OurTutor />} />
-            <Route path="/tutors">
-              <Findtutor />
-            </Route>
+        <Switch>
+          <Route path='/programs/kitdetails'>
+            <CourseDetails />
+          </Route>
+          <Route path="/programs">
+            <CoursePage />
+          </Route>
+          <Route path="/pricing/:id/:selectedteacher" children={<BookaDemo />} />
+          <Route path="/pricing">
+            <BookaDemo />
+          </Route>
+          <Route path="/tutors/:id" children={<OurTutor />} />
+          <Route path="/tutors">
+            <Findtutor />
+          </Route>
 
-            <Route path="/becometutor">
-              <BecomeTutor />
-            </Route>
+          <Route path="/becometutor">
+            <BecomeTutor />
+          </Route>
 
-            <Route path="/aboutus">
-              <About />
-            </Route>
-            <Route path="/contact">
-              <ContactPage />
-            </Route>
-            <Route path="/pricingfilters">
-              <PricingFilters />
-            </Route>
-            <Route path="/">
-              <HomePage />
-              {/* <BookaDemo /> */}
-            </Route>
-          </Switch>
+          <Route path="/aboutus">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <ContactPage />
+          </Route>
+          <Route path="/pricingfilters">
+            <PricingFilters />
+          </Route>
+          <Route path="/">
+            <HomePage />
+            {/* <BookaDemo /> */}
+          </Route>
+        </Switch>
 
-          {/* Backdrop only opens if sidedrawer is filled */}
-          {/* {backdrop} */}
-
-        </div>
-        {footer}
+        {/* Backdrop only opens if sidedrawer is filled */}
+        {/* {backdrop} */}
 
       </div>
+      {footer}
+
+    </div>
   );
 }
 

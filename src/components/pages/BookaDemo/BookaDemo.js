@@ -11,7 +11,9 @@ import ShowTutors from "./ShowTutors/ShowTutors";
 import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 import ScheduleDemo from './ScheduleDemo'
 import NavigateDemo from './NavigateDemo'
+import {  useParams} from 'react-router-dom';
 function BookaDemo() {
+    let {id,selectteacher} = useParams();
     // let {showLeads} = useParams();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
@@ -151,7 +153,7 @@ function BookaDemo() {
                         <SelectedPricePackage />
                     </Col>
                 </Row> : ""}
-                {showappointmentpage ? <Row>
+                {showappointmentpage || selectteacher ? <Row>
                     <Col>
                         <div className="booking-demo-appointment">
                             <AppointmentBooking showScheduleDemo = {showScheduleDemo}/>

@@ -1,11 +1,15 @@
-import { Link } from 'react-router-dom';
-import React, { useContext } from 'react'
+import { Link, useRouteMatch } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { TutorsContext } from '../../../../Provider'
 import Tutors from '../../Findtutor/tutorsdisplay/Tutors/Tutors'
 import avatar from './avatar.jpg';
 function ShowTutors(props) {
+    let {  url } = useRouteMatch();
     const { filtered_teachers_list, loading } = useContext(TutorsContext)
+    useEffect(()=>{
+        console.log("URL: "+ url)
+    },[])
     return (
         <Container>
             <Row>
@@ -16,7 +20,7 @@ function ShowTutors(props) {
             <Row>
                 <Col>
                     <div className="tutorslist">
-                        <Tutors dataarr={filtered_teachers_list.length > 4 ? filtered_teachers_list.splice(0, 4) : filtered_teachers_list} avatar={avatar} loading={loading} />
+                        <Tutors dataarr={filtered_teachers_list} avatar={avatar} loading={loading} url = {url}/>
                     </div>
                 </Col>
             </Row>

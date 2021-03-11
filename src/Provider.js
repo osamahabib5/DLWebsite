@@ -12,7 +12,8 @@ const initialState = {
     isMobile: false,
     fee_amount: 0,
     timeslots: [],
-    days: []
+    days: [],
+    teacher_id: 0
 }
 
 const actions = {
@@ -29,7 +30,8 @@ const actions = {
     ISMOBILE: 'ISMOBILE',
     SETFEES: 'SETFEES',
     GETTIMESLOTS: 'GETTIMESLOTS',
-    GETDAYS: 'GETDAYS'
+    GETDAYS: 'GETDAYS',
+    GETTEACHERID: 'GETTEACHERID'
 }
 
 function reducer(state, action) {
@@ -105,6 +107,11 @@ function reducer(state, action) {
                 ...state,
                 days: action.value
             }
+        case actions.GETTEACHERID:
+            return {
+                ...state,
+                teacher_id: action.value
+            }
         default:
             return state;
     }
@@ -125,6 +132,7 @@ function Provider({ children }) {
         timeslots: state.timeslots,
         filtered_teachers_list: state.filtered_teachers_list,
         days: state.days,
+        teacher_id: state.teacher_id,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -139,7 +147,8 @@ function Provider({ children }) {
         setisMobile: (value) => { dispatch({ type: actions.ISMOBILE, value }) },
         calculateFees: (value) => { dispatch({ type: actions.SETFEES, value }) },
         getTimeSlots: (value) => { dispatch({ type: actions.GETTIMESLOTS, value }) },
-        getTeacherDays: (value) => { dispatch({ type: actions.GETDAYS, value }) }
+        getTeacherDays: (value) => { dispatch({ type: actions.GETDAYS, value }) },
+        getTeacherId: (value)=>{ dispatch({ type: actions.GETTEACHERID, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>
