@@ -8,7 +8,7 @@ function SelectedPricePackage(props) {
 
     return (
         <div className="selectedpackage">
-            <Card style={Available_Packages[opted_package].styling}>
+            <Card style={Available_Packages[opted_package].styling} key = {Available_Packages.id}>
                 <Card.Header style={{ background: Available_Packages[opted_package].color }}></Card.Header>
                 <div className="d-flex justify-content-center">
                     <ListGroup variant="flush">

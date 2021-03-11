@@ -4,16 +4,13 @@ import { TutorsContext } from '../../../../../Provider';
 import Available_Packages from '../../Available_Packages';
 import { ClipLoader } from 'react-spinners';
 function PackageDetails(props) {
-    const { setOptedPackage, parent_country, loading, startLoading } = useContext(TutorsContext);
-    // useEffect(()=>{
-    //     // window.location.reload()
-    // },[])
+    const { setOptedPackage, parent_country, loading } = useContext(TutorsContext);
     return (
         <div className="packagedetails">
             {loading && !parent_country ? <div className="d-flex justify-content-center">
                 <ClipLoader size={80} color="#00ABBD" />
-            </div> : parent_country === "Pakistan" ? <CardDeck>
-                <Card style={Available_Packages[0].styling} onClick={() => {
+            </div> : parent_country === "Pakistan" ? <CardDeck key = {Available_Packages.id}>
+                <Card style={Available_Packages[0].styling} key = {Available_Packages.id} onClick={() => {
                     props.showLeadsForm();
                     setOptedPackage(0)
                 }}>
@@ -43,7 +40,7 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={Available_Packages[1].styling} onClick={() => {
+                <Card style={Available_Packages[1].styling} key = {Available_Packages.id} onClick={() => {
                     props.showLeadsForm();
                     setOptedPackage(1)
                 }}>
@@ -73,8 +70,8 @@ function PackageDetails(props) {
 
                     </div>
                 </Card>
-            </CardDeck> : <CardDeck>
-                <Card style={Available_Packages[2].styling} onClick={() => {
+            </CardDeck> : <CardDeck key = {Available_Packages.id}>
+                <Card style={Available_Packages[2].styling} key = {Available_Packages.id} onClick={() => {
                     props.showLeadsForm();
                     setOptedPackage(2)
                 }}>
@@ -104,7 +101,7 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={Available_Packages[3].styling} onClick={() => {
+                <Card style={Available_Packages[3].styling} key = {Available_Packages.id} onClick={() => {
                     props.showLeadsForm();
                     setOptedPackage(3)
                 }}>

@@ -11,10 +11,10 @@ import ShowTutors from "./ShowTutors/ShowTutors";
 import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 import ScheduleDemo from './ScheduleDemo'
 import NavigateDemo from './NavigateDemo'
-import {  useParams} from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 function BookaDemo() {
-    let {id} = useParams();
-    // let {showLeads} = useParams();
+    let { id } = useParams();
+    let history = useHistory();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
@@ -22,9 +22,9 @@ function BookaDemo() {
     const [showtutors, setshowtutors] = useState(false);
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
-    const { parent_country, setParentLocation, setParentCity, getTeacherId} = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTeacherId } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
-   
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setisMobile(true);
@@ -33,7 +33,10 @@ function BookaDemo() {
             setisMobile(false);
         }
     }
-    const showPricingPackages = ()=>{
+    const reloadPage = ()=>{
+        history.push("/pricing")
+    }
+    const showPricingPackages = () => {
         setpackages(false)
         setleadform(false);
         setnavigation(false);
@@ -76,12 +79,12 @@ function BookaDemo() {
         setscheduledemo(true);
         setappointmentpage(false);
     }
-    const SelectedTeacherTrue = ()=>{
-        if (id){
+    const SelectedTeacherTrue = () => {
+        if (id) {
             getTeacherId(id);
             showAppointmentPage();
         }
-        
+
     }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
@@ -98,6 +101,7 @@ function BookaDemo() {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
+        window.addEventListener("reload", reloadPage);
         if (!parent_country) {
             fetchlocation()
         }
@@ -106,22 +110,23 @@ function BookaDemo() {
     return (
         <div className="bookademo">
             <Container>
-                {shownavigation? <Row>
+                {shownavigation ? <Row>
                     <Col>
-                        <NavigateDemo showleads = {showleads} showPricingPackages = {showPricingPackages} successfullead = {successfullead}
-                        hidefeecalculator = {hidefeecalculator}
-                        showtutors = {showtutors}
-                        hidetutoroptions = {hidetutoroptions}
-                        showappointmentpage = {showappointmentpage}
-                        hideAppointmentPage = {hideAppointmentPage}
-                        hideScheduleDemo = {hideScheduleDemo} 
-                        scheduledemo = {scheduledemo}
+                        <NavigateDemo showleads={showleads} showPricingPackages={showPricingPackages} successfullead={successfullead}
+                            hidefeecalculator={hidefeecalculator}
+                            showtutors={showtutors}
+                            hidetutoroptions={hidetutoroptions}
+                            showappointmentpage={showappointmentpage}
+                            hideAppointmentPage={hideAppointmentPage}
+                            hideScheduleDemo={hideScheduleDemo}
+                            scheduledemo={scheduledemo}
+                            reloadPage = {reloadPage}
                         />
                     </Col>
                 </Row> : ""}
                 <Row>
                     <Col>
-                        <div className="bookademoheader" style = {{padding: isMobile ? "2rem" : ""}}>
+                        <div className="bookademoheader" style={{ padding: isMobile ? "2rem" : "" }}>
                             <DemoTitle />
                         </div>
                     </Col>
@@ -129,14 +134,14 @@ function BookaDemo() {
                 {showtutors ? <Row>
                     <Col>
                         <div className="show_tutors">
-                            <ShowTutors showAppointmentPage = {showAppointmentPage}/>
+                            <ShowTutors showAppointmentPage={showAppointmentPage} />
                         </div>
                     </Col>
                 </Row> : ''}
                 {!hidepackages ? <Row>
                     <Col>
                         <div className="packages">
-                            <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile = {isMobile}/>
+                            <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile} />
                         </div>
                     </Col>
                 </Row> : ''}
@@ -148,7 +153,7 @@ function BookaDemo() {
                         </div>
                     </Col>
                     <Col>
-                        <SelectedPricePackage isMobile = {isMobile}/>
+                        <SelectedPricePackage isMobile={isMobile} />
                     </Col>
                 </Row> : ''}
                 {successfullead ? <Row>
@@ -164,7 +169,7 @@ function BookaDemo() {
                 {showappointmentpage ? <Row>
                     <Col>
                         <div className="booking-demo-appointment">
-                            <AppointmentBooking showScheduleDemo = {showScheduleDemo}/>
+                            <AppointmentBooking showScheduleDemo={showScheduleDemo} />
                         </div>
                     </Col>
                 </Row> : ""}

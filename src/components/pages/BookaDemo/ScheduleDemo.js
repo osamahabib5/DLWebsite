@@ -7,12 +7,13 @@ import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 function ScheduleDemo() {
+    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id } = useContext(TutorsContext);
     const [date, setdate] = useState("");
-    const getTimeUrl = baseUrl + "/api/demo/getTimes/58"
-    const getDateUrl = baseUrl + "/api/demo/getDays/58"
+    // const [finalbooking]
+    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
+    const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
     const [selectedday, setSelectedday] = useState(null)
     const DaysList = [0, 1, 2, 3, 4, 5, 6];
-    const { timeslots, getTimeSlots, getTeacherDays, days } = useContext(TutorsContext);
     const fetchTimeSlots = async () => {
         await axios.get(getTimeUrl, {
             params: {
@@ -36,6 +37,9 @@ function ScheduleDemo() {
             day = '0' + day;
         setdate([year, month, day].join('-'));
         fetchTimeSlots();
+    }
+    const BookDemo = (e)=>{
+        e.preventDefault();
     }
     const fetchDays = async () => {
         await axios.get(getDateUrl).then(response => {
@@ -103,9 +107,9 @@ function ScheduleDemo() {
                 <Col>
                     {timeslots && selectedday ? timeslots.map((data, index) => {
                         return (
-                            <div style={{ marginTop: "1rem" }}>
-                                <button className="btn button-cta button-white" key={index} >{data}</button>
-                            </div>
+
+                            <button className="btn button-cta button-white" value={data} onClick={(e) => console.log(e.target.value)} key={index} >{data}</button>
+
                         )
                     }) : ""}
                 </Col>
@@ -121,7 +125,7 @@ function ScheduleDemo() {
             <Row className="justify-content-md-center">
                 <Col xs lg="4">
                     <div style={{ marginBottom: "4rem", marginTop: "3rem" }}>
-                        <button className="btn button-cta button-blue">Book Demo</button>
+                        <button className="btn button-cta button-blue" onClick = {BookDemo}>Book Demo</button>
                     </div>
                 </Col>
             </Row>
