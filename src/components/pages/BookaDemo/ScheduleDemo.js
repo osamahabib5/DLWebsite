@@ -7,9 +7,8 @@ import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Swal from 'sweetalert2'
-import { ClipLoader } from 'react-spinners';
 function ScheduleDemo(props) {
-    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info } = useContext(TutorsContext);
+    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info,calculateFees } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
     const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id

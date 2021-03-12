@@ -118,7 +118,7 @@ function BookaDemo(props) {
                     showLeadsForm();
                     setnavigation(false);
                     setpackages(true);
-                } else if(fee_amount > 0) {
+                } else if (fee_amount > 0) {
                     setappointmentpage(true);
                     setnavigation(false);
                     setpackages(true);
@@ -127,6 +127,11 @@ function BookaDemo(props) {
                     showfeecalculator();
                     setpackages(true);
                 }
+            }
+            else {
+                showLeadsForm();
+                setpackages(true);
+                setnavigation(false);
             }
         }
         else if (location.search === "?pricing") {

@@ -48,9 +48,9 @@ function SelectedPricePackage(props) {
             {/* <p className="parentlocation">
                 <ChangeLocation />
             </p> */}
-            {result_type === "pricing" ? <p className="parentlocation">
+            {/* {result_type === "pricing" ? <p className="parentlocation">
                 <ChangeLocation />
-            </p> : ""}
+            </p> : ""} */}
         </div>
     )
 }

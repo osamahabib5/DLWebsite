@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { TutorsContext } from '../../../Provider'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
 import SelectedTeacher from './SelectedTeacher'
 
 function ConfirmAppointment() {
+    const {calculateFees} = useContext(TutorsContext);
     return (
         <Container>
             <Row>
