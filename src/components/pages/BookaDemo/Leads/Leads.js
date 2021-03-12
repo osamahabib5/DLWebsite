@@ -28,6 +28,9 @@ function Leads(props) {
             await axios.post(postleadurl, leadsdetail).then(response => {
                 const leadid = JSON.stringify(response.data.data.lead_id)
                 setLeadId(leadid)
+                if (!props.shownavigation){
+                    props.setnavigation(true);
+                }
                 props.setleadform(false);
                 props.setsuccessfullead(true);
                 fillleaddetails({

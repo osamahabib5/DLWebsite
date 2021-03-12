@@ -11,11 +11,12 @@ import ShowTutors from "./ShowTutors/ShowTutors";
 import AppointmentBooking from './AppointmentBooking/AppointmentBooking'
 import ScheduleDemo from './ScheduleDemo'
 import NavigateDemo from './NavigateDemo'
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
-function BookaDemo() {
+function BookaDemo(props) {
     let { id } = useParams();
     let history = useHistory();
+    let location = useLocation();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
@@ -24,7 +25,7 @@ function BookaDemo() {
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
-    const { parent_country, setParentLocation, setParentCity, getTeacherId } = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTeacherId, teacher_id,setResultType } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -84,12 +85,18 @@ function BookaDemo() {
         setscheduledemo(false);
         setconfirmappointment(true);
     }
-    const SelectedTeacherTrue = () => {
+    const SetDemoRoute = () => {
         if (id) {
             getTeacherId(id);
             showAppointmentPage();
         }
-
+        if (location.search === "?showLeads"){
+            setResultType("teachers")
+            showLeadsForm();
+            setnavigation(false);
+        }else{
+            setResultType("pricing")
+        }
     }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
@@ -111,7 +118,7 @@ function BookaDemo() {
         if (!parent_country) {
             fetchlocation()
         }
-        SelectedTeacherTrue();
+        SetDemoRoute();
     }, [id])
     return (
         <div className="bookademo">
@@ -155,7 +162,7 @@ function BookaDemo() {
                     <Col>
                         <div className="leads">
                             <Leads fetchlocation={fetchlocation} hidepackages={hidepackages} setsuccessfullead={setsuccessfullead}
-                                setleadform={setleadform} />
+                                setleadform={setleadform} shownavigation = {shownavigation} setnavigation = {setnavigation}/>
                         </div>
                     </Col>
                     <Col>

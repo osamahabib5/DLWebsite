@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Button } from 'react-bootstrap';
 import { Col, Row, Container } from 'react-bootstrap';
 import ReviewPopup from './ReviewPopup/ReviewPopup';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { TutorsContext } from '../../../../../Provider';
 function TeacherOptions() {
+    let { id } = useParams();
+    let { getTeacherId } = useContext(TutorsContext);
+    useEffect(() => {
+        if (!id) {
+            getTeacherId(id);
+        }
+    }, [])
     const [show, setShow] = useState(false);
     const [review, hideReview] = useState(true);
-    const hidePopup = () => { hideReview(false) }
-    const showPoupup = () => { hideReview(true) }
-
+    // const hidePopup = () => { hideReview(false) }
+    // const showPoupup = () => { hideReview(true) }
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);
@@ -21,7 +28,8 @@ function TeacherOptions() {
                     <Link
                         to={{
                             pathname: "/pricing",
-                            search : "?showLeads=true"
+                            search: "showLeads",
+                            state: { id: id }
                         }}
                     ><Button variant="primary">Book a Demo</Button></Link>
                     <div style={{ marginTop: "1rem" }}></div>

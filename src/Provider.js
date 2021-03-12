@@ -14,7 +14,8 @@ const initialState = {
     timeslots: [],
     days: [],
     teacher_id: 0,
-    teacher_info: null
+    teacher_info: null,
+    result_type: ""
 }
 
 const actions = {
@@ -33,7 +34,8 @@ const actions = {
     GETTIMESLOTS: 'GETTIMESLOTS',
     GETDAYS: 'GETDAYS',
     GETTEACHERID: 'GETTEACHERID',
-    GETTEACHERINFO: 'GETTEACHERINFO'
+    GETTEACHERINFO: 'GETTEACHERINFO',
+    SETRESULTTYPE: 'SETRESULTTYPE'
 }
 
 function reducer(state, action) {
@@ -119,6 +121,11 @@ function reducer(state, action) {
                 ...state,
                 teacher_info: action.value
             }
+        case actions.SETRESULTTYPE:
+            return {
+                ...state,
+                result_type: action.value
+            }
         default:
             return state;
     }
@@ -140,7 +147,8 @@ function Provider({ children }) {
         filtered_teachers_list: state.filtered_teachers_list,
         days: state.days,
         teacher_id: state.teacher_id,
-        teacher_info:state.teacher_info,
+        teacher_info: state.teacher_info,
+        result_type: state.result_type,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -157,7 +165,8 @@ function Provider({ children }) {
         getTimeSlots: (value) => { dispatch({ type: actions.GETTIMESLOTS, value }) },
         getTeacherDays: (value) => { dispatch({ type: actions.GETDAYS, value }) },
         getTeacherId: (value) => { dispatch({ type: actions.GETTEACHERID, value }) },
-        getTeacherInfo: (value)=> { dispatch({ type: actions.GETTEACHERINFO, value }) },
+        getTeacherInfo: (value) => { dispatch({ type: actions.GETTEACHERINFO, value }) },
+        setResultType: (value) => { dispatch({ type: actions.SETRESULTTYPE, value }) }
     }
     return (
         <TutorsContext.Provider value={value}>
