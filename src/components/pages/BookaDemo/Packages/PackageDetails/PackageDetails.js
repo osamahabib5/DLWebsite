@@ -1,18 +1,28 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { CardDeck, Card, ListGroup, Button } from 'react-bootstrap';
 import { TutorsContext } from '../../../../../Provider';
 import Available_Packages from '../../Available_Packages';
 import { ClipLoader } from 'react-spinners';
 function PackageDetails(props) {
-    const { setOptedPackage, parent_country, loading } = useContext(TutorsContext);
+    const setSelectedPackage = (index) => {
+        if (lead_id != 0) {
+            props.showfeecalculator();
+            props.PricingwithLeadId();
+            setOptedPackage(index)
+        }
+        else {
+            props.showLeadsForm();
+            setOptedPackage(index)
+        }
+    }
+    const { setOptedPackage, parent_country, loading, lead_id } = useContext(TutorsContext);
     return (
         <div className="packagedetails">
             {loading && !parent_country ? <div className="d-flex justify-content-center">
                 <ClipLoader size={80} color="#00ABBD" />
-            </div> : parent_country === "Pakistan" ? <CardDeck key = {Available_Packages.id}>
-                <Card style={Available_Packages[0].styling} key = {Available_Packages.id} onClick={() => {
-                    props.showLeadsForm();
-                    setOptedPackage(0)
+            </div> : parent_country === "Pakistan" ? <CardDeck key={Available_Packages.id}>
+                <Card style={Available_Packages[0].styling} key={Available_Packages.id} onClick={() => {
+                    setSelectedPackage(0)
                 }}>
                     <Card.Header style={{ background: Available_Packages[0].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
@@ -40,9 +50,8 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={Available_Packages[1].styling} key = {Available_Packages.id} onClick={() => {
-                    props.showLeadsForm();
-                    setOptedPackage(1)
+                <Card style={Available_Packages[1].styling} key={Available_Packages.id} onClick={() => {
+                    setSelectedPackage(1)
                 }}>
                     <Card.Header style={{ background: Available_Packages[1].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
@@ -70,10 +79,9 @@ function PackageDetails(props) {
 
                     </div>
                 </Card>
-            </CardDeck> : <CardDeck key = {Available_Packages.id}>
-                <Card style={Available_Packages[2].styling} key = {Available_Packages.id} onClick={() => {
-                    props.showLeadsForm();
-                    setOptedPackage(2)
+            </CardDeck> : <CardDeck key={Available_Packages.id}>
+                <Card style={Available_Packages[2].styling} key={Available_Packages.id} onClick={() => {
+                    setSelectedPackage(2)
                 }}>
                     <Card.Header style={{ background: Available_Packages[2].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
@@ -101,9 +109,8 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={Available_Packages[3].styling} key = {Available_Packages.id} onClick={() => {
-                    props.showLeadsForm();
-                    setOptedPackage(3)
+                <Card style={Available_Packages[3].styling} key={Available_Packages.id} onClick={() => {
+                    setSelectedPackage(3)
                 }}>
                     <Card.Header style={{ background: Available_Packages[3].color }}></Card.Header>
                     <div className="d-flex justify-content-center">

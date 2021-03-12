@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { TutorsContext } from '../../../Provider';
 function NavigateDemo(props) {
-    const { calculateFees } = useContext(TutorsContext)
+    const { calculateFees, result_type, lead_id } = useContext(TutorsContext)
     const goBack = (e) => {
         e.preventDefault();
-        if (props.successfullead) {
+        if (props.successfullead && lead_id == 0) {
             props.hidefeecalculator()
+        }
+        else if (props.successfullead && lead_id != 0) {
+            props.LeadAlreadyFilled()
         }
         if (props.showtutors) {
             calculateFees(0);
@@ -15,6 +18,10 @@ function NavigateDemo(props) {
         }
         if (props.showappointmentpage) {
             props.reloadPage();
+            props.hideAppointmentPage();
+        }
+        if (props.showappointmentpage && result_type == "pricing" && !lead_id) {
+            props.showfeecalculator();
             props.hideAppointmentPage();
         }
         if (props.scheduledemo) {

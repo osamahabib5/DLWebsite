@@ -5,10 +5,11 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from "../../../../baseUrl/baseUrl";
 import axios from "axios";
 import { TutorsContext } from "../../../../Provider";
+import Swal from 'sweetalert2'
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const postleadurl = baseUrl + '/api/lead/create';
-    // const [successfullead, setsuccessfullead] = useState(false);
+    const [alerttext, setalerttext] = useState("Please fill all the values");
     const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "", country: parent_country, city: "Karachi" });
     const handleOnChange = (e) => {
         fillleaddetails({
@@ -16,19 +17,37 @@ function Leads(props) {
             [e.target.name]: e.target.value
         })
     }
+    const validatephonenumber = (inputtxt) => {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!pattern.test(inputtxt)) {
+            return false;
+        }
+        return true
+    }
+    const opensweetalertdanger = () => {
+        Swal.fire({
+            title: 'Create Lead',
+            text: alerttext,
+            type: 'warning',
+
+
+        })
+    }
     const PostLead = async (e) => {
         e.preventDefault();
         if (!leadsdetail.name || !leadsdetail.phone) {
-            alert("Please fill all the values")
+            setalerttext("Please fill all the values");
+            opensweetalertdanger();
         }
-        else if (leadsdetail.email && (!leadsdetail.email.includes("@") || !leadsdetail.email.includes(".com"))) {
-            alert("Please enter a valid email")
+        else if (!validatephonenumber(leadsdetail.email)) {
+            setalerttext("Please enter a valid email")
+            opensweetalertdanger();
         }
         else {
             await axios.post(postleadurl, leadsdetail).then(response => {
                 const leadid = JSON.stringify(response.data.data.lead_id)
                 setLeadId(leadid)
-                if (!props.shownavigation){
+                if (!props.shownavigation) {
                     props.setnavigation(true);
                 }
                 props.setleadform(false);
@@ -47,7 +66,7 @@ function Leads(props) {
         if (!parent_country) {
             props.fetchlocation();
         };
-    }, [])
+    }, [alerttext])
     return (
         <div>
             <Container>
@@ -67,9 +86,9 @@ function Leads(props) {
                             </Form.Group>
 
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Control type="number" placeholder="Phone Number" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
+                                <Form.Control type="number" placeholder="+XX-XXXX-XXXX" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
                             </Form.Group>
-                            <div style = {{marginTop: "4rem"}}>
+                            <div style={{ marginTop: "4rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>
                                     Submit
                                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />

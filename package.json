@@ -22,7 +22,6 @@
     "react-axios": "^2.0.4",
     "react-bootstrap": "^1.4.3",
     "react-bootstrap-4-pagination": "^1.0.4",
-    "react-bootstrap-sweetalert": "^5.2.0",
     "react-day-picker": "^7.4.8",
     "react-dom": "^17.0.1",
     "react-facebook-pixel": "^1.0.4",
@@ -42,6 +41,7 @@
     "react-star-ratings": "^2.3.0",
     "react-toastify": "^7.0.1",
     "read-more-react": "^1.0.10",
+    "sweetalert2-react": "^0.8.3",
     "video-react": "^0.14.1",
     "web-vitals": "^0.2.4"
   },

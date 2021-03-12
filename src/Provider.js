@@ -15,7 +15,8 @@ const initialState = {
     days: [],
     teacher_id: 0,
     teacher_info: null,
-    result_type: ""
+    result_type: "",
+    subscription: ""
 }
 
 const actions = {
@@ -35,7 +36,8 @@ const actions = {
     GETDAYS: 'GETDAYS',
     GETTEACHERID: 'GETTEACHERID',
     GETTEACHERINFO: 'GETTEACHERINFO',
-    SETRESULTTYPE: 'SETRESULTTYPE'
+    SETRESULTTYPE: 'SETRESULTTYPE',
+    SETSUBSCRIPTION: 'SETSUBSCRIPTION'
 }
 
 function reducer(state, action) {
@@ -126,6 +128,11 @@ function reducer(state, action) {
                 ...state,
                 result_type: action.value
             }
+        case actions.SETSUBSCRIPTION:
+            return {
+                ...state,
+                subscription: action.value
+            }
         default:
             return state;
     }
@@ -149,6 +156,7 @@ function Provider({ children }) {
         teacher_id: state.teacher_id,
         teacher_info: state.teacher_info,
         result_type: state.result_type,
+        subscription : state.subscription,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -166,7 +174,8 @@ function Provider({ children }) {
         getTeacherDays: (value) => { dispatch({ type: actions.GETDAYS, value }) },
         getTeacherId: (value) => { dispatch({ type: actions.GETTEACHERID, value }) },
         getTeacherInfo: (value) => { dispatch({ type: actions.GETTEACHERINFO, value }) },
-        setResultType: (value) => { dispatch({ type: actions.SETRESULTTYPE, value }) }
+        setResultType: (value) => { dispatch({ type: actions.SETRESULTTYPE, value }) },
+        setSubscription: (value) => { dispatch({ type: actions.SETSUBSCRIPTION, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

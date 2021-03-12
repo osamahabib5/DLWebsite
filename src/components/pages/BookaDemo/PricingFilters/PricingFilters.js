@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, getTeacherId, result_type } = useContext(TutorsContext)
+    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, getTeacherId, result_type, subscription } = useContext(TutorsContext)
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "one_to_one", subscription: subscription, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
     const { class_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -54,6 +54,7 @@ function PricingFilters(props) {
         else{
             props.showAppointmentPage();
             props.hidefeecalculator();
+            props.hideLeadsForm();
         }
     }
     const onChangePackage = (e) => {
@@ -155,7 +156,7 @@ function PricingFilters(props) {
                 </button>
             </Row>
             <Row className="justify-content-md-center">
-                <p className="skipbooking" onClick={props.showtutoroptions}>Skip</p>
+                <p className="skipbooking" onClick={handleSubmit}>Skip</p>
             </Row>
         </Container>
     )

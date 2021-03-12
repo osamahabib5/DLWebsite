@@ -1,11 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Card, ListGroup } from "react-bootstrap";
 import { TutorsContext } from '../../../../Provider';
-import ChangeLocation from "../../../ChangeLocation/ChangeLocation";
 import Available_Packages from '../Available_Packages';
 function SelectedPricePackage(props) {
-    const { opted_package , parent_country, fee_amount} = useContext(TutorsContext);
-
+    const { opted_package , fee_amount, setSubscription} = useContext(TutorsContext);
+    const SetPricingPackage = ()=>{
+        if (opted_package == 0 || opted_package == 2){
+            setSubscription("1_month")
+        }
+        else{
+            setSubscription("3_month");
+        }
+    }
+    useEffect(()=>{
+        SetPricingPackage();
+    },[opted_package])
     return (
         <div className="selectedpackage">
             <Card style={Available_Packages[opted_package].styling} key = {Available_Packages.id}>

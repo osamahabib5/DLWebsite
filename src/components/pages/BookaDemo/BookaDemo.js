@@ -43,6 +43,18 @@ function BookaDemo(props) {
         setleadform(false);
         setnavigation(false);
     }
+    const PricingwithLeadId = ()=>{
+        setpackages(true);
+        setnavigation(true);
+    }
+    const LeadAlreadyFilled = ()=>{
+        setsuccessfullead(false);
+        setnavigation(false);
+        setpackages(false);
+    }
+    const hideLeadsForm = () => {
+        setleadform(false);
+    }
     const showLeadsForm = () => {
         setpackages(true)
         setleadform(true);
@@ -134,6 +146,8 @@ function BookaDemo(props) {
                             hideScheduleDemo={hideScheduleDemo}
                             scheduledemo={scheduledemo}
                             reloadPage = {reloadPage}
+                            showfeecalculator = {showfeecalculator}
+                            LeadAlreadyFilled = {LeadAlreadyFilled}
                         />
                     </Col>
                 </Row> : ""}
@@ -154,7 +168,9 @@ function BookaDemo(props) {
                 {!hidepackages ? <Row>
                     <Col>
                         <div className="packages">
-                            <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile} />
+                            <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
+                            PricingwithLeadId = {PricingwithLeadId}
+                            />
                         </div>
                     </Col>
                 </Row> : ''}
@@ -175,6 +191,7 @@ function BookaDemo(props) {
                             <PricingFilters showtutoroptions={showtutoroptions}
                             showAppointmentPage = {showAppointmentPage} 
                             hidefeecalculator={hidefeecalculator}
+                            hideLeadsForm = {hideLeadsForm}
                             />
                         </div>
                     </Col>
