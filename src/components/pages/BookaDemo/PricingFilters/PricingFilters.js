@@ -14,7 +14,7 @@ function PricingFilters(props) {
     const [days, setdays] = useState(1);
     const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription, tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
-    const { class_type } = advancedfilter;
+    const { class_type, tutor_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
         e.persist();
@@ -125,13 +125,11 @@ function PricingFilters(props) {
                                 <FormCheck.Label>Tutor Type</FormCheck.Label>
                                 <Col>
                                 </Col>
-                                <Form.Check inline label="Standard Tutor" value="standard" checked={advancedfilter.tutor_type === "standard"}
-                                    onChange={handleOnChangeTutorType}
-                                    type={type} id={`inline-${type}-1`} />
+                                <Form.Check inline label="Standard Tutor" value="standard" checked={tutor_type === "standard"}
+                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} />
                                 <Form.Check inline label="Super Tutor" value="super"
-                                    checked={advancedfilter.tutor_type === "super"}
-                                    onChange={handleOnChangeTutorType}
-                                    type={type} id={`inline-${type}-2`} />
+                                    checked={tutor_type === "super"}
+                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} />
                             </div>
                         ))}
                     </Col>
@@ -153,7 +151,7 @@ function PricingFilters(props) {
                 <Form.Row>
                     <Col>
                         <Form.Label>How long do you want the classes to be taken?</Form.Label>
-                        {hours || days ? <Form.Label>(Hours Per Week: {advancedfilter.hours_per_week}) </Form.Label> : ""}
+                        {/* {hours || days ? <Form.Label>(Hours Per Week: {advancedfilter.hours_per_week}) </Form.Label> : ""} */}
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
@@ -166,11 +164,11 @@ function PricingFilters(props) {
                     }} />
                 </Form.Group>
             </Form>
-            {result_type === "teachers" ? <Row className="justify-content-md-center">
+            {result_type === "teachers" ? <div className="d-flex justify-content-center">
                 <button className="btn button-cta button-blue" onClick={handleSubmit}>Select Tutor
                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
                 </button>
-            </Row> : ""}
+            </div> : ""}
             <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
             </Row>

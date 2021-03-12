@@ -16,7 +16,7 @@ function TeachingMethods(props) {
                         )
                     } else {
                         return (
-                            <Button variant="outline-secondary" style={{ marginLeft: "1rem" }}>{data}</Button>
+                            <Button variant="outline-secondary" style={{ marginLeft: "1rem" }}>{data.toString().replace("_"," ")}</Button>
                         )
                     }
                 })}
