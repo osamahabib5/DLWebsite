@@ -6,12 +6,14 @@ import { TutorsContext } from '../../../Provider'
 import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
     const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
     const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
     const bookDemoUrl = baseUrl + "/api/demo/book";
+    const [isActive, setisActive] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
     const DaysList = [0, 1, 2, 3, 4, 5, 6];
@@ -26,6 +28,23 @@ function ScheduleDemo(props) {
             console.log("Error: " + error)
         })
     }
+    const opensweetalertdanger = (alerttext) => {
+        Swal.fire({
+            title: 'Create Lead',
+            text: alerttext,
+            type: 'warning',
+
+
+        })
+    }
+    // const setTimeSlot = (e) => {
+    //     e.preventDefault();
+    //     setdemodata({
+    //         ...demodata,
+    //         time: e.target.value
+    //     })
+    //     setisActive((prevState) => !prevState);
+    // }
     const handleDayClick = (day, { selected }) => {
         setSelectedday(selected ? undefined : day)
 
@@ -44,11 +63,12 @@ function ScheduleDemo(props) {
         })
         fetchTimeSlots();
     }
+    const ButtonClassName = isActive ? "btn button-cta button-red" : "btn button-cta button-white";
     const BookDemo = async (e) => {
         e.preventDefault();
         console.log(JSON.stringify(demodata))
         if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
-            alert("Please fill all the values!")
+            opensweetalertdanger("Please fill all the required values!")
         }
         else {
             await axios.post(bookDemoUrl, demodata).then(response => {
@@ -131,7 +151,7 @@ function ScheduleDemo(props) {
                 <Col>
                     {timeslots && selectedday != undefined ? timeslots.map((data, index) => {
                         return (
-                            <button className="btn button-cta button-white" value={data} name="time" onClick={(e) => {
+                            <button className={ButtonClassName} value={data} name="time" onClick={(e) => {
                                 setdemodata({
                                     ...demodata,
                                     time: e.target.value

@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { Card, ListGroup } from "react-bootstrap";
 import { TutorsContext } from '../../../../Provider';
+import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 function SelectedPricePackage(props) {
-    const { opted_package , fee_amount, setSubscription} = useContext(TutorsContext);
+    const { opted_package , fee_amount, setSubscription, result_type} = useContext(TutorsContext);
     const SetPricingPackage = ()=>{
         if (opted_package == 0 || opted_package == 2){
             setSubscription("1_month")
@@ -47,6 +48,9 @@ function SelectedPricePackage(props) {
             {/* <p className="parentlocation">
                 <ChangeLocation />
             </p> */}
+            {result_type === "pricing" ? <p className="parentlocation">
+                <ChangeLocation />
+            </p> : ""}
         </div>
     )
 }
