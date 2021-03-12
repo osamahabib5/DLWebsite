@@ -6,12 +6,13 @@ import { Link, useParams } from 'react-router-dom';
 import { TutorsContext } from '../../../../../Provider';
 function TeacherOptions() {
     let { id } = useParams();
-    let { getTeacherId } = useContext(TutorsContext);
+    let { getTeacherId, teacher_id } = useContext(TutorsContext);
     useEffect(() => {
-        if (!id) {
+        if (!teacher_id) {
             getTeacherId(id);
         }
-    }, [])
+        console.log("TeacherID: "+ teacher_id)
+    }, [id])
     const [show, setShow] = useState(false);
     const [review, hideReview] = useState(true);
     // const hidePopup = () => { hideReview(false) }

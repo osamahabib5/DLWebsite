@@ -30,25 +30,31 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         e.preventDefault();
-        setadvancedfilters(prevState => ({
-            ...prevState,
-            hours_per_week: hours * days
-        }))
-        await axios.post(url, advancedfilter).then(response => {
-            console.log("Calculator Response: " + JSON.stringify(response.data.data))
-            getFilteredTeachersList(response.data.data.teachers)
-            calculateFees(response.data.data.fee_amount)
-            startLoading();
-            setadvancedfilters({
-                class_type: "",
-                subscription: "",
-                tutor_type: "",
-                hours_per_week: 2
+        if (result_type === "teachers") {
+            setadvancedfilters(prevState => ({
+                ...prevState,
+                hours_per_week: hours * days
+            }))
+            await axios.post(url, advancedfilter).then(response => {
+                console.log("Calculator Response: " + JSON.stringify(response.data.data))
+                getFilteredTeachersList(response.data.data.teachers)
+                calculateFees(response.data.data.fee_amount)
+                startLoading();
+                setadvancedfilters({
+                    class_type: "",
+                    subscription: "",
+                    tutor_type: "",
+                    hours_per_week: 2
+                })
+                props.showtutoroptions();
+            }).catch(error => {
+                console.log("Filters Error: " + error)
             })
-            props.showtutoroptions();
-        }).catch(error => {
-            console.log("Filters Error: " + error)
-        })
+        }
+        else{
+            props.showAppointmentPage();
+            props.hidefeecalculator();
+        }
     }
     const onChangePackage = (e) => {
         e.target.value === "3_month" ? setOptedPackage(1) : setOptedPackage(0)

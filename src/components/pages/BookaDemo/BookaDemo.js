@@ -91,11 +91,11 @@ function BookaDemo(props) {
             showAppointmentPage();
         }
         if (location.search === "?showLeads"){
-            setResultType("teachers")
+            setResultType("pricing")
             showLeadsForm();
             setnavigation(false);
         }else{
-            setResultType("pricing")
+            setResultType("teachers")
         }
     }
     const fetchlocation = async () => {
@@ -172,7 +172,10 @@ function BookaDemo(props) {
                 {successfullead ? <Row>
                     <Col>
                         <div className="pricingfilters">
-                            <PricingFilters showtutoroptions={showtutoroptions} />
+                            <PricingFilters showtutoroptions={showtutoroptions}
+                            showAppointmentPage = {showAppointmentPage} 
+                            hidefeecalculator={hidefeecalculator}
+                            />
                         </div>
                     </Col>
                     <Col>
