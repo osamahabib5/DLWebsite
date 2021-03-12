@@ -20,7 +20,7 @@ function NavigateDemo(props) {
             props.reloadPage();
             props.hideAppointmentPage();
         }
-        if (props.showappointmentpage && result_type == "pricing" && !lead_id) {
+        if (props.showappointmentpage && result_type == "pricing" && lead_id != 0) {
             props.showfeecalculator();
             props.hideAppointmentPage();
         }

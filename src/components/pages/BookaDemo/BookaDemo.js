@@ -25,7 +25,7 @@ function BookaDemo(props) {
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
-    const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id } = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -85,6 +85,10 @@ function BookaDemo(props) {
         setappointmentpage(true);
         setshowtutors(false);
     }
+    const showAppointmentPagewithTeacher = () => {
+        setappointmentpage(true);
+        setsuccessfullead(false);
+    }
     const hideScheduleDemo = () => {
         showAppointmentPage();
         setscheduledemo(false);
@@ -102,26 +106,31 @@ function BookaDemo(props) {
         setconfirmappointment(false);
     }
     const SetDemoRoute = () => {
+        setResultType("teachers")
         if (id) {
             getTeacherId(id);
             showAppointmentPage();
         }
         if (location.search === "?showLeads") {
-            // getTeacherId(state.teacherid);
             setResultType("pricing");
             if (lead_id != 0) {
                 showfeecalculator();
                 setpackages(true);
 
-            } else {
+            } else if (lead_id > 0 && fee_amount == 0) {
                 showLeadsForm();
                 setnavigation(false);
                 setpackages(true);
 
             }
+            else if (lead_id > 0 && fee_amount > 0) {
+                setappointmentpage(true);
+                setnavigation(false);
+                setpackages(true);
 
+            }
         }
-        if (location.search === "?pricing") {
+        else if (location.search === "?pricing") {
             setpackages(false);
             setnavigation(false);
             setleadform(false);
@@ -130,9 +139,6 @@ function BookaDemo(props) {
             setappointmentpage(false);
             setscheduledemo(false);
             setconfirmappointment(false);
-        }
-        else {
-            setResultType("teachers")
         }
     }
     const fetchlocation = async () => {
@@ -219,6 +225,7 @@ function BookaDemo(props) {
                                 showAppointmentPage={showAppointmentPage}
                                 hidefeecalculator={hidefeecalculator}
                                 hideLeadsForm={hideLeadsForm}
+                                showAppointmentPagewithTeacher={showAppointmentPagewithTeacher}
                             />
                         </div>
                     </Col>

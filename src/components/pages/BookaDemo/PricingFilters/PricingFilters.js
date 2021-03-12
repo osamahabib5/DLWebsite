@@ -30,10 +30,7 @@ function PricingFilters(props) {
             tutor_type: e.target.value
         }));
     }
-    const SkipPricing = async() => {
-        if (result_type === "pricing") {
-            props.showAppointmentPage();
-        }
+    const SkipPricing = async () => {
         if (result_type === "teachers") {
             await axios.post(url, skippedoption).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
@@ -43,6 +40,9 @@ function PricingFilters(props) {
             }).catch(error => {
                 console.log("Filters Error: " + error)
             })
+        }
+        if (result_type === "pricing") {
+            props.showAppointmentPagewithTeacher();
         }
     }
     const handleSubmit = async (e) => {
@@ -166,11 +166,11 @@ function PricingFilters(props) {
                     }} />
                 </Form.Group>
             </Form>
-            <Row className="justify-content-md-center">
+            {result_type === "teachers" ? <Row className="justify-content-md-center">
                 <button className="btn button-cta button-blue" onClick={handleSubmit}>Select Tutor
                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
                 </button>
-            </Row>
+            </Row> : ""}
             <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
             </Row>
