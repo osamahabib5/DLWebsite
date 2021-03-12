@@ -113,21 +113,20 @@ function BookaDemo(props) {
         }
         if (location.search === "?showLeads") {
             setResultType("pricing");
-            if (lead_id != 0) {
-                showfeecalculator();
-                setpackages(true);
-
-            } else if (lead_id > 0 && fee_amount == 0) {
-                showLeadsForm();
-                setnavigation(false);
-                setpackages(true);
-
-            }
-            else if (lead_id > 0 && fee_amount > 0) {
-                setappointmentpage(true);
-                setnavigation(false);
-                setpackages(true);
-
+            if (lead_id > 0) {
+                if (fee_amount == 0) {
+                    showLeadsForm();
+                    setnavigation(false);
+                    setpackages(true);
+                } else if(fee_amount > 0) {
+                    setappointmentpage(true);
+                    setnavigation(false);
+                    setpackages(true);
+                }
+                else {
+                    showfeecalculator();
+                    setpackages(true);
+                }
             }
         }
         else if (location.search === "?pricing") {

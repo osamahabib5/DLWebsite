@@ -13,7 +13,6 @@ function ScheduleDemo(props) {
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
     const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
     const bookDemoUrl = baseUrl + "/api/demo/book";
-    const [isActive, setisActive] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
     const DaysList = [0, 1, 2, 3, 4, 5, 6];
@@ -37,14 +36,6 @@ function ScheduleDemo(props) {
 
         })
     }
-    // const setTimeSlot = (e) => {
-    //     e.preventDefault();
-    //     setdemodata({
-    //         ...demodata,
-    //         time: e.target.value
-    //     })
-    //     setisActive((prevState) => !prevState);
-    // }
     const handleDayClick = (day, { selected }) => {
         setSelectedday(selected ? undefined : day)
 
@@ -63,7 +54,14 @@ function ScheduleDemo(props) {
         })
         fetchTimeSlots();
     }
-    const ButtonClassName = isActive ? "btn button-cta button-red" : "btn button-cta button-white";
+    const setTimeSlot = (e) => {
+        e.preventDefault();
+        setdemodata({
+            ...demodata,
+            time: e.target.value
+        })
+        e.target.setAttribute("class","btn button-cta button-blue")
+    }
     const BookDemo = async (e) => {
         e.preventDefault();
         console.log(JSON.stringify(demodata))
@@ -149,14 +147,9 @@ function ScheduleDemo(props) {
                     />
                 </Col>
                 <Col>
-                    {timeslots && selectedday != undefined ? timeslots.map((data, index) => {
+                    {timeslots && selectedday != undefined && Array.isArray(timeslots)?  timeslots.map((data, index) => {
                         return (
-                            <button className={ButtonClassName} value={data} name="time" onClick={(e) => {
-                                setdemodata({
-                                    ...demodata,
-                                    time: e.target.value
-                                })
-                            }} key={index} >{data}</button>
+                            <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}  >{data}</button>
                         )
                     }) : ""}
                 </Col>
