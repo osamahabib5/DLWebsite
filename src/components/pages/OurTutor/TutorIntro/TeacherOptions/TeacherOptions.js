@@ -6,12 +6,9 @@ import { Link, useParams } from 'react-router-dom';
 import { TutorsContext } from '../../../../../Provider';
 function TeacherOptions() {
     let { id } = useParams();
-    let { getTeacherId, teacher_id } = useContext(TutorsContext);
+    let { getTeacherId} = useContext(TutorsContext);
     useEffect(() => {
-        if (!teacher_id) {
-            getTeacherId(id);
-        }
-        console.log("TeacherID: "+ teacher_id)
+        getTeacherId(id);
     }, [id])
     const [show, setShow] = useState(false);
     const [review, hideReview] = useState(true);
@@ -30,7 +27,7 @@ function TeacherOptions() {
                         to={{
                             pathname: "/pricing",
                             search: "showLeads",
-                            state: { id: id }
+                            state: { teacherid: id }
                         }}
                     ><Button variant="primary">Book a Demo</Button></Link>
                     <div style={{ marginTop: "1rem" }}></div>

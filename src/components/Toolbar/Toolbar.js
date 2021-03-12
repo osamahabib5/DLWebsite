@@ -22,17 +22,20 @@ const Toolbar = (props) => {
                 <div className="toolbar-navigation-items">
                     <ul>
                         <li><Link to="/programs">Programs & Courses</Link></li>
-                        <li><Link to="/pricing">Pricing</Link></li>
+                        <li><Link to={{
+                            pathname: "/pricing",
+                            search: "?pricing"
+                        }}>Pricing</Link></li>
                         <li><Link to="/tutors">Our Tutors</Link></li>
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
                     </ul>
-                    
+
                 </div>
-                
+
             </nav>
         </header>
-        
+
     )
 }
 
-export default Toolbar 
+export default Toolbar

@@ -6,11 +6,14 @@ import { TutorsContext } from '../../../../Provider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
+import Swal from 'sweetalert2'
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, getTeacherId, result_type, subscription } = useContext(TutorsContext)
+    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, result_type, subscription } = useContext(TutorsContext)
+    // const [skipped, setSkipped] = useState(false);
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "one_to_one", subscription: subscription, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription, tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
+    const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     const { class_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -26,6 +29,21 @@ function PricingFilters(props) {
             ...prevState,
             tutor_type: e.target.value
         }));
+    }
+    const SkipPricing = async() => {
+        if (result_type === "pricing") {
+            props.showAppointmentPage();
+        }
+        if (result_type === "teachers") {
+            await axios.post(url, skippedoption).then(response => {
+                getFilteredTeachersList(response.data.data.teachers)
+                calculateFees(response.data.data.fee_amount)
+                startLoading();
+                props.showtutoroptions();
+            }).catch(error => {
+                console.log("Filters Error: " + error)
+            })
+        }
     }
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
@@ -51,10 +69,8 @@ function PricingFilters(props) {
                 console.log("Filters Error: " + error)
             })
         }
-        else{
+        if (result_type === "pricing") {
             props.showAppointmentPage();
-            props.hidefeecalculator();
-            props.hideLeadsForm();
         }
     }
     const onChangePackage = (e) => {
@@ -156,7 +172,7 @@ function PricingFilters(props) {
                 </button>
             </Row>
             <Row className="justify-content-md-center">
-                <p className="skipbooking" onClick={handleSubmit}>Skip</p>
+                <p className="skipbooking" onClick={SkipPricing}>Skip</p>
             </Row>
         </Container>
     )

@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const postleadurl = baseUrl + '/api/lead/create';
-    const [alerttext, setalerttext] = useState("Please fill all the values");
     const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "", country: parent_country, city: "Karachi" });
     const handleOnChange = (e) => {
         fillleaddetails({
@@ -17,14 +16,15 @@ function Leads(props) {
             [e.target.name]: e.target.value
         })
     }
-    const validatephonenumber = (inputtxt) => {
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern.test(inputtxt)) {
+    const validatevalues = (inputtxt) => {
+        var patternemail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        var patternphone = new RegExp(/^[0-9\b]+$/);
+        if (!patternemail.test(inputtxt.email) || !patternphone.test(inputtxt.phone)) {
             return false;
         }
         return true
     }
-    const opensweetalertdanger = () => {
+    const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: 'Create Lead',
             text: alerttext,
@@ -36,12 +36,10 @@ function Leads(props) {
     const PostLead = async (e) => {
         e.preventDefault();
         if (!leadsdetail.name || !leadsdetail.phone) {
-            setalerttext("Please fill all the values");
-            opensweetalertdanger();
+            opensweetalertdanger("Please fill all the values");
         }
-        else if (!validatephonenumber(leadsdetail.email)) {
-            setalerttext("Please enter a valid email")
-            opensweetalertdanger();
+        else if (!validatevalues(leadsdetail)) {
+            opensweetalertdanger("Please enter valid values");
         }
         else {
             await axios.post(postleadurl, leadsdetail).then(response => {
@@ -66,7 +64,7 @@ function Leads(props) {
         if (!parent_country) {
             props.fetchlocation();
         };
-    }, [alerttext])
+    }, [])
     return (
         <div>
             <Container>

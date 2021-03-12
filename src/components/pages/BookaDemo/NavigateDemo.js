@@ -31,6 +31,9 @@ function NavigateDemo(props) {
             calculateFees(0);
             props.showPricingPackages();
         }
+        if (props.confirmappointment){
+            props.hideAppointmentConfirmation();
+        }
     }
     return (
         <div className="navigatedemo" onClick={goBack}>
