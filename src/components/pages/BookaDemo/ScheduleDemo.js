@@ -11,8 +11,8 @@ function ScheduleDemo(props) {
     const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
-    const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
     const bookDemoUrl = baseUrl + "/api/demo/book";
+    const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
     const [DaysList, setDaysList] = useState({ days: [], times: [] });
@@ -33,20 +33,21 @@ function ScheduleDemo(props) {
         })
     }
     const handleDayClick = (day, { selected }) => {
-        const SelectedDay = selected ? undefined : day; 
-        setSelectedday(!undefined ? SelectedDay : "")
+        const SelectedDay = selected ? undefined : day;
+        setSelectedday(SelectedDay)
         if (selectedday != undefined) {
             var d = new Date(selectedday);
             var month = '' + (d.getMonth() + 1);
             var day = '' + d.getDate();
             console.log("Day: " + day)
+            var year = d.getFullYear().toString();
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+            setselecteddate([year, month, day].join('-'));
         }
-        // var year = d.getFullYear().toString();
-        // if (month.length < 2)
-        //     month = '0' + month;
-        // if (day.length < 2)
-        //     day = '0' + day;
-        // setselecteddate([year, month, day].join('-'));
+        settimes(true);
         // if (selectedday != undefined) {
         //     // setdemodata({
         //     //     ...demodata,
@@ -93,26 +94,22 @@ function ScheduleDemo(props) {
             // })
             // console.log("Days of Weeks: "+ JSON.stringify(response.data.data.times))
             let i = 0;
-            const temparr = [];
+            const temparr = [0, 1, 2, 3, 4, 5, 6, 7];
             const timeslotsarr = [];
             for (i = 0; i < weekdays.length; i++) {
-                // if (response.data.data.times[i]){
-                //     // getTimeSlots(response.data.data.times[i]);
-                //     console.log(response.data.data.times[i])
-                // }
                 if (response.data.data.times[weekdays[i]].length > 0) {
                     response.data.data.times[weekdays[i]].map(data => {
                         timeslotsarr.push(data)
                     })
-                    temparr.push(i)
+                    temparr.splice(temparr.indexOf(i), 1)
                 }
             }
             setDaysList({
                 ...DaysList,
-                days: temparr,
-                times: timeslotsarr
+                times: timeslotsarr,
+                days: temparr
             });
-            console.log("DaysList: " + JSON.stringify(DaysList))
+
         }).catch(error => {
             console.log("Error: " + error)
         })
@@ -153,6 +150,7 @@ function ScheduleDemo(props) {
     // };
     useEffect(() => {
         fetchDays();
+        console.log("DaysList: " + JSON.stringify(DaysList))
     }, [])
     return (
         <Container>
@@ -181,11 +179,11 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {DaysList.times && Array.isArray(DaysList.times) ? DaysList.times.map((data, index) => {
+                    {showtimes ? DaysList.times && Array.isArray(DaysList.times) ? DaysList.times.map((data, index) => {
                         return (
-                            <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}  >{data}</button>
+                            <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )
-                    }) : ""}
+                    }) : "" : ""}
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
