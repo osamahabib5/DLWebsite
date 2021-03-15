@@ -33,6 +33,7 @@ function PricingFilters(props) {
     const SkipPricing = async () => {
         if (result_type === "teachers") {
             await axios.post(url, skippedoption).then(response => {
+               
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
                 startLoading();
@@ -48,11 +49,12 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         e.preventDefault();
+        // setadvancedfilters(prevState => ({
+        //     ...prevState,
+        //     hours_per_week: hours * days
+        // }))
+        console.log("Filtered Options: "+ JSON.stringify(advancedfilter));
         if (result_type === "teachers") {
-            setadvancedfilters(prevState => ({
-                ...prevState,
-                hours_per_week: hours * days
-            }))
             await axios.post(url, advancedfilter).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
@@ -63,7 +65,7 @@ function PricingFilters(props) {
                     tutor_type: "",
                     hours_per_week: 2
                 })
-                if (!props.shownavigation){
+                if (!props.shownavigation) {
                     props.showNavigation();
                 }
                 props.showtutoroptions();
@@ -86,7 +88,7 @@ function PricingFilters(props) {
                     tutor_type: "",
                     hours_per_week: 2
                 })
-                if (!props.shownavigation){
+                if (!props.shownavigation) {
                     props.showNavigation();
                 }
                 props.showAppointmentPageTutor()
@@ -164,25 +166,25 @@ function PricingFilters(props) {
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
                     <NumericInput min={1} value={days} max={7} size={10} className="numericinput" onChange={(e) => {
                         setdays(parseInt(e));
-                        setadvancedfilters(prevState => ({
-                            ...prevState,
-                            hours_per_week: hours * days
-                        }))
+                        setadvancedfilters({
+                            ...advancedfilter,
+                            hours_per_week: hours * parseInt(e)
+                        })
                     }} />
                 </Form.Group>
                 <Form.Row>
                     <Col>
-                        <Form.Label>How long do you want the classes to be taken?</Form.Label>
+                        <Form.Label>How long do you want the classes to be?</Form.Label>
                         {/* {hours || days ? <Form.Label>(Hours Per Week: {advancedfilter.hours_per_week}) </Form.Label> : ""} */}
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
                     <NumericInput min={2} max={7} value={hours} size={10} className="numericinput" onChange={(e) => {
                         sethours(parseInt(e));
-                        setadvancedfilters(prevState => ({
-                            ...prevState,
-                            hours_per_week: hours * days
-                        }))
+                        setadvancedfilters({
+                            ...advancedfilter,
+                            hours_per_week: parseInt(e) * days
+                        })
                     }} />
                 </Form.Group>
             </Form>

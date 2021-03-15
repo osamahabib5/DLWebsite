@@ -70,6 +70,7 @@ function ScheduleDemo(props) {
         else {
             await axios.post(bookDemoUrl, demodata).then(response => {
                 console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
+                setselecteddate("");
                 setdemodata({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" });
                 props.showAppointmentConfirmation();
             }).catch(error => {
@@ -150,7 +151,7 @@ function ScheduleDemo(props) {
                     />
                 </Col>
                 <Col>
-                    <p style = {{textAlign: "center"}}>Select a TimeSlot!</p>
+                    <p style = {{textAlign: "center"}}>Select a Timeslot</p>
                     {selectedday != undefined && timeslots && Array.isArray(timeslots) ? timeslots.map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}  >{data}</button>
@@ -161,7 +162,7 @@ function ScheduleDemo(props) {
             <Row className="justify-content-md-center">
                 <Col xs lg="6">
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Any Comments for the teachers!</Form.Label>
+                        <Form.Label>Any comments for the teacher</Form.Label>
                         <Form.Control as="textarea" value={demodata.note} onChange={(e) => setdemodata({
                             ...demodata,
                             note: e.target.value
