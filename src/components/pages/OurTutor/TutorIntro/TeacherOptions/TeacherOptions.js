@@ -12,8 +12,6 @@ function TeacherOptions() {
     }, [id])
     const [show, setShow] = useState(false);
     const [review, hideReview] = useState(true);
-    // const hidePopup = () => { hideReview(false) }
-    // const showPoupup = () => { hideReview(true) }
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);

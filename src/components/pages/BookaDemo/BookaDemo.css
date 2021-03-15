@@ -226,6 +226,10 @@
         margin: auto;
         margin-top: 1rem;
     }
+    .scheduledemo .row{
+        flex-direction: column;
+        text-align: center;
+    }
     .pricingfilters .numericinput, b {
         top: -0.8rem;
         height: 20px;
@@ -278,6 +282,7 @@
     background: none;
     height: 23px;
     margin-top: -1rem;
+    flex-direction: row!important;
 }
 
 .bookademo .selectedpackage .card .list-group-item .flex-row .startingat {
@@ -348,6 +353,12 @@
         color: #777777;
         white-space: nowrap;
     }
+    .booking-demo-appointment .flex-row {
+        margin-top: 3rem;
+        background: none;
+        justify-content: center;
+        flex-direction: row!important;
+    }
     .tutorslist .container .card-img-top {
         width: 230px;
         height: 230px;
@@ -366,6 +377,12 @@
         height: 150px;
         margin-left: -0.5rem;
         margin-top: -1rem;
+    }
+    .booking-demo-appointment .flex-row {
+        margin-top: 3rem;
+        background: none;
+        justify-content: center;
+        flex-direction: column!important;
     }
     .tutorslist .container .card {
         width: 120%;
@@ -507,12 +524,6 @@
     align-items: center;
     text-align: center;
     color: #32B9BB;
-    justify-content: center;
-}
-
-.booking-demo-appointment .flex-row {
-    margin-top: 3rem;
-    background: none;
     justify-content: center;
 }
 
