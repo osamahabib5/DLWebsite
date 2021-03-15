@@ -105,7 +105,10 @@ function BookaDemo(props) {
         setscheduledemo(true);
         setconfirmappointment(false);
     }
-    const SetDemoRoute = () => {
+    const showNavigation = ()=>{
+        setnavigation(true);
+    }
+    const SetDemoFlow = () => {
         setResultType("teachers")
         if (id) {
             getTeacherId(id);
@@ -115,7 +118,8 @@ function BookaDemo(props) {
             setResultType("pricing");
             if (lead_id > 0) {
                 if (fee_amount == 0) {
-                    showLeadsForm();
+                    // showLeadsForm();
+                    showfeecalculator();
                     setnavigation(false);
                     setpackages(true);
                 } else if (fee_amount > 0) {
@@ -165,7 +169,7 @@ function BookaDemo(props) {
         if (!parent_country) {
             fetchlocation()
         }
-        SetDemoRoute();
+        SetDemoFlow();
     }, [id])
     return (
         <div className="bookademo">
@@ -206,7 +210,7 @@ function BookaDemo(props) {
                     <Col>
                         <div className="packages">
                             <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
-                                PricingwithLeadId={PricingwithLeadId}
+                                PricingwithLeadId={PricingwithLeadId} isMobile = {isMobile}
                             />
                         </div>
                     </Col>
@@ -230,6 +234,8 @@ function BookaDemo(props) {
                                 hidefeecalculator={hidefeecalculator}
                                 hideLeadsForm={hideLeadsForm}
                                 showAppointmentPagewithTeacher={showAppointmentPagewithTeacher}
+                                shownavigation = {shownavigation}
+                                showNavigation = {showNavigation}
                             />
                         </div>
                     </Col>

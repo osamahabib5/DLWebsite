@@ -26,7 +26,7 @@ function SelectedTeacher() {
                 <Image src={teacher_info.image ? teacher_info.image : avatar} style={{ width: "146px", height: "150px" }} fluid />
                 <div style={{ marginTop: "2rem" }}>
                     <p className="teacher-info-name">{teacher_info.name.toString()}</p>
-                    <p className="teacher-timezone">{teacher_info.timezone.toString()}   {teacher_info.location.toString()}</p>
+                    <p className="teacher-timezone">Teacher's timezone is: {teacher_info.timezone.toString()}   {teacher_info.location.toString()}</p>
                 </div>
                 <div>
                 <p className="teacher-timezone">Your TimeZone is: {parent_timezone} </p>

@@ -64,6 +64,9 @@ function PricingFilters(props) {
                     tutor_type: "",
                     hours_per_week: 2
                 })
+                if (!props.shownavigation){
+                    props.showNavigation();
+                }
                 props.showtutoroptions();
             }).catch(error => {
                 console.log("Filters Error: " + error)
@@ -164,11 +167,11 @@ function PricingFilters(props) {
                     }} />
                 </Form.Group>
             </Form>
-            {result_type === "teachers" ? <div className="d-flex justify-content-center">
-                <button className="btn button-cta button-blue" onClick={handleSubmit}>Select Tutor
-                <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
+            <div className="d-flex justify-content-center">
+                <button className="btn button-cta button-blue" onClick={handleSubmit}>{result_type === "teachers" ? "Select Tutor" : "Next"}
+                    <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
                 </button>
-            </div> : ""}
+            </div>
             <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
             </Row>
