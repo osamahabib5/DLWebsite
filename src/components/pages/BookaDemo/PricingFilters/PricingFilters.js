@@ -54,7 +54,6 @@ function PricingFilters(props) {
                 hours_per_week: hours * days
             }))
             await axios.post(url, advancedfilter).then(response => {
-                console.log("Calculator Response: " + JSON.stringify(response.data.data))
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
                 startLoading();
@@ -73,7 +72,27 @@ function PricingFilters(props) {
             })
         }
         if (result_type === "pricing") {
-            props.showAppointmentPage();
+            setadvancedfilters(prevState => ({
+                ...prevState,
+                hours_per_week: hours * days
+            }))
+            await axios.post(url, advancedfilter).then(response => {
+                getFilteredTeachersList(response.data.data.teachers)
+                calculateFees(response.data.data.fee_amount)
+                startLoading();
+                setadvancedfilters({
+                    class_type: "",
+                    subscription: "",
+                    tutor_type: "",
+                    hours_per_week: 2
+                })
+                if (!props.shownavigation){
+                    props.showNavigation();
+                }
+                props.showAppointmentPageTutor()
+            }).catch(error => {
+                console.log("Filters Error: " + error)
+            })
         }
     }
     const onChangePackage = (e) => {
@@ -87,7 +106,7 @@ function PricingFilters(props) {
         <Container>
             <Row>
                 <Col>
-                    <p className="filteroptionsheading">Next, select your options</p>
+                    <p className="filteroptionsheading">Next, customize your fee package</p>
                 </Col>
             </Row>
             <Row>

@@ -85,6 +85,10 @@ function BookaDemo(props) {
         setappointmentpage(true);
         setshowtutors(false);
     }
+    const showAppointmentPageTutor = ()=>{
+        setappointmentpage(true);
+        setsuccessfullead(false);
+    }
     const showAppointmentPagewithTeacher = () => {
         setappointmentpage(true);
         setsuccessfullead(false);
@@ -124,7 +128,7 @@ function BookaDemo(props) {
                     setpackages(true);
                 } else if (fee_amount > 0) {
                     setappointmentpage(true);
-                    setnavigation(false);
+                    setnavigation(true);
                     setpackages(true);
                 }
                 else {
@@ -236,6 +240,7 @@ function BookaDemo(props) {
                                 showAppointmentPagewithTeacher={showAppointmentPagewithTeacher}
                                 shownavigation = {shownavigation}
                                 showNavigation = {showNavigation}
+                                showAppointmentPageTutor = {showAppointmentPageTutor}
                             />
                         </div>
                     </Col>

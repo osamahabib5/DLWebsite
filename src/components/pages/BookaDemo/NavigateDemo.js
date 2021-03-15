@@ -17,13 +17,22 @@ function NavigateDemo(props) {
             props.hidetutoroptions();
         }
         if (props.showappointmentpage) {
-            props.reloadPage();
-            props.hideAppointmentPage();
+            if (result_type == "pricing" && lead_id != 0) {
+                props.showfeecalculator();
+                props.hideAppointmentPage();
+            }
+            // if (result_type == "pricing" && lead_id != 0){
+
+            // }
+            else {
+                props.reloadPage();
+                props.hideAppointmentPage();
+            }
         }
-        if (props.showappointmentpage && result_type == "pricing" && lead_id != 0) {
-            props.showfeecalculator();
-            props.hideAppointmentPage();
-        }
+        // if (props.showappointmentpage && result_type == "pricing" && lead_id != 0) {
+        //     props.showfeecalculator();
+        //     props.hideAppointmentPage();
+        // }
         if (props.scheduledemo) {
             props.hideScheduleDemo();
         }
@@ -31,7 +40,7 @@ function NavigateDemo(props) {
             calculateFees(0);
             props.showPricingPackages();
         }
-        if (props.confirmappointment){
+        if (props.confirmappointment) {
             props.hideAppointmentConfirmation();
         }
     }
