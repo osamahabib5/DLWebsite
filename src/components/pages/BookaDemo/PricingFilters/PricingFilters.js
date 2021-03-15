@@ -36,7 +36,7 @@ function PricingFilters(props) {
             await axios.post(url, skippedoption).then(response => {
 
                 getFilteredTeachersList(response.data.data.teachers)
-                calculateFees(response.data.data.fee_amount)
+                // calculateFees(response.data.data.fee_amount)
                 startLoading();
                 props.showtutoroptions();
             }).catch(error => {

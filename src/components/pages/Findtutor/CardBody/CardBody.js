@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Form, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
+import { Form, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -15,7 +15,7 @@ function CardBody(props) {
     const subjects_url = baseUrl + '/api/getSubjects'
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades'
-    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "" });
+    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "" });
     const heightMarks = {
         1000: "1000",
         5000: "5000",
@@ -42,12 +42,12 @@ function CardBody(props) {
             .then(function (response) {
                 const item = response.data.data;
                 setresults(item);
-                setTimeout(()=>fillFilters({
+                setTimeout(() => fillFilters({
                     teacher_name: '',
                     budget: 0,
                     subjects: [],
                     grade: ""
-                }),7000);
+                }), 7000);
                 props.scrolltotutors();
             })
             .catch(function (error) {
@@ -88,13 +88,13 @@ function CardBody(props) {
             <Form.Row >
                 <Col style={{ marginTop: "0.5rem" }}>
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="Grade 1" value = {filters.grade} onChange={(e) => fillFilters({
+                        <Form.Control as="select" defaultValue="Grade 1" value={filters.grade} onChange={(e) => fillFilters({
                             ...filters,
                             grade: e.target.value
                         })} placeholder="Filter by Grade">
                             <option>Filter By Grades....</option>
-                            {fetched_grades ? fetched_grades.map((val,index) => (
-                                <option key = {index}>
+                            {fetched_grades ? fetched_grades.map((val, index) => (
+                                <option key={index}>
                                     {val}
                                 </option>
                             )) : ''}
@@ -105,23 +105,21 @@ function CardBody(props) {
                 <Col style={{ marginTop: "1rem" }}>
                     <InputGroup className="mb-3">
                         <FormControl
-                            value = {filters.teacher_name}
+                            value={filters.teacher_name}
                             placeholder="Search for a Specific Tutor"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             name="teacher_name"
                             bsPrefix="search-tutor"
-                            onChange={(e) => fillFilters({ 
+                            onChange={(e) => fillFilters({
                                 ...filters,
-                                teacher_name: e.target.value })}
+                                teacher_name: e.target.value
+                            })}
                         />
                     </InputGroup>
                 </Col>
                 <Col style={{ marginTop: "1.3rem" }} onClick={handleSubmit}>
-                    {/* <Button >
-                        Search
-                    </Button> */}
-                    <button className = "btn button-cta button-blue">
+                    <button className="btn button-cta button-blue">
                         Search
                     </button>
                 </Col>
@@ -130,11 +128,14 @@ function CardBody(props) {
 
                 <Col >
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="Filter by grade level" name="methods">
+                        <Form.Control as="select" defaultValue="online" name="methods" onChange={(e) => fillFilters({
+                            ...filters,
+                            teaching_mode: e.target.value
+                        })}>
                             <option>Teaching Methods</option>
-                            <option>Teacher's Home</option>
-                            <option>Online</option>
-                            <option>Student's Home</option>
+                            <option value="teacher_home">Teacher's Home</option>
+                            <option value="online">Online</option>
+                            <option value="student_home">Student's Home</option>
                         </Form.Control>
                     </Form.Group>
                 </Col>
@@ -149,7 +150,7 @@ function CardBody(props) {
                         value={filter.subjects}
                         onChange={onChangeSubject}
                     /> : <div>
-                            ..Loading
+                        ..Loading
                     </div>}
                 </Col>
                 <Col>
@@ -169,7 +170,8 @@ function CardBody(props) {
                         max={50000}
                         onChange={(e) => fillFilters({
                             ...filters,
-                            budget: e })}
+                            budget: e
+                        })}
                         marks={heightMarks}
                     />
                 </Col>

@@ -15,7 +15,7 @@ function ScheduleDemo(props) {
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
-    const [DaysList, setDaysList ]= useState([{day: "", timeslot: []}]);
+    const [DaysList, setDaysList] = useState({ days: [], times: [] });
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const fetchTimeSlots = async () => {
         await axios.get(getTimeUrl).then(response => {
@@ -33,23 +33,28 @@ function ScheduleDemo(props) {
         })
     }
     const handleDayClick = (day, { selected }) => {
-        setSelectedday(selected ? undefined : day)
-        var d = new Date(selectedday);
-        var month = '' + (d.getMonth() + 1);
-        var day = '' + d.getDate();
-        var year = d.getFullYear().toString();
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-        setselecteddate([year, month, day].join('-'));
+        const SelectedDay = selected ? undefined : day; 
+        setSelectedday(!undefined ? SelectedDay : "")
         if (selectedday != undefined) {
-            setdemodata({
-                ...demodata,
-                date: selecteddate
-            })
-            fetchTimeSlots();
+            var d = new Date(selectedday);
+            var month = '' + (d.getMonth() + 1);
+            var day = '' + d.getDate();
+            console.log("Day: " + day)
         }
+        // var year = d.getFullYear().toString();
+        // if (month.length < 2)
+        //     month = '0' + month;
+        // if (day.length < 2)
+        //     day = '0' + day;
+        // setselecteddate([year, month, day].join('-'));
+        // if (selectedday != undefined) {
+        //     // setdemodata({
+        //     //     ...demodata,
+        //     //     date: selecteddate
+        //     // })
+
+        //     fetchTimeSlots();
+        // }
     }
     const setTimeSlot = (e) => {
         e.preventDefault();
@@ -88,23 +93,26 @@ function ScheduleDemo(props) {
             // })
             // console.log("Days of Weeks: "+ JSON.stringify(response.data.data.times))
             let i = 0;
-            const temparr = [{day: "", timeslot: []}];
+            const temparr = [];
+            const timeslotsarr = [];
             for (i = 0; i < weekdays.length; i++) {
                 // if (response.data.data.times[i]){
                 //     // getTimeSlots(response.data.data.times[i]);
                 //     console.log(response.data.data.times[i])
                 // }
                 if (response.data.data.times[weekdays[i]].length > 0) {
-                    getTimeSlots(response.data.data.times[weekdays[i]])
-                    temparr.push({
-                        day: i,
-                        timeslot: response.data.data.times[weekdays[i]]
-                    });
-                    
+                    response.data.data.times[weekdays[i]].map(data => {
+                        timeslotsarr.push(data)
+                    })
+                    temparr.push(i)
                 }
             }
-            setDaysList(temparr)
-            console.log("DaysList: "+ JSON.stringify(DaysList))
+            setDaysList({
+                ...DaysList,
+                days: temparr,
+                times: timeslotsarr
+            });
+            console.log("DaysList: " + JSON.stringify(DaysList))
         }).catch(error => {
             console.log("Error: " + error)
         })
@@ -161,7 +169,7 @@ function ScheduleDemo(props) {
                     <DayPicker
                         month={new Date()}
                         disabledDays={[
-                            { daysOfWeek: DaysList.length > 0 ? DaysList : [] }, { before: new Date() }]}
+                            { daysOfWeek: DaysList.days.length > 0 ? DaysList.days : [] }, { before: new Date() }]}
                         selectedDays={selectedday}
                         onDayClick={handleDayClick}
                         month={new Date()}
@@ -173,7 +181,7 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {timeslots && Array.isArray(timeslots) ? timeslots.map((data, index) => {
+                    {DaysList.times && Array.isArray(DaysList.times) ? DaysList.times.map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}  >{data}</button>
                         )
