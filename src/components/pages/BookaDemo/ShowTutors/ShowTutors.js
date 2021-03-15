@@ -7,9 +7,6 @@ import avatar from './avatar.jpg';
 function ShowTutors() {
     let {  url } = useRouteMatch();
     const { filtered_teachers_list, loading } = useContext(TutorsContext)
-    useEffect(()=>{
-        console.log("URL: "+ url)
-    },[])
     return (
         <Container>
             <Row>

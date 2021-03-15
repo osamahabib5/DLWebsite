@@ -8,21 +8,19 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
-    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info,calculateFees } = useContext(TutorsContext);
+    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
     const getDateUrl = baseUrl + "/api/demo/getDays/" + teacher_id
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
-    const DaysList = [0, 1, 2, 3, 4, 5, 6];
+    const [DaysList, setDaysList ]= useState([{day: "", timeslot: []}]);
+    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const fetchTimeSlots = async () => {
-        await axios.get(getTimeUrl, {
-            params: {
-                date: selecteddate
-            }
-        }).then(response => {
+        await axios.get(getTimeUrl).then(response => {
             getTimeSlots(response.data.data.times)
+            console.log("Timeslots: " + JSON.stringify(timeslots))
         }).catch(error => {
             console.log("Error: " + error.code)
         })
@@ -72,56 +70,79 @@ function ScheduleDemo(props) {
                 console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
                 setselecteddate("");
                 setdemodata({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" });
+                startLoading();
                 props.showAppointmentConfirmation();
             }).catch(error => {
                 // console.log("error code: "+JSON.stringify(error.response.status));
-                if (error.response.status == 400){
+                if (error.response.status == 400) {
                     opensweetalertdanger("You have already booked a demo with this teacher!")
                 }
             });
         }
     }
     const fetchDays = async () => {
-        await axios.get(getDateUrl).then(response => {
-            getTeacherDays(response.data.data.days)
+        await axios.get(getTimeUrl).then(response => {
+            // getTeacherDays(response.data.data.days)
+            // Object.entries(response.data.data.times).map((key,value) =>{
+            //     console.log("Key: "+ key + "value: "+ value)
+            // })
+            // console.log("Days of Weeks: "+ JSON.stringify(response.data.data.times))
+            let i = 0;
+            const temparr = [{day: "", timeslot: []}];
+            for (i = 0; i < weekdays.length; i++) {
+                // if (response.data.data.times[i]){
+                //     // getTimeSlots(response.data.data.times[i]);
+                //     console.log(response.data.data.times[i])
+                // }
+                if (response.data.data.times[weekdays[i]].length > 0) {
+                    getTimeSlots(response.data.data.times[weekdays[i]])
+                    temparr.push({
+                        day: i,
+                        timeslot: response.data.data.times[weekdays[i]]
+                    });
+                    
+                }
+            }
+            setDaysList(temparr)
+            console.log("DaysList: "+ JSON.stringify(DaysList))
         }).catch(error => {
             console.log("Error: " + error)
         })
     }
-    const getDayNumber = () => {
-        let i;
-        var index;
-        for (i = 0; i < days.length; i++) {
-            if (days[i] == "Sunday") {
-                index = DaysList.indexOf(0);
-                DaysList.splice(index, 1)
-            }
-            else if (days[i] == "Monday") {
-                index = DaysList.indexOf(1);
-                DaysList.splice(index, 1)
-            }
-            else if (days[i] == "Tuesday") {
-                index = DaysList.indexOf(2);
-                DaysList.splice(index, 1)
-            }
-            else if (days[i] == "Wednesday") {
-                index = DaysList.indexOf(3);
-                DaysList.splice(index, 1)
-            }
-            else if (days[i] == "Thursday") {
-                index = DaysList.indexOf(4);
-                DaysList.splice(index, 1)
-            }
-            else if (days[i] == "Friday") {
-                index = DaysList.indexOf(5);
-                DaysList.splice(index, 1)
-            } else if (days[i] == "Saturday") {
-                index = DaysList.indexOf(6);
-                DaysList.splice(index, 1)
-            }
-        }
-        return DaysList;
-    };
+    // const getDayNumber = () => {
+    //     let i;
+    //     var index;
+    //     for (i = 0; i < days.length; i++) {
+    //         if (days[i] == "Sunday") {
+    //             index = DaysList.indexOf(0);
+    //             DaysList.splice(index, 1)
+    //         }
+    //         else if (days[i] == "Monday") {
+    //             index = DaysList.indexOf(1);
+    //             DaysList.splice(index, 1)
+    //         }
+    //         else if (days[i] == "Tuesday") {
+    //             index = DaysList.indexOf(2);
+    //             DaysList.splice(index, 1)
+    //         }
+    //         else if (days[i] == "Wednesday") {
+    //             index = DaysList.indexOf(3);
+    //             DaysList.splice(index, 1)
+    //         }
+    //         else if (days[i] == "Thursday") {
+    //             index = DaysList.indexOf(4);
+    //             DaysList.splice(index, 1)
+    //         }
+    //         else if (days[i] == "Friday") {
+    //             index = DaysList.indexOf(5);
+    //             DaysList.splice(index, 1)
+    //         } else if (days[i] == "Saturday") {
+    //             index = DaysList.indexOf(6);
+    //             DaysList.splice(index, 1)
+    //         }
+    //     }
+    //     return DaysList;
+    // };
     useEffect(() => {
         fetchDays();
     }, [])
@@ -140,7 +161,7 @@ function ScheduleDemo(props) {
                     <DayPicker
                         month={new Date()}
                         disabledDays={[
-                            { daysOfWeek: getDayNumber() }, { before: new Date() }]}
+                            { daysOfWeek: DaysList.length > 0 ? DaysList : [] }, { before: new Date() }]}
                         selectedDays={selectedday}
                         onDayClick={handleDayClick}
                         month={new Date()}
@@ -151,8 +172,8 @@ function ScheduleDemo(props) {
                     />
                 </Col>
                 <Col>
-                    <p style = {{textAlign: "center"}}>Select a Timeslot</p>
-                    {selectedday != undefined && timeslots && Array.isArray(timeslots) ? timeslots.map((data, index) => {
+                    <p style={{ textAlign: "center" }}>Select a Timeslot</p>
+                    {timeslots && Array.isArray(timeslots) ? timeslots.map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}  >{data}</button>
                         )

@@ -84,7 +84,7 @@ function Leads(props) {
                             </Form.Group>
 
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Control type="number" placeholder="+XX-XXXX-XXXX" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
+                                <Form.Control type="number" placeholder="Phone" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
                             </Form.Group>
                             <div style={{ marginTop: "4rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>

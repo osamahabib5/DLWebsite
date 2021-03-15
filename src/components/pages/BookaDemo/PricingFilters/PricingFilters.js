@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Container, Row, Col, Form, FormCheck } from 'react-bootstrap'
+import { Container, Row, Col, Form, FormCheck, OverlayTrigger, Tooltip, Button, Image } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
 import axios from "axios";
 import { TutorsContext } from '../../../../Provider';
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 import Swal from 'sweetalert2'
+import info from "./Info.png";
 function PricingFilters(props) {
     const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, result_type, subscription } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
@@ -33,7 +34,7 @@ function PricingFilters(props) {
     const SkipPricing = async () => {
         if (result_type === "teachers") {
             await axios.post(url, skippedoption).then(response => {
-               
+
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
                 startLoading();
@@ -49,11 +50,7 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         e.preventDefault();
-        // setadvancedfilters(prevState => ({
-        //     ...prevState,
-        //     hours_per_week: hours * days
-        // }))
-        console.log("Filtered Options: "+ JSON.stringify(advancedfilter));
+        console.log("Filtered Options: " + JSON.stringify(advancedfilter));
         if (result_type === "teachers") {
             await axios.post(url, advancedfilter).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
@@ -98,7 +95,9 @@ function PricingFilters(props) {
         }
     }
     const onChangePackage = (e) => {
-        e.target.value === "3_month" ? setOptedPackage(1) : setOptedPackage(0)
+        e.target.value === "3_month" && parent_country === "Pakistan" ? setOptedPackage(1) : e.target.value === "3_month" && parent_country !== "Pakistan" ? setOptedPackage(3)
+            : e.target.value === "1_month" && parent_country !== "Pakistan" ? setOptedPackage(2) : setOptedPackage(0)
+
         setadvancedfilters(prevState => ({
             ...prevState,
             subscription: e.target.value
@@ -150,17 +149,38 @@ function PricingFilters(props) {
                                 <Col>
                                 </Col>
                                 <Form.Check inline label="Standard Tutor" value="standard" checked={tutor_type === "standard"}
-                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} />
+                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} style = {{whiteSpace: "nowrap"}} />
                                 <Form.Check inline label="Super Tutor" value="super"
                                     checked={tutor_type === "super"}
-                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} />
+                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} style = {{whiteSpace: "nowrap"}}/>
+                                {/* <OverlayTrigger
+                                    placement="bottom"
+                                    overlay={<Tooltip id="button-tooltip-2">These are our top-tier teachers. The price to the left will reflect this premium option. </Tooltip>}
+                                >
+                                    {({ ref, ...triggerHandler }) => (
+                                        <Button
+                                            variant="light"
+                                            {...triggerHandler}
+                                            className="d-inline-flex align-items-center"
+                                        >
+                                            <Image
+                                                ref={ref}
+                                                roundedCircle
+                                                src={info}
+                                            />
+                                        </Button>
+                                    )}
+                                </OverlayTrigger> */}
                             </div>
                         ))}
+                    </Col>
+                    <Col>
+
                     </Col>
                 </Form.Row>
                 <Form.Row>
                     <Col>
-                        <Form.Label>How many days/week would you like to take classes?</Form.Label>
+                        <Form.Label>How many days would you like the classes to be taken?</Form.Label>
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
