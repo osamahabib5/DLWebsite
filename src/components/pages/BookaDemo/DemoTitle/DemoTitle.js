@@ -8,7 +8,7 @@ function DemoTitle() {
             {result_type === "teachers" ? <div className="p-2 bd-highlight"><p className="ourpricing">
                 OUR PRICING
                 </p></div> : ""}
-            <div className="p-2 bd-highlight">Schedule a Demo</div>
+            {/* <div className="p-2 bd-highlight">Schedule a Demo</div> */}
         </div>
     )
 }

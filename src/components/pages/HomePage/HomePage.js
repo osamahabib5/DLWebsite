@@ -59,7 +59,7 @@ function HomePage() {
                     <div className={contentclassname}>
                         <p className={ourmission}> OUR MISSION </p>
                         {/* <p className = {missioncontent}>We strive to help every child excel with the best tutors, cutting-edge technology and a world class curriculum. Quality online learning is our forte!</p> */}
-                        <p className={mission}>We strive to help every child reach their full potential, with the best teachers, cutting-edge technology and a world class curriculum.</p>
+                        <p className={mission}>We strive to help every child reach their full potential, with the best teachers, cutting-edge technology and world class lesson plans.</p>
                     </div>
                 </div>
             </div>

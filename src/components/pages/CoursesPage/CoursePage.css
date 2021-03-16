@@ -14,7 +14,7 @@
 }
 
 .courses-video {
-    margin-top: 20rem;
+    margin-top: 7rem;
 }
 
 .products .card-img-overlay .card-title {
@@ -72,6 +72,9 @@
     .kits-details{
         display: none;
     }
+    .programs .card-deck{
+        margin-top: 10rem;
+    }
     .products .card-img-overlay {
         height: 100px;
         width: 353px;
@@ -120,6 +123,9 @@
     }
     .find-a-tutor {
         margin-top: 2rem;
+    }
+    .programs .card{
+        width: 280px;
     }
 }
 

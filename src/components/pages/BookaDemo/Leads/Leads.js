@@ -70,7 +70,7 @@ function Leads(props) {
             <Container>
                 <Row style={{ marginTop: "-2rem" }}>
                     <Col>
-                        <p className="contact_heading">Second, please provide your contact information.</p>
+                        <p className="contact_heading">Just take a minute to give us your details before you pop over to build your own customised package.</p>
                     </Col>
                 </Row>
                 <Row style={{ textAlign: "center", marginTop: "2rem" }}>

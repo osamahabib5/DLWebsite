@@ -43,18 +43,16 @@ function ScheduleDemo(props) {
             setselecteddate([year, month, day].join('-'));
             setdayindex(DaysList.days.indexOf(dayofweek))
             for (const [key, value] of Object.entries(booked_times)) {
-                // console.log(`${key}: ${value}`);
                 if (selecteddate) {
                     if (selecteddate === value) {
                         let dayofweekindex = days.indexOf(new Date(selecteddate).getDay());
-                        let bookedtimevalue=  times[dayofweekindex].indexOf(key);
+                        let bookedtimevalue = times[dayofweekindex].indexOf(key);
                         if (dayofweekindex >= 0 && bookedtimevalue > -1) {
                             times[dayofweekindex].splice(bookedtimevalue, 1);
                         }
                     }
                 }
             }
-            // console.log("Selected date: " + selecteddate)
         }
     }
     const setTimeSlot = (e) => {
@@ -67,7 +65,6 @@ function ScheduleDemo(props) {
     }
     const BookDemo = async (e) => {
         e.preventDefault();
-        // console.log(JSON.stringify(demodata))
         if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
             opensweetalertdanger("Please fill all the required values!")
         }
@@ -87,7 +84,6 @@ function ScheduleDemo(props) {
     }
     const fetchDays = async () => {
         await axios.get(getTimeUrl).then(response => {
-            // console.log("Response from teachers: "+ JSON.stringify(response.data.data))
             let i = 0;
             const timeslotsarr = [];
             const temparr = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -145,7 +141,7 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes && selecteddate && dayindex != -1  ? DaysList.times[dayindex].map((data, index) => {
+                    {showtimes && selecteddate && dayindex != -1 ? DaysList.times[dayindex].map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )

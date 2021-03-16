@@ -153,7 +153,7 @@ function PricingFilters(props) {
                                 <Form.Check inline label="Super Tutor" value="super"
                                     checked={tutor_type === "super"}
                                     type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} style = {{whiteSpace: "nowrap"}}/>
-                                {/* <OverlayTrigger
+                                <OverlayTrigger
                                     placement="bottom"
                                     overlay={<Tooltip id="button-tooltip-2">These are our top-tier teachers. The price to the left will reflect this premium option. </Tooltip>}
                                 >
@@ -170,7 +170,7 @@ function PricingFilters(props) {
                                             />
                                         </Button>
                                     )}
-                                </OverlayTrigger> */}
+                                </OverlayTrigger>
                             </div>
                         ))}
                     </Col>
@@ -199,7 +199,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={7} value={hours} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput min={1} max={7} value={hours} size={10} className="numericinput" onChange={(e) => {
                         sethours(parseInt(e));
                         setadvancedfilters({
                             ...advancedfilter,

@@ -8,6 +8,9 @@
     .mobile-text {
         display: none;
     }
+    /* .card-deck{
+        width: 70%;
+    } */
     .BecomeTutor .img-fluid{
         height: 500px;
     }
@@ -16,6 +19,9 @@
         background: #00000047;
         width: 668px;
         height: 282px;
+    }
+    .HomeImage .bg-dark{
+        background-color: white;
     }
     .flex-row {
         display: none;
@@ -26,10 +32,13 @@
     .OurApproach .flex-column {
         background: #ffffff00;
         color: black;
-        text-align: left;
+        text-align: center;
         margin-left: 9rem;
         max-width: 80%;
         margin-top: -6rem;
+    }
+    .OurApproach .card-deck {
+        width: 80%!important;
     }
     .Image-Slider {
         margin-top: -7rem;

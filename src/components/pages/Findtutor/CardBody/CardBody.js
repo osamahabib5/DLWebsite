@@ -132,7 +132,7 @@ function CardBody(props) {
                             ...filters,
                             teaching_mode: e.target.value
                         })}>
-                            <option>Teaching Methods</option>
+                            {/* <option>Teaching Methods</option> */}
                             <option value="teacher_home">Teacher's Home</option>
                             <option value="online">Online</option>
                             <option value="student_home">Student's Home</option>

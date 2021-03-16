@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {/* {Notification} */}
+        {Notification}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
