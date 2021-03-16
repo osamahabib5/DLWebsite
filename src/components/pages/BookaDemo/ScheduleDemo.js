@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
     const { teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
-    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + 58
+    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + 58;
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
@@ -25,6 +25,7 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
+    const {booked_times} = DaysList;
     const handleDayClick = (day, { selected }) => {
         settimes((prevState) => !prevState);
         setSelectedday(selected ? undefined : day)
@@ -41,6 +42,9 @@ function ScheduleDemo(props) {
                 day = '0' + day;
             setselecteddate([year, month, day].join('-'));
             setdayindex(DaysList.days.indexOf(dayofweek))
+            for (const [key, value] of Object.entries(booked_times)) {
+                console.log(`${key}: ${value}`);
+              }
             // console.log("DayIndex: " + DaysList.times[dayindex])
         }
     }
@@ -104,7 +108,7 @@ function ScheduleDemo(props) {
     useEffect(() => {
         fetchDays();
         console.log("DaysList: " + JSON.stringify(DaysList))
-    }, [dayindex])
+    }, [])
     return (
         <Container>
             <Row>
@@ -132,7 +136,7 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes && selecteddate && Array.isArray(DaysList.times[dayindex]) ? DaysList.times[dayindex].map((data, index) => {
+                    {showtimes && selecteddate && dayindex != -1 && Array.isArray(DaysList.times[dayindex]) ? DaysList.times[dayindex].map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )
