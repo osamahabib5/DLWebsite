@@ -8,23 +8,16 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
-    const { timeslots, getTimeSlots, getTeacherDays, days, teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
+    const { teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
-    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id
+    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + 58
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
-    const [DaysList, setDaysList] = useState({ disableddays: [], times: [] , days: []});
+    const [DaysList, setDaysList] = useState({ disableddays: [], times: [], days: [], booked_times: {} });
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const fetchTimeSlots = async () => {
-        await axios.get(getTimeUrl).then(response => {
-            getTimeSlots(response.data.data.times)
-            console.log("Timeslots: " + JSON.stringify(timeslots))
-        }).catch(error => {
-            console.log("Error: " + error.code)
-        })
-    }
+    const [dayindex, setdayindex] = useState(0);
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: 'Book a Demo',
@@ -32,30 +25,22 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
+    const { days, times } = DaysList;
     const handleDayClick = (day, { selected }) => {
-        const SelectedDay = selected ? undefined : day;
-        setSelectedday(SelectedDay)
-        if (selectedday != undefined) {
-            var d = new Date(selectedday);
-            var month = '' + (d.getMonth() + 1);
-            var day = '' + d.getDate();
-            console.log("Day: " + d.getDay());
-            var year = d.getFullYear().toString();
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-            setselecteddate([year, month, day].join('-'));
-        }
-        settimes(true);
-        // if (selectedday != undefined) {
-        //     // setdemodata({
-        //     //     ...demodata,
-        //     //     date: selecteddate
-        //     // })
-
-        //     fetchTimeSlots();
-        // }
+        settimes((prevState) => !prevState);
+        setSelectedday(selected ? undefined : day)
+        console.log("Hello")
+        var d = new Date(selectedday);
+        var dayofweek = d.getDay();
+        var month = '' + (d.getMonth() + 1);
+        var day = '' + d.getDate();
+        var year = d.getFullYear().toString();
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+        setselecteddate([year, month, day].join('-'));
+        setdayindex(DaysList.days.indexOf(dayofweek))
     }
     const setTimeSlot = (e) => {
         e.preventDefault();
@@ -67,13 +52,13 @@ function ScheduleDemo(props) {
     }
     const BookDemo = async (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(demodata))
+        // console.log(JSON.stringify(demodata))
         if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
             opensweetalertdanger("Please fill all the required values!")
         }
         else {
             await axios.post(bookDemoUrl, demodata).then(response => {
-                console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
+                // console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
                 setselecteddate("");
                 setdemodata({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" });
                 startLoading();
@@ -87,9 +72,10 @@ function ScheduleDemo(props) {
     }
     const fetchDays = async () => {
         await axios.get(getTimeUrl).then(response => {
+            // console.log("Response from teachers: "+ JSON.stringify(response.data.data))
             let i = 0;
             const timeslotsarr = [];
-            const temparr = [0,1,2,3,4,5,6,7];
+            const temparr = [0, 1, 2, 3, 4, 5, 6, 7];
             const available_days = [];
             for (i = 0; i < weekdays.length; i++) {
                 if (response.data.data.times[weekdays[i]].length > 0) {
@@ -106,50 +92,17 @@ function ScheduleDemo(props) {
                 ...DaysList,
                 times: timeslotsarr,
                 disableddays: temparr,
-                days: available_days
+                days: available_days,
+                booked_times: response.data.data.booked_times
             });
         }).catch(error => {
             console.log("Error: " + error)
         })
     }
-    // const getDayNumber = () => {
-    //     let i;
-    //     var index;
-    //     for (i = 0; i < days.length; i++) {
-    //         if (days[i] == "Sunday") {
-    //             index = DaysList.indexOf(0);
-    //             DaysList.splice(index, 1)
-    //         }
-    //         else if (days[i] == "Monday") {
-    //             index = DaysList.indexOf(1);
-    //             DaysList.splice(index, 1)
-    //         }
-    //         else if (days[i] == "Tuesday") {
-    //             index = DaysList.indexOf(2);
-    //             DaysList.splice(index, 1)
-    //         }
-    //         else if (days[i] == "Wednesday") {
-    //             index = DaysList.indexOf(3);
-    //             DaysList.splice(index, 1)
-    //         }
-    //         else if (days[i] == "Thursday") {
-    //             index = DaysList.indexOf(4);
-    //             DaysList.splice(index, 1)
-    //         }
-    //         else if (days[i] == "Friday") {
-    //             index = DaysList.indexOf(5);
-    //             DaysList.splice(index, 1)
-    //         } else if (days[i] == "Saturday") {
-    //             index = DaysList.indexOf(6);
-    //             DaysList.splice(index, 1)
-    //         }
-    //     }
-    //     return DaysList;
-    // };
     useEffect(() => {
         fetchDays();
-        console.log("DaysList: " + JSON.stringify(DaysList))
-    }, [7])
+        // console.log("DaysList: " + JSON.stringify(DaysList))
+    }, [2])
     return (
         <Container>
             <Row>
@@ -177,11 +130,13 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes ? DaysList.times && Array.isArray(DaysList.times) ? DaysList.times.map((data, index) => {
+                    {showtimes && selectedday && Array.isArray(DaysList.times[dayindex])? DaysList.times[dayindex].map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )
-                    }) : "" : ""}
+                    }) : <div>
+                        Timeslots will be shown here
+                    </div> }
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
