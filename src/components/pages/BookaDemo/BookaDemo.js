@@ -124,7 +124,7 @@ function BookaDemo(props) {
                 if (fee_amount == 0) {
                     // showLeadsForm();
                     showfeecalculator();
-                    setnavigation(false);
+                    setnavigation(true);
                     setpackages(true);
                 } else if (fee_amount > 0) {
                     setappointmentpage(true);

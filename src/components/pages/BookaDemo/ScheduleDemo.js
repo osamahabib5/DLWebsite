@@ -15,7 +15,7 @@ function ScheduleDemo(props) {
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
-    const [DaysList, setDaysList] = useState({ days: [], times: [] });
+    const [DaysList, setDaysList] = useState({ disableddays: [], times: [] , days: []});
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const fetchTimeSlots = async () => {
         await axios.get(getTimeUrl).then(response => {
@@ -39,7 +39,7 @@ function ScheduleDemo(props) {
             var d = new Date(selectedday);
             var month = '' + (d.getMonth() + 1);
             var day = '' + d.getDate();
-            console.log("Day: " + day)
+            console.log("Day: " + d.getDay());
             var year = d.getFullYear().toString();
             if (month.length < 2)
                 month = '0' + month;
@@ -79,7 +79,6 @@ function ScheduleDemo(props) {
                 startLoading();
                 props.showAppointmentConfirmation();
             }).catch(error => {
-                // console.log("error code: "+JSON.stringify(error.response.status));
                 if (error.response.status == 400) {
                     opensweetalertdanger("You have already booked a demo with this teacher!")
                 }
@@ -88,28 +87,27 @@ function ScheduleDemo(props) {
     }
     const fetchDays = async () => {
         await axios.get(getTimeUrl).then(response => {
-            // getTeacherDays(response.data.data.days)
-            // Object.entries(response.data.data.times).map((key,value) =>{
-            //     console.log("Key: "+ key + "value: "+ value)
-            // })
-            // console.log("Days of Weeks: "+ JSON.stringify(response.data.data.times))
             let i = 0;
-            const temparr = [0, 1, 2, 3, 4, 5, 6, 7];
             const timeslotsarr = [];
+            const temparr = [0,1,2,3,4,5,6,7];
+            const available_days = [];
             for (i = 0; i < weekdays.length; i++) {
                 if (response.data.data.times[weekdays[i]].length > 0) {
+                    var temp = [];
                     response.data.data.times[weekdays[i]].map(data => {
-                        timeslotsarr.push(data)
+                        temp.push(data);
                     })
-                    temparr.splice(temparr.indexOf(i), 1)
+                    available_days.push(i);
+                    timeslotsarr.push(temp)
+                    temparr.splice(temparr.indexOf(i), 1);
                 }
             }
             setDaysList({
                 ...DaysList,
                 times: timeslotsarr,
-                days: temparr
+                disableddays: temparr,
+                days: available_days
             });
-
         }).catch(error => {
             console.log("Error: " + error)
         })
@@ -151,7 +149,7 @@ function ScheduleDemo(props) {
     useEffect(() => {
         fetchDays();
         console.log("DaysList: " + JSON.stringify(DaysList))
-    }, [])
+    }, [7])
     return (
         <Container>
             <Row>
@@ -167,7 +165,7 @@ function ScheduleDemo(props) {
                     <DayPicker
                         month={new Date()}
                         disabledDays={[
-                            { daysOfWeek: DaysList.days.length > 0 ? DaysList.days : [] }, { before: new Date() }]}
+                            { daysOfWeek: DaysList.disableddays ? DaysList.disableddays : [] }, { before: new Date() }]}
                         selectedDays={selectedday}
                         onDayClick={handleDayClick}
                         month={new Date()}
