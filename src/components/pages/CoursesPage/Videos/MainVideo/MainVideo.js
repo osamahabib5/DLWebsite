@@ -7,7 +7,6 @@ const MainVideo = (props) =>{
         <div className = "d-flex justify-content-center">
             <ReactPlayer
             controls
-            width = "50%"
             height = "360px"
             url= {props.source.url}
             playing = {props.play ? true: false}

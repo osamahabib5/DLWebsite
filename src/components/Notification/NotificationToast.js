@@ -6,7 +6,7 @@ const NotificationToast = (props) =>{
       return (
         <div className="notification_bar">
             <div className="d-flex justify-content-end"  >
-                <img src = {close} alt = "Text" className = "rounded float-right" onClick = {props.click}/>
+                <img src = {close} style = {{cursor: "pointer"}} alt = "Text" className = "rounded float-right" onClick = {props.click}/>
             </div>  
             <div className="d-flex justify-content-center">
                 New Learning Packs available! 

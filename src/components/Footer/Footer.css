@@ -16,7 +16,7 @@
     background: #00ABBD;
 } */
 
-.d-inline-flex {
+.footer-show .d-inline-flex {
     display: inline-flex!important;
     color: white;
     font-family: Avenir;

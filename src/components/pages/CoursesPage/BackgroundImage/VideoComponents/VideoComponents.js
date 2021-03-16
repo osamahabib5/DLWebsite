@@ -43,7 +43,7 @@ const VideoComponents = (props) => {
                         <ListGroup.Item>Vocabulary development</ListGroup.Item>
                         <ListGroup.Item>Essay writing</ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
-                        <ListGroup.Item><img src={play} onClick={props.changeVideo} style={{ cursor: "pointer", marginTop: "-2rem" }} className="English" /></ListGroup.Item>
+                        <ListGroup.Item><img src={play} onClick={props.changeVideo} style={{ cursor: "pointer", marginTop: "-2rem" }} className="english" /></ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item className = "subject-mobile">English</ListGroup.Item>
@@ -62,7 +62,7 @@ const VideoComponents = (props) => {
                         <ListGroup.Item>Mental math</ListGroup.Item>
                         <ListGroup.Item>Word Problems</ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
-                        <ListGroup.Item><img src={play} onClick={props.changeVideo} style={{ cursor: "pointer", marginTop: "-2rem" }} className="Maths" /></ListGroup.Item>
+                        <ListGroup.Item><img src={play} onClick={props.changeVideo} style={{ cursor: "pointer", marginTop: "-2rem" }} className="maths" /></ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item className = "subject-mobile">Maths</ListGroup.Item>
@@ -82,7 +82,7 @@ const VideoComponents = (props) => {
                         <ListGroup.Item>Admission Test Prep</ListGroup.Item>
                         <ListGroup.Item>Online & in-person classes</ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
-                        <ListGroup.Item><img src={play} onClick={props.changeVideo} style={{ cursor: "pointer", marginTop: "-2rem" }} className="Urdu" /></ListGroup.Item>
+                        <ListGroup.Item><img src={play} onClick={props.changeVideo} style={{ cursor: "pointer", marginTop: "-2rem" }} className="others" /></ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item className = "subject-mobile">Others</ListGroup.Item>

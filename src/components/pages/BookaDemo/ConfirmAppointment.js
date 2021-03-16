@@ -8,23 +8,19 @@ function ConfirmAppointment() {
     const { calculateFees, loading } = useContext(TutorsContext);
     return (
         <Container>
-            {loading ? <div className="d-flex justify-content-center">
-                <ClipLoader size={80} color="#00ABBD" />
-            </div> : <div>
-                <Row>
-                    <Col>
-                        <p className="AppointmentConfirmationHeading">Get Ready. Your Free Demo has been Scheduled!</p>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center">
-                    <Col xs lg="3">
-                        <SelectedTeacher />
-                    </Col>
-                    <Col xs lg="3">
-                        <SelectedPricePackage />
-                    </Col>
-                </Row>
-            </div>}
+            <Row>
+                <Col>
+                    <p className="AppointmentConfirmationHeading">Get Ready. Your Free Demo has been Scheduled!</p>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col xs lg="3">
+                    <SelectedTeacher />
+                </Col>
+                <Col xs lg="3">
+                    <SelectedPricePackage />
+                </Col>
+            </Row>
         </Container>
     )
 }

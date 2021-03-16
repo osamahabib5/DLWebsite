@@ -17,7 +17,7 @@
     line-height: 24px;
 }
 
-.align-items-center {
+.third .align-items-center {
     background: #EDF0F5;
 }
 
@@ -66,7 +66,7 @@
 }
 
 @media only screen and (max-width: 769px) {
-    .align-items-center {
+    ..third .align-items-center {
         flex-direction: column;
         background: #EDF0F5;
     }

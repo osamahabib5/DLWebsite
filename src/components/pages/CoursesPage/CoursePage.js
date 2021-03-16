@@ -31,24 +31,24 @@ function CoursePage() {
                 block: "nearest"
             })
         }
-        setOpen(true);
+        // setOpen(true);
         startplaying(true); //For playing video on click
-        if (e.target.className === "English") {
+        if (e.target.className === "english") {
             setsource(videos[0])
-        } else if (e.target.className === "Maths") {
+        } else if (e.target.className === "maths") {
             setsource(videos[1])
-        } else if (e.target.className === "Urdu") {
+        } else if (e.target.className === "others") {
             setsource(videos[2]);
         }
     }
     const changeVideoPopup = (e) => {
         setOpen(true);
         startpopup(true);
-        if (e.target.className === "button1") {
+        if (e.target.className === "english-mobile") {
             setsource(videos[0])
-        } else if (e.target.className === "button2") {
+        } else if (e.target.className === "maths-mobile") {
             setsource(videos[1])
-        } else if (e.target.className === "button3") {
+        } else if (e.target.className === "others-mobile") {
             setsource(videos[2]);
         }
     }

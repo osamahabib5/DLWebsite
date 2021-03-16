@@ -332,7 +332,10 @@
 
 .pricingfilters .form-check-inline, label {
     margin-left: 2rem;
-    /* white-space: nowrap; */
+}
+
+.btn-pricing-info {
+    background-color: none !important;
 }
 
 .tutorslist .displayed-text {

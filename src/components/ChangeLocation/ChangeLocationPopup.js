@@ -5,7 +5,7 @@ import {  Row,Container,Col, Form, Button} from "react-bootstrap";
 import { TutorsContext } from '../../Provider';
 function ChangeLocationPopup(props) {
     const getcountries = baseUrl + '/api/getCountryList';
-    const {setParentLocation} = useContext(TutorsContext)
+    const {setParentLocation, parent_country} = useContext(TutorsContext)
     const [countrieslist, getcountrylist] = useState([]);
     useEffect(async () => {
         await (axios.get(getcountries)).then(function (response) {
@@ -13,7 +13,7 @@ function ChangeLocationPopup(props) {
         }).catch(error => {
             console.log("Error!")
         })
-    }, [countrieslist])
+    }, [parent_country])
     return (
         <Container>
             <h2>Change Country</h2>

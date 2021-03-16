@@ -16,7 +16,7 @@ const ProgramSlider = (props) =>{
                     <p>Comprehension</p>
                     <p>Vocabulary development</p>
                     <p>Essay writing</p>
-                    <p><img src = {play} style = {{cursor: "pointer"}} className = "button1" onClick = {props.changeVideoPopup}/></p>
+                    <p><img src = {play} style = {{cursor: "pointer"}} className = "english-mobile" onClick = {props.changeVideoPopup}/></p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -32,7 +32,7 @@ const ProgramSlider = (props) =>{
                     <p>Sequences & algebra</p>
                     <p>Mental math</p>
                     <p>Word problems</p>
-                    <p><img src = {play} style = {{cursor: "pointer"}} className = "button2" onClick = {props.changeVideoPopup}/></p>
+                    <p><img src = {play} style = {{cursor: "pointer"}} className = "maths-mobile" onClick = {props.changeVideoPopup}/></p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -46,7 +46,7 @@ const ProgramSlider = (props) =>{
                     <p>HW Help</p>
                     <p>Admission Test Prep</p>
                     <p>Online & In-person Classes</p>
-                    <p><img src = {play} style = {{cursor: "pointer"}} className = "button3" onClick = {props.changeVideoPopup}/></p>
+                    <p><img src = {play} style = {{cursor: "pointer"}} className = "others-mobile" onClick = {props.changeVideoPopup}/></p>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

@@ -8,13 +8,14 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
 import Swal from 'sweetalert2'
 import info from "./Info.png";
+import FiltersDescription from './FiltersDescription';
 function PricingFilters(props) {
-    const { setOptedPackage, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, result_type, subscription } = useContext(TutorsContext)
+    const { setOptedPackage, opted_package, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, result_type, stopLoading, subscription_price } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription, tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
-    const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
+    const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_price, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     const { class_type, tutor_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const handleOnChange = (e) => {
@@ -49,23 +50,22 @@ function PricingFilters(props) {
     }
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
-        e.preventDefault();
+        // e.preventDefault();
         console.log("Filtered Options: " + JSON.stringify(advancedfilter));
         if (result_type === "teachers") {
+            startLoading();
             await axios.post(url, advancedfilter).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
-                startLoading();
-                setadvancedfilters({
-                    class_type: "",
-                    subscription: "",
-                    tutor_type: "",
-                    hours_per_week: 2
-                })
-                if (!props.shownavigation) {
-                    props.showNavigation();
-                }
-                props.showtutoroptions();
+
+                // setadvancedfilters({
+                //     subscription: ""
+                // })
+                // if (!props.shownavigation) {
+                //     props.showNavigation();
+                // }
+                // props.showtutoroptions();
+                stopLoading();
             }).catch(error => {
                 console.log("Filters Error: " + error)
             })
@@ -79,12 +79,12 @@ function PricingFilters(props) {
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
                 startLoading();
-                setadvancedfilters({
-                    class_type: "",
-                    subscription: "",
-                    tutor_type: "",
-                    hours_per_week: 2
-                })
+                // setadvancedfilters({
+                //     class_type: "",
+                //     subscription: "",
+                //     tutor_type: "",
+                //     hours_per_week: 2
+                // })
                 if (!props.shownavigation) {
                     props.showNavigation();
                 }
@@ -95,26 +95,52 @@ function PricingFilters(props) {
         }
     }
     const onChangePackage = (e) => {
-        e.target.value === "3_month" && parent_country === "Pakistan" ? setOptedPackage(1) : e.target.value === "3_month" && parent_country !== "Pakistan" ? setOptedPackage(3)
-            : e.target.value === "1_month" && parent_country !== "Pakistan" ? setOptedPackage(2) : setOptedPackage(0)
-
-        setadvancedfilters(prevState => ({
-            ...prevState,
+        // console.log("value: "+ e.target.value)
+        // e.target.value === "3_month" && parent_country === "Pakistan" ? setOptedPackage(1) : e.target.value === "3_month" && parent_country !== "Pakistan" ? setOptedPackage(3)
+        //     : e.target.value === "1_month" && parent_country !== "Pakistan" ? setOptedPackage(2) : setOptedPackage(0)
+        e.persist();
+        if (e.target.value === "3_month") {
+            if (parent_country === "Pakistan") {
+                setOptedPackage(1);
+            } else {
+                setOptedPackage(3);
+            }
+        }
+        if (e.target.value === "1_month") {
+            if (parent_country === "Pakistan") {
+                setOptedPackage(0);
+            } else {
+                setOptedPackage(2);
+            }
+        }
+        // console.log("1 :" + e.target.value)
+        // console.log("Before :" + advancedfilter.subscription)
+        setadvancedfilters({
+            ...advancedfilter,
             subscription: e.target.value
-        }));
+        });
+        // console.log("After :" + advancedfilter.subscription)
+        // console.log("subsceription: "+advancedfilter.subscription)
+        // e.target.value = "";
+        if (advancedfilter.class_type || advancedfilter.tutor_type) {
+            setadvancedfilters({
+                ...advancedfilter,
+                subscription: e.target.value === "3_month" ? "1_month" : "3_month"
+            });
+            handleSubmit();
+        }
     }
     return (
         <Container>
             <Row>
                 <Col>
-                    <p className="filteroptionsheading">Next, customize your fee package</p>
+                    <p className="filteroptionsheading">Build Your Package</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="3 Months Package" onChange={onChangePackage}>
-                            <option>Which package do you want to select?</option>
+                        <Form.Control as="select" defaultValue={opted_package === 0 || opted_package === 2 ? "1_month" : "3_month"} onChange={onChangePackage}>
                             <option value="1_month">Monthly Package</option>
                             <option value="3_month">3 Months Package</option>
                         </Form.Control>
@@ -124,19 +150,40 @@ function PricingFilters(props) {
                 </Col>
             </Row>
             <Form>
+                {/* <Form.Row>
+                    <Col>
+                        {['radio'].map((type) => (
+                            <div key={`default-${type}`} className="mb-3" name="class_type">
+                                <FormCheck.Label>Subscription</FormCheck.Label>
+                                <br />
+                                <Form.Check inline label="Monthly Package" value="1_month"
+                                    checked={class_type === "1_month"}
+                                    type={type} id={`inline-${type}-1`} onChange={onChangePackage} />
+                                <FiltersDescription />
+                                <Form.Check inline label="3 Month Package" value="3_month" 
+                                    checked={class_type === "3_month"}
+                                    type={type} id={`inline-${type}-2`} onChange={onChangePackage} />
+                                <FiltersDescription />
+                            </div>
+                        ))}
+                    </Col>
+                </Form.Row> */}
                 <Form.Row>
                     <Col>
                         {['radio'].map((type) => (
                             <div key={`default-${type}`} className="mb-3" name="class_type">
                                 <FormCheck.Label>Class Type</FormCheck.Label>
-                                <Col>
-                                </Col>
-                                <Form.Check inline label="Small Batches" value="batch"
+                                {/* <Col>
+                                </Col> */}
+                                <br />
+                                <Form.Check inline label="Small Batch" value="batch"
                                     checked={class_type === "batch"}
                                     type={type} id={`inline-${type}-1`} onChange={handleOnChange} />
+                                <FiltersDescription text="Small Batch of 3-5 students per class" />
                                 <Form.Check inline label="One-on-One" value="one_on_one"
                                     checked={class_type === "one_on_one"}
                                     type={type} id={`inline-${type}-2`} onChange={handleOnChange} />
+                                <FiltersDescription text="Individual one-on-one attention from our expert teachers!" />
                             </div>
                         ))}
                     </Col>
@@ -146,56 +193,35 @@ function PricingFilters(props) {
                         {['radio'].map((type) => (
                             <div key={`default-${type}`} className="mb-3" name="tutor_type">
                                 <FormCheck.Label>Tutor Type</FormCheck.Label>
-                                <Col>
-                                </Col>
+                                <br />
                                 <Form.Check inline label="Standard Tutor" value="standard" checked={tutor_type === "standard"}
-                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} style = {{whiteSpace: "nowrap"}} />
+                                    type={type} id={`inline-${type}-1`} onChange={handleOnChangeTutorType} />
                                 <Form.Check inline label="Super Tutor" value="super"
                                     checked={tutor_type === "super"}
-                                    type={type} id={`inline-${type}`} onChange={handleOnChangeTutorType} style = {{whiteSpace: "nowrap"}}/>
-                                <OverlayTrigger
-                                    placement="bottom"
-                                    overlay={<Tooltip id="button-tooltip-2">These are our top-tier teachers. The price to the left will reflect this premium option. </Tooltip>}
-                                >
-                                    {({ ref, ...triggerHandler }) => (
-                                        <Button
-                                            variant="light"
-                                            {...triggerHandler}
-                                            className="d-inline-flex align-items-center"
-                                        >
-                                            <Image
-                                                ref={ref}
-                                                roundedCircle
-                                                src={info}
-                                            />
-                                        </Button>
-                                    )}
-                                </OverlayTrigger>
+                                    type={type} id={`inline-${type}-2`} onChange={handleOnChangeTutorType} />
+                                <FiltersDescription text="These are our top-tier teachers. The price to the right will reflect this premium option." />
                             </div>
                         ))}
                     </Col>
-                    <Col>
-
-                    </Col>
+                    <br />
                 </Form.Row>
                 <Form.Row>
                     <Col>
-                        <Form.Label>How many days would you like the classes to be taken?</Form.Label>
+                        <Form.Label>How many hours per week?</Form.Label>
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} value={days} max={7} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput min={2} max={20} size={10} className="numericinput" onChange={(e) => {
                         setdays(parseInt(e));
                         setadvancedfilters({
                             ...advancedfilter,
-                            hours_per_week: hours * parseInt(e)
+                            hours_per_week: parseInt(e)
                         })
                     }} />
                 </Form.Group>
-                <Form.Row>
+                {/* <Form.Row>
                     <Col>
-                        <Form.Label>How long do you want the classes to be?</Form.Label>
-                        {/* {hours || days ? <Form.Label>(Hours Per Week: {advancedfilter.hours_per_week}) </Form.Label> : ""} */}
+                        <Form.Label>How many hours?</Form.Label>
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
@@ -206,16 +232,16 @@ function PricingFilters(props) {
                             hours_per_week: parseInt(e) * days
                         })
                     }} />
-                </Form.Group>
+                </Form.Group> */}
             </Form>
             <div className="d-flex justify-content-center">
-                <button className="btn button-cta button-blue" onClick={handleSubmit}>{result_type === "teachers" ? "Select Tutor" : "Next"}
-                    <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
+                <button className="btn button-cta button-blue" style={{ width: "200px" }} onClick={handleSubmit}>{result_type === "teachers" ? "Confirm Your Selection" : "Next"}
+                    {/* <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} /> */}
                 </button>
             </div>
-            <Row className="justify-content-md-center">
+            {/* <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
-            </Row>
+            </Row> */}
         </Container>
     )
 }

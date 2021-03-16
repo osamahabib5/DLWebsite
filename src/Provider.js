@@ -16,7 +16,7 @@ const initialState = {
     teacher_id: 0,
     teacher_info: null,
     result_type: "",
-    subscription: ""
+    subscription_price: ""
 }
 
 const actions = {
@@ -131,7 +131,7 @@ function reducer(state, action) {
         case actions.SETSUBSCRIPTION:
             return {
                 ...state,
-                subscription: action.value
+                subscription_price: action.value
             }
         default:
             return state;
@@ -156,7 +156,7 @@ function Provider({ children }) {
         teacher_id: state.teacher_id,
         teacher_info: state.teacher_info,
         result_type: state.result_type,
-        subscription : state.subscription,
+        subscription_price : state.subscription_price,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },

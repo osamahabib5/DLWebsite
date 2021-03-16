@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
     const { teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
-    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + 58;
+    const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
@@ -41,6 +41,12 @@ function ScheduleDemo(props) {
             if (day.length < 2)
                 day = '0' + day;
             setselecteddate([year, month, day].join('-'));
+            if (selecteddate){
+                setdemodata({
+                    ...demodata,
+                    date: selecteddate
+                })
+            }
             setdayindex(DaysList.days.indexOf(dayofweek))
             for (const [key, value] of Object.entries(booked_times)) {
                 if (selecteddate) {
