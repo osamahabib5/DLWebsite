@@ -25,7 +25,7 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
-    const {booked_times} = DaysList;
+    const { booked_times, times, days } = DaysList;
     const handleDayClick = (day, { selected }) => {
         settimes((prevState) => !prevState);
         setSelectedday(selected ? undefined : day)
@@ -43,9 +43,18 @@ function ScheduleDemo(props) {
             setselecteddate([year, month, day].join('-'));
             setdayindex(DaysList.days.indexOf(dayofweek))
             for (const [key, value] of Object.entries(booked_times)) {
-                console.log(`${key}: ${value}`);
-              }
-            // console.log("DayIndex: " + DaysList.times[dayindex])
+                // console.log(`${key}: ${value}`);
+                if (selecteddate) {
+                    if (selecteddate === value) {
+                        let dayofweekindex = days.indexOf(new Date(selecteddate).getDay());
+                        let bookedtimevalue=  times[dayofweekindex].indexOf(key);
+                        if (dayofweekindex >= 0 && bookedtimevalue > -1) {
+                            times[dayofweekindex].splice(bookedtimevalue, 1);
+                        }
+                    }
+                }
+            }
+            // console.log("Selected date: " + selecteddate)
         }
     }
     const setTimeSlot = (e) => {
@@ -108,7 +117,7 @@ function ScheduleDemo(props) {
     useEffect(() => {
         fetchDays();
         console.log("DaysList: " + JSON.stringify(DaysList))
-    }, [])
+    }, [2])
     return (
         <Container>
             <Row>
@@ -136,7 +145,7 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes && selecteddate && dayindex != -1 && Array.isArray(DaysList.times[dayindex]) ? DaysList.times[dayindex].map((data, index) => {
+                    {showtimes && selecteddate && dayindex != -1  ? DaysList.times[dayindex].map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )
