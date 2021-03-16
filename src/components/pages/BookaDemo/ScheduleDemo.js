@@ -25,22 +25,24 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
-    const { days, times } = DaysList;
     const handleDayClick = (day, { selected }) => {
         settimes((prevState) => !prevState);
         setSelectedday(selected ? undefined : day)
-        console.log("Hello")
-        var d = new Date(selectedday);
-        var dayofweek = d.getDay();
-        var month = '' + (d.getMonth() + 1);
-        var day = '' + d.getDate();
-        var year = d.getFullYear().toString();
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-        setselecteddate([year, month, day].join('-'));
-        setdayindex(DaysList.days.indexOf(dayofweek))
+        // console.log("Hello")
+        if (selectedday) {
+            var d = new Date(selectedday);
+            var dayofweek = d.getDay();
+            var month = '' + (d.getMonth() + 1);
+            var day = '' + d.getDate();
+            var year = d.getFullYear().toString();
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+            setselecteddate([year, month, day].join('-'));
+            setdayindex(DaysList.days.indexOf(dayofweek))
+            // console.log("DayIndex: " + DaysList.times[dayindex])
+        }
     }
     const setTimeSlot = (e) => {
         e.preventDefault();
@@ -101,8 +103,8 @@ function ScheduleDemo(props) {
     }
     useEffect(() => {
         fetchDays();
-        // console.log("DaysList: " + JSON.stringify(DaysList))
-    }, [2])
+        console.log("DaysList: " + JSON.stringify(DaysList))
+    }, [dayindex])
     return (
         <Container>
             <Row>
@@ -130,13 +132,13 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes && selectedday && Array.isArray(DaysList.times[dayindex])? DaysList.times[dayindex].map((data, index) => {
+                    {showtimes && selecteddate && Array.isArray(DaysList.times[dayindex]) ? DaysList.times[dayindex].map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )
-                    }) : <div>
-                        Timeslots will be shown here
-                    </div> }
+                    }) : <div className="d-flex justify-content-center" style={{ color: "black" }}>
+                        Timeslots will be shown here!
+                    </div>}
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
