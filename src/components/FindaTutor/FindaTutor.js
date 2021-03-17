@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './FindaTutor.css'
+import {  Link} from 'react-router-dom';
 function FindaTutorStart() {
     const [isMobile, setclassname] = useState(false);
     const mobileview = () =>{
@@ -20,7 +21,7 @@ function FindaTutorStart() {
 
         <div className={classname}>
             <div className = "Tutor-button">
-                <button type="button" className="btn button-cta button-red">Find a Tutor</button>
+            <Link to = "/tutors"><button type="button" className="btn button-cta button-red">Find a Tutor</button></Link>
             </div>
             <div className = "tutor-content">
                 <p className = "web-content">Book a free trial class now! </p>

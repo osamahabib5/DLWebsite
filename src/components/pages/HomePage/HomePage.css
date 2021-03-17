@@ -13,6 +13,7 @@
     } */
     .BecomeTutor .img-fluid{
         height: 500px;
+        width: 70%;
     }
     .HomeImage .card-img-overlay {
         margin-top: 16rem;
@@ -39,6 +40,9 @@
     }
     .OurApproach .card-deck {
         width: 80%!important;
+    }
+    .OurApproach .card-deck .card .card-img-top {
+        padding: 2rem;
     }
     .Image-Slider {
         margin-top: -7rem;

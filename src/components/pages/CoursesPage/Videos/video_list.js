@@ -9,7 +9,7 @@ const videos = [{
     'title' : 'Maths',
     'short_desc' : '',
     'long_desc' : '',
-    'url' : 'video/Math.mp4',
+    'url' : 'video/Maths.mp4',
     'thumbnail' : 'thumb2.jpg',
     'length': 72
 },{

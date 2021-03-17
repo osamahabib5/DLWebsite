@@ -69,7 +69,7 @@ const VideoComponents = (props) => {
                     </ListGroup>
 
                 </Card>
-                <Card style={{
+                {/* <Card style={{
                     backgroundColor: "#FCCFCB"
                 }}>
 
@@ -87,7 +87,7 @@ const VideoComponents = (props) => {
                         <ListGroup.Item></ListGroup.Item>
                         <ListGroup.Item className = "subject-mobile">Others</ListGroup.Item>
                     </ListGroup>
-                </Card>
+                </Card> */}
             </CardDeck>
         </div>
     )
