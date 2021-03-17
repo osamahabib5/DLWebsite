@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form} from 'react-bootstrap';
 import PhoneInput from 'react-phone-number-input';
 import axios from "axios";
 import baseUrl from '../../../../../../../baseUrl/baseUrl';
@@ -44,7 +44,7 @@ function CheckParent(props) {
                     setLoading(false);
                     setclassname("text-success");
                     setmessage("Parent Verification Successful!");
-                    setTimeout(()=>checkparent(true),1000);
+                    setTimeout(() => checkparent(true), 1000);
                 })
                 .catch(function (error) {
                     setLoading(false);
@@ -84,9 +84,9 @@ function CheckParent(props) {
                     }
                 </div>
                 <div className="d-flex justify-content-center">
-                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    <button className="btn button-cta button-blue" type="submit" onClick={handleSubmit}>
                         Continue
-            </Button>
+            </button>
                 </div>
             </Form>}
         </div>

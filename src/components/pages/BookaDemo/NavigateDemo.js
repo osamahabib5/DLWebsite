@@ -6,12 +6,20 @@ function NavigateDemo(props) {
     const { calculateFees, result_type, lead_id } = useContext(TutorsContext)
     const goBack = (e) => {
         e.preventDefault();
-        if (props.successfullead && lead_id == 0) {
-            props.hidefeecalculator()
+        if (props.successfullead) {
+            if (lead_id == 0) {
+                props.hidefeecalculator()
+                calculateFees(0);
+            }
+            if (lead_id != 0) {
+                props.LeadAlreadyFilled()
+                calculateFees(0);
+            }
         }
-        else if (props.successfullead && lead_id != 0) {
-            props.LeadAlreadyFilled()
-        }
+        // else if (props.successfullead && lead_id != 0) {
+        //     props.LeadAlreadyFilled()
+        //     calculateFees(0);
+        // }
         if (props.showtutors) {
             calculateFees(0);
             props.hidetutoroptions();

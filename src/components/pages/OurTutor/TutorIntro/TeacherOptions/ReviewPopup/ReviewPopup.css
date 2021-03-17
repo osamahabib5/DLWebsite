@@ -47,6 +47,9 @@
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 89%;
+    margin-left: 0.5rem;
+    height: 45px;
 }
 
 @media only screen and (min-width: 769px) {
@@ -64,7 +67,18 @@
     margin-top: 2rem;
     margin-right: 2rem;
 }
-.react-responsive-modal-modal textarea.form-control{
+
+.checkingparent .form-group .PhoneInput {
+    display: flex;
+    margin-left: 2rem;
+}
+
+.PhoneInputCountry {
+    margin-top: -1rem;
+    width: 4rem;
+}
+
+.react-responsive-modal-modal textarea.form-control {
     height: 120px;
     margin-left: 2rem;
     width: 91%;

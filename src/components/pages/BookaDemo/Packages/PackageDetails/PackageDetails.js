@@ -64,9 +64,9 @@ function PackageDetails(props) {
                                     <div className="p-2 bd-highlight">
                                         <p className="packagerate">Rs {Available_Packages[1].price}</p>
                                     </div>
-                                    <div className="p-2 bd-highlight">
+                                    {/* <div className="p-2 bd-highlight">
                                         <p className="startingat">/month</p>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </ListGroup.Item>
                             <ListGroup.Item>{Available_Packages[1].heading}</ListGroup.Item>
@@ -123,9 +123,9 @@ function PackageDetails(props) {
                                     <div className="p-2 bd-highlight">
                                         <p className="packagerate">Rs {Available_Packages[3].price}</p>
                                     </div>
-                                    <div className="p-2 bd-highlight">
+                                    {/* <div className="p-2 bd-highlight">
                                         <p className="startingat">/month</p>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </ListGroup.Item>
                             <ListGroup.Item>{Available_Packages[3].heading}</ListGroup.Item>

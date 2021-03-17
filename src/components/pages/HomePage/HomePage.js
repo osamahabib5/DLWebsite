@@ -12,7 +12,7 @@ import FindaTutorEnd from '../../FindaTutor/FindaTutor_End';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import ReactPixel from 'react-facebook-pixel';
 import TutorImage from './Image2.jpg'
-function HomePage() {
+function HomePage(props) {
     const [displaytext, settext] = useState("Book a free trial class now! ")
     const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
     const options = {
@@ -45,7 +45,7 @@ function HomePage() {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={landingimage} className="card-img" alt="..." />
+                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "0rem" }} />
                     <ImageContent />
                 </div>
             </div>

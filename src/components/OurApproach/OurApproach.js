@@ -13,7 +13,7 @@ function OurApproach() {
                 <p className="heading">OUR APPROACH</p>
             </div>
             <div className="p-2 bd-highlight">
-                <p className="Approach-content">What sets Dot&Line apart</p></div>
+                <p className="Approach-content">What sets Dot & Line apart</p></div>
             <div className="p-2 bd-highlight">
                 <p className="details">With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte.
  </p>

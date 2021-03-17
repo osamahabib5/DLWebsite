@@ -336,7 +336,9 @@
 .OurApproach .card-text {
     margin-top: 0rem;
 }
-
-.HomeImage .card-img {
-    margin-top: 3rem;
+.bg-dark{
+    background-color: white!important;
 }
+/* .HomeImage .card-img {
+    margin-top: 3rem;
+} */

@@ -44,11 +44,11 @@ function CoursePage() {
     const changeVideoPopup = (e) => {
         setOpen(true);
         startpopup(true);
-        if (e.target.className === "english-mobile") {
+        if (e.target.id === "english-mobile") {
             setsource(videos[0])
-        } else if (e.target.className === "maths-mobile") {
+        } else if (e.target.id === "maths-mobile") {
             setsource(videos[1])
-        } else if (e.target.className === "others-mobile") {
+        } else if (e.target.id === "others-mobile") {
             setsource(videos[2]);
         }
     }

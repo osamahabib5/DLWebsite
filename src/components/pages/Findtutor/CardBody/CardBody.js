@@ -14,8 +14,10 @@ function CardBody(props) {
     const animatedComponents = makeAnimated();
     const subjects_url = baseUrl + '/api/getSubjects'
     const filter_url = baseUrl + '/api/teachers/search'
-    const grade_url = baseUrl + '/api/getGrades'
+    const grade_url = baseUrl + '/api/getGrades';
+    const [morefilters, setmorefilters] = useState(true);
     const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "" });
+    const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
         5000: "5000",
@@ -59,12 +61,26 @@ function CardBody(props) {
     const onChangeSubject = (data) => {
         const arr = [];
         data.forEach(data => {
-            arr.push(data.value)
+            arr.push(data.value);
         })
+        if (arr.length == 1) {
+            if (arr[0] === "English Language"  || arr[0] === "Mathematics"){
+                setmorefilters(false);
+            }
+        }
+        else if (arr.length == 2) {
+            if ((arr[0] === "English Language"  && arr[1] === "Mathematics") || (arr[1] === "English Language"  && arr[0] === "Mathematics")){
+                setmorefilters(false);
+            }
+        }
+        else{
+            setmorefilters(true);
+        }
         fillFilters({
             ...filters,
             subjects: arr
         })
+
     }
 
 
@@ -153,11 +169,11 @@ function CardBody(props) {
                         ..Loading
                     </div>}
                 </Col>
-                <Col>
+                {morefilters ? <Col>
                     <p className="advancedfilters" onClick={() => showfilters((prevState) => !prevState)}>
                         Advanced Filters
                     </p>
-                </Col>
+                </Col> : ""}
             </Form.Row>
             {filter ? <Form.Row >
                 <Col>

@@ -60,7 +60,7 @@ function App() {
       <div className="content-wrap">
         {Notification}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-
+        {MobileNotification}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>
@@ -93,7 +93,7 @@ function App() {
             <PricingFilters />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage notification = {notification}/>
             {/* <BookaDemo /> */}
           </Route>
         </Switch>

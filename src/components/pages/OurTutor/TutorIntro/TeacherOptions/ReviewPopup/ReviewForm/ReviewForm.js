@@ -71,7 +71,7 @@ function ReviewForm(props) {
         <Form bsPrefix="reviewform">
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Name" name="name" onChange={handleChange} style={{ marginLeft: "2rem", width: "91%" }}/>
+                <Form.Control type="text" placeholder="Name" name="name" onChange={handleChange} style={{ marginLeft: "2rem", width: "91%" }} />
             </Form.Group>
             <Form.Row>
                 <Col>
@@ -101,9 +101,9 @@ function ReviewForm(props) {
 
             </Form.Group >
             <div className="d-flex justify-content-center">
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                <button className="btn button-cta button-blue" type="submit" onClick={handleSubmit}>
                     Submit
-            </Button>
+            </button>
             </div>
         </Form>
     )
