@@ -9,6 +9,13 @@
     z-index: 300;
 }
 
+.notification_bar a {
+    color: blue;
+    font-size: 15px;
+    padding-inline: 0.5rem;
+    text-decoration: underline;
+}
+
 @media only screen and (max-width: 769px) {
     .notification_bar {
         display: none;

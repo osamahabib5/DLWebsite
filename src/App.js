@@ -87,7 +87,7 @@ function App() {
             <About />
           </Route>
           <Route path="/contact">
-            <ContactPage />
+            <ContactPage notification = {notification}/>
           </Route>
           <Route path="/pricingfilters">
             <PricingFilters />

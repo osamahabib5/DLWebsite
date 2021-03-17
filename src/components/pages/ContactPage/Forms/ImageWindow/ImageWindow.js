@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
-import Image from '../Image/Contact.png'
+import Image from '../Image/contact-mobile.jpg'
 import './ImageWindow.css'
 function ImageWindow() {
     return (

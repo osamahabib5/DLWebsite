@@ -10,7 +10,9 @@ import Swal from 'sweetalert2'
 import info from "./Info.png";
 import FiltersDescription from './FiltersDescription';
 function PricingFilters(props) {
-    const { setOptedPackage, opted_package, parent_country, lead_id, startLoading, getFilteredTeachersList, calculateFees, result_type, stopLoading, subscription_price } = useContext(TutorsContext)
+    const { setOptedPackage, opted_package, parent_country, lead_id,
+         startLoading, getFilteredTeachersList, calculateFees, result_type, 
+         stopLoading, subscription_price, setConfirmPricing } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
@@ -51,6 +53,7 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         // e.preventDefault();
+        setConfirmPricing(true);
         console.log("Filtered Options: " + JSON.stringify(advancedfilter));
         if (result_type === "teachers") {
             startLoading();
@@ -123,10 +126,10 @@ function PricingFilters(props) {
         // console.log("subsceription: "+advancedfilter.subscription)
         // e.target.value = "";
         if (advancedfilter.class_type || advancedfilter.tutor_type) {
-            setadvancedfilters({
-                ...advancedfilter,
-                subscription: e.target.value === "3_month" ? "1_month" : "3_month"
-            });
+            // setadvancedfilters({
+            //     ...advancedfilter,
+            //     subscription: e.target.value === "3_month" ? "1_month" : "3_month"
+            // });
             handleSubmit();
         }
     }
@@ -219,29 +222,15 @@ function PricingFilters(props) {
                         })
                     }} />
                 </Form.Group>
-                {/* <Form.Row>
-                    <Col>
-                        <Form.Label>How many hours?</Form.Label>
-                    </Col>
-                </Form.Row>
-                <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={1} max={7} value={hours} size={10} className="numericinput" onChange={(e) => {
-                        sethours(parseInt(e));
-                        setadvancedfilters({
-                            ...advancedfilter,
-                            hours_per_week: parseInt(e) * days
-                        })
-                    }} />
-                </Form.Group> */}
             </Form>
             <div className="d-flex justify-content-center">
-                <button className="btn button-cta button-blue" style={{ width: "200px" }} onClick={handleSubmit}>{result_type === "teachers" ? "Confirm Your Selection" : "Next"}
+                <button className="btn button-cta button-blue" style={{ width: "200px" }} onClick={handleSubmit}>{result_type === "teachers" ? "Confirm Your Selections" : "Next"}
                     {/* <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} /> */}
                 </button>
             </div>
-            {/* <Row className="justify-content-md-center">
+            {result_type === "pricing" ? <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
-            </Row> */}
+            </Row> : ""}
         </Container>
     )
 }

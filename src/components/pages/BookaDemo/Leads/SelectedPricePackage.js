@@ -3,8 +3,9 @@ import { Card, ListGroup } from "react-bootstrap";
 import { TutorsContext } from '../../../../Provider';
 import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
+import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package , fee_amount, setSubscription, result_type} = useContext(TutorsContext);
+    const { opted_package , fee_amount, setSubscription, result_type, confirmpricing} = useContext(TutorsContext);
     // const SetPricingPackage = ()=>{
     //     if (opted_package == 0 || opted_package == 2){
     //         setSubscription("1_month")
@@ -31,9 +32,9 @@ function SelectedPricePackage(props) {
                                 <div className="p-2 bd-highlight">
                                     <p className="packagerate">Rs {fee_amount ? fee_amount : Available_Packages[opted_package].price}</p>
                                 </div>
-                                <div className="p-2 bd-highlight">
+                                {opted_package === 0 || opted_package === 2?<div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
-                                </div>
+                                </div> : ""}
                             </div>
                         </ListGroup.Item>
                         <ListGroup.Item style = {{marginTop: props.isMobile ? "1rem" : ""}}>{Available_Packages[opted_package].heading}</ListGroup.Item>
@@ -48,6 +49,9 @@ function SelectedPricePackage(props) {
             {/* <p className="parentlocation">
                 <ChangeLocation />
             </p> */}
+            {confirmpricing ? <div>
+                <GoToTutorsPage />
+            </div> : ""}
         </div>
     )
 }

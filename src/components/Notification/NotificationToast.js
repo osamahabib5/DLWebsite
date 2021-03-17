@@ -20,9 +20,8 @@ const NotificationToast = (props) => {
             <div className="d-flex justify-content-end"  >
                 <img src={close} style={{ cursor: "pointer" }} alt="Text" className="rounded float-right" onClick={props.click} />
             </div>
-            <div className="d-flex justify-content-center">
-                {notificationtext}
-            </div>
+            <div className="d-flex justify-content-center" dangerouslySetInnerHTML={ {__html: notificationtext}} />
+                {/* {notificationtext} */}
         </div>
     )
 }

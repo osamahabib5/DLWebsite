@@ -66,9 +66,12 @@
 }
 
 @media only screen and (max-width: 769px) {
-    ..third .align-items-center {
+    .third .align-items-center {
         flex-direction: column;
         background: #EDF0F5;
+    }
+    .Image-Mobile .card-img-top{
+        width: 100%;
     }
     .button-contact {
         height: 40px;

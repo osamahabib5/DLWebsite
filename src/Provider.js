@@ -16,7 +16,8 @@ const initialState = {
     teacher_id: 0,
     teacher_info: null,
     result_type: "",
-    subscription_price: ""
+    subscription_price: "",
+    confirmpricing: false
 }
 
 const actions = {
@@ -37,7 +38,8 @@ const actions = {
     GETTEACHERID: 'GETTEACHERID',
     GETTEACHERINFO: 'GETTEACHERINFO',
     SETRESULTTYPE: 'SETRESULTTYPE',
-    SETSUBSCRIPTION: 'SETSUBSCRIPTION'
+    SETSUBSCRIPTION: 'SETSUBSCRIPTION',
+    CONFIRMPRICING: 'CONFIRMPRICING'
 }
 
 function reducer(state, action) {
@@ -133,6 +135,11 @@ function reducer(state, action) {
                 ...state,
                 subscription_price: action.value
             }
+        case actions.CONFIRMPRICING:
+            return {
+                ...state,
+                confirmpricing: action.value
+            }
         default:
             return state;
     }
@@ -156,7 +163,8 @@ function Provider({ children }) {
         teacher_id: state.teacher_id,
         teacher_info: state.teacher_info,
         result_type: state.result_type,
-        subscription_price : state.subscription_price,
+        subscription_price: state.subscription_price,
+        confirmpricing: state.confirmpricing,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -176,6 +184,7 @@ function Provider({ children }) {
         getTeacherInfo: (value) => { dispatch({ type: actions.GETTEACHERINFO, value }) },
         setResultType: (value) => { dispatch({ type: actions.SETRESULTTYPE, value }) },
         setSubscription: (value) => { dispatch({ type: actions.SETSUBSCRIPTION, value }) },
+        setConfirmPricing: (value) => { dispatch({ type: actions.CONFIRMPRICING, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

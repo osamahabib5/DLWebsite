@@ -6,6 +6,7 @@ import baseUrl from "../../../../baseUrl/baseUrl";
 import axios from "axios";
 import { TutorsContext } from "../../../../Provider";
 import Swal from 'sweetalert2'
+import PhoneInput from 'react-phone-number-input';
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const postleadurl = baseUrl + '/api/lead/create';
@@ -85,6 +86,9 @@ function Leads(props) {
 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Control type="number" placeholder="Phone" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
+                                {/* <PhoneInput
+                                    placeholder="Enter phone number" />
+                                    // onChange={setValue} /> */}
                             </Form.Group>
                             <div style={{ marginTop: "4rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>
