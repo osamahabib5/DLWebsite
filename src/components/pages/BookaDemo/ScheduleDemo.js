@@ -6,15 +6,17 @@ import { TutorsContext } from '../../../Provider'
 import baseUrl from '../../../baseUrl/baseUrl'
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
+    const cookies = new Cookies()
     const { teacher_id, lead_id, teacher_info, startLoading, setDemoDate, setDemoTime } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
-    const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
+    const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id ? lead_id : cookies.get("leadid"), date: selecteddate, time: "", note: "" })
     const [DaysList, setDaysList] = useState({ disableddays: [], times: [], days: [], booked_times: {} });
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const [dayindex, setdayindex] = useState(0);
@@ -87,9 +89,9 @@ function ScheduleDemo(props) {
                 props.showAppointmentConfirmation();
             }).catch(error => {
                 console.log("Error: "+ error)
-                // if (error.response.status == 400) {
-                //     opensweetalertdanger("You have already booked a demo with this teacher!")
-                // }
+                if (error.response.status == 400) {
+                    opensweetalertdanger("You have already booked a demo with this teacher!")
+                }
             });
         }
     }

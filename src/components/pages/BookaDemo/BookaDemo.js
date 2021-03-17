@@ -13,10 +13,12 @@ import ScheduleDemo from './ScheduleDemo'
 import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
+import Cookies from 'universal-cookie';
 function BookaDemo(props) {
     let { id } = useParams();
     let history = useHistory();
     let location = useLocation();
+    const cookies = new Cookies();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
     const [showleads, setleadform] = useState(false);
@@ -51,6 +53,7 @@ function BookaDemo(props) {
         setsuccessfullead(false);
         setnavigation(false);
         setpackages(false);
+        setleadform(false);
     }
     const hideLeadsForm = () => {
         setleadform(false);
@@ -123,11 +126,11 @@ function BookaDemo(props) {
         }
         if (location.search === "?showLeads") {
             setResultType("pricing");
-            if (lead_id > 0) {
+            if (lead_id > 0 || cookies.get('leadid') !== null) {
                 if (fee_amount == 0) {
                     // showLeadsForm();
                     showfeecalculator();
-                    setnavigation(true);
+                    setnavigation(false);
                     setpackages(true);
                 } else if (fee_amount > 0) {
                     setappointmentpage(true);

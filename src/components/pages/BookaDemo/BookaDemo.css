@@ -357,6 +357,9 @@
         color: #777777;
         white-space: nowrap;
     }
+    .confirm-appointment{
+        margin-top: 5rem;
+    } 
     .booking-demo-appointment .flex-row {
         margin-top: 3rem;
         background: none;

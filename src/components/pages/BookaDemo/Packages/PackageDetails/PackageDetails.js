@@ -3,9 +3,11 @@ import { CardDeck, Card, ListGroup, Button } from 'react-bootstrap';
 import { TutorsContext } from '../../../../../Provider';
 import Available_Packages from '../../Available_Packages';
 import { ClipLoader } from 'react-spinners';
+import Cookies from 'universal-cookie';
 function PackageDetails(props) {
+    const cookies = new Cookies();
     const setSelectedPackage = (index) => {
-        if (lead_id != 0) {
+        if (lead_id != 0 || cookies.get('leadid') !== null) {
             props.showfeecalculator();
             props.PricingwithLeadId();
             setOptedPackage(index)

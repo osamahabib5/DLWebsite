@@ -42,11 +42,13 @@ function PricingFilters(props) {
                 // calculateFees(response.data.data.fee_amount)
                 startLoading();
                 props.showtutoroptions();
+                props.showNavigation();
             }).catch(error => {
                 console.log("Filters Error: " + error)
             })
         }
         if (result_type === "pricing") {
+            props.showNavigation();
             props.showAppointmentPagewithTeacher();
         }
     }

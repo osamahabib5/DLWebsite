@@ -3,17 +3,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { TutorsContext } from '../../../Provider';
 import { useHistory } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 function NavigateDemo(props) {
     const { calculateFees, result_type, lead_id } = useContext(TutorsContext)
-
+    const cookies = new Cookies();
     const goBack = (e) => {
         e.preventDefault();
         if (props.successfullead) {
-            if (lead_id == 0) {
+            if (lead_id == 0 ) {
                 props.hidefeecalculator()
                 calculateFees(0);
             }
-            if (lead_id != 0) {
+            if (lead_id != 0 || cookies.get('leadid') !== null) {
+                console.log("LeadID")
+                props.LeadAlreadyFilled()
+                calculateFees(0);
+            }
+            if (lead_id != 0 || cookies.get('leadid') !== null) {
+                console.log("LeadID")
                 props.LeadAlreadyFilled()
                 calculateFees(0);
             }
@@ -27,7 +34,7 @@ function NavigateDemo(props) {
             props.hidetutoroptions();
         }
         if (props.showappointmentpage) {
-            if (result_type == "pricing" && lead_id != 0) {
+            if (result_type == "pricing" && lead_id != 0 || cookies.get('leadid') !== null) {
                 props.showfeecalculator();
                 props.hideAppointmentPage();
             }

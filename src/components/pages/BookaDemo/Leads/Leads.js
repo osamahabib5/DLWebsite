@@ -10,8 +10,6 @@ import Cookies from 'universal-cookie';
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const cookies = new Cookies();
-
-
     const postleadurl = baseUrl + '/api/lead/create';
     const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "", country: parent_country, city: "Karachi" });
     const handleOnChange = (e) => {
