@@ -6,9 +6,12 @@ import baseUrl from "../../../../baseUrl/baseUrl";
 import axios from "axios";
 import { TutorsContext } from "../../../../Provider";
 import Swal from 'sweetalert2'
-import PhoneInput from 'react-phone-number-input';
+import Cookies from 'universal-cookie';
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
+    const cookies = new Cookies();
+
+
     const postleadurl = baseUrl + '/api/lead/create';
     const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "", country: parent_country, city: "Karachi" });
     const handleOnChange = (e) => {
@@ -46,6 +49,8 @@ function Leads(props) {
             await axios.post(postleadurl, leadsdetail).then(response => {
                 const leadid = JSON.stringify(response.data.data.lead_id)
                 setLeadId(leadid)
+                cookies.set('leadid', leadid, { path: '/' });
+                console.log("LeadID: "+ cookies.get('leadid'));
                 if (!props.shownavigation) {
                     props.setnavigation(true);
                 }

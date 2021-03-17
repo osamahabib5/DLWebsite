@@ -11,7 +11,7 @@ function ScheduleDemo(props) {
     const { teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
-    const bookDemoUrl = baseUrl + "/api/demo/book/"+ teacher_id;
+    const bookDemoUrl = baseUrl + "/api/demo/book";
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
@@ -76,7 +76,7 @@ function ScheduleDemo(props) {
         }
         else {
             await axios.post(bookDemoUrl, demodata).then(response => {
-                // console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
+                console.log("bOOKdEMOrESPONSE: " + JSON.stringify(response));
                 setselecteddate("");
                 setdemodata({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" });
                 startLoading();
@@ -118,8 +118,8 @@ function ScheduleDemo(props) {
     }
     useEffect(() => {
         fetchDays();
-        console.log("DaysList: " + JSON.stringify(DaysList))
-    }, [2])
+        // console.log("DaysList: " + JSON.stringify(DaysList))
+    }, [])
     return (
         <Container>
             <Row>

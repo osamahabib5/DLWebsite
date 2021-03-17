@@ -214,7 +214,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} max={20} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput min={2} defaultValue = {2} max={20} size={10} className="numericinput" onChange={(e) => {
                         setdays(parseInt(e));
                         setadvancedfilters({
                             ...advancedfilter,
