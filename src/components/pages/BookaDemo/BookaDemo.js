@@ -130,11 +130,12 @@ function BookaDemo(props) {
                 if (fee_amount == 0) {
                     // showLeadsForm();
                     showfeecalculator();
-                    setnavigation(false);
-                    setpackages(true);
-                } else if (fee_amount > 0) {
-                    setappointmentpage(true);
                     setnavigation(true);
+                    setpackages(true);
+                } 
+                if (fee_amount > 0) {
+                    setappointmentpage(true);
+                    setnavigation(false);
                     setpackages(true);
                 }
                 else {
@@ -180,7 +181,7 @@ function BookaDemo(props) {
             fetchlocation()
         }
         SetDemoFlow();
-    }, [id])
+    }, [fee_amount])
     return (
         <div className="bookademo">
             <Container>

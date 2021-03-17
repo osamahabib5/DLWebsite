@@ -1,22 +1,20 @@
 import React, { useContext, useState } from 'react'
-import { Container, Row, Col, Form, FormCheck, OverlayTrigger, Tooltip, Button, Image } from 'react-bootstrap'
+import { Container, Row, Col, Form, FormCheck } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
 import axios from "axios";
 import { TutorsContext } from '../../../../Provider';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from '../../../../baseUrl/baseUrl';
-import Swal from 'sweetalert2'
-import info from "./Info.png";
 import FiltersDescription from './FiltersDescription';
+import Cookies from 'universal-cookie';
 function PricingFilters(props) {
+    const cookies = new Cookies();
     const { setOptedPackage, opted_package, parent_country, lead_id,
          startLoading, getFilteredTeachersList, calculateFees, result_type, 
          stopLoading, subscription_price, setConfirmPricing } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
     const [hours, sethours] = useState(2);
     const [days, setdays] = useState(1);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_price, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     const { class_type, tutor_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
@@ -61,6 +59,7 @@ function PricingFilters(props) {
             startLoading();
             await axios.post(url, advancedfilter).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
+                console.log("Fees: "+ response.data.data.fee_amount)
                 calculateFees(response.data.data.fee_amount)
 
                 // setadvancedfilters({
