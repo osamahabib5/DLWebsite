@@ -37,7 +37,7 @@ function TeachingMethods(props) {
                         <Col className="teaching-hours">
                             <div className="d-flex flex-column bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">
-                                    <p className="methods-heading">Lifetime teaching hours</p>
+                                    <p className="methods-heading">Hours Taught</p>
                                 </div>
                                 <div className="p-2 bd-highlight" style={{ marginTop: '-1rem' }}>
                                     <p className="methods-number">{props.lifetime_hours} hours</p>

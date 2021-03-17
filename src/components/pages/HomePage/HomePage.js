@@ -45,7 +45,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "0rem" }} />
+                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "-0.1rem" }} />
                     <ImageContent />
                 </div>
             </div>
@@ -55,7 +55,7 @@ function HomePage(props) {
             </div>
             <div className="video">
                 <div className={classname}>
-                    <Videocontent />
+                    <Videocontent isMobile = {isMobile}/>
                     <div className={contentclassname}>
                         <p className={ourmission}> OUR MISSION </p>
                         {/* <p className = {missioncontent}>We strive to help every child excel with the best tutors, cutting-edge technology and a world class curriculum. Quality online learning is our forte!</p> */}

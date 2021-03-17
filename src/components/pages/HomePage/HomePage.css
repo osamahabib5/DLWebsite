@@ -11,7 +11,7 @@
     /* .card-deck{
         width: 70%;
     } */
-    .BecomeTutor .img-fluid{
+    .BecomeTutor .img-fluid {
         height: 500px;
         width: 70%;
     }
@@ -21,7 +21,7 @@
         width: 668px;
         height: 282px;
     }
-    .HomeImage .bg-dark{
+    .HomeImage .bg-dark {
         background-color: white;
     }
     .flex-row {
@@ -64,6 +64,11 @@
         font-size: 12px;
         line-height: 16px;
         color: #FFFFFF;
+    }
+    .Image-Slider .carousel-caption {
+        width: 700px;
+        top: 6rem;
+        left: 51rem;
     }
 }
 
@@ -340,9 +345,11 @@
 .OurApproach .card-text {
     margin-top: 0rem;
 }
-.bg-dark{
+
+.bg-dark {
     background-color: white!important;
 }
+
 /* .HomeImage .card-img {
     margin-top: 3rem;
 } */

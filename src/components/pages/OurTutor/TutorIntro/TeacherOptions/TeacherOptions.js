@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { TutorsContext } from '../../../../../Provider';
 function TeacherOptions() {
     let { id } = useParams();
-    let { getTeacherId} = useContext(TutorsContext);
+    let { getTeacherId } = useContext(TutorsContext);
     useEffect(() => {
         getTeacherId(id);
     }, [id])
@@ -21,16 +21,18 @@ function TeacherOptions() {
         <Container>
             <Row>
                 <Col>
-                    <Link
-                        to={{
-                            pathname: "/pricing",
-                            search: "showLeads",
-                            state: { teacherid: id }
-                        }}
-                    ><Button variant="primary">Book a Demo</Button></Link>
-                    <div style={{ marginTop: "1rem" }}></div>
-                    <Button variant="primary" onClick={handleShow}>Leave a review</Button>
-                    <div style={{ marginTop: "1rem" }}></div>
+                    <div className="d-flex justify-content-center" style = {{flexDirection: "column"}}>
+                        <Link
+                            to={{
+                                pathname: "/pricing",
+                                search: "showLeads",
+                                state: { teacherid: id }
+                            }}
+                        ><button className="btn button-cta button-blue">Book a Demo</button></Link>
+                        <div style={{ marginTop: "1rem" }}></div>
+                        <button className="btn button-cta button-blue" onClick={handleShow}>Leave a review</button>
+                        <div style={{ marginTop: "1rem" }}></div>
+                    </div>
                 </Col>
             </Row>
             <div>

@@ -15,7 +15,7 @@ const Available_Packages = [{
     'id': 1,
     'title': '3 MONTHS PACKAGE',
     'price': 6800,
-    'heading': 'Dot&Line Exclusive Premium Package',
+    'heading': 'Dot & Line Exclusive Premium Package',
     'description': ["2 hrs/week", "In-Person Classes & Online Classes", "Focused Attention"],
     'url': 'video/English.mp4',
     'color': "#5E6981",
@@ -43,7 +43,7 @@ const Available_Packages = [{
     'id': 3,
     'title': '3 MONTHS PACKAGE',
     'price': 10100,
-    'heading': 'Dot&Line Exclusive Premium Package',
+    'heading': 'Dot & Line Exclusive Premium Package',
     'description': ["2 hrs/week", "In-Person Classes & Online Classes", "Focused Attention"],
     'color': "#5E6981",
     "styling": {

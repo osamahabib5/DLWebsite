@@ -76,6 +76,7 @@ function ScheduleDemo(props) {
     const BookDemo = async (e) => {
         e.preventDefault();
         if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
+            console.log("Demodata: ")
             opensweetalertdanger("Please fill all the required values!")
         }
         else {
@@ -84,7 +85,7 @@ function ScheduleDemo(props) {
                 setselecteddate("");
                 setdemodata({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" });
                 startLoading();
-                setDemoDate(date);
+                setDemoDate(new Date(date).toDateString());
                 setDemoTime(time);
                 props.hideNavigation();
                 props.showAppointmentConfirmation();

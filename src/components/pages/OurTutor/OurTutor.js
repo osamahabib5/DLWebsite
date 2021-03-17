@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 import { useRouteMatch, useLocation } from "react-router-dom";
 function OurTutor() {
     let { id } = useParams();
-    const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [] })
+    const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [] , course_packages: []})
     //const [form, setform] = useState(null);
     const [apiurl, setUrl] = useState(baseUrl + '/api/teacher/profile/')
     let { url } = useRouteMatch();
@@ -24,6 +24,7 @@ function OurTutor() {
     async function getUser() {
         await axios.get(apiurl + id)
             .then(function (response) {
+                console.log("Response: "+ JSON.stringify(response.data.data.course_packages))
                 setform({
                     name: response.data.data.name,
                     bio: response.data.data.bio,
@@ -35,7 +36,8 @@ function OurTutor() {
                     image: response.data.data.image,
                     average_rating: parseInt(response.data.data.average_rating),
                     super_tutor: response.data.data.super_tutor,
-                    teaching_methods: response.data.data.teaching_methods
+                    teaching_methods: response.data.data.teaching_methods,
+                    course_packages : response.data.data.course_packages,
                 })
             }
             )
@@ -78,7 +80,10 @@ function OurTutor() {
                             <TeacherDescription bio = {form.bio}/>
                         </div>
                         <div className="teacher-credentials">
-                            {form.programs.length != 0 ? <TeacherCredential programs = {form.programs}/> : ''}
+                            {form.programs.length != 0 && form.course_packages.length != 0? 
+                            <TeacherCredential programs = {form.programs}
+                            course_packages = {form.course_packages}
+                            />:form.programs.length != 0 ? <TeacherCredential programs = {form.programs}/>  : form.course_packages.length != 0 ? <TeacherCredential course_packages = {form.course_packages}/>: ''}
                         </div>
                     </div>
                     <div className="col" style={{ alignSelf: "center" }}>

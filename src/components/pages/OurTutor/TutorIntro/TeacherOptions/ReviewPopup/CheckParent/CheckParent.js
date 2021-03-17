@@ -50,9 +50,9 @@ function CheckParent(props) {
                     setLoading(false);
                     setclassname("text-danger");
                     if (value && !email) {
-                        setmessage("Please enter Dot&Line Registered Number")
+                        setmessage("Please enter Dot & Line Registered Number")
                     } else if (email && !value) {
-                        setmessage("This is not a valid Dot&Line email!")
+                        setmessage("This is not a valid Dot & Line email!")
                     } else if (email && value) {
                         setmessage("Please enter valid credentials!")
                     };

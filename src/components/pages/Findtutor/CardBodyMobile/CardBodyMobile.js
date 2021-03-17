@@ -84,7 +84,7 @@ function CardBodyMobile(props) {
                 </Row>
                 <Row>
                     <Col>
-                        <InputGroup className="mb-3" style = {{marginLeft: "0.5rem"}}>
+                        <InputGroup className="mb-3" style={{ marginLeft: "0.5rem" }}>
                             <FormControl
                                 placeholder="Search for a Specific Tutor"
                                 aria-label="Username"
@@ -109,7 +109,7 @@ function CardBodyMobile(props) {
                             name="subjects"
                             onChange={onChangeSubject}
                         /> : <div>
-                                ..Loading
+                            ..Loading
                     </div>}
                     </Col>
                 </Row>
@@ -144,11 +144,13 @@ function CardBodyMobile(props) {
                         />
                     </Col>
                 </Row> : ""}
-                <Row >
+                <Row>
                     <Col>
-                        <Button onClick={handleSubmit} style = {{marginTop: advanced_filters ? "3rem" : "0rem"}}>
-                            Search
-                    </Button>
+                        <div className = "d-flex justify-content-center">
+                            <button className="btn button-cta button-blue" onClick={handleSubmit} style={{ marginTop: advanced_filters ? "3rem" : "0rem" }}>
+                                Search
+                    </button>
+                        </div>
                     </Col>
                 </Row>
             </Container>

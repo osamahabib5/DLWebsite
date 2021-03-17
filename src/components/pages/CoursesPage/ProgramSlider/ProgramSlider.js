@@ -16,7 +16,7 @@ const ProgramSlider = (props) =>{
                     <p>Comprehension</p>
                     <p>Vocabulary development</p>
                     <p>Essay writing</p>
-                    <p><img src = {play} style = {{cursor: "pointer"}} id = "english-mobile" onClick = {props.changeVideoPopup}/></p>
+                    <p><img src = {play} style = {{cursor: "pointer"}} className = "english-mobile" onClick = {props.changeVideoPopup}/></p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -32,21 +32,7 @@ const ProgramSlider = (props) =>{
                     <p>Sequences & algebra</p>
                     <p>Mental math</p>
                     <p>Word problems</p>
-                    <p><img src = {play} style = {{cursor: "pointer"}} id = "maths-mobile" onClick = {props.changeVideoPopup}/></p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <Carousel.Caption style={{ backgroundColor: "#FCCFCB" }}>
-                    <p style={{ fontWeight: "800" }}>Others</p>
-                    <p></p>
-                    <p>Urdu</p>
-                    <p>French</p>
-                    <p>Mandarin</p>
-                    <p>Art</p>
-                    <p>HW Help</p>
-                    <p>Admission Test Prep</p>
-                    <p>Online & In-person Classes</p>
-                    <p><img src = {play} style = {{cursor: "pointer"}} id = "others-mobile" onClick = {props.changeVideoPopup}/></p>
+                    <p><img src = {play} style = {{cursor: "pointer"}} className = "maths-mobile" onClick = {props.changeVideoPopup}/></p>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

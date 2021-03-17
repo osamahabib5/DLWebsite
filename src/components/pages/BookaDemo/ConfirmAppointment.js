@@ -10,7 +10,7 @@ function ConfirmAppointment() {
         <Container>
             <Row>
                 <Col>
-                    <p className="AppointmentConfirmationHeading">Get Ready. Your Free Demo has been Scheduled with {teacher_info ? teacher_info.name : ""} on {demo_day ? demo_day : ""},  {demo_date ? demo_date : ""} at {demo_time ? demo_time : ""}
+                    <p className="AppointmentConfirmationHeading">Get Ready. Your Free Demo has been Scheduled with {teacher_info ? teacher_info.name : ""} on  {demo_date ? demo_date : ""} at {demo_time ? demo_time : ""}
                     </p>
                 </Col>
             </Row>

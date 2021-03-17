@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BecomeaTutor.css'
+import { Link } from 'react-router-dom';
 function BecomeaTutor(props) {
     const [isMobile, setclassname] = useState(false);
-    const mobileview = () =>{
-        if (window.innerWidth< 769){
+    const mobileview = () => {
+        if (window.innerWidth < 769) {
             setclassname(true);
         }
-        if(window.innerWidth >= 769){
+        if (window.innerWidth >= 769) {
             setclassname(false);
         }
     }
@@ -19,14 +20,16 @@ function BecomeaTutor(props) {
     const contentclassname = isMobile ? 'tutor-mobile' : 'tutor-window'
     return (
         <div className={classname}>
-            <img src={props.image} className="img-fluid"/>
+            <img src={props.image} className="img-fluid" />
             <div className={contentclassname}>
                 <p className="first"> BECOME A TUTOR </p>
                 <p className="second">  Transform your career by joining our thriving community of global teachers!</p>
                 <p className="third">
-                Get trained, use our world class learning materials and earn from the comfort of your home. Being a Dot & Line tutor has brought meaning, confidence and financial independence to hundreds of women! 
+                    Get trained, use our world class learning materials and earn from the comfort of your home. Being a Dot & Line tutor has brought meaning, confidence and financial independence to hundreds of women!
                 </p>
-                <button type="button" className="btn btn-info">Learn More</button>
+                <Link to="/becometutor">
+                    <button type="button" className="btn btn-info">Learn More</button>
+                </Link>
             </div>
         </div>
     )

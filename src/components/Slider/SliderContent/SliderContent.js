@@ -13,7 +13,7 @@ function SliderContent() {
             </div>
             <div className="row">
                 <div className="col">
-                <p className = "statement">“My child’s confidence has grown and grades have improved with Dot&Line! A great tutor and wonderful mentor to our daughter!”</p>
+                <p className = "statement">“My child’s confidence has grown and grades have improved with Dot & Line! A great tutor and wonderful mentor to our daughter!”</p>
             </div>
             </div>
             <div className="row">

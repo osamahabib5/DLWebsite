@@ -13,7 +13,7 @@ function OurApproach() {
                 <p className="heading">OUR APPROACH</p>
             </div>
             <div className="p-2 bd-highlight">
-                <p className="Approach-content">What sets Dot & Line apart</p></div>
+                <p className="Approach-content">What Sets Dot & Line Apart ?</p></div>
             <div className="p-2 bd-highlight">
                 <p className="details">With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte.
  </p>
@@ -25,7 +25,7 @@ function OurApproach() {
                         <Card.Body>
                             <Card.Title><p className="title">Expert Tutors</p></Card.Title>
                             <Card.Text>
-                                <p className="title-description">Trained and experienced teachers</p>
+                                <p className="title-description">Trained and experienced tutors</p>
                                 <p className="title-description">Individual attention</p>
                                 <p className="title-description">Guaranteed results</p>
                             </Card.Text>
@@ -34,11 +34,11 @@ function OurApproach() {
                     <Card>
                         <Card.Img variant="top" src={Icon2} />
                         <Card.Body>
-                            <Card.Title><p className="title">Curated Learning Packages</p></Card.Title>
+                            <Card.Title><p className="title">Curated LearningPacks</p></Card.Title>
                             <Card.Text>
                                 <p className="title-description">Practice Worksheets</p>
                                 <p className="title-description">Developed by subject specialists</p>
-                                <p className="title-description">HW help and exam preparation in all subjects</p>
+                                <p className="title-description">HW help and exam prep</p>
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -46,7 +46,7 @@ function OurApproach() {
                     <Card >
                         <Card.Img variant="top" src={Icon3} />
                         <Card.Body>
-                            <Card.Title><p className="title">Personalized Learning Journey</p></Card.Title>
+                            <Card.Title><p className="title">Personalized Learning</p></Card.Title>
                             <Card.Text>
                                 <p className="title-description">Track your child's progress</p>
                                 <p className="title-description">Interactive quizzes</p>
@@ -60,8 +60,9 @@ function OurApproach() {
                             <Card.Title><p className="title">Proven Results</p></Card.Title>
                             <Card.Text>
                                 <p className="title-description">40% grade jump in just four months!</p>
-                                <p className="title-description">No rote learning – deep understanding of concepts</p>
-                                <p className="title-description">Speedy logical and thinking skills</p>
+                                <p className="title-description">No rote learning</p>
+                                <p className="title-description">Deep understanding of concepts</p>
+                                {/* <p className="title-description">Improve logical and thinking skills</p> */}
                             </Card.Text>
                         </Card.Body>
                     </Card>
