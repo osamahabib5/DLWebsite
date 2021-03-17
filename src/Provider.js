@@ -19,7 +19,8 @@ const initialState = {
     subscription_price: "",
     confirmpricing: false,
     demo_date: "",
-    demo_time: ""
+    demo_time: "",
+    demo_day: ""
 }
 
 const actions = {
@@ -43,7 +44,8 @@ const actions = {
     SETSUBSCRIPTION: 'SETSUBSCRIPTION',
     CONFIRMPRICING: 'CONFIRMPRICING',
     SETDEMODATE: 'SETDEMODATE',
-    SETDEMOTIME: 'SETDEMOTIME'
+    SETDEMOTIME: 'SETDEMOTIME',
+    SETDEMODAY: 'SETDEMODAY'
 }
 
 function reducer(state, action) {
@@ -154,6 +156,11 @@ function reducer(state, action) {
                 ...state,
                 demo_time: action.value
             }
+        case actions.SETDEMODAY:
+            return {
+                ...state,
+                demo_day: action.value
+            }
         default:
             return state;
     }
@@ -181,6 +188,7 @@ function Provider({ children }) {
         confirmpricing: state.confirmpricing,
         demo_time: state.demo_time,
         demo_date: state.demo_date,
+        demo_day:state.demo_day,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -203,6 +211,7 @@ function Provider({ children }) {
         setConfirmPricing: (value) => { dispatch({ type: actions.CONFIRMPRICING, value }) },
         setDemoDate: (value) => { dispatch({ type: actions.SETDEMODATE, value }) },
         setDemoTime: (value) => { dispatch({ type: actions.SETDEMOTIME, value }) },
+        setDemoDay: (value)=>{ dispatch({ type: actions.SETDEMODAY, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

@@ -10,7 +10,7 @@ import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
     const cookies = new Cookies()
-    const { teacher_id, lead_id, teacher_info, startLoading, setDemoDate, setDemoTime } = useContext(TutorsContext);
+    const { teacher_id, lead_id, teacher_info, startLoading, setDemoDate, setDemoTime, setDemoDay } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
     const bookDemoUrl = baseUrl + "/api/demo/book";
@@ -36,6 +36,7 @@ function ScheduleDemo(props) {
         if (selectedday) {
             var d = new Date(selectedday);
             var dayofweek = d.getDay();
+            setDemoDay(weekdays[dayofweek])
             var month = '' + (d.getMonth() + 1);
             var day = '' + d.getDate();
             var year = d.getFullYear().toString();
