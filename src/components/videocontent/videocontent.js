@@ -9,6 +9,7 @@ function Videocontent() {
             width = "100%"
             height = "360px"
             url="video/Dot&LinePhilosophy.mp4"
+            style = {{backgroundColor: "white"}}
             />
             
     )

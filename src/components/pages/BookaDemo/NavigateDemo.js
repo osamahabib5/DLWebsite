@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { TutorsContext } from '../../../Provider';
+import { useHistory } from 'react-router-dom';
 function NavigateDemo(props) {
     const { calculateFees, result_type, lead_id } = useContext(TutorsContext)
+
     const goBack = (e) => {
         e.preventDefault();
         if (props.successfullead) {

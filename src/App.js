@@ -13,7 +13,7 @@ import ContactPage from './components/pages/ContactPage/ContactPage';
 import CoursePage from './components/pages/CoursesPage/CoursePage';
 import {
   Switch,
-  Route
+  Route, useRouteMatch
 } from "react-router-dom";
 import OurTutor from './components/pages/OurTutor/OurTutor';
 import BecomeTutor from './components/pages/BecomeTutor/BecomeTutor';
@@ -23,6 +23,7 @@ import Findtutor from './components/pages/Findtutor/Findtutor';
 import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
 function App() {
+  let {url} = useRouteMatch();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
   const [toggleFooter, setToggleFooter] = useState(true);
   const [notification, closeNotification] = useState(true);
@@ -58,9 +59,9 @@ function App() {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {Notification}
+        {url === '/' ? Notification : ""}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        {MobileNotification}
+        {url === '/' ? MobileNotification : ""}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>

@@ -44,6 +44,7 @@ function FormWindow() {
       .then(function (response) {
       })
       .catch(function (error) {
+          console.log("Error! :"+ error)
       });
    }
    const handleSubmit =async (e) => {

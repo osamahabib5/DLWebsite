@@ -3,19 +3,21 @@
     left: 0;
     width: 100%;
     height: 40px;
-    background: #FF4646;
+    background: #d47c7c;
     position: sticky;
     top: 0;
     z-index: 300;
 }
 
 .notification_bar a {
-    color: blue;
+    color: white;
     font-size: 13px;
     padding-inline: 0.5rem;
     text-decoration: underline;
 }
-
+.notification_bar a:hover{
+    color: blue;
+}
 @media only screen and (max-width: 769px) {
     .notification_bar {
         display: none;

@@ -143,7 +143,6 @@ function BookaDemo(props) {
             }
         }
         else if (location.search === "?pricing") {
-            setpackages(false);
             setnavigation(false);
             setleadform(false);
             setsuccessfullead(false);
@@ -151,6 +150,7 @@ function BookaDemo(props) {
             setappointmentpage(false);
             setscheduledemo(false);
             setconfirmappointment(false);
+            setpackages(false);
         }
     }
     const fetchlocation = async () => {

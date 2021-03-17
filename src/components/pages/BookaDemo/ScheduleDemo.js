@@ -11,7 +11,7 @@ function ScheduleDemo(props) {
     const { teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
-    const bookDemoUrl = baseUrl + "/api/demo/book";
+    const bookDemoUrl = baseUrl + "/api/demo/book/"+ teacher_id;
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" })
