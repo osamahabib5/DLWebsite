@@ -5,12 +5,14 @@ import SelectedPricePackage from './Leads/SelectedPricePackage'
 import SelectedTeacher from './SelectedTeacher'
 import { ClipLoader } from 'react-spinners';
 function ConfirmAppointment() {
-    const { calculateFees, loading } = useContext(TutorsContext);
+    const { teacher_info, demo_date, demo_time} = useContext(TutorsContext);
     return (
         <Container>
             <Row>
                 <Col>
-                    <p className="AppointmentConfirmationHeading">Get Ready. Your Free Demo has been Scheduled!</p>
+                    <p className="AppointmentConfirmationHeading">Get Ready. Your Free Demo has been Scheduled with {teacher_info ? teacher_info.name : ""} on 
+                    {demo_date ? demo_date : ""} at {demo_time ? demo_time : ""} 
+                    </p>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">

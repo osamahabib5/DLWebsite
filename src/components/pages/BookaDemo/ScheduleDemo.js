@@ -8,7 +8,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Swal from 'sweetalert2'
 function ScheduleDemo(props) {
-    const { teacher_id, lead_id, teacher_info, startLoading } = useContext(TutorsContext);
+    const { teacher_id, lead_id, teacher_info, startLoading, setDemoDate, setDemoTime } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState("");
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
     const bookDemoUrl = baseUrl + "/api/demo/book";
@@ -25,6 +25,7 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
+    const {date,time} = demodata;
     const { booked_times, times, days } = DaysList;
     const handleDayClick = (day, { selected }) => {
         settimes((prevState) => !prevState);
@@ -80,11 +81,15 @@ function ScheduleDemo(props) {
                 setselecteddate("");
                 setdemodata({ teacher_id: teacher_id, lead_id: lead_id, date: selecteddate, time: "", note: "" });
                 startLoading();
+                setDemoDate(date);
+                setDemoTime(time);
+                props.hideNavigation();
                 props.showAppointmentConfirmation();
             }).catch(error => {
-                if (error.response.status == 400) {
-                    opensweetalertdanger("You have already booked a demo with this teacher!")
-                }
+                console.log("Error: "+ error)
+                // if (error.response.status == 400) {
+                //     opensweetalertdanger("You have already booked a demo with this teacher!")
+                // }
             });
         }
     }

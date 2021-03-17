@@ -17,7 +17,9 @@ const initialState = {
     teacher_info: null,
     result_type: "",
     subscription_price: "",
-    confirmpricing: false
+    confirmpricing: false,
+    demo_date: "",
+    demo_time: ""
 }
 
 const actions = {
@@ -39,7 +41,9 @@ const actions = {
     GETTEACHERINFO: 'GETTEACHERINFO',
     SETRESULTTYPE: 'SETRESULTTYPE',
     SETSUBSCRIPTION: 'SETSUBSCRIPTION',
-    CONFIRMPRICING: 'CONFIRMPRICING'
+    CONFIRMPRICING: 'CONFIRMPRICING',
+    SETDEMODATE: 'SETDEMODATE',
+    SETDEMOTIME: 'SETDEMOTIME'
 }
 
 function reducer(state, action) {
@@ -140,6 +144,16 @@ function reducer(state, action) {
                 ...state,
                 confirmpricing: action.value
             }
+        case actions.SETDEMODATE:
+            return {
+                ...state,
+                demo_date: action.value
+            }
+        case actions.SETDEMOTIME:
+            return {
+                ...state,
+                demo_time: action.value
+            }
         default:
             return state;
     }
@@ -165,6 +179,8 @@ function Provider({ children }) {
         result_type: state.result_type,
         subscription_price: state.subscription_price,
         confirmpricing: state.confirmpricing,
+        demo_time: state.demo_time,
+        demo_date: state.demo_date,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -185,6 +201,8 @@ function Provider({ children }) {
         setResultType: (value) => { dispatch({ type: actions.SETRESULTTYPE, value }) },
         setSubscription: (value) => { dispatch({ type: actions.SETSUBSCRIPTION, value }) },
         setConfirmPricing: (value) => { dispatch({ type: actions.CONFIRMPRICING, value }) },
+        setDemoDate: (value) => { dispatch({ type: actions.SETDEMODATE, value }) },
+        setDemoTime: (value) => { dispatch({ type: actions.SETDEMOTIME, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

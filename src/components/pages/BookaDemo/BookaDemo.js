@@ -112,6 +112,9 @@ function BookaDemo(props) {
     const showNavigation = ()=>{
         setnavigation(true);
     }
+    const hideNavigation = ()=>{
+        setnavigation(false);
+    }
     const SetDemoFlow = () => {
         setResultType("teachers")
         if (id) {
@@ -258,7 +261,7 @@ function BookaDemo(props) {
                 {scheduledemo ? <Row>
                     <Col>
                         <div className="scheduledemo">
-                            <ScheduleDemo showAppointmentConfirmation={showAppointmentConfirmation} />
+                            <ScheduleDemo showAppointmentConfirmation={showAppointmentConfirmation} hideNavigation = {hideNavigation}/>
                         </div>
                     </Col>
                 </Row> : ""}
