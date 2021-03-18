@@ -72,7 +72,7 @@ function ScheduleDemo(props) {
             ...demodata,
             time: e.target.value
         })
-        setisClicked(true);
+        // setisClicked(true);
         e.target.setAttribute("class", btn_class)
     }
     const BookDemo = async (e) => {
@@ -169,7 +169,7 @@ function ScheduleDemo(props) {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg="6">
+                <Col xs lg= {props.isMobile ? "12" : "6"}>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Any comments for the teacher</Form.Label>
                         <Form.Control as="textarea" value={demodata.note} onChange={(e) => setdemodata({

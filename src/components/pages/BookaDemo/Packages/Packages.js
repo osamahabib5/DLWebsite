@@ -12,7 +12,7 @@ function Packages(props) {
                     <PackageDetails showLeadsForm={props.showLeadsForm} showfeecalculator={props.showfeecalculator} PricingwithLeadId = {props.PricingwithLeadId} />
                 </div>
                 <div className="p-2 bd-highlight" style={{ display: (props.isMobile ? "" : 'none') }} >
-                    <PackageDetailsMobile showLeadsForm={props.showLeadsForm}/>
+                    <PackageDetailsMobile showLeadsForm={props.showLeadsForm} showfeecalculator={props.showfeecalculator} PricingwithLeadId = {props.PricingwithLeadId}/>
                 </div>
             </div>
         </div>

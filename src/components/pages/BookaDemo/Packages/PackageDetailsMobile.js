@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
-import { Carousel, ListGroup} from 'react-bootstrap';
+import { Carousel, ListGroup } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 import { TutorsContext } from '../../../../Provider';
 import Available_Packages from '../Available_Packages';
 function PackageDetailsMobile(props) {
-    const { parent_country, setOptedPackage } = useContext(TutorsContext)
+    const cookies = new Cookies();
+    const { parent_country, setOptedPackage, lead_id } = useContext(TutorsContext)
     const firstpackage = {
         backgroundColor: "rgb(255, 248, 248)",
         border: "2px solid rgb(252, 207, 203)",
@@ -22,14 +24,31 @@ function PackageDetailsMobile(props) {
         }
         return secondpackage
     }
+    const setSelectedPackage = (index) => {
+        if (lead_id != 0 || cookies.get('leadid') !== null) {
+            props.showfeecalculator();
+            props.PricingwithLeadId();
+            setOptedPackage(index)
+        }
+        else {
+            props.showLeadsForm();
+            setOptedPackage(index)
+        }
+    }
     return (
         <div className="pricingpackagemobile">
             <Carousel>
                 {parent_country === "Pakistan" ? Available_Packages.slice(0, 2).map((data, index) => (
                     <Carousel.Item key={index}>
                         <Carousel.Caption style={setPackagestyle(index)} onClick={() => {
-                            props.showLeadsForm();
-                            setOptedPackage(index)
+                            // if (cookies.get('leadid') != null) {
+                            //     props.showfeecalculator();
+                            //     setOptedPackage(index)
+                            // } else {
+                            //     props.showLeadsForm();
+                            //     setOptedPackage(index)
+                            // }
+                            setSelectedPackage(index)
                         }}>
                             {/* <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} /> */}
                             <p className="packagemobileheading">{data.title}</p>
@@ -55,8 +74,14 @@ function PackageDetailsMobile(props) {
                     </Carousel.Item>
                 )) : Available_Packages.slice(2, 4).map((data, index) => (
                     <Carousel.Item key={index} onClick={() => {
-                        props.showLeadsForm();
-                        setOptedPackage(index)
+                        // if (cookies.get('leadid') != null) {
+                        //     props.showfeecalculator();
+                        //     setOptedPackage(index)
+                        // } else {
+                        //     props.showLeadsForm();
+                        //     setOptedPackage(index)
+                        // }
+                        setSelectedPackage(index)
                     }}>
                         <Carousel.Caption style={setPackagestyle(index)} >
                             {/* <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} /> */}
@@ -78,7 +103,7 @@ function PackageDetailsMobile(props) {
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
                             </ListGroup>
-                           
+
                         </Carousel.Caption>
 
                     </Carousel.Item>

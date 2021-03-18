@@ -43,6 +43,7 @@
     background-image: url(../images/Right.png);
     width: 56px;
     height: 56px;
+    z-index: 400;
 }
 
 .carousel-control-prev-icon {

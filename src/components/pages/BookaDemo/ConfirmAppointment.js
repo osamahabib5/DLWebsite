@@ -15,10 +15,10 @@ function ConfirmAppointment(props) {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg="2">
+                <Col xs lg="3">
                     <SelectedTeacher isMobile = {props.isMobile}/>
                 </Col>
-                <Col xs lg="2">
+                <Col xs lg="3">
                     <SelectedPricePackage />
                 </Col>
             </Row>

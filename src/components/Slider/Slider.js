@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 import DepositionImage from '../logo/Images/SliderImage.png'
 import testimonial from '../logo/Images/testimonials.jpg'
+import testimonial2 from '../logo/Images/testimonial2.jpg'
+import testimonial3 from '../logo/Images/testimonial3.jpg'
 import './Slider.css'
 function Slider() {
     return (
@@ -24,7 +26,7 @@ function Slider() {
                 <Carousel.Item interval={10000}>
                     <img
                         className="d-block w-100"
-                        src={DepositionImage}
+                        src={testimonial2}
                         alt="Third slide"
                     />
                     <Carousel.Caption>
@@ -37,7 +39,7 @@ Your Sincere student Abdul Wasih</p>
                 <Carousel.Item interval={10000}>
                     <img
                         className="d-block w-100"
-                        src={DepositionImage}
+                        src={testimonial3}
                         alt="Third slide"
                     />
                     <Carousel.Caption>

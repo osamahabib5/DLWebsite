@@ -224,6 +224,7 @@ function BookaDemo(props) {
                         <div className="packages">
                             <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
                                 PricingwithLeadId={PricingwithLeadId} isMobile={isMobile}
+                                showfeecalculator = {showfeecalculator}
                             />
                         </div>
                     </Col>
@@ -267,7 +268,9 @@ function BookaDemo(props) {
                 {scheduledemo ? <Row>
                     <Col>
                         <div className="scheduledemo">
-                            <ScheduleDemo showAppointmentConfirmation={showAppointmentConfirmation} hideNavigation={hideNavigation} />
+                            <ScheduleDemo showAppointmentConfirmation={showAppointmentConfirmation} hideNavigation={hideNavigation}
+                            isMobile = {isMobile}
+                            />
                         </div>
                     </Col>
                 </Row> : ""}
