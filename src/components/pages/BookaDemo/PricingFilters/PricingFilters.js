@@ -11,7 +11,7 @@ function PricingFilters(props) {
     const cookies = new Cookies();
     const { setOptedPackage, opted_package, parent_country, lead_id,
         startLoading, getFilteredTeachersList, calculateFees, result_type,
-        stopLoading, subscription_price, setConfirmPricing } = useContext(TutorsContext)
+        stopLoading, subscription_price, setConfirmPricing, setTutorType } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
     const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_price, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
@@ -64,6 +64,7 @@ function PricingFilters(props) {
             if (result_type === "teachers") {
                 startLoading();
                 await axios.post(url, advancedfilter).then(response => {
+                    setTutorType(tutor_type);
                     getFilteredTeachersList(response.data.data.teachers)
                     console.log("Fees: " + response.data.data.fee_amount)
                     calculateFees(response.data.data.fee_amount)
