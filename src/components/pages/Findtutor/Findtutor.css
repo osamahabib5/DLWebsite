@@ -298,6 +298,17 @@
     border-radius: 6px;
 }
 
+.button-white {
+    background: white;
+    border-radius: 6px;
+    color: black;
+}
+
+.button-white:hover {
+    background: #5f99a0;
+    border: 1px solid #5f99a0;
+}
+
 .button-blue:hover {
     color: #777777;
 }

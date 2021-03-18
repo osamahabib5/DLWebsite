@@ -28,9 +28,9 @@ function TeacherOptions() {
                                 search: "showLeads",
                                 state: { teacherid: id }
                             }}
-                        ><button className="btn button-cta button-blue">Book a Demo</button></Link>
+                        ><button className="btn button-cta button-white">Book a Demo</button></Link>
                         <div style={{ marginTop: "1rem" }}></div>
-                        <button className="btn button-cta button-blue" onClick={handleShow}>Leave a review</button>
+                        <button className="btn button-cta button-white" onClick={handleShow}>Leave a review</button>
                         <div style={{ marginTop: "1rem" }}></div>
                     </div>
                 </Col>
