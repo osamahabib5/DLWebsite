@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './OurTutor.css'
 import TutorIntro from './TutorIntro/TutorIntro';
@@ -11,20 +11,17 @@ import TeacherOptions from './TutorIntro/TeacherOptions/TeacherOptions';
 import axios from 'axios';
 import baseUrl from '../../../../src/baseUrl/baseUrl';
 import avatar from './TutorIntro/Images/avatar.jpg';
-import { useParams } from 'react-router-dom';
-import { useRouteMatch, useLocation } from "react-router-dom";
+import { useParams, useHistory } from 'react-router-dom';
 function OurTutor() {
     let { id } = useParams();
-    const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [] , course_packages: []})
-    //const [form, setform] = useState(null);
+    const [locationKeys, setLocationKeys] = useState([])
+    let history = useHistory()
+    const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [], course_packages: []})
     const [apiurl, setUrl] = useState(baseUrl + '/api/teacher/profile/')
-    let { url } = useRouteMatch();
-    let location = useLocation();
-
     async function getUser() {
         await axios.get(apiurl + id)
             .then(function (response) {
-                console.log("Response: "+ JSON.stringify(response.data.data.course_packages))
+                console.log("Response: " + JSON.stringify(response.data.data.course_packages))
                 setform({
                     name: response.data.data.name,
                     bio: response.data.data.bio,
@@ -37,7 +34,7 @@ function OurTutor() {
                     average_rating: parseInt(response.data.data.average_rating),
                     super_tutor: response.data.data.super_tutor,
                     teaching_methods: response.data.data.teaching_methods,
-                    course_packages : response.data.data.course_packages,
+                    course_packages: response.data.data.course_packages,
                 })
             }
             )
@@ -59,36 +56,36 @@ function OurTutor() {
                         <div className="d-flex flex-row bd-highlight mb-3">
                             <div className="p-2 bd-highlight">
                                 <div className="tutor-intro">
-                                    <TutorIntro image = {form.image == null ? avatar : form.image}/>
+                                    <TutorIntro image={form.image == null ? avatar : form.image} />
                                 </div>
                             </div>
                             <div className="p-2 bd-highlight">
                                 <div className="name">
-                                    <TutorName name = {form.name} bio = {form.bio} location = {form.location} average_rating = {form.average_rating} super_tutor = {form.super_tutor}/>
+                                    <TutorName name={form.name} bio={form.bio} location={form.location} average_rating={form.average_rating} super_tutor={form.super_tutor} />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col">
                         <div className="Tutor-Name">
-                            <TutorName  super_tutor = {form.super_tutor} name = {form.name} bio = {form.bio} location = {form.location} average_rating = {form.average_rating}/>
+                            <TutorName super_tutor={form.super_tutor} name={form.name} bio={form.bio} location={form.location} average_rating={form.average_rating} />
                         </div>
                         <div className="teaching-methods">
-                            {form.teaching_methods.length != 0 ? <TeachingMethods teaching_methods = {form.teaching_methods} active_students = {form.active_students} lifetime_hours = {form.lifetime_hours}/> : ''}
+                            {form.teaching_methods.length != 0 ? <TeachingMethods teaching_methods={form.teaching_methods} active_students={form.active_students} lifetime_hours={form.lifetime_hours} /> : ''}
                         </div>
                         <div className="teacher-description">
-                            <TeacherDescription bio = {form.bio}/>
+                            <TeacherDescription bio={form.bio} />
                         </div>
                         <div className="teacher-credentials">
-                            {form.programs.length != 0 && form.course_packages.length != 0? 
-                            <TeacherCredential programs = {form.programs}
-                            course_packages = {form.course_packages}
-                            />:form.programs.length != 0 ? <TeacherCredential programs = {form.programs}/>  : form.course_packages.length != 0 ? <TeacherCredential course_packages = {form.course_packages}/>: ''}
+                            {form.programs.length != 0 && form.course_packages.length != 0 ?
+                                <TeacherCredential programs={form.programs}
+                                    course_packages={form.course_packages}
+                                /> : form.programs.length != 0 ? <TeacherCredential programs={form.programs} /> : form.course_packages.length != 0 ? <TeacherCredential course_packages={form.course_packages} /> : ''}
                         </div>
                     </div>
                     <div className="col" style={{ alignSelf: "center" }}>
                         <div className="personal-reviews">
-                            {form.reviews.length != 0 ? <PersonalReviews reviews = {form.reviews}/> : ''}
+                            {form.reviews.length != 0 ? <PersonalReviews reviews={form.reviews} /> : ''}
                         </div>
                         <div className="teacher-option">
                             <TeacherOptions />

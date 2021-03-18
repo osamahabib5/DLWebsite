@@ -6,6 +6,7 @@ import { TutorsContext } from '../../../../Provider';
 import baseUrl from '../../../../baseUrl/baseUrl';
 import FiltersDescription from './FiltersDescription';
 import Cookies from 'universal-cookie';
+import Swal from 'sweetalert2'
 function PricingFilters(props) {
     const cookies = new Cookies();
     const { setOptedPackage, opted_package, parent_country, lead_id,
@@ -14,8 +15,16 @@ function PricingFilters(props) {
     // const [skipped, setSkipped] = useState(false);
     const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_price, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
-    const { class_type, tutor_type } = advancedfilter;
+    // const { class_type, tutor_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
+    const { class_type, subscription, tutor_type } = advancedfilter;
+    const opensweetalertdanger = (alerttext) => {
+        Swal.fire({
+            title: 'Confirm Pricing',
+            text: alerttext,
+            type: 'warning',
+        })
+    }
     const handleOnChange = (e) => {
         e.persist();
         setadvancedfilters(prevState => ({
@@ -51,46 +60,49 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         // e.preventDefault();
-
-        console.log("Filtered Options: " + JSON.stringify(advancedfilter));
-        if (result_type === "teachers") {
-            startLoading();
-            await axios.post(url, advancedfilter).then(response => {
-                getFilteredTeachersList(response.data.data.teachers)
-                console.log("Fees: " + response.data.data.fee_amount)
-                calculateFees(response.data.data.fee_amount)
-                setConfirmPricing(true);
-                // setadvancedfilters({
-                //     subscription: ""
-                // })
-                // if (!props.shownavigation) {
-                //     props.showNavigation();
-                // }
-                // props.showtutoroptions();
-                stopLoading();
-            }).catch(error => {
-                console.log("Filters Error: " + error)
-            })
-        }
-        if (result_type === "pricing") {
-            await axios.post(url, advancedfilter).then(response => {
-                getFilteredTeachersList(response.data.data.teachers)
-                calculateFees(response.data.data.fee_amount)
+        if (class_type && subscription && tutor_type && advancedfilter.result_type) {
+            if (result_type === "teachers") {
                 startLoading();
-                // setadvancedfilters({
-                //     class_type: "",
-                //     subscription: "",
-                //     tutor_type: "",
-                //     hours_per_week: 2
-                // })
-                if (!props.shownavigation) {
-                    props.showNavigation();
-                }
-                props.showAppointmentPageTutor()
-            }).catch(error => {
-                console.log("Filters Error: " + error)
-            })
+                await axios.post(url, advancedfilter).then(response => {
+                    getFilteredTeachersList(response.data.data.teachers)
+                    console.log("Fees: " + response.data.data.fee_amount)
+                    calculateFees(response.data.data.fee_amount)
+                    setConfirmPricing(true);
+                    // setadvancedfilters({
+                    //     subscription: ""
+                    // })
+                    // if (!props.shownavigation) {
+                    //     props.showNavigation();
+                    // }
+                    // props.showtutoroptions();
+                    stopLoading();
+                }).catch(error => {
+                    console.log("Filters Error: " + error)
+                })
+            }
+            if (result_type === "pricing") {
+                await axios.post(url, advancedfilter).then(response => {
+                    getFilteredTeachersList(response.data.data.teachers)
+                    calculateFees(response.data.data.fee_amount)
+                    startLoading();
+                    // setadvancedfilters({
+                    //     class_type: "",
+                    //     subscription: "",
+                    //     tutor_type: "",
+                    //     hours_per_week: 2
+                    // })
+                    if (!props.shownavigation) {
+                        props.showNavigation();
+                    }
+                    props.showAppointmentPageTutor()
+                }).catch(error => {
+                    console.log("Filters Error: " + error)
+                })
+            }
+        }else{
+            opensweetalertdanger("Please fill all the values!")
         }
+
     }
     const onChangePackage = (e) => {
         // console.log("value: "+ e.target.value)

@@ -17,7 +17,7 @@ function CoursePacks() {
         <div >
             <Card className="bg-dark text-white">
                 <Card.Img src={LearningKitA} alt="Card image" height="592px" />
-                <Link to="programs/kitdetails">
+                <Link to="/programs/kitdetails">
                     <Card.ImgOverlay style={{ cursor: "pointer" }}>
                         <Card.Title>AGES 5-8</Card.Title>
                         <Card.Text>

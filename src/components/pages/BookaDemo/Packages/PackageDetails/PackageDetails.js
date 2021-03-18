@@ -26,10 +26,10 @@ function PackageDetails(props) {
                 <Card style={Available_Packages[0].styling} key={Available_Packages.id} onClick={() => {
                     setSelectedPackage(0)
                 }}>
-                    <Card.Header style={{ background: Available_Packages[0].color }}></Card.Header>
+                    <Card.Header key={Available_Packages.id} style={{ background: Available_Packages[0].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{Available_Packages[0].title}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[0].title}</ListGroup.Item>
                             <ListGroup.Item>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
@@ -43,7 +43,7 @@ function PackageDetails(props) {
                                     </div>
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item>{Available_Packages[0].heading}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[0].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[0].description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>
@@ -55,10 +55,10 @@ function PackageDetails(props) {
                 <Card style={Available_Packages[1].styling} key={Available_Packages.id} onClick={() => {
                     setSelectedPackage(1)
                 }}>
-                    <Card.Header style={{ background: Available_Packages[1].color }}></Card.Header>
+                    <Card.Header key={Available_Packages.id} style={{ background: Available_Packages[1].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{Available_Packages[1].title}</ListGroup.Item><ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].title}</ListGroup.Item><ListGroup.Item>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -71,10 +71,10 @@ function PackageDetails(props) {
                                     </div> */}
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item>{Available_Packages[1].heading}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].heading}</ListGroup.Item>
                             <div className="package_specification">
-                                {Available_Packages[1].description.map(val => (
-                                    <ListGroup.Item>{val}</ListGroup.Item>
+                                {Available_Packages[1].description.map((val,index) => (
+                                    <ListGroup.Item key = {index}>{val}</ListGroup.Item>
                                 ))}
                             </div>
                         </ListGroup>
@@ -104,8 +104,8 @@ function PackageDetails(props) {
                             </ListGroup.Item>
                             <ListGroup.Item>{Available_Packages[2].heading}</ListGroup.Item>
                             <div className="package_specification">
-                                {Available_Packages[2].description.map(val => (
-                                    <ListGroup.Item>{val}</ListGroup.Item>
+                                {Available_Packages[2].description.map((val,index) => (
+                                    <ListGroup.Item key = {index}>{val}</ListGroup.Item>
                                 ))}
                             </div>
                         </ListGroup>
@@ -132,8 +132,8 @@ function PackageDetails(props) {
                             </ListGroup.Item>
                             <ListGroup.Item>{Available_Packages[3].heading}</ListGroup.Item>
                             <div className="package_specification">
-                                {Available_Packages[3].description.map(val => (
-                                    <ListGroup.Item>{val}</ListGroup.Item>
+                                {Available_Packages[3].description.map((val,index) => (
+                                    <ListGroup.Item key = {index}>{val}</ListGroup.Item>
                                 ))}
                             </div>
                         </ListGroup>

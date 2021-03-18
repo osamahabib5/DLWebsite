@@ -24,7 +24,7 @@ function FindaTutorEnd(props) {
                 <p className = "mobile-content">{props.displaytext}</p>
             </div>
             <div className = "Tutor-button">
-                <Link to = "tutors"><button type="button" className="btn button-cta button-red">Find a Tutor</button></Link>
+                <Link to = "/tutors"><button type="button" className="btn button-cta button-red">Find a Tutor</button></Link>
             </div>
             
         </div>
