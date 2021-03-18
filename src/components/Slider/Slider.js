@@ -29,8 +29,9 @@ function Slider() {
                     />
                     <Carousel.Caption>
                         <h3>Testimonials</h3>
-                        <p className="testimonial">My son has been enrolled with Miss Zakia for the past two years and I have been highly satisfied with the way she has helped him in building his basic mathematical concepts and improving his writing skills. Not only that she has always shown concern about his behavioural changes throughout the learning process may it be the physical classes or the online programme she has been a great teacher and a wonderful human being with whom I can always discuss the problem areas of my child. I am really Glad my son has such a hardworking teacher.</p>
-                        <p className="initials">- Sohail Sherwan</p>
+                        <p className="testimonial">You helped me to do my work, you also helped me to get the full score in English assessments and I get an A grade in the English 1ST term exams. I really want to appreciate your efforts. I will remember your efforts and your focus. Thanks a lot.
+Your Sincere student Abdul Wasih</p>
+                        <p className="initials">- Abdul Wasih</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item interval={10000}>

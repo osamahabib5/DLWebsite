@@ -9,11 +9,9 @@ import Cookies from 'universal-cookie';
 function PricingFilters(props) {
     const cookies = new Cookies();
     const { setOptedPackage, opted_package, parent_country, lead_id,
-         startLoading, getFilteredTeachersList, calculateFees, result_type, 
-         stopLoading, subscription_price, setConfirmPricing } = useContext(TutorsContext)
+        startLoading, getFilteredTeachersList, calculateFees, result_type,
+        stopLoading, subscription_price, setConfirmPricing } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
-    const [hours, sethours] = useState(2);
-    const [days, setdays] = useState(1);
     const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_price, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     const { class_type, tutor_type } = advancedfilter;
@@ -53,15 +51,15 @@ function PricingFilters(props) {
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         // e.preventDefault();
-        setConfirmPricing(true);
+
         console.log("Filtered Options: " + JSON.stringify(advancedfilter));
         if (result_type === "teachers") {
             startLoading();
             await axios.post(url, advancedfilter).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
-                console.log("Fees: "+ response.data.data.fee_amount)
+                console.log("Fees: " + response.data.data.fee_amount)
                 calculateFees(response.data.data.fee_amount)
-
+                setConfirmPricing(true);
                 // setadvancedfilters({
                 //     subscription: ""
                 // })
@@ -75,10 +73,6 @@ function PricingFilters(props) {
             })
         }
         if (result_type === "pricing") {
-            setadvancedfilters(prevState => ({
-                ...prevState,
-                hours_per_week: hours * days
-            }))
             await axios.post(url, advancedfilter).then(response => {
                 getFilteredTeachersList(response.data.data.teachers)
                 calculateFees(response.data.data.fee_amount)
@@ -215,8 +209,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} defaultValue = {2} max={20} size={10} className="numericinput" onChange={(e) => {
-                        setdays(parseInt(e));
+                    <NumericInput min={2} defaultValue={2} max={20} size={10} className="numericinput" onChange={(e) => {
                         setadvancedfilters({
                             ...advancedfilter,
                             hours_per_week: parseInt(e)

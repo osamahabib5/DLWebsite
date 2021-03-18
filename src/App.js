@@ -59,9 +59,9 @@ function App() {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {url === '/' ? Notification : ""}
+        {Notification}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        {url === '/' ? MobileNotification : ""}
+        { MobileNotification}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>

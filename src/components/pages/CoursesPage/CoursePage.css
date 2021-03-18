@@ -14,7 +14,7 @@
 }
 
 .courses-video {
-    margin-top: 10rem;
+    margin-top: 15rem;
 }
 
 .products .card-img-overlay .card-title {
@@ -73,7 +73,7 @@
         display: none;
     }
     .programs .card-deck{
-        margin-top: 10rem;
+        margin-top: 6rem;
     }
     .products .card-img-overlay {
         height: 100px;

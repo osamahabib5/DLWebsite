@@ -135,7 +135,7 @@ function BookaDemo(props) {
                 } 
                 if (fee_amount > 0) {
                     setappointmentpage(true);
-                    setnavigation(false);
+                    setnavigation(true);
                     setpackages(true);
                 }
                 else {

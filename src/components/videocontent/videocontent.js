@@ -7,7 +7,7 @@ function Videocontent(props) {
         <ReactPlayer
             controls
             width = "100%"
-            height = {props.isMobile ? "auto" : "360px"}
+            height = "auto"
             url="video/Dot&LinePhilosophy.mp4"
             style = {{backgroundColor: "white"}}
             />

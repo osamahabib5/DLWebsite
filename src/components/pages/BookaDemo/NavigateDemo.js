@@ -2,27 +2,34 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { TutorsContext } from '../../../Provider';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 function NavigateDemo(props) {
-    const { calculateFees, result_type, lead_id } = useContext(TutorsContext)
+    const { calculateFees, result_type, lead_id, teacher_id } = useContext(TutorsContext)
     const cookies = new Cookies();
+    const gotoTutorsProfile = () => {
+        return (
+            <Link to={{
+                pathname: `${"tutors"}/${teacher_id}`
+            }} />
+        )
+    }
     const goBack = (e) => {
         e.preventDefault();
         if (props.successfullead) {
-            if (lead_id == 0 ) {
-                props.hidefeecalculator()
-                calculateFees(0);
+            if (result_type === "teachers") {
+                console.log("Teachers")
+                if (cookies.get('leadid') !== null) {
+                    props.LeadAlreadyFilled()
+                    calculateFees(0);
+                } 
             }
-            if (lead_id != 0 || cookies.get('leadid') !== null) {
-                console.log("LeadID")
-                props.LeadAlreadyFilled()
-                calculateFees(0);
-            }
-            if (lead_id != 0 || cookies.get('leadid') !== null) {
-                console.log("LeadID")
-                props.LeadAlreadyFilled()
-                calculateFees(0);
+            else if (result_type === "pricing") {
+                console.log("Pricing")
+                if (cookies.get('leadid') !== null) {
+                    gotoTutorsProfile();
+                    calculateFees(0);
+                }
             }
         }
         // else if (props.successfullead && lead_id != 0) {
