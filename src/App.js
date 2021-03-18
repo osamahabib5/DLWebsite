@@ -22,11 +22,13 @@ import CourseDetails from './components/pages/CoursesPage/Products/CoursePacks/C
 import Findtutor from './components/pages/Findtutor/Findtutor';
 import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
+import Cookies from 'universal-cookie';
 function App() {
-  let {url} = useRouteMatch();
+  let { url } = useRouteMatch();
+  const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
   const [toggleFooter, setToggleFooter] = useState(true);
-  const [notification, closeNotification] = useState(true);
+  const [notification, setNotification] = useState(true);
   //Toggle the SideDrawer 
   const handleDrawerToggleClick = () => {
     setSideDrawerOpen((prevDrawerState) => !prevDrawerState)
@@ -41,7 +43,8 @@ function App() {
     setToggleFooter(false)
   }
   const closenotifications = () => {
-    closeNotification(false);
+    setNotification(false);
+    cookies.set('notification', notification, { path: '/' });
   }
   let backdrop;
   let footer;
@@ -61,7 +64,7 @@ function App() {
       <div className="content-wrap">
         {Notification}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        { MobileNotification}
+        {MobileNotification}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>
@@ -88,13 +91,13 @@ function App() {
             <About />
           </Route>
           <Route path="/contact">
-            <ContactPage notification = {notification}/>
+            <ContactPage notification={notification} />
           </Route>
           <Route path="/pricingfilters">
             <PricingFilters />
           </Route>
           <Route path="/">
-            <HomePage notification = {notification}/>
+            <HomePage notification={notification} />
             {/* <BookaDemo /> */}
           </Route>
         </Switch>
