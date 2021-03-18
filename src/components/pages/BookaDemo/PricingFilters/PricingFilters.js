@@ -221,7 +221,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput min={2} defaultValue={2} max={20} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput mobile min={2} defaultValue={2} max={20} size={10} className="numericinput" onChange={(e) => {
                         setadvancedfilters({
                             ...advancedfilter,
                             hours_per_week: parseInt(e)

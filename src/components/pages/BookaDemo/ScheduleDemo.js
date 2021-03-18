@@ -12,6 +12,7 @@ function ScheduleDemo(props) {
     const cookies = new Cookies()
     const { teacher_id, lead_id, teacher_info, startLoading, setDemoDate, setDemoTime, setDemoDay } = useContext(TutorsContext);
     const [selecteddate, setselecteddate] = useState(null);
+    const [isClicked, setisClicked] = useState(false);
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
     const [isDate, setisDate] = useState("");
     const bookDemoUrl = baseUrl + "/api/demo/book";
@@ -28,10 +29,11 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
+    const btn_class = isClicked ? "btn button-cta button-blue" : "btn button-cta button-white";
     const { date, time } = demodata;
     const { booked_times, times, days, disableddays } = DaysList;
     const handleDayClick = (day, { selected }) => {
-        settimes((prevState) => !prevState);
+        settimes(true);
         setSelectedday(selected ? undefined : day)
         if (selectedday) {
             var d = new Date(selectedday);
@@ -44,48 +46,25 @@ function ScheduleDemo(props) {
             if (day.length < 2)
                 day = '0' + day;
             setselecteddate([year, month, day].join('-'));
+            if (selecteddate) {
+                setdemodata({
+                    ...demodata,
+                    date: selecteddate
+                })
+            }
+            setdayindex(DaysList.days.indexOf(dayofweek))
+            for (const [key, value] of Object.entries(booked_times)) {
+                if (selecteddate) {
+                    if (selecteddate === value) {
+                        let dayofweekindex = days.indexOf(new Date(selecteddate).getDay());
+                        let bookedtimevalue = times[dayofweekindex].indexOf(key);
+                        if (dayofweekindex >= 0 && bookedtimevalue > -1) {
+                            times[dayofweekindex].splice(bookedtimevalue, 1);
+                        }
+                    }
+                }
+            }
         }
-        // var d = new Date(selectedday);
-        // var dayofweek = d.getDay();
-        // var month = '' + (d.getMonth() + 1);
-        // var day = '' + d.getDate();
-        // var year = d.getFullYear().toString();
-        // if (month.length < 2)
-        //     month = '0' + month;
-        // if (day.length < 2)
-        //     day = '0' + day;
-        // setselecteddate([year, month, day].join('-'));
-        // if (selectedday) {
-        // var d = new Date(selectedday);
-        // var dayofweek = d.getDay();
-        // setDemoDay(weekdays[dayofweek])
-        // var month = '' + (d.getMonth() + 1);
-        // var day = '' + d.getDate();
-        // var year = d.getFullYear().toString();
-        // if (month.length < 2)
-        //     month = '0' + month;
-        // if (day.length < 2)
-        //     day = '0' + day;
-        // setselecteddate([year, month, day].join('-'));
-        //     if (selecteddate){
-        //         setdemodata({
-        //             ...demodata,
-        //             date: selecteddate
-        //         })
-        //     }
-        //     setdayindex(DaysList.days.indexOf(dayofweek))
-        //     for (const [key, value] of Object.entries(booked_times)) {
-        //         if (selecteddate) {
-        //             if (selecteddate === value) {
-        //                 let dayofweekindex = days.indexOf(new Date(selecteddate).getDay());
-        //                 let bookedtimevalue = times[dayofweekindex].indexOf(key);
-        //                 if (dayofweekindex >= 0 && bookedtimevalue > -1) {
-        //                     times[dayofweekindex].splice(bookedtimevalue, 1);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
     }
     const setTimeSlot = (e) => {
         e.preventDefault();
@@ -93,7 +72,8 @@ function ScheduleDemo(props) {
             ...demodata,
             time: e.target.value
         })
-        e.target.setAttribute("class", "btn button-cta button-blue")
+        setisClicked(true);
+        e.target.setAttribute("class", btn_class)
     }
     const BookDemo = async (e) => {
         e.preventDefault();
@@ -178,14 +158,14 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {/* {showtimes && selecteddate && dayindex != -1 ? DaysList.times[dayindex].map((data, index) => {
+                    {showtimes && selectedday && dayindex != -1 ? DaysList.times[dayindex].map((data, index) => {
                         return (
                             <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
                         )
                     }) : <div className="d-flex justify-content-center" style={{ color: "black" }}>
                         Timeslots will be shown here!
-                    </div>} */}
-                    {selectedday ? selectedday.toLocaleDateString() : <div>Please select a day</div>}
+                    </div>}
+                    {/* {selectedday ? selecteddate : <div>Please select a day</div>} */}
                 </Col>
             </Row>
             <Row className="justify-content-md-center">

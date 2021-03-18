@@ -274,7 +274,7 @@ function BookaDemo(props) {
                 {confirmappointment ? <Row>
                     <Col>
                         <div className="confirm-appointment">
-                            <ConfirmAppointment />
+                            <ConfirmAppointment isMobile = {isMobile}/>
                         </div>
                     </Col>
                 </Row> : ""}

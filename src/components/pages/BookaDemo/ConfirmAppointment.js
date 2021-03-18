@@ -4,7 +4,7 @@ import { TutorsContext } from '../../../Provider'
 import SelectedPricePackage from './Leads/SelectedPricePackage'
 import SelectedTeacher from './SelectedTeacher'
 import { ClipLoader } from 'react-spinners';
-function ConfirmAppointment() {
+function ConfirmAppointment(props) {
     const { teacher_info, demo_date, demo_time, demo_day } = useContext(TutorsContext);
     return (
         <Container>
@@ -15,10 +15,10 @@ function ConfirmAppointment() {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg="3">
-                    <SelectedTeacher />
+                <Col xs lg="2">
+                    <SelectedTeacher isMobile = {props.isMobile}/>
                 </Col>
-                <Col xs lg="3">
+                <Col xs lg="2">
                     <SelectedPricePackage />
                 </Col>
             </Row>

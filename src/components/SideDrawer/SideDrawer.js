@@ -31,7 +31,7 @@ function SideDrawer(props) {
                 <div>
                     <ul>
                         <li><div className="Logo">
-                            <Link to="/"><img src={Logo} alt="Logo" /></Link>
+                            <Link to="/"><img src={Logo} alt="Logo" onClick={props.handleDrawerToggleClick}/></Link>
                         </div></li>
                         <li><Link to="/programs" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Programs & Courses</Link></li>
                         <li><Link to="/pricing" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Pricing</Link></li>

@@ -226,7 +226,10 @@
         margin: auto;
         margin-top: 1rem;
     }
-    .scheduledemo .row{
+    .confirm-appointment .row {
+        flex-direction: column;
+    }
+    .scheduledemo .row {
         flex-direction: column;
         text-align: center;
     }
@@ -357,9 +360,9 @@
         color: #777777;
         white-space: nowrap;
     }
-    .confirm-appointment{
+    .confirm-appointment {
         margin-top: 5rem;
-    } 
+    }
     .booking-demo-appointment .flex-row {
         margin-top: 3rem;
         background: none;

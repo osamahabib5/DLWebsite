@@ -5,7 +5,7 @@ import { TutorsContext } from '../../../Provider'
 import avatar from './avatar.jpg';
 import axios from 'axios';
 
-function SelectedTeacher() {
+function SelectedTeacher(props) {
     const { teacher_id, getTeacherInfo, teacher_info, parent_city, parent_country } = useContext(TutorsContext);
     const url = baseUrl + "/api/teacher/getInfo/" + teacher_id
     const parent_timezone = /\((.*)\)/.exec(new Date().toString())[1];
@@ -21,7 +21,7 @@ function SelectedTeacher() {
         getTeacherDetails();
     }, [])
     return (
-        <div>
+        <div className = {props.isMobile ? "d-flex justify-content-center" : ""}>
             {teacher_info ? <div style={{ marginRight: "3rem" }}>
                 <Image src={teacher_info.image ? teacher_info.image : avatar} style={{ width: "146px", height: "150px" }} fluid />
                 <div style={{ marginTop: "2rem" }}>
