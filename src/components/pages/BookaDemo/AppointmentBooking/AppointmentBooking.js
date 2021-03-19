@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import SelectedPricePackage from '../Leads/SelectedPricePackage'
 import SelectedTeacher from '../SelectedTeacher';
+import { TutorsContext } from '../../../../Provider';
 function AppointmentBooking(props) {
+    const {skippedpricing} = useContext(TutorsContext);
     return (
         <Container>
             <Row className="justify-content-md-center">
@@ -14,9 +16,9 @@ function AppointmentBooking(props) {
                 <div className="p-2 bd-high light">
                     <SelectedTeacher />
                 </div>
-                <div className="p-2 bd-highlight">
+                {!skippedpricing ? <div className="p-2 bd-highlight">
                     <SelectedPricePackage />
-                </div> 
+                </div> : ""}
             </div>
             <Row >
                 <Col>

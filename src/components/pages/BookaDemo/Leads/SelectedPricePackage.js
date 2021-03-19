@@ -5,18 +5,7 @@ import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package , fee_amount, setSubscription, result_type, confirmpricing} = useContext(TutorsContext);
-    // const SetPricingPackage = ()=>{
-    //     if (opted_package == 0 || opted_package == 2){
-    //         setSubscription("1_month")
-    //     }
-    //     else{
-    //         setSubscription("3_month");
-    //     }
-    // }
-    // useEffect(()=>{
-    //     SetPricingPackage();
-    // },[opted_package])
+    const { opted_package , fee_amount, setSubscription, subscription_type, confirmpricing} = useContext(TutorsContext);
     return (
         <div className="selectedpackage">
             <Card style={Available_Packages[opted_package].styling} key = {Available_Packages.id}>

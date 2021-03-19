@@ -11,10 +11,10 @@ function PricingFilters(props) {
     const cookies = new Cookies();
     const { setOptedPackage, opted_package, parent_country, lead_id,
         startLoading, getFilteredTeachersList, calculateFees, result_type,
-        stopLoading, subscription_price, setConfirmPricing, setTutorType } = useContext(TutorsContext)
+        stopLoading, subscription_type, setConfirmPricing, setTutorType, skipPricing } = useContext(TutorsContext)
     // const [skipped, setSkipped] = useState(false);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: "", tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
-    const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_price, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription_type , tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
+    const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     // const { class_type, tutor_type } = advancedfilter;
     const url = baseUrl + '/api/calculateFee';
     const { class_type, subscription, tutor_type } = advancedfilter;
@@ -46,7 +46,8 @@ function PricingFilters(props) {
                 getFilteredTeachersList(response.data.data.teachers)
                 // calculateFees(response.data.data.fee_amount)
                 startLoading();
-                props.showtutoroptions();
+                // props.showtutoroptions();
+                setConfirmPricing(true);
                 props.showNavigation();
             }).catch(error => {
                 console.log("Filters Error: " + error)
@@ -54,12 +55,14 @@ function PricingFilters(props) {
         }
         if (result_type === "pricing") {
             props.showNavigation();
+            skipPricing(true);
             props.showAppointmentPagewithTeacher();
         }
     }
     const handleSubmit = async (e) => {
         // calculateHoursPerWeek();
         // e.preventDefault();
+        console.log("Filters: " + JSON.stringify(advancedfilter))
         if (class_type && subscription && tutor_type && advancedfilter.result_type) {
             if (result_type === "teachers") {
                 startLoading();
@@ -100,7 +103,7 @@ function PricingFilters(props) {
                     console.log("Filters Error: " + error)
                 })
             }
-        }else{
+        } else {
             opensweetalertdanger("Please fill all the values!")
         }
 
@@ -161,31 +164,11 @@ function PricingFilters(props) {
                 </Col>
             </Row>
             <Form>
-                {/* <Form.Row>
-                    <Col>
-                        {['radio'].map((type) => (
-                            <div key={`default-${type}`} className="mb-3" name="class_type">
-                                <FormCheck.Label>Subscription</FormCheck.Label>
-                                <br />
-                                <Form.Check inline label="Monthly Package" value="1_month"
-                                    checked={class_type === "1_month"}
-                                    type={type} id={`inline-${type}-1`} onChange={onChangePackage} />
-                                <FiltersDescription />
-                                <Form.Check inline label="3 Month Package" value="3_month" 
-                                    checked={class_type === "3_month"}
-                                    type={type} id={`inline-${type}-2`} onChange={onChangePackage} />
-                                <FiltersDescription />
-                            </div>
-                        ))}
-                    </Col>
-                </Form.Row> */}
                 <Form.Row>
                     <Col>
                         {['radio'].map((type) => (
                             <div key={`default-${type}`} className="mb-3" name="class_type">
                                 <FormCheck.Label>Class Type</FormCheck.Label>
-                                {/* <Col>
-                                </Col> */}
                                 <br />
                                 <Form.Check inline label="Small Batch" value="batch"
                                     checked={class_type === "batch"}
@@ -206,10 +189,10 @@ function PricingFilters(props) {
                                 <FormCheck.Label>Tutor Type</FormCheck.Label>
                                 <br />
                                 <Form.Check inline label="Standard Tutor" value="standard" checked={tutor_type === "standard"}
-                                    type={type} id={`inline-${type}-1`} onChange={handleOnChangeTutorType} />
+                                    type={type} id={`inline-${type}-3`} onChange={handleOnChangeTutorType} />
                                 <Form.Check inline label="Super Tutor" value="super"
                                     checked={tutor_type === "super"}
-                                    type={type} id={`inline-${type}-2`} onChange={handleOnChangeTutorType} />
+                                    type={type} id={`inline-${type}-4`} onChange={handleOnChangeTutorType} />
                                 <FiltersDescription text="These are our top-tier teachers. The price to the right will reflect this premium option." />
                             </div>
                         ))}

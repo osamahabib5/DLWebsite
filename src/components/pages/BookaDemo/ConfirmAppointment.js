@@ -5,7 +5,7 @@ import SelectedPricePackage from './Leads/SelectedPricePackage'
 import SelectedTeacher from './SelectedTeacher'
 import { ClipLoader } from 'react-spinners';
 function ConfirmAppointment(props) {
-    const { teacher_info, demo_date, demo_time, demo_day } = useContext(TutorsContext);
+    const { teacher_info, demo_date, demo_time, skippedpricing } = useContext(TutorsContext);
     return (
         <Container>
             <Row>
@@ -18,9 +18,9 @@ function ConfirmAppointment(props) {
                 <Col xs lg="3">
                     <SelectedTeacher isMobile = {props.isMobile}/>
                 </Col>
-                <Col xs lg="3">
+                {skippedpricing ? "" : <Col xs lg="3">
                     <SelectedPricePackage />
-                </Col>
+                </Col> }
             </Row>
             {/* <div style = {{position: "absolute"}}>
                 <p>You will be redirected to homepage in </p>

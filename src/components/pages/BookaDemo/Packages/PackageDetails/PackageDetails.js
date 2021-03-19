@@ -6,18 +6,28 @@ import { ClipLoader } from 'react-spinners';
 import Cookies from 'universal-cookie';
 function PackageDetails(props) {
     const cookies = new Cookies();
+    const { setOptedPackage, parent_country, loading, lead_id, setSubscription } = useContext(TutorsContext);
+    const SetPricingPackage = (index)=>{
+        if (index == 0 || index == 2){
+            setSubscription("1_month")
+        }
+        else{
+            setSubscription("3_month");
+        }
+    }
     const setSelectedPackage = (index) => {
         if (lead_id != 0 || cookies.get('leadid') !== null) {
             props.showfeecalculator();
             props.PricingwithLeadId();
             setOptedPackage(index)
+            SetPricingPackage(index);
         }
         else {
             props.showLeadsForm();
             setOptedPackage(index)
+            SetPricingPackage(index);
         }
     }
-    const { setOptedPackage, parent_country, loading, lead_id } = useContext(TutorsContext);
     return (
         <div className="packagedetails">
             {loading && !parent_country ? <div className="d-flex justify-content-center">

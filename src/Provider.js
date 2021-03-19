@@ -16,12 +16,13 @@ const initialState = {
     teacher_id: 0,
     teacher_info: null,
     result_type: "",
-    subscription_price: "",
+    subscription_type: "",
     confirmpricing: false,
     demo_date: "",
     demo_time: "",
     demo_day: "",
-    tutortype: ""
+    tutortype: "",
+    skippedpricing: false
 }
 
 const actions = {
@@ -47,7 +48,8 @@ const actions = {
     SETDEMODATE: 'SETDEMODATE',
     SETDEMOTIME: 'SETDEMOTIME',
     SETDEMODAY: 'SETDEMODAY',
-    SETTUTORTYPE: 'SETTUTORTYPE'
+    SETTUTORTYPE: 'SETTUTORTYPE',
+    SKIPPRICING: 'SKIPPRICING'
 }
 
 function reducer(state, action) {
@@ -141,7 +143,7 @@ function reducer(state, action) {
         case actions.SETSUBSCRIPTION:
             return {
                 ...state,
-                subscription_price: action.value
+                subscription_type: action.value
             }
         case actions.CONFIRMPRICING:
             return {
@@ -168,6 +170,11 @@ function reducer(state, action) {
                 ...state,
                 tutortype: action.value
             }
+        case actions.SKIPPRICING:
+            return {
+                ...state,
+                skippedpricing: action.value
+            }
         default:
             return state;
     }
@@ -191,12 +198,13 @@ function Provider({ children }) {
         teacher_id: state.teacher_id,
         teacher_info: state.teacher_info,
         result_type: state.result_type,
-        subscription_price: state.subscription_price,
+        subscription_type: state.subscription_type,
         confirmpricing: state.confirmpricing,
         demo_time: state.demo_time,
         demo_date: state.demo_date,
         demo_day: state.demo_day,
         tutortype: state.tutortype,
+        skippedpricing: state.skippedpricing,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -221,6 +229,7 @@ function Provider({ children }) {
         setDemoTime: (value) => { dispatch({ type: actions.SETDEMOTIME, value }) },
         setDemoDay: (value) => { dispatch({ type: actions.SETDEMODAY, value }) },
         setTutorType: (value) => { dispatch({ type: actions.SETTUTORTYPE, value }) },
+        skipPricing: (value) => { dispatch({ type: actions.SKIPPRICING, value}) },
     }
     return (
         <TutorsContext.Provider value={value}>
