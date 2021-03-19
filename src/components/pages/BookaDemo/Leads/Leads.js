@@ -7,21 +7,25 @@ import axios from "axios";
 import { TutorsContext } from "../../../../Provider";
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie';
+import 'react-phone-number-input/style.css'
+import PhoneInput , {formatPhoneNumber, formatPhoneNumberIntl, isValidPhoneNumber}from 'react-phone-number-input'
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const cookies = new Cookies();
+    const [value, setValue] = useState()
     const postleadurl = baseUrl + '/api/lead/create';
-    const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "", country: parent_country, city: "Karachi" });
+    const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "" , country: parent_country, city: "Karachi" });
+    const {phone, email} = leadsdetail;
     const handleOnChange = (e) => {
         fillleaddetails({
             ...leadsdetail,
             [e.target.name]: e.target.value
         })
     }
-    const validatevalues = (inputtxt) => {
+    const validateemail = (inputtxt) => {
         var patternemail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        var patternphone = new RegExp(/^[0-9\b]+$/);
-        if (!patternemail.test(inputtxt.email) || !patternphone.test(inputtxt.phone)) {
+        // var patternphone = new RegExp(/^[0-9\b]+$/);
+        if (!patternemail.test(inputtxt)) {
             return false;
         }
         return true
@@ -40,8 +44,10 @@ function Leads(props) {
         if (!leadsdetail.name || !leadsdetail.phone) {
             opensweetalertdanger("Please fill all the values");
         }
-        else if (!validatevalues(leadsdetail)) {
-            opensweetalertdanger("Please enter valid values");
+        else if (!validateemail(email)) {
+            opensweetalertdanger("Please enter a valid email");
+        }else if(!isValidPhoneNumber(phone)){
+            opensweetalertdanger("Please enter a valid phone number!");
         }
         else {
             await axios.post(postleadurl, leadsdetail).then(response => {
@@ -87,10 +93,15 @@ function Leads(props) {
                             </Form.Group>
 
                             <Form.Group controlId="formBasicEmail">
-                                <Form.Control type="number" placeholder="Phone" name="phone" onChange={handleOnChange} value={leadsdetail.phone} />
-                                {/* <PhoneInput
-                                    placeholder="Enter phone number" />
-                                    // onChange={setValue} /> */}
+                                {/* <Form.Control type="number" placeholder="Phone" name="phone" onChange={handleOnChange} value={leadsdetail.phone} /> */}
+                                <PhoneInput
+                                    placeholder="+92 --- -------" value={phone}
+                                    onChange={(e)=>fillleaddetails({
+                                        ...leadsdetail,
+                                        phone: e
+                                    })}
+                                    // error={phone ? (isValidPhoneNumber(phone) ? undefined : 'Invalid phone number') : 'Phone number required'}
+                                    />
                             </Form.Group>
                             <div style={{ marginTop: "4rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>
