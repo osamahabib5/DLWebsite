@@ -46,6 +46,10 @@
     z-index: 400;
 }
 
+.carousel-control-next, .carousel-control-prev{
+    z-index: 1000;
+}
+
 .carousel-control-prev-icon {
     background-image: url(../images/Left.png);
     width: 56px;

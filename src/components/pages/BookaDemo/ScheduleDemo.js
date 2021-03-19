@@ -15,6 +15,7 @@ function ScheduleDemo(props) {
     const [isClicked, setisClicked] = useState(false);
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
     const [isDate, setisDate] = useState("");
+    const [activeIndex, setActiveIndex] = useState(null);
     const bookDemoUrl = baseUrl + "/api/demo/book";
     const [showtimes, settimes] = useState(false);
     const [selectedday, setSelectedday] = useState(null)
@@ -29,8 +30,11 @@ function ScheduleDemo(props) {
             type: 'warning',
         })
     }
-    const btn_class = isClicked ? "btn button-cta button-blue" : "btn button-cta button-white";
+    // const btn_class = isClicked ? "btn button-cta button-blue" : "btn button-cta button-white";
     const { date, time } = demodata;
+    const setActive = index => {
+        setActiveIndex(index);
+    };
     const { booked_times, times, days, disableddays } = DaysList;
     const handleDayClick = (day, { selected }) => {
         settimes(true);
@@ -46,12 +50,10 @@ function ScheduleDemo(props) {
             if (day.length < 2)
                 day = '0' + day;
             setselecteddate([year, month, day].join('-'));
-            if (selecteddate) {
-                setdemodata({
-                    ...demodata,
-                    date: selecteddate
-                })
-            }
+            setdemodata({
+                ...demodata,
+                date: selecteddate
+            })
             setdayindex(DaysList.days.indexOf(dayofweek))
             for (const [key, value] of Object.entries(booked_times)) {
                 if (selecteddate) {
@@ -68,15 +70,21 @@ function ScheduleDemo(props) {
     }
     const setTimeSlot = (e) => {
         e.preventDefault();
-        setdemodata({
-            ...demodata,
-            time: e.target.value
-        })
-        // setisClicked(true);
-        e.target.setAttribute("class", btn_class)
+        // setActive(data);
+        if (e.currentTarget.value) {
+            setdemodata({
+                ...demodata,
+                time: e.currentTarget.value
+            })
+        }
+        setisClicked((prevState) => !prevState);
+        console.log("Clicked: " + isClicked)
+        e.currentTarget.setAttribute("class", "btn button-cta button-blue")
+        //e.targt.addClass("button-blue")
     }
     const BookDemo = async (e) => {
         e.preventDefault();
+        console.log("Values: " + JSON.stringify(demodata))
         if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
             console.log("Demodata: ")
             opensweetalertdanger("Please fill all the required values!")
@@ -158,9 +166,12 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes && selectedday && dayindex != -1 ? DaysList.times[dayindex].map((data, index) => {
+                    {showtimes && selectedday && date && dayindex != -1 ? DaysList.times[dayindex].map((data, index) => {
                         return (
-                            <button className="btn button-cta button-white" data-index={index} key={index} value={data} name="time" onClick={setTimeSlot}>{data}</button>
+                            <button className={activeIndex === index ? 'btn button-cta button-blue' : 'btn button-cta button-white'} data-index={index} key={index} value={data} name="time" onClick={(e) => {
+                                setTimeSlot(e);
+                                setActive(index)
+                            }}>{data}</button>
                         )
                     }) : <div className="d-flex justify-content-center" style={{ color: "black" }}>
                         Timeslots will be shown here!
@@ -169,7 +180,7 @@ function ScheduleDemo(props) {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg= {props.isMobile ? "12" : "6"}>
+                <Col xs lg={props.isMobile ? "12" : "6"}>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Any comments for the teacher</Form.Label>
                         <Form.Control as="textarea" value={demodata.note} onChange={(e) => setdemodata({
