@@ -16,13 +16,15 @@ function PackageDetails(props) {
         }
     }
     const setSelectedPackage = (index) => {
-        if (lead_id != 0 || cookies.get('leadid') !== null) {
+        if (lead_id != 0 || cookies.get('leadid')) {
+            console.log("Cookies: "+ cookies.get('leadid'));
             props.showfeecalculator();
             props.PricingwithLeadId();
             setOptedPackage(index)
             SetPricingPackage(index);
         }
         else {
+            console.log("Cookies: "+ cookies.get('leadid'));
             props.showLeadsForm();
             setOptedPackage(index)
             SetPricingPackage(index);

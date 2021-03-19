@@ -25,7 +25,7 @@ function PackageDetailsMobile(props) {
         return secondpackage
     }
     const setSelectedPackage = (index) => {
-        if (lead_id != 0 || cookies.get('leadid') !== null) {
+        if (lead_id != 0 ) {
             props.showfeecalculator();
             props.PricingwithLeadId();
             setOptedPackage(index)

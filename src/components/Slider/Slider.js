@@ -1,7 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
-import DepositionImage from '../logo/Images/SliderImage.png'
 import testimonial from '../logo/Images/testimonials.jpg'
 import testimonial2 from '../logo/Images/testimonial2.jpg'
 import testimonial3 from '../logo/Images/testimonial3.jpg'

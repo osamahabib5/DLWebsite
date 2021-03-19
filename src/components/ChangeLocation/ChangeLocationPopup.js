@@ -3,6 +3,7 @@ import baseUrl from '../../baseUrl/baseUrl'
 import axios from 'axios';
 import {  Row,Container,Col, Form, Button} from "react-bootstrap";
 import { TutorsContext } from '../../Provider';
+import countries_list from "./Countries_List";
 function ChangeLocationPopup(props) {
     const getcountries = baseUrl + '/api/getCountryList';
     const {setParentLocation, parent_country} = useContext(TutorsContext)
@@ -11,7 +12,7 @@ function ChangeLocationPopup(props) {
         await (axios.get(getcountries)).then(function (response) {
             getcountrylist(response.data.data)
         }).catch(error => {
-            console.log("Error!")
+            console.log("Error: "+ error)
         })
     }, [parent_country])
     return (
@@ -22,11 +23,11 @@ function ChangeLocationPopup(props) {
                     <Form.Group controlId="formGridState">
                         <Form.Control as="select" defaultValue="Pakistan" onChange={(e) =>setParentLocation(e.target.value)}>
                             <option>Select Country</option>
-                            {countrieslist ? countrieslist.map((val, index) => (
+                            {countries_list.map((val, index) => (
                                 <option key={index}>
                                     {val}
                                 </option>
-                            )) : ''}
+                            ))}
                         </Form.Control>
                     </Form.Group>
                 </Col>

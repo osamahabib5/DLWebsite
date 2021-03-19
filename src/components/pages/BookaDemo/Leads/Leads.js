@@ -48,7 +48,6 @@ function Leads(props) {
                 const leadid = JSON.stringify(response.data.data.lead_id)
                 setLeadId(leadid)
                 cookies.set('leadid', leadid, { path: '/' });
-                console.log("LeadID: "+ cookies.get('leadid'));
                 if (!props.shownavigation) {
                     props.setnavigation(true);
                 }

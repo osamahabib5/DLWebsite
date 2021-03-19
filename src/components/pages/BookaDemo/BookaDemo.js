@@ -126,7 +126,7 @@ function BookaDemo(props) {
         if (location.search === "?showLeads") {
             setResultType("pricing");
 
-            if (lead_id > 0 || cookies.get('leadid') !== null) {
+            if (lead_id > 0 || cookies.get('leadid')) {
                 if (fee_amount == 0) {
                     setResultType("pricing");
                     // showLeadsForm();

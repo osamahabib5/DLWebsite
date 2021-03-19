@@ -23,7 +23,7 @@ function NavigateDemo(props) {
             }
             else if (result_type === "teachers") {
                 console.log("Teachers")
-                if (cookies.get('leadid') !== null) {
+                if (cookies.get('leadid')) {
                     props.LeadAlreadyFilled()
                     calculateFees(0);
                 }
