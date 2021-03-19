@@ -7,6 +7,7 @@ import { faUser, faClock } from '@fortawesome/free-solid-svg-icons'
 import { ClipLoader } from 'react-spinners';
 function Tutors(props) {
     const [isMobile, setmobile] = useState(false);
+    
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setmobile(true);

@@ -5,7 +5,7 @@ import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package , fee_amount, setSubscription, subscription_type, confirmpricing} = useContext(TutorsContext);
+    const { opted_package , fee_amount, confirmpricing} = useContext(TutorsContext);
     return (
         <div className="selectedpackage">
             <Card style={Available_Packages[opted_package].styling} key = {Available_Packages.id}>

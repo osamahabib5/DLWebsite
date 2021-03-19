@@ -14,7 +14,7 @@ function NavigateDemo(props) {
         setConfirmPricing(false);
         if (props.successfullead) {
             if (result_type === "pricing") {
-                if (cookies.get('leadid')) {
+                if (cookies.get('leadid') || lead_id != 0) {
                     history.push({
                         pathname: '/tutors/' + teacher_id,
                     });

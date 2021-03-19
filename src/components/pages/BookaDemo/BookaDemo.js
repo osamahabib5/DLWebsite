@@ -170,7 +170,7 @@ function BookaDemo(props) {
                 console.log("Error: " + error);
             }).then(data => {
                 setParentLocation(data.country_name);
-                setParentCity(data.city);
+                setParentCity(data.city ? data.city : "");
             })
     }
     useEffect(() => {

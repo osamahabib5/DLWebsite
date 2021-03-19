@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Container, Row, Col, Form, FormCheck } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
 import axios from "axios";
@@ -144,6 +144,9 @@ function PricingFilters(props) {
             handleSubmit();
         }
     }
+    useEffect(()=>{
+        console.log("Cookies: "+ cookies.get("leadid"))
+    },[])
     return (
         <Container>
             <Row>
