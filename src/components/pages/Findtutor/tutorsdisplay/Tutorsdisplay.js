@@ -8,7 +8,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { TutorsContext } from "../../../../Provider";
 import axios from 'axios';
 function Tutorsdisplay() {
-    const { results, loading, stopLoading, startLoading , parent_country, tutortype} = useContext(TutorsContext);
+    const { results, loading, stopLoading, startLoading, parent_country, tutortype, setParentLocation, setParentCity } = useContext(TutorsContext);
     const [isMobile, setmobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -24,30 +24,29 @@ function Tutorsdisplay() {
     const [activepage, setactive] = useState(0);
     const [currPage, setCurrPage] = useState(1);
     const [postperpage, setpostperpage] = useState(12);
-    const [apiurl, setUrl] = useState(baseUrl + '/api/teachers/list' + "?location="+location+"&tutor_type="+tutor+"")
+    const [apiurl, setUrl] = useState(baseUrl + '/api/teachers/list' + "?location=" + location + "&tutor_type=" + tutor + "")
     let { url } = useRouteMatch();
     const paginate = (pageNum) => {
         setCurrPage(pageNum)
         setactive(pageNum);
     }
-    const [tutorsList, setTutorsList] = useState([]);
+    const fetchlocation = async () => {
+        await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
+            .then(function (response) {
+                return response.json()
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            }).then(data => {
+                setParentLocation(data.country_name);
+                setParentCity(data.city ? data.city : "");
+            })
+    }
     useEffect(async () => {
-        // let item = [];
+        fetchlocation();
         mobileview();
         window.addEventListener("resize", mobileview);
         startLoading();
-        // await axios.get(apiurl, {
-        //     params: {
-        //         location: parent_country ? parent_country : "",
-        //         tutor_type: tutortype ? tutortype : "" 
-        //     }
-        // }).then(response=>{
-        //     console.log(JSON.stringify(response.data.data))
-        //      item.push(response.data.data)
-        // }).catch(error=>{
-        //     console.log("Error while fetching tutors: "+ error)
-        // })
-        // setTutorsList(item);
         const response = await fetch(apiurl);
         const data = await response.json();
         const item = data.data;
@@ -69,7 +68,7 @@ function Tutorsdisplay() {
         setactive((currPage - 1 > 0) ? (currPage - 1) : 1)
     }
     let items = [];
-    for (let number = 1; number <= (isMobile ? (totalpages <= 7 ? totalpages : 7) :totalpages ) ; number++) {
+    for (let number = 1; number <= (isMobile ? (totalpages <= 7 ? totalpages : 7) : totalpages); number++) {
 
         items.push(
 

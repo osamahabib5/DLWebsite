@@ -44,9 +44,7 @@ function PricingFilters(props) {
             await axios.post(url, skippedoption).then(response => {
 
                 getFilteredTeachersList(response.data.data.teachers)
-                // calculateFees(response.data.data.fee_amount)
                 startLoading();
-                // props.showtutoroptions();
                 setConfirmPricing(true);
                 props.showNavigation();
             }).catch(error => {
@@ -60,8 +58,6 @@ function PricingFilters(props) {
         }
     }
     const handleSubmit = async (e) => {
-        // calculateHoursPerWeek();
-        // e.preventDefault();
         console.log("Filters: " + JSON.stringify(advancedfilter))
         if (class_type && subscription && tutor_type && advancedfilter.result_type) {
             if (result_type === "teachers") {
@@ -72,13 +68,6 @@ function PricingFilters(props) {
                     console.log("Fees: " + response.data.data.fee_amount)
                     calculateFees(response.data.data.fee_amount)
                     setConfirmPricing(true);
-                    // setadvancedfilters({
-                    //     subscription: ""
-                    // })
-                    // if (!props.shownavigation) {
-                    //     props.showNavigation();
-                    // }
-                    // props.showtutoroptions();
                     stopLoading();
                 }).catch(error => {
                     console.log("Filters Error: " + error)
@@ -89,12 +78,7 @@ function PricingFilters(props) {
                     getFilteredTeachersList(response.data.data.teachers)
                     calculateFees(response.data.data.fee_amount)
                     startLoading();
-                    // setadvancedfilters({
-                    //     class_type: "",
-                    //     subscription: "",
-                    //     tutor_type: "",
-                    //     hours_per_week: 2
-                    // })
+                    setConfirmPricing(true);
                     if (!props.shownavigation) {
                         props.showNavigation();
                     }
@@ -109,9 +93,6 @@ function PricingFilters(props) {
 
     }
     const onChangePackage = (e) => {
-        // console.log("value: "+ e.target.value)
-        // e.target.value === "3_month" && parent_country === "Pakistan" ? setOptedPackage(1) : e.target.value === "3_month" && parent_country !== "Pakistan" ? setOptedPackage(3)
-        //     : e.target.value === "1_month" && parent_country !== "Pakistan" ? setOptedPackage(2) : setOptedPackage(0)
         e.persist();
         if (e.target.value === "3_month") {
             if (parent_country === "Pakistan") {
@@ -127,20 +108,11 @@ function PricingFilters(props) {
                 setOptedPackage(2);
             }
         }
-        // console.log("1 :" + e.target.value)
-        // console.log("Before :" + advancedfilter.subscription)
         setadvancedfilters({
             ...advancedfilter,
             subscription: e.target.value
         });
-        // console.log("After :" + advancedfilter.subscription)
-        // console.log("subsceription: "+advancedfilter.subscription)
-        // e.target.value = "";
         if (advancedfilter.class_type || advancedfilter.tutor_type) {
-            // setadvancedfilters({
-            //     ...advancedfilter,
-            //     subscription: e.target.value === "3_month" ? "1_month" : "3_month"
-            // });
             handleSubmit();
         }
     }

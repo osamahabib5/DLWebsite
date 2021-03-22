@@ -39,7 +39,7 @@ function SelectedPricePackage(props) {
                 <ChangeLocation />
             </p> */}
             {confirmpricing ? <div>
-                <GoToTutorsPage />
+                <GoToTutorsPage showAppointmentPageTutor = {props.showAppointmentPageTutor}/>
             </div> : ""}
         </div>
     )

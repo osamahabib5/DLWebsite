@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './OurTutor.css'
 import TutorIntro from './TutorIntro/TutorIntro';
@@ -11,11 +11,11 @@ import TeacherOptions from './TutorIntro/TeacherOptions/TeacherOptions';
 import axios from 'axios';
 import baseUrl from '../../../../src/baseUrl/baseUrl';
 import avatar from './TutorIntro/Images/avatar.jpg';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
+import { TutorsContext } from '../../../Provider';
 function OurTutor() {
+    const {fee_amount, setResultType} = useContext(TutorsContext)
     let { id } = useParams();
-    const [locationKeys, setLocationKeys] = useState([])
-    let history = useHistory()
     const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [], course_packages: []})
     const [apiurl, setUrl] = useState(baseUrl + '/api/teacher/profile/')
     async function getUser() {
@@ -40,13 +40,15 @@ function OurTutor() {
             )
             .catch(function (error) {
                 console.log(error);
-            }).then(() => {
-
-            }
-            );
+            });
     }
     useEffect(() => {
         getUser();
+        if (fee_amount > 0){
+            setResultType("teachers")
+        } else{
+            setResultType("pricing")
+        }
     }, []);
     return (
         <div className="tutor-info">

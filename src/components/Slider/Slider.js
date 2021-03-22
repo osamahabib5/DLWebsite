@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
-import testimonial from '../logo/Images/testimonials.jpg'
+import testimonial1 from '../logo/Images/testimonials.jpg'
 import testimonial2 from '../logo/Images/testimonial2.jpg'
 import testimonial3 from '../logo/Images/testimonial3.jpg'
 import './Slider.css'
@@ -12,7 +12,7 @@ function Slider() {
                 <Carousel.Item interval={10000}>
                     <img
                         className="d-block w-100"
-                        src={testimonial}
+                        src={testimonial1}
                         alt="First slide"
                         
                     />

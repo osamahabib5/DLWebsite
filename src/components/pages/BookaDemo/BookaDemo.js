@@ -27,7 +27,7 @@ function BookaDemo(props) {
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
-    const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees } = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -119,6 +119,7 @@ function BookaDemo(props) {
         setnavigation(false);
     }
     const SetDemoFlow = () => {
+        calculateFees(0);
         if (id) {
             getTeacherId(id);
             showAppointmentPage();
@@ -126,7 +127,7 @@ function BookaDemo(props) {
         if (location.search === "?showLeads") {
             setResultType("pricing");
 
-            if (lead_id > 0 || cookies.get('leadid')) {
+            if (cookies.get('leadid')) {
                 if (fee_amount == 0) {
                     setResultType("pricing");
                     // showLeadsForm();
@@ -146,7 +147,7 @@ function BookaDemo(props) {
                 setnavigation(false);
             }
         }
-        else if (location.search === "?pricing") {
+        if (location.search === "?pricing") {
             calculateFees(0);
             setResultType("teachers")
             setnavigation(false);
@@ -173,6 +174,52 @@ function BookaDemo(props) {
                 setParentCity(data.city ? data.city : "");
             })
     }
+    const handleBackButton = history.listen((loc, action) => {
+        if (action === "POP") {
+            if (successfullead) {
+                if (result_type === "pricing") {
+                    if (cookies.get('leadid') || lead_id != 0) {
+                        history.push({
+                            pathname: '/tutors/' + teacher_id,
+                        });
+                        calculateFees(0);
+                    }
+                }
+                else if (result_type === "teachers") {
+                    if (cookies.get('leadid')) {
+                        LeadAlreadyFilled()
+                        calculateFees(0);
+                    }
+                }
+
+            }
+            if (showtutors) {
+                calculateFees(0);
+                hidetutoroptions();
+            }
+            if (showappointmentpage) {
+                if (result_type == "pricing" && (cookies.get('leadid') || lead_id != 0)) {
+                    history.push({
+                        pathname: '/tutors/' + teacher_id,
+                    });
+                }
+                else {
+                    reloadPage();
+                    hideAppointmentPage();
+                }
+            }
+            if (scheduledemo) {
+                hideScheduleDemo();
+            }
+            if (showleads) {
+                calculateFees(0);
+                props.showPricingPackages();
+            }
+            if (confirmappointment) {
+                props.hideAppointmentConfirmation();
+            }
+        }
+    });
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
@@ -182,8 +229,9 @@ function BookaDemo(props) {
             fetchlocation()
         }
         SetDemoFlow();
+        handleBackButton();
         console.log("ResultType: " + result_type)
-    }, [fee_amount])
+    }, [result_type])
     return (
         <div className="bookademo">
             <Container>
@@ -215,7 +263,7 @@ function BookaDemo(props) {
                 {showtutors ? <Row>
                     <Col>
                         <div className="show_tutors">
-                            <ShowTutors showAppointmentPage={showAppointmentPage} />
+                            <ShowTutors />
                         </div>
                     </Col>
                 </Row> : ''}
@@ -224,7 +272,7 @@ function BookaDemo(props) {
                         <div className="packages">
                             <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
                                 PricingwithLeadId={PricingwithLeadId} isMobile={isMobile}
-                                showfeecalculator = {showfeecalculator}
+                                showfeecalculator={showfeecalculator}
                             />
                         </div>
                     </Col>
@@ -255,7 +303,7 @@ function BookaDemo(props) {
                         </div>
                     </Col>
                     <Col>
-                        <SelectedPricePackage />
+                        <SelectedPricePackage showAppointmentPageTutor={showAppointmentPageTutor}/>
                     </Col>
                 </Row> : ""}
                 {showappointmentpage ? <Row>
@@ -269,7 +317,7 @@ function BookaDemo(props) {
                     <Col>
                         <div className="scheduledemo">
                             <ScheduleDemo showAppointmentConfirmation={showAppointmentConfirmation} hideNavigation={hideNavigation}
-                            isMobile = {isMobile}
+                                isMobile={isMobile}
                             />
                         </div>
                     </Col>
@@ -277,7 +325,7 @@ function BookaDemo(props) {
                 {confirmappointment ? <Row>
                     <Col>
                         <div className="confirm-appointment">
-                            <ConfirmAppointment isMobile = {isMobile}/>
+                            <ConfirmAppointment isMobile={isMobile} />
                         </div>
                     </Col>
                 </Row> : ""}
