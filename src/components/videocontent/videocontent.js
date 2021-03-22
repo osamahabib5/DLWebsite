@@ -9,7 +9,7 @@ function Videocontent(props) {
             width = "100%"
             height = "auto"
             url="video/Dot&LinePhilosophy.mp4"
-            style = {{backgroundColor: "white"}}
+            style = {{backgroundColor: "white", display : "flex"}}
             />
             
     )

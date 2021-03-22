@@ -21,7 +21,6 @@ function OurTutor() {
     async function getUser() {
         await axios.get(apiurl + id)
             .then(function (response) {
-                console.log("Response: " + JSON.stringify(response.data.data.course_packages))
                 setform({
                     name: response.data.data.name,
                     bio: response.data.data.bio,
@@ -49,7 +48,7 @@ function OurTutor() {
         } else{
             setResultType("pricing")
         }
-    }, []);
+    }, [fee_amount]);
     return (
         <div className="tutor-info">
             <div className="container">

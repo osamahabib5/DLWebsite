@@ -5,12 +5,15 @@ function DemoTitle() {
     const { result_type } = useContext(TutorsContext);
     return (
         <div className="d-flex flex-column bd-highlight mb-3">
-            {result_type === "teachers" ? <div className="p-2 bd-highlight"><p className="ourpricing">
+            {/* {result_type === "teachers" ? <div className="p-2 bd-highlight"><p className="ourpricing">
                 OUR PRICING
-                </p></div> : ""}
+                </p></div> : ""} */}
+            <div className="p-2 bd-highlight"><p className="ourpricing">
+                {result_type === "teachers" || result_type === "" ? "OUR PRICING" : "Schedule a Demo"}
+                </p></div>
             {/* <div className="p-2 bd-highlight">Schedule a Demo</div> */}
         </div>
     )
 }
-
+    
 export default DemoTitle

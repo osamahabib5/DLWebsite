@@ -6,7 +6,7 @@ import { ClipLoader } from 'react-spinners';
 import Cookies from 'universal-cookie';
 function PackageDetails(props) {
     const cookies = new Cookies();
-    const { setOptedPackage, parent_country, loading, lead_id, setSubscription } = useContext(TutorsContext);
+    const { setOptedPackage, parent_country, loading, setResultType, setSubscription } = useContext(TutorsContext);
     const SetPricingPackage = (index)=>{
         if (index == 0 || index == 2){
             setSubscription("1_month")
@@ -16,7 +16,8 @@ function PackageDetails(props) {
         }
     }
     const setSelectedPackage = (index) => {
-        if (lead_id != 0) {
+        setResultType("teachers")
+        if (cookies.get("leadid")) {
             props.showfeecalculator();
             props.PricingwithLeadId();
             setOptedPackage(index)

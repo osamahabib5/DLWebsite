@@ -13,8 +13,9 @@ function NavigateDemo(props) {
         e.preventDefault();
         setConfirmPricing(false);
         if (props.successfullead) {
+            console.log("result_type:" + result_type);
             if (result_type === "pricing") {
-                if (cookies.get('leadid') || lead_id != 0) {
+                if (cookies.get('leadid') || lead_id > 0) {
                     history.push({
                         pathname: '/tutors/' + teacher_id,
                     });
@@ -22,35 +23,29 @@ function NavigateDemo(props) {
                 }
             }
             if (result_type === "teachers") {
-                console.log("Teachers")
                 if (cookies.get('leadid')) {
                     props.LeadAlreadyFilled()
                     calculateFees(0);
                 }
             }
-
         }
         if (props.showtutors) {
             calculateFees(0);
             props.hidetutoroptions();
         }
         if (props.showappointmentpage) {
-            console.log("result_type: "+ result_type)
-            if (result_type == "pricing") {
-                // props.showfeecalculator();
+            if (result_type === "pricing") {
+                if (cookies.get('leadid')) {
+                    props.showfeecalculator();
+                }
+            } else {
                 if (cookies.get('leadid')) {
                     history.push({
                         pathname: '/tutors/' + teacher_id,
                     });
+                    // props.showfeecalculator();
                 }
             }
-            // if (result_type == "pricing" && lead_id != 0){
-
-            // }
-            // else {
-            //     props.reloadPage();
-            //     props.hideAppointmentPage();
-            // }
         }
         if (props.scheduledemo) {
             props.hideScheduleDemo();

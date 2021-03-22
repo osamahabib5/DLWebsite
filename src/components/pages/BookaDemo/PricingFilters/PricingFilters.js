@@ -82,7 +82,7 @@ function PricingFilters(props) {
                     if (!props.shownavigation) {
                         props.showNavigation();
                     }
-                    props.showAppointmentPageTutor()
+                    // props.showAppointmentPageTutor()
                 }).catch(error => {
                     console.log("Filters Error: " + error)
                 })
