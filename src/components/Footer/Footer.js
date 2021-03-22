@@ -26,7 +26,7 @@ function Footer(props) {
         <Container fluid className = "footer-show">
             <Row>
                 <Col className="d-inline-flex p-2 bd-highlight">
-                    &copy; {new Date().getFullYear()} | THE DOT & LINE | {footervalues.address.substring(1,footervalues.address.length-1)}  |  {footervalues.phone_1.substring(1,footervalues.phone_1.length-1)} {footervalues.phone_2.substring(1,footervalues.phone_2.length-1)}
+                    &copy; {new Date().getFullYear()} | THE DOT & LINE | {footervalues.address.substring(1,footervalues.address.length-1)}  |  {footervalues.phone_1.substring(1,footervalues.phone_1.length-1)}, {footervalues.phone_2.substring(1,footervalues.phone_2.length-1)}
                 </Col>
                 <Col className="d-flex justify-content-end">
                     <ul className="list-group list-group-horizontal">

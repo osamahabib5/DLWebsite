@@ -9,14 +9,14 @@ import makeAnimated from 'react-select/animated'
 import { TutorsContext } from "../../../../Provider";
 
 function CardBody(props) {
-    const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects } = useContext(TutorsContext)
+    const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects, tutortype } = useContext(TutorsContext)
     const [filter, showfilters] = useState(false);
     const animatedComponents = makeAnimated();
     const subjects_url = baseUrl + '/api/getSubjects'
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "" });
+    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "", tutor_type: tutortype ? tutortype : "standard"  });
     const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
@@ -35,7 +35,6 @@ function CardBody(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         startLoading();
-        console.log("Filters: " + JSON.stringify(filters))
         await axios({
             method: 'get',
             url: filter_url,
@@ -44,12 +43,6 @@ function CardBody(props) {
             .then(function (response) {
                 const item = response.data.data;
                 setresults(item);
-                setTimeout(() => fillFilters({
-                    teacher_name: '',
-                    budget: 0,
-                    subjects: [],
-                    grade: ""
-                }), 7000);
                 props.scrolltotutors();
             })
             .catch(function (error) {

@@ -5,8 +5,9 @@ import axios from "axios";
 import baseUrl from '../../../../../../../baseUrl/baseUrl';
 import ReviewForm from '../ReviewForm/ReviewForm';
 import { BeatLoader } from 'react-spinners';
-import { css } from "@emotion/core";
+import  Cookies  from 'universal-cookie';
 function CheckParent(props) {
+    const cookies = new Cookies();
     const [parent, checkparent] = useState(false);
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#00ABBD");
@@ -44,6 +45,7 @@ function CheckParent(props) {
                     setLoading(false);
                     setclassname("text-success");
                     setmessage("Parent Verification Successful!");
+                    setTimeout(() => cookies.set("checkparent", "true", { path: '/' }), 1000);
                     setTimeout(() => checkparent(true), 1000);
                 })
                 .catch(function (error) {
@@ -64,7 +66,7 @@ function CheckParent(props) {
     }
     return (
         <div className="checkingparent">
-            {parent ? <ReviewForm parent_id={parent_id} handleClose={props.handleClose} /> : <Form bsPrefix="reviewform">
+            {cookies.get("checkparent") === "true" ? <ReviewForm parent_id={parent_id} handleClose={props.handleClose} /> : <Form bsPrefix="reviewform">
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Are you a Dot & Line Registered Parent? Please enter your email or phone number!</Form.Label>
                 </Form.Group>

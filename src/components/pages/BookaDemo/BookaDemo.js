@@ -27,7 +27,9 @@ function BookaDemo(props) {
     const [showappointmentpage, setappointmentpage] = useState(false);
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
-    const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id } = useContext(TutorsContext)
+    const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id
+        , setConfirmPricing
+    } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -44,6 +46,7 @@ function BookaDemo(props) {
         setpackages(false)
         setleadform(false);
         setnavigation(false);
+        calculateFees(0);
     }
     const PricingwithLeadId = () => {
         setpackages(true);
@@ -77,7 +80,7 @@ function BookaDemo(props) {
                 setleadform(false);
                 setsuccessfullead(true);
             }
-        } 
+        }
     }
     const hidetutoroptions = () => {
         showfeecalculator();
@@ -178,47 +181,49 @@ function BookaDemo(props) {
     }
     const handleBackButton = history.listen((loc, action) => {
         if (action === "POP") {
+            setConfirmPricing(false);
             if (successfullead) {
                 if (result_type === "pricing") {
-                    if (cookies.get('leadid') || lead_id != 0) {
+                    if (cookies.get('leadid') || lead_id > 0) {
                         history.push({
                             pathname: '/tutors/' + teacher_id,
                         });
                         calculateFees(0);
                     }
                 }
-                else if (result_type === "teachers") {
+                if (result_type === "teachers") {
                     if (cookies.get('leadid')) {
                         LeadAlreadyFilled()
                         calculateFees(0);
                     }
                 }
-
             }
-            if (showtutors) {
+            else if (showtutors) {
                 calculateFees(0);
                 hidetutoroptions();
             }
-            if (showappointmentpage) {
-                if (result_type == "pricing" && (cookies.get('leadid') || lead_id != 0)) {
-                    history.push({
-                        pathname: '/tutors/' + teacher_id,
-                    });
-                }
-                else {
-                    reloadPage();
-                    hideAppointmentPage();
+            else if (showappointmentpage) {
+                if (result_type === "pricing") {
+                    if (cookies.get('leadid')) {
+                    showfeecalculator();
+                    }
+                } else {
+                    if (cookies.get('leadid')) {
+                        history.push({
+                            pathname: '/tutors/' + teacher_id,
+                        });
+                    }
                 }
             }
-            if (scheduledemo) {
+            else if (scheduledemo) {
                 hideScheduleDemo();
             }
-            if (showleads) {
+            else if (showleads) {
                 calculateFees(0);
-                props.showPricingPackages();
+                showPricingPackages();
             }
-            if (confirmappointment) {
-                props.hideAppointmentConfirmation();
+            else if (confirmappointment) {
+                hideAppointmentConfirmation();
             }
         }
     });

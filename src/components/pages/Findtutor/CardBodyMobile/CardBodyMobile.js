@@ -9,7 +9,7 @@ import "rc-slider/assets/index.css";
 import baseUrl from "../../../../baseUrl/baseUrl";
 import axios from "axios";
 function CardBodyMobile(props) {
-    const { fetched_grades, subjects_list, startLoading, stopLoading, setresults } = useContext(TutorsContext)
+    const { fetched_grades, subjects_list, startLoading, stopLoading, setresults, tutortype } = useContext(TutorsContext)
     const heightMarks = {
         10000: "10000",
         20000: "20000",
@@ -18,7 +18,7 @@ function CardBodyMobile(props) {
 
     };
     const filter_url = baseUrl + '/api/teachers/search'
-    const [filter_parameters, fillfilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "" });
+    const [filter_parameters, fillfilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "" ,  tutor_type: tutortype ? tutortype : "standard" });
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Filters: " + JSON.stringify(filter_parameters))
@@ -31,12 +31,6 @@ function CardBodyMobile(props) {
             .then(function (response) {
                 const item = response.data.data;
                 setresults(item);
-                setTimeout(() => fillfilters({
-                    teacher_name: '',
-                    budget: 0,
-                    subjects: [],
-                    grade: ""
-                }), 4000);
                 props.scrolltotutors();
             })
             .catch(function (error) {

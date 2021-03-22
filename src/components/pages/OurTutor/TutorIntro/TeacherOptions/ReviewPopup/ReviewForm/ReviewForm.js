@@ -97,7 +97,7 @@ function ReviewForm(props) {
             </Form.Row>
             <Form.Group controlId="formBasicPassword">
                 <Form.Label>Review</Form.Label>
-                <Form.Control as="textarea" placeholder="Please leave your reviews" name="review" onChange={handleChange} />
+                <Form.Control as="textarea" style = {{marginLeft: "2rem", width: "91%"}} placeholder="Please leave your reviews" rows = {4} name="review" onChange={handleChange} />
 
             </Form.Group >
             <div className="d-flex justify-content-center">

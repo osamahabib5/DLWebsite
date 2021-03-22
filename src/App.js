@@ -44,7 +44,7 @@ function App() {
   }
   const closenotifications = () => {
     setNotification(false);
-    cookies.set('notification', notification, { path: '/' });
+    cookies.set("notification", "true", { path: '/' });
   }
   let backdrop;
   let footer;
@@ -62,9 +62,9 @@ function App() {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {Notification}
+        {!cookies.get("notification") ? Notification : ""}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        {MobileNotification}
+        {!cookies.get("notification") ? MobileNotification : ""}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>
