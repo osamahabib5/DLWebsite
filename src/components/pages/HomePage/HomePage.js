@@ -68,7 +68,7 @@ function HomePage(props) {
                 <OurApproach />
             </div>
             <div className="Image-Slider">
-                <Slider />
+                <Slider isMobile = {isMobile}/>
 
             </div>
             {/* <div className="slider-content">

@@ -6,6 +6,37 @@ body {
   height: 100%;
 }
 
+.our-tutors {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.our-tutors-description {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+  color: #000000;
+}
+
+.our-tutors-ending {
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   height: 100%;
@@ -15,10 +46,12 @@ code {
   font-family: 'Avenir';
   src: local('Avenir'), url(./fonts/AvenirLTStd-Roman.otf) format('opentype');
 }
+
 @font-face {
   font-family: 'Avenir-Next';
   src: local('Avenir-Next'), url(./fonts//AvenirNextLTPro-Regular.otf) format('opentype');
 }
+
 @font-face {
   font-family: 'Inter';
   src: local('Inter'), url(./fonts//Inter-Regular.ttf) format('truetype');
@@ -28,4 +61,5 @@ code {
   font-family: Avenir;
   font-style: normal;
 }
+
 @import "~react-image-gallery/styles/css/image-gallery.css";

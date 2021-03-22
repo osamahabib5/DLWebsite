@@ -4,15 +4,18 @@ import { Carousel } from 'react-bootstrap';
 import testimonial1 from '../logo/Images/testimonials.jpg'
 import testimonial2 from '../logo/Images/testimonial2.jpg'
 import testimonial3 from '../logo/Images/testimonial3.jpg'
+import testimonialphone1 from "../logo/Images/testimonialphone1.jpg";
+import testimonialphone2 from "../logo/Images/testimonialphone2.jpg";
+import testimonialphone3 from "../logo/Images/testimonialphone3.jpg";
 import './Slider.css'
-function Slider() {
+function Slider(props) {
     return (
         <div>
             <Carousel>
                 <Carousel.Item interval={10000}>
                     <img
                         className="d-block w-100"
-                        src={testimonial1}
+                        src={props.isMobile ? testimonialphone1 : testimonial1}
                         alt="First slide"
                         
                     />
@@ -25,7 +28,7 @@ function Slider() {
                 <Carousel.Item interval={10000}>
                     <img
                         className="d-block w-100"
-                        src={testimonial2}
+                        src={props.isMobile ? testimonialphone2 : testimonial2}
                         alt="Third slide"
                     />
                     <Carousel.Caption>
@@ -38,7 +41,7 @@ Your Sincere student Abdul Wasih</p>
                 <Carousel.Item interval={10000}>
                     <img
                         className="d-block w-100"
-                        src={testimonial3}
+                        src={props.isMobile ? testimonialphone3 : testimonial3}
                         alt="Third slide"
                     />
                     <Carousel.Caption>
