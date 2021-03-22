@@ -4,7 +4,7 @@ import Backdrop from "./components/Backdrop/Backdrop";
 import './App.css'
 import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NotificationToast from './components/Notification/NotificationToast';
 import NotificationToastMobile from "./components/Notification/NotificationToastMobile";
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,6 +46,15 @@ function App() {
     setNotification(false);
     cookies.set("notification", "true", { path: '/' });
   }
+  const [isMobile, setclassname] = useState(false);
+  const mobileview = () => {
+    if (window.innerWidth < 769) {
+      setclassname(true);
+    }
+    if (window.innerWidth >= 769) {
+      setclassname(false);
+    }
+  }
   let backdrop;
   let footer;
   let Notification;
@@ -59,6 +68,10 @@ function App() {
     Notification = <NotificationToast click={closenotifications} />
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
+  useEffect(() => {
+    mobileview();
+    window.addEventListener("resize", mobileview);
+  });
   return (
     <div className="page-container">
       <div className="content-wrap">
@@ -84,7 +97,7 @@ function App() {
           </Route>
 
           <Route path="/becometutor">
-            <BecomeTutor />
+            <BecomeTutor isMobile={isMobile} />
           </Route>
 
           <Route path="/aboutus">
