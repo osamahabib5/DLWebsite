@@ -5,7 +5,7 @@ import { TutorsContext } from '../../../../Provider';
 import Available_Packages from '../Available_Packages';
 function PackageDetailsMobile(props) {
     const cookies = new Cookies();
-    const { parent_country, setOptedPackage, lead_id } = useContext(TutorsContext)
+    const { parent_country, setOptedPackage, lead_id, setSubscription, setResultType } = useContext(TutorsContext)
     const firstpackage = {
         backgroundColor: "rgb(255, 248, 248)",
         border: "2px solid rgb(252, 207, 203)",
@@ -24,15 +24,37 @@ function PackageDetailsMobile(props) {
         }
         return secondpackage
     }
+    // const setSelectedPackage = (index) => {
+    //     if (lead_id != 0 ) {
+    //         props.showfeecalculator();
+    //         props.PricingwithLeadId();
+    //         setOptedPackage(index)
+    //     }
+    //     else {
+    //         props.showLeadsForm();
+    //         setOptedPackage(index)
+    //     }
+    // }
+    const SetPricingPackage = (index)=>{
+        if (index == 0 || index == 2){
+            setSubscription("1_month")
+        }
+        else{
+            setSubscription("3_month");
+        }
+    }
     const setSelectedPackage = (index) => {
-        if (lead_id != 0 ) {
+        setResultType("teachers")
+        if (cookies.get("leadid")) {
             props.showfeecalculator();
             props.PricingwithLeadId();
             setOptedPackage(index)
+            SetPricingPackage(index);
         }
         else {
             props.showLeadsForm();
             setOptedPackage(index)
+            SetPricingPackage(index);
         }
     }
     return (

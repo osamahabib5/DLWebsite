@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Col, Container, Row, Form } from 'react-bootstrap'
 import 'react-phone-number-input/style.css'
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye} from '@fortawesome/free-solid-svg-icons'
+import Swal from 'sweetalert2'
 function TeacherSignUp() {
     const registerapplication = {
         fontFamily: "Avenir",
@@ -23,12 +26,46 @@ function TeacherSignUp() {
         alignItems: "center",
         color: "#000000"
     }
-    let [message, setmessage] = useState("");
+    // font-family: Avenir;
+    // font-style: normal;
+    // font-weight: normal;
+    // font-size: 16px;
+    // line-height: 32px;
+    // background-repeat: no-repeat;
+    // background-position: left;
+    // background-position: 20px;
+    // text-indent: 40px!important;
+    // background-image: url(./Image//Shape.png)!important;
+    // /* identical to box height, or 178% */
+    // color: #000000;
+    // margin-top: -0.5rem;
+    // width: 100%;
+    // border-color: hsl(0, 0%, 80%);
+    // border-radius: 4px;
+    // border-style: solid;
+    // border-width: 1px;
+
+    const passwordstyling = {
+        backgroundImage: "url(./tutoricon.png)"
+    }
+
+    let [message, setmessage] = useState("Passwords don't match");
+    let [passwordmessage, setpasswordmessage] = useState(null)
+    let [alerttext, setalerttext] = useState("");
     let [classname, setclassname] = useState("");
     const handleOnChange = (e) => {
         fillteachersignupdetails({
             ...teachersignupdetails,
             [e.target.name]: e.target.value
+        })
+    }
+    const opensweetalertdanger = () => {
+        Swal.fire({
+            title: 'Create Lead',
+            text: alerttext,
+            type: 'warning',
+
+
         })
     }
     const validateemail = (inputtxt) => {
@@ -38,20 +75,27 @@ function TeacherSignUp() {
         }
         return true
     }
-    const validatepassword = (password)=>{
+    const validatepassword = (verifypassword) => {
+        if (!verifypassword) {
+            setpasswordmessage(null)
+        }
         var patt = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
-        var res = patt.test(password);    
-        // var validpassword = reg.test(password);
-        console.log("Res: "+ res)
-        if (res){
-            console.log("Valid Password! ")
+        var res = patt.test(verifypassword);
+        if (res) {
+            setclassname("text-success");
+            setpasswordmessage("Password verification successful!")
+            fillteachersignupdetails({
+                ...teachersignupdetails,
+                password: verifypassword
+            })
         }
-        else{
-            console.log("Invalid Password!")
+        else {
+            setclassname("text-danger");
+            setpasswordmessage("Please enter a valid password!");
         }
-        // console.log(test)
     }
-    const [teachersignupdetails, fillteachersignupdetails] = useState({  email: "", password: "" , phone: "" });
+    const [teachersignupdetails, fillteachersignupdetails] = useState({ email: "", password: "", phone: "" });
+    const { phone, password } = teachersignupdetails;
     const [value, setValue] = useState()
     return (
         <Container>
@@ -59,30 +103,49 @@ function TeacherSignUp() {
                 <Col>
                     <Form style={{ marginTop: "1rem" }}>
                         <Form.Row>
+                            <p className="text-info" style={{ fontSize: "13px", marginBottom: "-0.5rem" }}>Password should be at least 8 characters long, with one uppercase, one lowercase letter and one number</p>
+                        </Form.Row>
+                        <Form.Row style={{ marginTop: "2rem" }}>
                             <Form.Group as={Col} controlId="formGridEmail" >
-                                <Form.Control type="email" placeholder="Enter Email" style = {{width: "54%"}} name = "email" onChange = {handleOnChange}/>
+                                <Form.Control type="email" placeholder="Enter Email" style={{ width: "54%" }} name="email" onChange={handleOnChange} />
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Password" style = {{width: "54%"}} name = "password" onChange = {(e)=>{
-                                    validatepassword(e.target.value)
-                                }}/>
-                                <p className = "text-info">Password should be at least 8 characters long, with at least one uppercase, one lowercase letter and one number</p>
-                            </Form.Group> 
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Re-Enter Password" style = {{width: "54%"}} name = "reenter-password"/>
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
+                        <Form.Row style={{ marginTop: "1rem" }}>
                             <PhoneInput
                                 placeholder="+92 --- -------"
-                                value={value}
-                                onChange={setValue}
-                            // error={phone ? (isValidPhoneNumber(phone) ? undefined : 'Invalid phone number') : 'Phone number required'}
+                                value={phone}
+                                onChange={(e) => fillteachersignupdetails({
+                                    ...teachersignupdetails,
+                                    phone: e
+                                })}
                             />
+                        </Form.Row>
+                        <Form.Row style={{ marginTop: "1.5rem" }}>
+                            <Form.Group as={Col} controlId="formGridPassword">
+                                <Form.Control type="password" placeholder="Password" style={{ width: "54%", backgroundImage: <FontAwesomeIcon icon = {faEye}/> }} name="password" onChange={(e) => {
+                                    validatepassword(e.target.value)
+                                }} />
+                                <div style={{ width: "90%" }}>
+                                    <p className={classname ? classname : "text-danger"} style={{ fontSize: "13px" }}>{passwordmessage ? passwordmessage : ""}</p>
+                                </div>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row >
+                            <Form.Group as={Col} controlId="formGridPassword">
+                                <Form.Control type="password" placeholder="Re-Enter Password" style={{ width: "54%" }} name="reenter-password" onChange={(e) => {
+                                    if (password.length > 0 && e.target.value === password) {
+                                        setmessage("Passwords matched")
+                                        setclassname("text-success")
+                                    } else {
+                                        setmessage("Passwords don't match")
+                                        setclassname("text-danger")
+                                    }
+                                }}
+                                />
+                                <div style={{ width: "70%" }}>
+                                    <p className={classname ? classname : "text-danger"} style={{ fontSize: "13px" }}>{message}</p>
+                                </div>
+                            </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} style={{ marginTop: "1rem" }}>
@@ -99,6 +162,9 @@ function TeacherSignUp() {
                 <Col>
                     <p style={registerapplication}>Register to start your application </p>
                     <p style={checkEmailStyling}>Check your email or SMS after registration to activate your account!</p>
+                    {/* <div className="d-flex align-items-center">
+
+                    </div> */}
                 </Col>
             </Row>
         </Container>

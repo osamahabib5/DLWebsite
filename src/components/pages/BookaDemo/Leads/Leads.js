@@ -12,7 +12,6 @@ import PhoneInput , {isValidPhoneNumber}from 'react-phone-number-input'
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const cookies = new Cookies();
-    const [value, setValue] = useState()
     const postleadurl = baseUrl + '/api/lead/create';
     const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "" , country: parent_country, city: "Karachi" });
     const {phone, email} = leadsdetail;
