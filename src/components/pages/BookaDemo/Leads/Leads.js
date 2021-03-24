@@ -79,7 +79,7 @@ function Leads(props) {
             <Container>
                 <Row style={{ marginTop: "-2rem" }}>
                     <Col>
-                        <p className="contact_heading">Just take a minute to give us your details before you pop over to build your own customised package.</p>
+                        <p className="contact_heading">Just take a minute to give us your details before you pop over to building your own customised package.</p>
                     </Col>
                 </Row>
                 <Row style={{ textAlign: "center", marginTop: "2rem" }}>
@@ -101,7 +101,7 @@ function Leads(props) {
                                     })}
                                     />
                             </Form.Group>
-                            <div style={{ marginTop: "4rem" }}>
+                            <div style={{ marginTop: "4rem", marginBottom : "3rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>
                                     Submit
                                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />
