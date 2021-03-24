@@ -18,6 +18,7 @@ function BookaDemo() {
     let { id } = useParams();
     let history = useHistory();
     let location = useLocation();
+    let { state } = location;
     const cookies = new Cookies();
     const [shownavigation, setnavigation] = useState(false);
     const [hidepackages, setpackages] = useState(false);
@@ -28,7 +29,7 @@ function BookaDemo() {
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
     const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id
-        , setConfirmPricing
+        , setConfirmPricing, skipPricing, skippedpricing
     } = useContext(TutorsContext)
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
@@ -133,38 +134,64 @@ function BookaDemo() {
             getTeacherId(id);
             showAppointmentPage();
         }
-        if (location.search === "?showLeads") {
-            if (cookies.get('leadid')) {
-                if (fee_amount == 0) {
-                    // showLeadsForm();
-                    showfeecalculator();
-                    setnavigation(true);
-                    setpackages(true);
-                }
-                else if (fee_amount > 0) {
-                    // setResultType("pricing");
-                    setappointmentpage(true);
-                    setnavigation(true);
-                    setpackages(true);
-                }
-            }
-            else {
-                showLeadsForm();
-                setpackages(true);
+        // if (location.search === "?showLeads") {
+        //     if (cookies.get('leadid')) {
+        //         if (fee_amount == 0) {
+        //             // showLeadsForm();
+        //             showfeecalculator();
+        //             setnavigation(true);
+        //             setpackages(true);
+        //         }
+        //         else if (fee_amount > 0) {
+        //             // setResultType("pricing");
+        //             setappointmentpage(true);
+        //             setnavigation(true);
+        //             setpackages(true);
+        //         }
+        //     }
+        //     else {
+        //         showLeadsForm();
+        //         setpackages(true);
+        //         setnavigation(false);
+        //     }
+        // }
+        if (state) {
+            if (state.PricingValue) {
+                calculateFees(0);
+                skipPricing(false);
+                setResultType("teachers")
                 setnavigation(false);
+                setleadform(false);
+                setsuccessfullead(false);
+                setshowtutors(false);
+                setappointmentpage(false);
+                setscheduledemo(false);
+                setconfirmappointment(false);
+                setpackages(false);
             }
-        }
-        if (location.search === "?pricing") {
-            calculateFees(0);
-            setResultType("teachers")
-            setnavigation(false);
-            setleadform(false);
-            setsuccessfullead(false);
-            setshowtutors(false);
-            setappointmentpage(false);
-            setscheduledemo(false);
-            setconfirmappointment(false);
-            setpackages(false);
+            if (state.TeacherFunnel) {
+                if (cookies.get('leadid')) {
+                    if (fee_amount == 0) {
+                        // showLeadsForm();
+                        skipPricing(true);
+                        showfeecalculator();
+                        setnavigation(true);
+                        setpackages(true);
+                    }
+                    else if (fee_amount > 0) {
+                        // setResultType("pricing");
+                        // skipPricing(true);
+                        setappointmentpage(true);
+                        setnavigation(true);
+                        setpackages(true);
+                    }
+                }
+                else {
+                    showLeadsForm();
+                    setpackages(true);
+                    setnavigation(false);
+                }
+            }
         }
     }
     const fetchlocation = async () => {
@@ -205,7 +232,7 @@ function BookaDemo() {
             else if (showappointmentpage) {
                 if (result_type === "pricing") {
                     if (cookies.get('leadid')) {
-                    showfeecalculator();
+                        showfeecalculator();
                     }
                 } else {
                     if (cookies.get('leadid')) {
@@ -237,7 +264,7 @@ function BookaDemo() {
         }
         SetDemoFlow();
         handleBackButton();
-    }, [fee_amount])
+    }, [state])
     return (
         <div className="bookademo">
             <Container>
@@ -309,9 +336,9 @@ function BookaDemo() {
                             />
                         </div>
                     </Col>
-                    <Col>
+                   {!skippedpricing ?  <Col>
                         <SelectedPricePackage showAppointmentPageTutor={showAppointmentPageTutor} />
-                    </Col>
+                    </Col> : ""}
                 </Row> : ""}
                 {showappointmentpage ? <Row>
                     <Col>

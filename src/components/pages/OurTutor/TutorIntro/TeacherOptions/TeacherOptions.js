@@ -26,7 +26,7 @@ function TeacherOptions() {
                             to={{
                                 pathname: "/pricing",
                                 search: "showLeads",
-                                state: { teacherid: id }
+                                state: { TeacherFunnel: "true" }
                             }}
                         ><button className="btn button-cta button-white">Book a Demo</button></Link>
                         <div style={{ marginTop: "1rem" }}></div>

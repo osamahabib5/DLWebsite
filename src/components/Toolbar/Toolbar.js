@@ -24,7 +24,7 @@ const Toolbar = (props) => {
                         <li><Link to="/programs">Programs & Courses</Link></li>
                         <li><Link to={{
                             pathname: "/pricing",
-                            state : {refresh: true}
+                            state : {PricingValue: "hello"}
                         }}>Pricing</Link></li>
                         <li><Link to="/tutors">Our Tutors</Link></li>
                         <li><Link to="/becometutor">Become a Tutor</Link></li>

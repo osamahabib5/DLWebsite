@@ -51,7 +51,7 @@ function PricingFilters(props) {
         }
         if (result_type === "pricing") {
             props.showNavigation();
-            skipPricing(true);
+            // skipPricing(true);
             props.showAppointmentPagewithTeacher();
         }
     }
@@ -76,6 +76,7 @@ function PricingFilters(props) {
                 })
             }
             if (result_type === "pricing") {
+                skipPricing(false);
                 await axios.post(url, advancedfilter).then(response => {
                     getFilteredTeachersList(response.data.data.teachers)
                     calculateFees(response.data.data.fee_amount)

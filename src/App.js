@@ -71,6 +71,7 @@ function App() {
   useEffect(() => {
     mobileview();
     window.addEventListener("resize", mobileview);
+    window.scrollTo(0, 0)
   });
   return (
     <div className="page-container">

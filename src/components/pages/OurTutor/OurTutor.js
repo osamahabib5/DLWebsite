@@ -43,6 +43,7 @@ function OurTutor() {
     }
     useEffect(() => {
         getUser();
+        window.scrollTo(0, 0)
         if (fee_amount > 0){
             setResultType("teachers")
         } else{
