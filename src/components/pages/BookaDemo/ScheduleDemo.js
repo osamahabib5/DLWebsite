@@ -74,13 +74,11 @@ function ScheduleDemo(props) {
             })
         }
         setisClicked((prevState) => !prevState);
-        console.log("Clicked: " + isClicked)
         e.currentTarget.setAttribute("class", "btn button-cta button-blue")
         //e.targt.addClass("button-blue")
     }
     const BookDemo = async (e) => {
         e.preventDefault();
-        console.log("Values: " + JSON.stringify(demodata))
         if (!demodata.date || !demodata.time || !demodata.lead_id || !demodata.teacher_id) {
             console.log("Demodata: ")
             opensweetalertdanger("Please fill all the required values!")

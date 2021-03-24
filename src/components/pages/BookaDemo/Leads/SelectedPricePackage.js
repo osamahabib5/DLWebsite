@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Card, ListGroup } from "react-bootstrap";
 import { TutorsContext } from '../../../../Provider';
-import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {

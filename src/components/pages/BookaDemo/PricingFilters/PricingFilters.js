@@ -12,10 +12,9 @@ function PricingFilters(props) {
     const { setOptedPackage, opted_package, parent_country, lead_id,
         startLoading, getFilteredTeachersList, calculateFees, result_type,
         stopLoading, subscription_type, setConfirmPricing, setTutorType, skipPricing } = useContext(TutorsContext)
-    // const [skipped, setSkipped] = useState(false);
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription_type , tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription_type, tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
-    // const { class_type, tutor_type } = advancedfilter;
+    const [filledvalues, setfilledvalues] = useState(false);
     const url = baseUrl + '/api/calculateFee';
     const { class_type, subscription, tutor_type } = advancedfilter;
     const opensweetalertdanger = (alerttext) => {
@@ -42,7 +41,6 @@ function PricingFilters(props) {
     const SkipPricing = async () => {
         if (result_type === "teachers") {
             await axios.post(url, skippedoption).then(response => {
-
                 getFilteredTeachersList(response.data.data.teachers)
                 startLoading();
                 setConfirmPricing(true);
@@ -58,6 +56,7 @@ function PricingFilters(props) {
         }
     }
     const handleSubmit = async (e) => {
+        setfilledvalues(true);
         console.log("Filters: " + JSON.stringify(advancedfilter))
         if (class_type && subscription && tutor_type && advancedfilter.result_type) {
             if (result_type === "teachers") {
@@ -65,9 +64,12 @@ function PricingFilters(props) {
                 await axios.post(url, advancedfilter).then(response => {
                     setTutorType(tutor_type);
                     getFilteredTeachersList(response.data.data.teachers)
-                    console.log("Fees: " + response.data.data.fee_amount)
                     calculateFees(response.data.data.fee_amount)
                     setConfirmPricing(true);
+                    // setadvancedfilters({
+                    //     ...advancedfilter,
+                    //     subscription : ""
+                    // })
                     stopLoading();
                 }).catch(error => {
                     console.log("Filters Error: " + error)
@@ -93,32 +95,33 @@ function PricingFilters(props) {
 
     }
     const onChangePackage = (e) => {
-        e.persist();
-        if (e.target.value === "3_month") {
+        setadvancedfilters({
+            ...advancedfilter,
+            subscription: e.target.value
+        });
+    }
+    const changePricingPackage = () => {
+        if (subscription === "3_month") {
             if (parent_country === "Pakistan") {
                 setOptedPackage(1);
             } else {
                 setOptedPackage(3);
             }
         }
-        if (e.target.value === "1_month") {
+        if (subscription === "1_month") {
             if (parent_country === "Pakistan") {
                 setOptedPackage(0);
             } else {
                 setOptedPackage(2);
             }
         }
-        setadvancedfilters({
-            ...advancedfilter,
-            subscription: e.target.value
-        });
-        if (advancedfilter.class_type || advancedfilter.tutor_type) {
+    }
+    useEffect(() => {
+        changePricingPackage();
+        if (filledvalues) {
             handleSubmit();
         }
-    }
-    useEffect(()=>{
-        console.log("Cookies: "+ cookies.get("leadid"))
-    },[])
+    }, [subscription])
     return (
         <Container>
             <Row>

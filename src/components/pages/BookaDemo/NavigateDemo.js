@@ -13,7 +13,6 @@ function NavigateDemo(props) {
         e.preventDefault();
         setConfirmPricing(false);
         if (props.successfullead) {
-            console.log("result_type:" + result_type);
             if (result_type === "pricing") {
                 if (cookies.get('leadid') || lead_id > 0) {
                     history.push({

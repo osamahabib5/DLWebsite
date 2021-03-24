@@ -14,7 +14,7 @@ import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
 import Cookies from 'universal-cookie';
-function BookaDemo(props) {
+function BookaDemo() {
     let { id } = useParams();
     let history = useHistory();
     let location = useLocation();
