@@ -14,15 +14,13 @@ function ScheduleDemo(props) {
     const [selecteddate, setselecteddate] = useState(null);
     const [isClicked, setisClicked] = useState(false);
     const getTimeUrl = baseUrl + "/api/demo/getTimes/" + teacher_id;
-    const [isDate, setisDate] = useState("");
     const [activeIndex, setActiveIndex] = useState(null);
     const bookDemoUrl = baseUrl + "/api/demo/book";
-    const [showtimes, settimes] = useState(false);
+    const [dayindex, setdayindex] = useState(0);
     const [selectedday, setSelectedday] = useState(null)
     const [demodata, setdemodata] = useState({ teacher_id: teacher_id, lead_id: lead_id ? lead_id : cookies.get("leadid"), date: selecteddate, time: "", note: "" })
     const [DaysList, setDaysList] = useState({ disableddays: [], times: [], days: [], booked_times: {} });
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const [dayindex, setdayindex] = useState(0);
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: 'Book a Demo',
@@ -37,28 +35,27 @@ function ScheduleDemo(props) {
     };
     const { booked_times, times, days, disableddays } = DaysList;
     const handleDayClick = (day, { selected }) => {
-        settimes(true);
         setSelectedday(selected ? undefined : day)
-        if (selectedday) {
-            var d = new Date(selectedday);
-            var dayofweek = d.getDay();
-            var month = '' + (d.getMonth() + 1);
-            var day = '' + d.getDate();
-            var year = d.getFullYear().toString();
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-            setselecteddate([year, month, day].join('-'));
-            setdemodata({
-                ...demodata,
-                date: selecteddate
-            })
+        var d = new Date(day);
+        var dayofweek = d.getDay();
+        var month = '' + (d.getMonth() + 1);
+        var Day = '' + d.getDate();
+        var year = d.getFullYear().toString();
+        if (month.length < 2)
+            month = '0' + month;
+        if (Day.length < 2)
+        Day = '0' + Day;
+        const date_selected = [year, month, Day].join('-')
+        // setselecteddate(date_selected);
+        setdemodata({
+            ...demodata,
+            date: date_selected
+        })
             setdayindex(DaysList.days.indexOf(dayofweek))
             for (const [key, value] of Object.entries(booked_times)) {
-                if (selecteddate) {
-                    if (selecteddate === value) {
-                        let dayofweekindex = days.indexOf(new Date(selecteddate).getDay());
+                if (date) {
+                    if (date === value) {
+                        let dayofweekindex = days.indexOf(new Date(date).getDay());
                         let bookedtimevalue = times[dayofweekindex].indexOf(key);
                         if (dayofweekindex >= 0 && bookedtimevalue > -1) {
                             times[dayofweekindex].splice(bookedtimevalue, 1);
@@ -66,7 +63,6 @@ function ScheduleDemo(props) {
                     }
                 }
             }
-        }
     }
     const setTimeSlot = (e) => {
         e.preventDefault();
@@ -166,14 +162,14 @@ function ScheduleDemo(props) {
                 </Col>
                 <Col>
                     <p style={{ textAlign: "center" }}>Select a Timeslot</p>
-                    {showtimes && selectedday && date && dayindex != -1 ? DaysList.times[dayindex].map((data, index) => {
+                    {selectedday ? DaysList.times[dayindex].map((data, index) => {
                         return (
-                            <button className={activeIndex === index ? 'btn button-cta button-blue' : 'btn button-cta button-white'} data-index={index} key={index} value={data} name="time" onClick={(e) => {
+                            <button className={activeIndex === index ? 'btn button-cta button-blue' : 'btn button-cta button-white'}  key={index} value={data} name="time" onClick={(e) => {
                                 setTimeSlot(e);
                                 setActive(index)
                             }}>{data}</button>
                         )
-                    }) : <div className="d-flex justify-content-center" style={{ color: "black" }}>
+                    })  : <div className="d-flex justify-content-center" style={{ color: "black" }}>
                         Timeslots will be shown here!
                     </div>}
                     {/* {selectedday ? selecteddate : <div>Please select a day</div>} */}

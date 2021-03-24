@@ -8,7 +8,7 @@ import { TutorsContext } from "../../../../Provider";
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie';
 import 'react-phone-number-input/style.css'
-import PhoneInput , {formatPhoneNumber, formatPhoneNumberIntl, isValidPhoneNumber}from 'react-phone-number-input'
+import PhoneInput , {isValidPhoneNumber}from 'react-phone-number-input'
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const cookies = new Cookies();
@@ -93,14 +93,12 @@ function Leads(props) {
                             </Form.Group>
 
                             <Form.Group controlId="formBasicEmail">
-                                {/* <Form.Control type="number" placeholder="Phone" name="phone" onChange={handleOnChange} value={leadsdetail.phone} /> */}
                                 <PhoneInput
                                     placeholder="+92 --- -------" value={phone}
                                     onChange={(e)=>fillleaddetails({
                                         ...leadsdetail,
                                         phone: e
                                     })}
-                                    // error={phone ? (isValidPhoneNumber(phone) ? undefined : 'Invalid phone number') : 'Phone number required'}
                                     />
                             </Form.Group>
                             <div style={{ marginTop: "4rem" }}>
