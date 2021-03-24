@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Form } from 'react-bootstrap'
 import 'react-phone-number-input/style.css'
+import seeicon from './tutoricon.png';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye} from '@fortawesome/free-solid-svg-icons'
@@ -46,7 +47,10 @@ function TeacherSignUp() {
     // border-width: 1px;
 
     const passwordstyling = {
-        backgroundImage: "url(./tutoricon.png)"
+        backgroundImage: {seeicon}+ "!important",
+        backgroundPosition: "left",
+
+        textIndent: "40px!important"
     }
 
     let [message, setmessage] = useState("Passwords don't match");
@@ -106,8 +110,10 @@ function TeacherSignUp() {
                             <p className="text-info" style={{ fontSize: "13px", marginBottom: "-0.5rem" }}>Password should be at least 8 characters long, with one uppercase, one lowercase letter and one number</p>
                         </Form.Row>
                         <Form.Row style={{ marginTop: "2rem" }}>
-                            <Form.Group as={Col} controlId="formGridEmail" >
-                                <Form.Control type="email" placeholder="Enter Email" style={{ width: "54%" }} name="email" onChange={handleOnChange} />
+                            <Form.Group as={Col} controlId="formGridEmail">
+                                <Form.Control type="email" placeholder="Enter Email" style={{ width: "54%" }} name="email" onChange={handleOnChange} 
+                                 
+                                />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row style={{ marginTop: "1rem" }}>
@@ -124,7 +130,7 @@ function TeacherSignUp() {
                             <Form.Group as={Col} controlId="formGridPassword">
                                 <Form.Control type="password" placeholder="Password" style={{ width: "54%", backgroundImage: <FontAwesomeIcon icon = {faEye}/> }} name="password" onChange={(e) => {
                                     validatepassword(e.target.value)
-                                }} />
+                                }}/>
                                 <div style={{ width: "90%" }}>
                                     <p className={classname ? classname : "text-danger"} style={{ fontSize: "13px" }}>{passwordmessage ? passwordmessage : ""}</p>
                                 </div>
