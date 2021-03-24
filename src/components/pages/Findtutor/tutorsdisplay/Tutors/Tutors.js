@@ -71,7 +71,7 @@ function Tutors(props) {
                                                         </Button>
                                                     </Col>
                                                     <Col>
-                                                        <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
+                                                        <Button variant="outline-secondary" style={{ height: "30px", border: "none", backgroundColor : "none" }}>
                                                             <div className="d-flex flex-row bd-highlight mb-3">
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                                 <div className="p-2 bd-highlight">

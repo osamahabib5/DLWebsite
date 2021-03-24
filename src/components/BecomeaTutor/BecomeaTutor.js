@@ -20,7 +20,7 @@ function BecomeaTutor(props) {
     const contentclassname = isMobile ? 'tutor-mobile' : 'tutor-window'
     return (
         <div className={classname}>
-            <img src={props.image} className="img-fluid" />
+            <img src={props.image} alt = "loading" className="img-fluid" />
             <div className={contentclassname}>
                 <p className="first"> BECOME A TUTOR </p>
                 <p className="second">  Transform your career by joining our thriving community of global teachers!</p>

@@ -57,7 +57,7 @@
     background: white;
 }
 
-.teaching-methods .btn {
+.teaching-methods .btn, .teaching-methods .btn:hover {
     border: 1px solid #C9CCD4;
     box-sizing: border-box;
     border-radius: 6px;
@@ -67,6 +67,7 @@
     font-size: 12px;
     line-height: 18px;
     color: #000000;
+    background: none;
 }
 
 .personal-reviews .flex-column {

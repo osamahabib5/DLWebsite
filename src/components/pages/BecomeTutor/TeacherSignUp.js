@@ -23,6 +23,35 @@ function TeacherSignUp() {
         alignItems: "center",
         color: "#000000"
     }
+    let [message, setmessage] = useState("");
+    let [classname, setclassname] = useState("");
+    const handleOnChange = (e) => {
+        fillteachersignupdetails({
+            ...teachersignupdetails,
+            [e.target.name]: e.target.value
+        })
+    }
+    const validateemail = (inputtxt) => {
+        var patternemail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!patternemail.test(inputtxt)) {
+            return false;
+        }
+        return true
+    }
+    const validatepassword = (password)=>{
+        var patt = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
+        var res = patt.test(password);    
+        // var validpassword = reg.test(password);
+        console.log("Res: "+ res)
+        if (res){
+            console.log("Valid Password! ")
+        }
+        else{
+            console.log("Invalid Password!")
+        }
+        // console.log(test)
+    }
+    const [teachersignupdetails, fillteachersignupdetails] = useState({  email: "", password: "" , phone: "" });
     const [value, setValue] = useState()
     return (
         <Container>
@@ -31,17 +60,20 @@ function TeacherSignUp() {
                     <Form style={{ marginTop: "1rem" }}>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridEmail" >
-                                <Form.Control type="email" placeholder="Enter Email" style = {{width: "54%"}}/>
+                                <Form.Control type="email" placeholder="Enter Email" style = {{width: "54%"}} name = "email" onChange = {handleOnChange}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Password" style = {{width: "54%"}}/>
-                            </Form.Group>
+                                <Form.Control type="password" placeholder="Password" style = {{width: "54%"}} name = "password" onChange = {(e)=>{
+                                    validatepassword(e.target.value)
+                                }}/>
+                                <p className = "text-info">Password should be at least 8 characters long, with at least one uppercase, one lowercase letter and one number</p>
+                            </Form.Group> 
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Re-Enter Password" style = {{width: "54%"}}/>
+                                <Form.Control type="password" placeholder="Re-Enter Password" style = {{width: "54%"}} name = "reenter-password"/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>

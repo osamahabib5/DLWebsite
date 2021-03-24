@@ -4,11 +4,12 @@ import baseUrl from "../../../../../src/baseUrl/baseUrl";
 import avatar from "../Image/avatar.jpg";
 import './Tutorsdisplay.css'
 import Tutors from './Tutors/Tutors';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch , useLocation} from 'react-router-dom';
 import { TutorsContext } from "../../../../Provider";
-import axios from 'axios';
 function Tutorsdisplay() {
-    const { results, loading, stopLoading, startLoading, parent_country, tutortype, setParentLocation, setParentCity } = useContext(TutorsContext);
+    let location = useLocation();
+    let {state} = location;
+    const { results, loading, stopLoading, startLoading, parent_country, tutortype, setParentLocation, setParentCity, setresults} = useContext(TutorsContext);
     const [isMobile, setmobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -18,13 +19,13 @@ function Tutorsdisplay() {
             setmobile(false);
         }
     }
-    const location = parent_country ? parent_country : "";
+    const location_parent = parent_country ? parent_country : "";
     const tutor = tutortype ? tutortype : "";
     const [dataarr, fillarr] = useState(null);
     const [activepage, setactive] = useState(0);
     const [currPage, setCurrPage] = useState(1);
     const [postperpage, setpostperpage] = useState(12);
-    const [apiurl, setUrl] = useState(baseUrl + '/api/teachers/list' + "?location=" + location + "&tutor_type=" + tutor + "")
+    const [apiurl, setUrl] = useState(baseUrl + '/api/teachers/list' + "?location=" + location_parent + "&tutor_type=" + tutor + "")
     let { url } = useRouteMatch();
     const paginate = (pageNum) => {
         setCurrPage(pageNum)
@@ -43,6 +44,12 @@ function Tutorsdisplay() {
             })
     }
     useEffect(async () => {
+        // if(results && state){
+        //     if (state.findtutors){
+        //         setresults(null);
+        //         // console.log("Hello")
+        //     }
+        // }
         fetchlocation();
         mobileview();
         window.addEventListener("resize", mobileview);

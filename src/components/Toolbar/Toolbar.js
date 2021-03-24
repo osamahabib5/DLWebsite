@@ -26,7 +26,10 @@ const Toolbar = (props) => {
                             pathname: "/pricing",
                             state : {PricingValue: "hello"}
                         }}>Pricing</Link></li>
-                        <li><Link to="/tutors">Our Tutors</Link></li>
+                        <li><Link to={{
+                            pathname: "/tutors",
+                            state : {findtutors: "hello"}
+                        }}>Our Tutors</Link></li>
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
                     </ul>
 

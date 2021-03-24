@@ -13,7 +13,7 @@ import ContactPage from './components/pages/ContactPage/ContactPage';
 import CoursePage from './components/pages/CoursesPage/CoursePage';
 import {
   Switch,
-  Route, useRouteMatch
+  Route
 } from "react-router-dom";
 import OurTutor from './components/pages/OurTutor/OurTutor';
 import BecomeTutor from './components/pages/BecomeTutor/BecomeTutor';
@@ -24,7 +24,6 @@ import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
 import Cookies from 'universal-cookie';
 function App() {
-  let { url } = useRouteMatch();
   const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
   const [toggleFooter, setToggleFooter] = useState(true);
@@ -117,7 +116,7 @@ function App() {
         </Switch>
 
         {/* Backdrop only opens if sidedrawer is filled */}
-        {/* {backdrop} */}
+        {backdrop}
 
       </div>
       {footer}
