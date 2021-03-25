@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../images/landing_page.png'
-import landingimage from '../../images/Landingpage.png'
+import landingimage from './coverphoto.jpg'
 import './HomePage.css'
 import ImageContent from '../../ImageContent/ImageContent';
 import Videocontent from '../../videocontent/videocontent';
@@ -11,7 +10,7 @@ import FindaTutor from '../../FindaTutor/FindaTutor';
 import FindaTutorEnd from '../../FindaTutor/FindaTutor_End';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import ReactPixel from 'react-facebook-pixel';
-import TutorImage from './Image2.jpg'
+import TutorImage from './areamanager.jpg'
 import OurApproachDetails from './OurApproachDetails';
 function HomePage(props) {
     const [displaytext, settext] = useState("Book a free trial class now! ")
@@ -47,7 +46,7 @@ function HomePage(props) {
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
                     <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "3rem" }} />
-                    <ImageContent />
+                    {/* <ImageContent /> */}
                 </div>
             </div>
 
@@ -83,6 +82,7 @@ function HomePage(props) {
             <div className="FindaTutor">
                 <FindaTutorEnd displaytext = {displaytext}/>
             </div>
+            
             <div className="BecomeTutor">
                 <BecomeaTutor image = {TutorImage}/>
             </div>

@@ -14,12 +14,12 @@ function OurApproach(props) {
                 <p className="details">{props.details}</p>
             </div>
             <div className="p-2 bd-highlight">
-                <CardDeck style={{ width: "100%", margin: "auto" }} >
-                    <Row xs={2} md={props.cardsno} style = {{flexDirection: props.isMobile ? "row" : ""}}>
+                <CardDeck style={{ margin: "auto" }} >
+                    <Row xs={2} md={4} style = {{flexDirection: props.isMobile ? "row" : ""}}>
                         {props.displayinfo.map((data, index) => {
                             return (
                                 <Col>
-                                    <Card key={index}>
+                                    <Card key={index} >
                                         <Card.Img variant="top" src={data.image} style = {{height: "190px", width: "190px"}}/>
                                         <Card.Body style = {{marginTop: props.cardBodySpacing}}>
                                             <Card.Title><p className="title">{data.title}</p></Card.Title>
