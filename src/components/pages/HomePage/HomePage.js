@@ -12,6 +12,7 @@ import FindaTutorEnd from '../../FindaTutor/FindaTutor_End';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import ReactPixel from 'react-facebook-pixel';
 import TutorImage from './Image2.jpg'
+import OurApproachDetails from './OurApproachDetails';
 function HomePage(props) {
     const [displaytext, settext] = useState("Book a free trial class now! ")
     const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
@@ -65,7 +66,10 @@ function HomePage(props) {
             </div>
 
             <div className="OurApproach">
-                <OurApproach />
+                <OurApproach displayinfo = {OurApproachDetails} heading = "OUR APPROACH"
+                approachcontent = "What Sets Dot & Line Apart ?" 
+                details = "With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
+                />
             </div>
             <div className="Image-Slider">
                 <Slider isMobile = {isMobile}/>

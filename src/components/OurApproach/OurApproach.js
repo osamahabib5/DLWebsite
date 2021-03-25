@@ -6,17 +6,16 @@ import Icon2 from '../logo/Icon2.png'
 import Icon3 from '../logo/Icon3.png'
 import Icon4 from '../logo/Icon4.png'
 import { Card, CardDeck } from 'react-bootstrap';
-function OurApproach() {
+function OurApproach(props) {
     return (
         <div className="d-flex flex-column bd-highlight mb-3">
             <div className="p-2 bd-highlight">
-                <p className="heading">OUR APPROACH</p>
+                <p className="heading">{props.heading}</p>
             </div>
             <div className="p-2 bd-highlight">
-                <p className="Approach-content">What Sets Dot & Line Apart ?</p></div>
+                <p className="Approach-content">{props.approachcontent}</p></div>
             <div className="p-2 bd-highlight">
-                <p className="details">With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte.
- </p>
+                <p className="details">{props.details}</p>
             </div>
             <div className="p-2 bd-highlight">
                 <CardDeck style={{ width: "100%", margin: "auto" }} >

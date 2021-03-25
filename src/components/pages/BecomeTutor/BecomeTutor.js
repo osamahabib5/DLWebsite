@@ -6,11 +6,14 @@ function BecomeTutor(props) {
     return (
         <div className="become-a-tutor">
             <div className="becomeatutorheader">
-                <BecomeTutorHeader isMobile = {props.isMobile}/>
+                <BecomeTutorHeader isMobile={props.isMobile} />
             </div>
             <div className="teachersignup">
-                <TeacherSignUp isMobile = {props.isMobile}/>
+                <TeacherSignUp isMobile={props.isMobile} />
             </div>
+            {/* <div className="dot&linepartner">
+                <TeacherSignUp isMobile={props.isMobile} />
+            </div> */}
         </div>
     )
 }
