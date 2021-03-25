@@ -191,17 +191,16 @@
     padding: 1rem;
 }
 
-.flex-column {
+/* .flex-column {
     background: #8CD7DF;
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
     line-height: 40px;
-    /* or 167% */
     text-align: right;
     color: #000000;
-}
+} */
 
 .p-mobile {
     font-family: Avenir;

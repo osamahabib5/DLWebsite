@@ -46,7 +46,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "-0.1rem" }} />
+                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "3rem" }} />
                     <ImageContent />
                 </div>
             </div>
@@ -69,6 +69,8 @@ function HomePage(props) {
                 <OurApproach displayinfo = {OurApproachDetails} heading = "OUR APPROACH"
                 approachcontent = "What Sets Dot & Line Apart ?" 
                 details = "With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
+                isMobile = {isMobile}
+                cardsno = {4}
                 />
             </div>
             <div className="Image-Slider">
