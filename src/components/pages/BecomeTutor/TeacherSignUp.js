@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Form } from 'react-bootstrap'
 import 'react-phone-number-input/style.css'
-import seeicon from './tutoricon.png';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye} from '@fortawesome/free-solid-svg-icons'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
+import axios from 'axios'
+import baseUrl from '../../../baseUrl/baseUrl'
+import { BeatLoader } from 'react-spinners';
 function TeacherSignUp() {
     const registerapplication = {
         fontFamily: "Avenir",
@@ -27,49 +29,35 @@ function TeacherSignUp() {
         alignItems: "center",
         color: "#000000"
     }
-    // font-family: Avenir;
-    // font-style: normal;
-    // font-weight: normal;
-    // font-size: 16px;
-    // line-height: 32px;
-    // background-repeat: no-repeat;
-    // background-position: left;
-    // background-position: 20px;
-    // text-indent: 40px!important;
-    // background-image: url(./Image//Shape.png)!important;
-    // /* identical to box height, or 178% */
-    // color: #000000;
-    // margin-top: -0.5rem;
-    // width: 100%;
-    // border-color: hsl(0, 0%, 80%);
-    // border-radius: 4px;
-    // border-style: solid;
-    // border-width: 1px;
-
-    const passwordstyling = {
-        backgroundImage: {seeicon}+ "!important",
-        backgroundPosition: "left",
-
-        textIndent: "40px!important"
-    }
-
+    let [teachersignupdetails, fillteachersignupdetails] = useState({ email: "", password: "", repassword: "", phone: "" });
+    let [loading, setLoading] = useState(false);
+    let [confirmationmessage, setconfirmationmessage] = useState(null);
+    let { phone, password, repassword, email } = teachersignupdetails;
     let [message, setmessage] = useState("Passwords don't match");
     let [passwordmessage, setpasswordmessage] = useState(null)
-    let [alerttext, setalerttext] = useState("");
     let [classname, setclassname] = useState("");
+    let [reenterclassname, setreenterclassname] = useState("");
+    let registerteacherurl = baseUrl + "/api/teacher/signup"
     const handleOnChange = (e) => {
         fillteachersignupdetails({
             ...teachersignupdetails,
             [e.target.name]: e.target.value
         })
     }
-    const opensweetalertdanger = () => {
+    const opensweetalertdanger = (alerttext) => {
         Swal.fire({
-            title: 'Create Lead',
+            title: 'Teacher Sign Up',
             text: alerttext,
             type: 'warning',
-
-
+        })
+    }
+    function clearForm() {
+        fillteachersignupdetails({
+            ...teachersignupdetails,
+            password: "",
+            email: "",
+            repassword: "",
+            phone: ""
         })
     }
     const validateemail = (inputtxt) => {
@@ -80,8 +68,8 @@ function TeacherSignUp() {
         return true
     }
     const validatepassword = (verifypassword) => {
-        if (!verifypassword) {
-            setpasswordmessage(null)
+        if (verifypassword.length === 0) {
+            setpasswordmessage("No password entered!")
         }
         var patt = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
         var res = patt.test(verifypassword);
@@ -92,15 +80,45 @@ function TeacherSignUp() {
                 ...teachersignupdetails,
                 password: verifypassword
             })
+            return true;
+        }
+        setclassname("text-danger");
+        setpasswordmessage("Please enter password based on the above criteria!");
+        return false;
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        console.log("Teachers SignUp: " + JSON.stringify(teachersignupdetails));
+        if (!email || !password || !repassword || !phone) {
+            setLoading(false);
+            opensweetalertdanger("Please fill all the values");
+        }
+        else if (!validatepassword(password)) {
+            setLoading(false);
+            opensweetalertdanger("Please enter a valid password!");
+        }
+        else if (!validateemail(email)) {
+            setLoading(false);
+            opensweetalertdanger("Please enter a valid email");
+        } else if (!isValidPhoneNumber(phone)) {
+            setLoading(false);
+            opensweetalertdanger("Please enter a valid phone number!");
         }
         else {
-            setclassname("text-danger");
-            setpasswordmessage("Please enter a valid password!");
+            await axios.post(registerteacherurl, teachersignupdetails).then(response => {
+                setLoading(false);
+                setconfirmationmessage("You signed up successfully!")
+                clearForm();
+            }).catch(error => {
+                setLoading(false);
+                if (error.response.status == 400) {
+                    setconfirmationmessage("You already have an account with this email!")
+                }
+            })
         }
     }
-    const [teachersignupdetails, fillteachersignupdetails] = useState({ email: "", password: "", phone: "" });
-    const { phone, password } = teachersignupdetails;
-    const [value, setValue] = useState()
     return (
         <Container>
             <Row>
@@ -111,8 +129,8 @@ function TeacherSignUp() {
                         </Form.Row>
                         <Form.Row style={{ marginTop: "2rem" }}>
                             <Form.Group as={Col} controlId="formGridEmail">
-                                <Form.Control type="email" placeholder="Enter Email" style={{ width: "54%" }} name="email" onChange={handleOnChange} 
-                                 
+                                <Form.Control type="email" placeholder="Enter Email" style={{ width: "54%" }} name="email" value={email} onChange={handleOnChange}
+
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -128,9 +146,9 @@ function TeacherSignUp() {
                         </Form.Row>
                         <Form.Row style={{ marginTop: "1.5rem" }}>
                             <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Password" style={{ width: "54%", backgroundImage: <FontAwesomeIcon icon = {faEye}/> }} name="password" onChange={(e) => {
+                                <Form.Control type="password" placeholder="Password" style={{ width: "54%", backgroundImage: <FontAwesomeIcon icon={faEye} /> }} name="password" onChange={(e) => {
                                     validatepassword(e.target.value)
-                                }}/>
+                                }} />
                                 <div style={{ width: "90%" }}>
                                     <p className={classname ? classname : "text-danger"} style={{ fontSize: "13px" }}>{passwordmessage ? passwordmessage : ""}</p>
                                 </div>
@@ -141,36 +159,39 @@ function TeacherSignUp() {
                                 <Form.Control type="password" placeholder="Re-Enter Password" style={{ width: "54%" }} name="reenter-password" onChange={(e) => {
                                     if (password.length > 0 && e.target.value === password) {
                                         setmessage("Passwords matched")
-                                        setclassname("text-success")
+                                        setreenterclassname("text-success")
+                                        fillteachersignupdetails({
+                                            ...teachersignupdetails,
+                                            repassword: e.target.value
+                                        })
                                     } else {
                                         setmessage("Passwords don't match")
-                                        setclassname("text-danger")
+                                        setreenterclassname("text-danger")
                                     }
                                 }}
                                 />
                                 <div style={{ width: "70%" }}>
-                                    <p className={classname ? classname : "text-danger"} style={{ fontSize: "13px" }}>{message}</p>
+                                    <p className={reenterclassname ? reenterclassname : "text-danger"} style={{ fontSize: "13px" }}>{message}</p>
                                 </div>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} style={{ marginTop: "1rem" }}>
-                                <button className="btn button-cta button-blue" type="submit">
+                                <button className="btn button-cta button-blue" type="submit" onClick={handleSubmit}>
                                     Register
                             </button>
                             </Form.Group>
                             <Form.Group as={Col} style={{ marginTop: "1rem" }}>
-                                <p>Confirmation message text. (Appears only when User clicks/taps on ‘Register’ CTA)</p>
+                                {loading ? <BeatLoader color="#00ABBD" loading={loading} size={10} /> :
+                                    <p className="confirmationmessage">{confirmationmessage}</p>
+                                }
                             </Form.Group>
                         </Form.Row>
                     </Form>
                 </Col>
-                <Col>
+                <Col style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <p style={registerapplication}>Register to start your application </p>
                     <p style={checkEmailStyling}>Check your email or SMS after registration to activate your account!</p>
-                    {/* <div className="d-flex align-items-center">
-
-                    </div> */}
                 </Col>
             </Row>
         </Container>

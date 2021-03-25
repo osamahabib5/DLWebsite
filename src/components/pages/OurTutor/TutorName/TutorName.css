@@ -21,8 +21,8 @@
 svg {
     width: 14.75px;
     height: 14.75px;
-    position: absolute;
-    top: -1rem;
+    /* position: absolute;
+    top: -1rem; */
 }
 
 .img-rank {

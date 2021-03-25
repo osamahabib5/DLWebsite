@@ -19,7 +19,7 @@ function PricingFilters(props) {
     const { class_type, subscription, tutor_type } = advancedfilter;
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
-            title: 'Confirm Pricing',
+            title: result_type === "teachers" ? "Confirm Pricing!" : "Schedule a Demo",
             text: alerttext,
             type: 'warning',
         })

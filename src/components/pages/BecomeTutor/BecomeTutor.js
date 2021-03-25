@@ -1,6 +1,7 @@
 import React from 'react'
 import BecomeTutorHeader from './BecomeTutorHeader'
 import TeacherSignUp from './TeacherSignUp'
+import "./BecomeTutor.css";
 function BecomeTutor(props) {
     return (
         <div className="become-a-tutor">
