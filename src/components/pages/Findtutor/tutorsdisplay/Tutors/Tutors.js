@@ -91,7 +91,7 @@ function Tutors(props) {
                                             </Container>
                                         </div>
                                     </div>
-                                    <div className="p-2" style={{ marginTop: (isMobile ? "-1rem" : "-2rem") }}>
+                                    <div className="p-2" style={{ marginTop: (isMobile ? "-1rem" : "-1rem") }}>
                                         <StarRatings
                                             rating={item.tier === "1" ? 5 : item.tier === "2" ? 4 : item.tier === "3" ? 3 : 3}
                                             starRatedColor="#00ABBD"

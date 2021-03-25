@@ -19,6 +19,8 @@ function BecomeTutor(props) {
                 details = "Our sign up process is quick and easy! Starting with an online application and concluding with a contract signing, once selected as a Dot & Line teacher you get all the support you can ask for. Our teachers are trained, provided with our world class learning materials and guided by a mentor as they build the confidence to take on their very first class."
                 cardsno = {5}
                 isMobile = {props.isMobile}
+                topSpacing = "-7rem"
+                cardBodySpacing = "-3rem"
                 />
             </div>
         </div>
