@@ -9,7 +9,7 @@ function BecomeTutor(props) {
                 <BecomeTutorHeader isMobile = {props.isMobile}/>
             </div>
             <div className="teachersignup">
-                <TeacherSignUp />
+                <TeacherSignUp isMobile = {props.isMobile}/>
             </div>
         </div>
     )

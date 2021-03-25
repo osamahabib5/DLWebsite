@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import axios from 'axios'
 import baseUrl from '../../../baseUrl/baseUrl'
 import { BeatLoader } from 'react-spinners';
-function TeacherSignUp() {
+function TeacherSignUp(props) {
     const registerapplication = {
         fontFamily: "Avenir",
         fontStyle: "normal",
@@ -29,11 +29,13 @@ function TeacherSignUp() {
         alignItems: "center",
         color: "#000000"
     }
+    let [passwords, setpasswords] = useState({ currentPassword: "", currentRePassword: "" })
+    let { currentRePassword, currentPassword } = passwords;
     let [teachersignupdetails, fillteachersignupdetails] = useState({ email: "", password: "", repassword: "", phone: "" });
     let [loading, setLoading] = useState(false);
     let [confirmationmessage, setconfirmationmessage] = useState(null);
     let { phone, password, repassword, email } = teachersignupdetails;
-    let [message, setmessage] = useState("Passwords don't match");
+    let [message, setmessage] = useState(null);
     let [passwordmessage, setpasswordmessage] = useState(null)
     let [classname, setclassname] = useState("");
     let [reenterclassname, setreenterclassname] = useState("");
@@ -54,11 +56,16 @@ function TeacherSignUp() {
     function clearForm() {
         fillteachersignupdetails({
             ...teachersignupdetails,
-            password: "",
             email: "",
-            repassword: "",
             phone: ""
         })
+        setpasswords({
+            ...passwords,
+            currentPassword: "",
+            currentRePassword: "",
+        })
+        setpasswordmessage(null);
+        setmessage(null);
     }
     const validateemail = (inputtxt) => {
         var patternemail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
@@ -68,6 +75,10 @@ function TeacherSignUp() {
         return true
     }
     const validatepassword = (verifypassword) => {
+        setpasswords({
+            ...passwords,
+            currentPassword: verifypassword
+        })
         if (verifypassword.length === 0) {
             setpasswordmessage("No password entered!")
         }
@@ -75,7 +86,7 @@ function TeacherSignUp() {
         var res = patt.test(verifypassword);
         if (res) {
             setclassname("text-success");
-            setpasswordmessage("Password verification successful!")
+            setpasswordmessage("Password Criteria met!")
             fillteachersignupdetails({
                 ...teachersignupdetails,
                 password: verifypassword
@@ -99,6 +110,10 @@ function TeacherSignUp() {
             setLoading(false);
             opensweetalertdanger("Please enter a valid password!");
         }
+        else if (password !== repassword) {
+            setLoading(false);
+            opensweetalertdanger("Passwords don't match!");
+        }
         else if (!validateemail(email)) {
             setLoading(false);
             opensweetalertdanger("Please enter a valid email");
@@ -120,7 +135,7 @@ function TeacherSignUp() {
         }
     }
     return (
-        <Container>
+        <Container style={{ textAlign: props.isMobile ? "center" : "" }}>
             <Row>
                 <Col>
                     <Form style={{ marginTop: "1rem" }}>
@@ -129,12 +144,12 @@ function TeacherSignUp() {
                         </Form.Row>
                         <Form.Row style={{ marginTop: "2rem" }}>
                             <Form.Group as={Col} controlId="formGridEmail">
-                                <Form.Control type="email" placeholder="Enter Email" style={{ width: "54%" }} name="email" value={email} onChange={handleOnChange}
+                                <Form.Control type="email" placeholder="Enter Email" style={{ width: props.isMobile ? "80%" : "54%" }} name="email" value={email} onChange={handleOnChange}
 
                                 />
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row style={{ marginTop: "1rem" }}>
+                        <Form.Row style={{ marginTop: props.isMobile ? "0rem" : "1rem" }}>
                             <PhoneInput
                                 placeholder="+92 --- -------"
                                 value={phone}
@@ -142,11 +157,12 @@ function TeacherSignUp() {
                                     ...teachersignupdetails,
                                     phone: e
                                 })}
+                                style={{ margin: props.isMobile ? "auto" : "", width: props.isMobile ? "75%" : "54%", height: "40px" }}
                             />
                         </Form.Row>
-                        <Form.Row style={{ marginTop: "1.5rem" }}>
+                        <Form.Row style={{ marginTop: props.isMobile ? "1rem" : "1.5rem" }}>
                             <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Password" style={{ width: "54%", backgroundImage: <FontAwesomeIcon icon={faEye} /> }} name="password" onChange={(e) => {
+                                <Form.Control type="password" placeholder="Password" value={currentPassword} style={{ width: props.isMobile ? "80%" : "54%", backgroundImage: <FontAwesomeIcon icon={faEye} /> }} name="currentPassword" onChange={(e) => {
                                     validatepassword(e.target.value)
                                 }} />
                                 <div style={{ width: "90%" }}>
@@ -156,17 +172,23 @@ function TeacherSignUp() {
                         </Form.Row>
                         <Form.Row >
                             <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Control type="password" placeholder="Re-Enter Password" style={{ width: "54%" }} name="reenter-password" onChange={(e) => {
-                                    if (password.length > 0 && e.target.value === password) {
-                                        setmessage("Passwords matched")
-                                        setreenterclassname("text-success")
-                                        fillteachersignupdetails({
-                                            ...teachersignupdetails,
-                                            repassword: e.target.value
-                                        })
-                                    } else {
-                                        setmessage("Passwords don't match")
-                                        setreenterclassname("text-danger")
+                                <Form.Control type="password" placeholder="Re-Enter Password" value={currentRePassword} style={{ width: props.isMobile ? "80%" : "54%" }} name="currentRePassword" onChange={(e) => {
+                                    setpasswords({
+                                        ...passwords,
+                                        currentRePassword: e.target.value
+                                    })
+                                    if (e.target.value) {
+                                        if (password.length > 0 && e.target.value === password) {
+                                            setmessage("Passwords matched")
+                                            setreenterclassname("text-success")
+                                            fillteachersignupdetails({
+                                                ...teachersignupdetails,
+                                                repassword: e.target.value
+                                            })
+                                        } else {
+                                            setmessage("Passwords don't match")
+                                            setreenterclassname("text-danger")
+                                        }
                                     }
                                 }}
                                 />
@@ -175,11 +197,11 @@ function TeacherSignUp() {
                                 </div>
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row>
+                        <Form.Row style = {{display: props.isMobile ?"block" : ""}}>
                             <Form.Group as={Col} style={{ marginTop: "1rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={handleSubmit}>
                                     Register
-                            </button>
+                                    </button>
                             </Form.Group>
                             <Form.Group as={Col} style={{ marginTop: "1rem" }}>
                                 {loading ? <BeatLoader color="#00ABBD" loading={loading} size={10} /> :
