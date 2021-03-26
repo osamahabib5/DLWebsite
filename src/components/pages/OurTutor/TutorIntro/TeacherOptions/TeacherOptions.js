@@ -1,12 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Button } from 'react-bootstrap';
 import { Col, Row, Container } from 'react-bootstrap';
 import ReviewPopup from './ReviewPopup/ReviewPopup';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { TutorsContext } from '../../../../../Provider';
 function TeacherOptions() {
+    let history = useHistory();
     let { id } = useParams();
     let { getTeacherId } = useContext(TutorsContext);
+    const handleBackButton = history.listen((loc, action) => {
+        if (action === "POP") {
+            history.push({
+                pathname: '/tutors'
+            });
+        }
+    });
     useEffect(() => {
         getTeacherId(id);
     }, [id])
@@ -21,7 +28,7 @@ function TeacherOptions() {
         <Container>
             <Row>
                 <Col>
-                    <div className="d-flex justify-content-center" style = {{flexDirection: "column"}}>
+                    <div className="d-flex justify-content-center" style={{ flexDirection: "column" }}>
                         <Link
                             to={{
                                 pathname: "/pricing",

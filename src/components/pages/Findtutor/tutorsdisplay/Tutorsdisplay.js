@@ -76,7 +76,7 @@ function Tutorsdisplay() {
         setactive((currPage - 1 > 0) ? (currPage - 1) : 1)
     }
     let items = [];
-    for (let number = 1; number <= (isMobile ? (totalpages <= 7 ? totalpages : 7) : totalpages); number++) {
+    for (let number = 1; number <= (isMobile ? (totalpages <= 7 ? totalpages : 7) : 7); number++) {
 
         items.push(
 

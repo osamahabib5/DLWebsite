@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import './BookaDemo.css'
 import DemoTitle from './DemoTitle/DemoTitle'
@@ -15,6 +15,7 @@ import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
 import Cookies from 'universal-cookie';
 function BookaDemo() {
+    const scrollToPackage = useRef(null);
     let { id } = useParams();
     let history = useHistory();
     let location = useLocation();
@@ -31,6 +32,14 @@ function BookaDemo() {
     const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id
         , setConfirmPricing, skipPricing, skippedpricing
     } = useContext(TutorsContext)
+    const scrollToSelectedPackage = () => {
+        if (scrollToPackage.current) {
+            scrollToPackage.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
+        }
+    }
     const [isMobile, setisMobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -276,7 +285,7 @@ function BookaDemo() {
                 </Row> : ""}
                 <Row>
                     <Col>
-                        <div className="bookademoheader" style={{ padding: isMobile ? "2rem" : "" }}>
+                        <div className="bookademoheader" style={{ padding: isMobile ? "2rem" : "" }} ref = {scrollToPackage}>
                             <DemoTitle />
                         </div>
                     </Col>
@@ -320,10 +329,12 @@ function BookaDemo() {
                                 shownavigation={shownavigation}
                                 showNavigation={showNavigation}
                                 showAppointmentPageTutor={showAppointmentPageTutor}
+                                scrollToSelectedPackage={scrollToSelectedPackage}
+                                isMobile = {isMobile}
                             />
                         </div>
                     </Col>
-                    {!skippedpricing ? <Col>
+                    {!skippedpricing ? <Col  >
                         <SelectedPricePackage showAppointmentPageTutor={showAppointmentPageTutor} />
                     </Col> : ""}
                 </Row> : ""}

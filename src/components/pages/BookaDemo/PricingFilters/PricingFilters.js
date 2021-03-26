@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { Container, Row, Col, Form, FormCheck } from 'react-bootstrap'
 import NumericInput from 'react-numeric-input';
 import axios from "axios";
@@ -9,11 +9,12 @@ import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2'
 function PricingFilters(props) {
     const cookies = new Cookies();
+    
     const { setOptedPackage, opted_package, parent_country, lead_id,
         startLoading, getFilteredTeachersList, calculateFees, result_type,
         stopLoading, subscription_type, setConfirmPricing, setTutorType, skipPricing } = useContext(TutorsContext)
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "", subscription: subscription_type, tutor_type: "", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
-    const [skippedoption, setskippedoptions] = useState({ class_type: "one_to_one", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
+    const [skippedoption, setskippedoptions] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     const [filledvalues, setfilledvalues] = useState(false);
     const url = baseUrl + '/api/calculateFee';
     const { class_type, subscription, tutor_type } = advancedfilter;
@@ -56,10 +57,12 @@ function PricingFilters(props) {
         }
     }
     const handleSubmit = async (e) => {
-        setfilledvalues(true);
+       
         console.log("Filters: " + JSON.stringify(advancedfilter))
         if (class_type && subscription && tutor_type && advancedfilter.result_type) {
             if (result_type === "teachers") {
+                setfilledvalues(true);
+                props.scrollToSelectedPackage();
                 startLoading();
                 await axios.post(url, advancedfilter).then(response => {
                     setTutorType(tutor_type);
@@ -76,6 +79,8 @@ function PricingFilters(props) {
                 })
             }
             if (result_type === "pricing") {
+                props.scrollToSelectedPackage();
+                setfilledvalues(true);
                 skipPricing(false);
                 await axios.post(url, advancedfilter).then(response => {
                     getFilteredTeachersList(response.data.data.teachers)
@@ -127,7 +132,7 @@ function PricingFilters(props) {
         <Container>
             <Row>
                 <Col>
-                    <p className="filteroptionsheading">Build Your Package</p>
+                    <p className="filteroptionsheading" style = {{textAlign : props.isMobile ? "center" : ""}}>Build Your Package</p>
                 </Col>
             </Row>
             <Row>
@@ -184,7 +189,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput mobile min={2} defaultValue={2} max={20} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput mobile = {true} min={2} defaultValue={2} max={20} size={10} className="numericinput" onChange={(e) => {
                         setadvancedfilters({
                             ...advancedfilter,
                             hours_per_week: parseInt(e)
@@ -194,7 +199,6 @@ function PricingFilters(props) {
             </Form>
             <div className="d-flex justify-content-center">
                 <button className="btn button-cta button-blue" style={{ width: "200px" }} onClick={handleSubmit}>{result_type === "teachers" ? "Confirm Your Selections" : "Next"}
-                    {/* <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} /> */}
                 </button>
             </div>
             {result_type === "pricing" ? <Row className="justify-content-md-center">

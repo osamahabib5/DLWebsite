@@ -1,11 +1,21 @@
 import React, { useContext, useEffect } from 'react'
 import { Card, ListGroup } from "react-bootstrap";
+import Cookies from 'universal-cookie';
 import { TutorsContext } from '../../../../Provider';
 import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package, fee_amount, confirmpricing, result_type } = useContext(TutorsContext);
+    const { opted_package, fee_amount, confirmpricing, result_type, parent_country,setOptedPackage } = useContext(TutorsContext);
+    useEffect(()=>{
+        if (result_type === "pricing" && !new Cookies().get("leadid")){
+            if (parent_country === "Pakistan"){
+                setOptedPackage(1);
+            }else{
+                setOptedPackage(3);
+            }
+        }
+    },[parent_country])
     return (
         <div className="selectedpackage">
             <Card style={Available_Packages[opted_package].styling} key={Available_Packages.id}>
