@@ -15,7 +15,7 @@ function OurApproach(props) {
             </div>
             <div className="p-2 bd-highlight">
                 <CardDeck style={{ margin: "auto" }} >
-                    <Row xs={2} md={4} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%" }}>
+                    <Row xs={2} md={4} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%" , margin: props.isMobile ? "" : "auto"}}>
                         {props.displayinfo.map((data, index) => {
                             return (
                                 <Col>

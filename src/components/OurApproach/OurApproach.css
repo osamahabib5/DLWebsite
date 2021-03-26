@@ -30,9 +30,7 @@
     .w-100 {
         display: none;
     }
-    
 }
-
 
 .title {
     font-family: Avenir;
@@ -40,8 +38,7 @@
     font-weight: 800;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
-    /* Fill Color / Color #6 */
+    margin-top: -2rem;
     color: #000000;
 }
 
@@ -57,7 +54,6 @@
 }
 
 @media only screen and (min-width: 320px) {
-   
     .card-deck {
         display: flex;
         flex-flow: row wrap;
@@ -71,17 +67,17 @@
         margin-left: 15px;
         border: 0;
     }
-    .card-title{
+    .card-title {
         margin: auto;
     }
-    
 }
+
 @media only screen and (min-width: 769px) {
-.card-body{
-    max-height: 100%;
+    .card-body {
+        max-height: 100%;
+    }
 }
-    
-}
-.card-body{
+
+.card-body {
     max-height: 100%;
 }
