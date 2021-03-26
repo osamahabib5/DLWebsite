@@ -5,7 +5,7 @@ import { Card, CardDeck, Col, Row } from 'react-bootstrap';
 function OurApproach(props) {
     return (
         <div className="d-flex flex-column bd-highlight mb-3">
-            <div className="p-2 bd-highlight"  style = {{marginTop: props.topSpacing}}> 
+            <div className="p-2 bd-highlight" style={{ marginTop: props.topSpacing }}>
                 <p className="heading">{props.heading}</p>
             </div>
             <div className="p-2 bd-highlight">
@@ -15,21 +15,21 @@ function OurApproach(props) {
             </div>
             <div className="p-2 bd-highlight">
                 <CardDeck style={{ margin: "auto" }} >
-                    <Row xs={2} md={4} style = {{flexDirection: props.isMobile ? "row" : ""}}>
+                    <Row xs={2} md={4} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%" }}>
                         {props.displayinfo.map((data, index) => {
                             return (
                                 <Col>
                                     <Card key={index} >
-                                        <Card.Img variant="top" src={data.image} style = {{height: "190px", width: "190px"}}/>
-                                        <Card.Body style = {{marginTop: props.cardBodySpacing}}>
+                                        <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
+                                        <Card.Body style={{ marginTop: props.cardBodySpacing }}>
                                             <Card.Title><p className="title">{data.title}</p></Card.Title>
-                                            <Card.Text>
+                                            {/* <Card.Text>
                                                 {data.description.map(description => {
                                                     return (
                                                         <p className="title-description">{description}</p>
                                                     )
                                                 })}
-                                            </Card.Text>
+                                            </Card.Text> */}
                                         </Card.Body>
                                     </Card>
                                 </Col>

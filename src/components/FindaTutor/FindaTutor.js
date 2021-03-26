@@ -25,7 +25,7 @@ function FindaTutorStart() {
             </div>
             <div className = "tutor-content">
                 <p className = "web-content">Book a free trial class now! </p>
-                <p className = "mobile-content">Motivating action statement!</p>
+                <p className = "mobile-content">Book a free trial class now!</p>
             </div>
         </div>
     )

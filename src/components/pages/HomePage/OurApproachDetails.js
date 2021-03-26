@@ -7,7 +7,7 @@ const OurApproachDetails = [{
    
 },{
     'id': 1,
-    'title': 'Curated LearningPacks',
+    'title': 'Curated Learning Packs',
     'image' : 'OurApproachImages/Icons-02.png',
     'description': ["Practice Worksheets", 
     "Developed by subject specialists", "HW help and exam prep"]

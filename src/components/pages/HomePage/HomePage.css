@@ -77,6 +77,12 @@
     .image-text {
         display: none;
     }
+    .OurApproach{
+        background: white;
+    }
+    .HomePage{
+        background: #EDF0F5	;
+    }
     .OurApproach .flex-column {
         background: white;
         color: black;
@@ -187,7 +193,7 @@
     flex: 1;
     flex-direction: column;
     text-align: left;
-    background: #8CD7DF;
+    background: #EDF0F5;
     padding: 1rem;
 }
 
@@ -324,7 +330,7 @@
 }
 
 .FindaTutor .flex-column {
-    background: #FFFFFF;
+    background: #EDF0F5	;
 }
 
 .BecomeTutor .flex-row {
