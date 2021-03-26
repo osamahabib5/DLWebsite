@@ -283,7 +283,7 @@
 
 .Tutor .flex-column-reverse {
     flex-direction: column-reverse!important;
-    padding: 22px;
+    padding: 1rem;
     background: #EDF0F5;
 }
 

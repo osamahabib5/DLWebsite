@@ -12,7 +12,9 @@ import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import ReactPixel from 'react-facebook-pixel';
 import TutorImage from './areamanager.jpg'
 import OurApproachDetails from './OurApproachDetails';
+import Cookies from 'universal-cookie';
 function HomePage(props) {
+    const cookies = new Cookies();
     const [displaytext, settext] = useState("Book a free trial class now! ")
     const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
     const options = {
@@ -45,7 +47,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification ? "3rem" : "3rem" }} />
+                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification || cookies.get("notification") ? "3rem" : "0rem" }} />
                     {/* <ImageContent /> */}
                 </div>
             </div>

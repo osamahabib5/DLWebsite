@@ -134,27 +134,6 @@ function BookaDemo() {
             getTeacherId(id);
             showAppointmentPage();
         }
-        // if (location.search === "?showLeads") {
-        //     if (cookies.get('leadid')) {
-        //         if (fee_amount == 0) {
-        //             // showLeadsForm();
-        //             showfeecalculator();
-        //             setnavigation(true);
-        //             setpackages(true);
-        //         }
-        //         else if (fee_amount > 0) {
-        //             // setResultType("pricing");
-        //             setappointmentpage(true);
-        //             setnavigation(true);
-        //             setpackages(true);
-        //         }
-        //     }
-        //     else {
-        //         showLeadsForm();
-        //         setpackages(true);
-        //         setnavigation(false);
-        //     }
-        // }
         if (state) {
             if (state.PricingValue) {
                 calculateFees(0);
@@ -246,8 +225,15 @@ function BookaDemo() {
                 hideScheduleDemo();
             }
             else if (showleads) {
-                calculateFees(0);
-                showPricingPackages();
+                if (result_type === "teachers") {
+                    calculateFees(0);
+                    showPricingPackages();
+                } else if (result_type === "pricing") {
+                    calculateFees(0);
+                    history.push({
+                        pathname: '/tutors/' + teacher_id,
+                    });
+                }
             }
             else if (confirmappointment) {
                 hideAppointmentConfirmation();
@@ -284,6 +270,7 @@ function BookaDemo() {
                             confirmappointment={confirmappointment}
                             hideAppointmentConfirmation={hideAppointmentConfirmation}
                             showfeecalculator={showfeecalculator}
+                            isMobile={isMobile}
                         />
                     </Col>
                 </Row> : ""}
@@ -336,7 +323,7 @@ function BookaDemo() {
                             />
                         </div>
                     </Col>
-                   {!skippedpricing ?  <Col>
+                    {!skippedpricing ? <Col>
                         <SelectedPricePackage showAppointmentPageTutor={showAppointmentPageTutor} />
                     </Col> : ""}
                 </Row> : ""}

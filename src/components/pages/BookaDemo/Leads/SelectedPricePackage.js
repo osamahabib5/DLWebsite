@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react'
 import { Card, ListGroup } from "react-bootstrap";
 import { TutorsContext } from '../../../../Provider';
+import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package , fee_amount, confirmpricing} = useContext(TutorsContext);
+    const { opted_package, fee_amount, confirmpricing, result_type } = useContext(TutorsContext);
     return (
         <div className="selectedpackage">
-            <Card style={Available_Packages[opted_package].styling} key = {Available_Packages.id}>
+            <Card style={Available_Packages[opted_package].styling} key={Available_Packages.id}>
                 <Card.Header style={{ background: Available_Packages[opted_package].color }}></Card.Header>
                 <div className="d-flex justify-content-center">
                     <ListGroup variant="flush">
@@ -20,12 +21,12 @@ function SelectedPricePackage(props) {
                                 <div className="p-2 bd-highlight">
                                     <p className="packagerate">Rs {fee_amount ? fee_amount : Available_Packages[opted_package].price}</p>
                                 </div>
-                                {opted_package === 0 || opted_package === 2?<div className="p-2 bd-highlight">
+                                {opted_package === 0 || opted_package === 2 ? <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
                                 </div> : ""}
                             </div>
                         </ListGroup.Item>
-                        <ListGroup.Item style = {{marginTop: props.isMobile ? "1rem" : ""}}>{Available_Packages[opted_package].heading}</ListGroup.Item>
+                        <ListGroup.Item style={{ marginTop: props.isMobile ? "1rem" : "" }}>{Available_Packages[opted_package].heading}</ListGroup.Item>
                         <div className="package_specification">
                             {Available_Packages[opted_package].description.map(val => (
                                 <ListGroup.Item>{val}</ListGroup.Item>
@@ -34,11 +35,11 @@ function SelectedPricePackage(props) {
                     </ListGroup>
                 </div>
             </Card>
-            {/* <p className="parentlocation">
+            {result_type === "pricing" ? <p className="parentlocation">
                 <ChangeLocation />
-            </p> */}
+            </p> : ""}
             {confirmpricing ? <div>
-                <GoToTutorsPage showAppointmentPageTutor = {props.showAppointmentPageTutor}/>
+                <GoToTutorsPage showAppointmentPageTutor={props.showAppointmentPageTutor} />
             </div> : ""}
         </div>
     )

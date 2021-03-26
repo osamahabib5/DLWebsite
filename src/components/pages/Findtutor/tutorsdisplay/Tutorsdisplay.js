@@ -37,6 +37,7 @@ function Tutorsdisplay() {
                 return response.json()
             })
             .catch(function (error) {
+                setParentLocation("Pakistan");
                 console.log("Error: " + error);
             }).then(data => {
                 setParentLocation(data.country_name);

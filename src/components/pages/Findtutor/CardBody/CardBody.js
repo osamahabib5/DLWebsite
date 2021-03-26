@@ -16,7 +16,7 @@ function CardBody(props) {
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "", tutor_type: tutortype ? tutortype : "standard"  });
+    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "", tutor_type: tutortype ? tutortype : ""  });
     const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
@@ -34,6 +34,7 @@ function CardBody(props) {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Filters Values: "+ JSON.stringify(filters))
         startLoading();
         await axios({
             method: 'get',

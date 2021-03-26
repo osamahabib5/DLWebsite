@@ -58,7 +58,7 @@ function NavigateDemo(props) {
         }
     }
     return (
-        <div className="navigatedemo" onClick={goBack}>
+        <div className="navigatedemo" style = {{marginLeft: props.isMobile ? "1rem" : ""}} onClick={goBack}>
             <FontAwesomeIcon icon={faChevronLeft} style={{ marginLeft: "0rem", marginRight: "1rem" }} />
             Back
         </div>
