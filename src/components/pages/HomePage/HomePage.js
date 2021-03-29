@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import landingimage from './coverphoto.jpg'
+import landingimage from './coverphoto2.jpg'
 import './HomePage.css'
 import Videocontent from '../../videocontent/videocontent';
 import OurApproach from '../../OurApproach/OurApproach';
@@ -12,8 +12,8 @@ import ReactPixel from 'react-facebook-pixel';
 import TutorImage from './areamanager.jpg'
 import OurApproachDetails from './OurApproachDetails';
 import Cookies from 'universal-cookie';
-import testimonial1 from '../../../components/logo/Images/testimonial1.jpg';
-import { Col, Container, Row } from 'react-bootstrap';
+import testimonial1 from './osama.jpg';
+import { Col, Container, Row, Image } from 'react-bootstrap';
 function HomePage(props) {
     const cookies = new Cookies();
     const [displaytext, settext] = useState("Book a free trial class now! ")
@@ -78,12 +78,11 @@ function HomePage(props) {
             <div className="Image-Slider">
                 <Container fluid>
                     <Row>
-
-                        <Col>
+                        <Col style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <Slider isMobile={isMobile} />
                         </Col>
                         <Col>
-                            <img src={testimonial1} style={{ width: "100%", height: "100%" }} />
+                            <Image src={testimonial1} style={{ height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%", marginLeft:  isMobile ? "" : "6.7rem" }} fluid />
                         </Col>
                     </Row>
                 </Container>
