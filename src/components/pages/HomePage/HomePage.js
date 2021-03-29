@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import landingimage from './coverphoto.jpg'
 import './HomePage.css'
-import ImageContent from '../../ImageContent/ImageContent';
 import Videocontent from '../../videocontent/videocontent';
 import OurApproach from '../../OurApproach/OurApproach';
 import Slider from '../../Slider/Slider';
@@ -13,6 +12,8 @@ import ReactPixel from 'react-facebook-pixel';
 import TutorImage from './areamanager.jpg'
 import OurApproachDetails from './OurApproachDetails';
 import Cookies from 'universal-cookie';
+import testimonial1 from '../../../components/logo/Images/testimonial1.jpg';
+import { Col, Container, Row } from 'react-bootstrap';
 function HomePage(props) {
     const cookies = new Cookies();
     const [displaytext, settext] = useState("Book a free trial class now! ")
@@ -23,7 +24,7 @@ function HomePage(props) {
     };
     ReactPixel.init('4212718168756467', advancedMatching, options);
 
-    ReactPixel.pageView(); 
+    ReactPixel.pageView();
     const [isMobile, setclassname] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -47,7 +48,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={landingimage} className="card-img" alt="..." style = {{marginTop: !props.notification || cookies.get("notification") ? "3.4rem" : "0rem", height: isMobile ? "210px" : ""}} />
+                    <img src={landingimage} className="card-img" alt="..." style={{ marginTop: !props.notification || cookies.get("notification") ? "3.4rem" : "0rem", height: isMobile ? "210px" : "" }} />
                     {/* <ImageContent /> */}
                 </div>
             </div>
@@ -57,7 +58,7 @@ function HomePage(props) {
             </div>
             <div className="video">
                 <div className={classname}>
-                    <Videocontent isMobile = {isMobile}/>
+                    <Videocontent isMobile={isMobile} />
                     <div className={contentclassname}>
                         <p className={ourmission}> OUR MISSION </p>
                         {/* <p className = {missioncontent}>We strive to help every child excel with the best tutors, cutting-edge technology and a world class curriculum. Quality online learning is our forte!</p> */}
@@ -67,26 +68,35 @@ function HomePage(props) {
             </div>
 
             <div className="OurApproach">
-                <OurApproach displayinfo = {OurApproachDetails} heading = "OUR APPROACH"
-                approachcontent = "What Sets Dot & Line Apart ?" 
-                details = "With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
-                isMobile = {isMobile}
-                cardsno = {4}
+                <OurApproach displayinfo={OurApproachDetails} heading="OUR APPROACH"
+                    approachcontent="What Sets Dot & Line Apart ?"
+                    details="With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
+                    isMobile={isMobile}
+                    cardsno={4}
                 />
             </div>
             <div className="Image-Slider">
-                <Slider isMobile = {isMobile}/>
+                <Container fluid>
+                    <Row>
 
+                        <Col>
+                            <Slider isMobile={isMobile} />
+                        </Col>
+                        <Col>
+                            <img src={testimonial1} style={{ width: "100%", height: "100%" }} />
+                        </Col>
+                    </Row>
+                </Container>
             </div>
             {/* <div className="slider-content">
                 <SliderContent />
             </div> */}
             <div className="FindaTutor">
-                <FindaTutorEnd displaytext = {displaytext}/>
+                <FindaTutorEnd displaytext={displaytext} />
             </div>
-            
+
             <div className="BecomeTutor">
-                <BecomeaTutor image = {TutorImage}/>
+                <BecomeaTutor image={TutorImage} />
             </div>
             <script
                 dangerouslySetInnerHTML={{

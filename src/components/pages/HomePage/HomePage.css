@@ -44,9 +44,10 @@
     .OurApproach .card-deck .card .card-img-top {
         padding: 2rem;
     }
-    /* .Image-Slider {
-        margin-top: -7rem;
-    } */
+    .Image-Slider {
+        background: #EDF0F5	;
+        margin-left: -1rem;
+    }
     .HomeImage .card-text {
         margin-top: 0rem;
         font-family: Avenir;
@@ -65,12 +66,12 @@
         line-height: 16px;
         color: #FFFFFF;
     }
-    .Image-Slider .carousel-caption {
+    /* .Image-Slider .carousel-caption {
         width: 800px;
         top: 3rem;
         left: 40%;
         z-index: 100;
-    }
+    } */
 }
 
 @media only screen and (max-width: 769px) {
