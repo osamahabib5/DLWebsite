@@ -24,6 +24,7 @@ import Findtutor from './components/pages/Findtutor/Findtutor';
 import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
 import Cookies from 'universal-cookie';
+import RamazanLandingPage from './components/pages/RamazanLandingPage/RamazanLandingPage';
 function App() {
   const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
@@ -112,7 +113,8 @@ function App() {
             <PricingFilters />
           </Route>
           <Route path="/">
-            <HomePage notification={notification} />
+            {/* <HomePage notification={notification} /> */}
+            <RamazanLandingPage />
             {/* <BookaDemo /> */}
           </Route>
         </Switch>

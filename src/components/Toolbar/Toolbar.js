@@ -35,9 +35,9 @@ const Toolbar = (props) => {
                             state: { findtutors: "hello" }
                         }}>Our Tutors</Link></li>
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
-                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target = "__blank"><FontAwesomeIcon icon={['fab', 'youtube']} /></a></li>
-                        <li><a href="https://www.facebook.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'facebook']} /></a></li>
-                        <li><a href="https://www.instagram.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'instagram']} /></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target = "__blank"><FontAwesomeIcon icon={['fab', 'youtube']} size = "lg"/></a></li>
+                        <li><a href="https://www.facebook.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'facebook']} size = "lg"/></a></li>
+                        <li><a href="https://www.instagram.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'instagram']} size = "lg"/></a></li>
                     </ul>
 
                 </div>
