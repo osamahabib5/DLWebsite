@@ -15,6 +15,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import initFontAwesome from './components/initFontAwesome/initFontAwesome';
 import OurTutor from './components/pages/OurTutor/OurTutor';
 import BecomeTutor from './components/pages/BecomeTutor/BecomeTutor';
 import About from './components/pages/About/About';
@@ -70,8 +71,9 @@ function App() {
   useEffect(() => {
     mobileview();
     window.addEventListener("resize", mobileview);
+    initFontAwesome();
     window.scrollTo(0, 0)
-  });
+  }, []);
   return (
     <div className="page-container">
       <div className="content-wrap">

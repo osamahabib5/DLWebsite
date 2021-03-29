@@ -1,13 +1,17 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Toolbar.css'
 import Logo from '../logo/Logo.png'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     Link
 } from "react-router-dom";
+import initFontAwesome from '../initFontAwesome/initFontAwesome';
 const Toolbar = (props) => {
-
+    useEffect(()=>{
+        initFontAwesome();
+    },[])
     return (
         <header className="toolbar">
             <nav className="toolbar__navigation">
@@ -24,13 +28,16 @@ const Toolbar = (props) => {
                         <li><Link to="/programs">Programs & Courses</Link></li>
                         <li><Link to={{
                             pathname: "/pricing",
-                            state : {PricingValue: "hello"}
+                            state: { PricingValue: "hello" }
                         }}>Pricing</Link></li>
                         <li><Link to={{
                             pathname: "/tutors",
-                            state : {findtutors: "hello"}
+                            state: { findtutors: "hello" }
                         }}>Our Tutors</Link></li>
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
+                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target = "__blank"><FontAwesomeIcon icon={['fab', 'youtube']} /></a></li>
+                        <li><a href="https://www.facebook.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'facebook']} /></a></li>
+                        <li><a href="https://www.instagram.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'instagram']} /></a></li>
                     </ul>
 
                 </div>

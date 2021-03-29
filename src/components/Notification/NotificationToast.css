@@ -12,11 +12,11 @@
 .notification_bar a {
     color: white;
     font-size: 13px;
-    padding-inline: 0.5rem;
+    padding-inline: 0.2rem;
     text-decoration: underline;
 }
 .notification_bar a:hover{
-    color: blue;
+    color: black;
 }
 @media only screen and (max-width: 769px) {
     .notification_bar {
