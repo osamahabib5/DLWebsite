@@ -5,18 +5,10 @@ function RamazanBanner() {
     return (
         <div>
             <Card className="bg-dark text-white">
-                <Card.Img src={BannerImage} style={{ height: "800px" }} alt="Card image" />
-                <Card.ImgOverlay>
-                    {/* <Card.Title style = {{marginTop: "4rem"}}>Card title</Card.Title>
-                    <Card.Text>
-                        
-                    </Card.Text> */}
-                    <div className="d-flex justify-content-center">
-                        <button className="btn button-cta button-blue">
-                            Sign Up
-                        </button>
-                    </div>
-                </Card.ImgOverlay>
+                <Card.Img src={BannerImage} style={{ height: "560px" }} alt="Card image" />
+                {/* <Card.ImgOverlay>
+                    
+                </Card.ImgOverlay> */}
             </Card>
         </div>
     )

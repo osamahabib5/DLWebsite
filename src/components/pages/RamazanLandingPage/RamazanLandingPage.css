@@ -1,15 +1,45 @@
-.ramazan-heading {
+.mainheading {
     font-family: Avenir;
     font-style: normal;
-    font-weight: 800;
-    font-size: 30px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: left;
+    color: #000000;
+}
+
+.ramazanprogramheading {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    text-align: center;
+    color: #000000;
+}
+
+.ramazan-banner {
+    margin-top: 3rem;
 }
 
 .ramazan-banner .justify-content-center {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* bottom: 8px;
-    right: 16px; */
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 700%);
+}
+
+.ramazan-page .container, .ramazan-page .container-fluid, .ramazan-page .container-lg, .ramazan-page .container-md, .ramazan-page .container-sm, .ramazan-page .container-xl {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+}
+
+.programdetails {
+    font-family: Avenir;
+    font-style: normal;
+    /* font-weight: 900; */
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    color: #000000;
 }

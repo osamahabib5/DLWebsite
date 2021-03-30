@@ -112,9 +112,13 @@ function App() {
           <Route path="/pricingfilters">
             <PricingFilters />
           </Route>
-          <Route path="/">
-            {/* <HomePage notification={notification} /> */}
+          <Route path="/ramzan">
             <RamazanLandingPage />
+            {/* <BookaDemo /> */}
+          </Route>
+          <Route path="/">
+            <HomePage notification={notification} />
+            {/* <RamazanLandingPage /> */}
             {/* <BookaDemo /> */}
           </Route>
         </Switch>
