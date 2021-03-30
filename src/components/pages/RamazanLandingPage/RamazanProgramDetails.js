@@ -19,9 +19,12 @@ function RamazanProgramDetails() {
                 if (index === 0) {
                     return (
                         <Row className="justify-content-md-center">
-                            <Col xs lg="6" style={{ display: "flex" }}>
+                            <Col xs lg="6" >
                                 <p className="programdetails">
                                     {data.title}
+                                </p>
+                                <p className="programdetails"  style = {{fontWeight : 'normal'}}>
+                                    {data.description} 
                                 </p>
                             </Col>
                             <Col xs lg="6">
@@ -37,9 +40,12 @@ function RamazanProgramDetails() {
                 if (index % 2 === 0 && index > 0) {
                     return (
                         <Row className="justify-content-md-center">
-                            <Col xs lg="5" style={{ display: "flex" }}>
+                            <Col xs lg="5">
                                 <p className="programdetails">
-                                    {data.title}
+                                    {data.title} 
+                                </p>
+                                <p className="programdetails" style = {{fontWeight : 'normal'}}>
+                                    {data.description} 
                                 </p>
                             </Col>
                             <Col xs lg="7">
@@ -53,9 +59,12 @@ function RamazanProgramDetails() {
                             <Col xs lg="7">
                                 <img src={data.source} />
                             </Col>
-                            <Col xs lg="5" style={{ display: "flex" }}>
+                            <Col xs lg="5">
                                 <p className="programdetails">
                                     {data.title}
+                                </p>
+                                <p className="programdetails"  style = {{fontWeight : 'normal'}}>
+                                    {data.description} 
                                 </p>
                             </Col>
                         </Row>

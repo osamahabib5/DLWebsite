@@ -29,7 +29,9 @@ function RamazanLandingPage() {
                     <Col xs lg="6">
                         <div className="ramazanprogramdetails">
                             <RamazanProgramDetails />
-                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
+                            <div style={{ marginTop: "2rem" }}>
+                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
+                            </div>
                         </div>
                     </Col>
                 </Row>
@@ -37,7 +39,7 @@ function RamazanLandingPage() {
                     <Col xs lg="6">
                         <div className="impact-section">
                             <RamazanImpact />
-                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
+                            <SignUpButtonRamazanProgram buttontext="Let's do it!" />
                         </div>
                     </Col>
                 </Row>
