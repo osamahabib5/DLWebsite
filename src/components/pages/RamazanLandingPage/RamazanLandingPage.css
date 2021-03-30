@@ -34,12 +34,32 @@
 }
 
 .programdetails {
-    font-family: Avenir;
+    font-family: Avenir-Next;
     font-style: normal;
-    /* font-weight: 900; */
-    font-size: 24px;
+    font-size: 18px;
     line-height: 33px;
     display: flex;
     align-items: center;
     color: #000000;
+}
+.ramazanprogramdetails .justify-content-md-center{
+    margin-top: 3rem;
+}
+.ramazan-page .button-red{
+    width: 300px;
+    height: 60px;
+    font-size: 20px;
+}
+.impactdetails {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: left;
+    color: #000000;
+}
+.ramazan-page .ramazanprogramdetails img{
+    width: 553px;
+    height: 375px;
 }

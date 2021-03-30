@@ -11,7 +11,6 @@ import {
 import LearningKitA from './LearningKitA.png';
 import CourseDetails from './CourseDetails/CourseDetails';
 function CoursePacks() {
-    let { path, url } = useRouteMatch();
     return (
 
         <div >

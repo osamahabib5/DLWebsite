@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import RamazanBanner from './RamazanBanner';
 import RamazanHeader from './RamazanHeader';
+import RamazanImpact from './RamazanImpact';
 import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
@@ -20,15 +21,23 @@ function RamazanLandingPage() {
                     <Col xs lg="6">
                         <div className="ramazan-header">
                             <RamazanHeader />
-                            <SignUpButtonRamazanProgram />
+                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
                         </div>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center" style={{ marginTop: "6rem" }}>
+                <Row className="justify-content-md-center" >
                     <Col xs lg="6">
                         <div className="ramazanprogramdetails">
                             <RamazanProgramDetails />
-                            <SignUpButtonRamazanProgram />
+                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col xs lg="6">
+                        <div className="impact-section">
+                            <RamazanImpact />
+                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
                         </div>
                     </Col>
                 </Row>

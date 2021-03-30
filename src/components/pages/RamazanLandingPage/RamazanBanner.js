@@ -1,6 +1,6 @@
 import React from 'react'
-import BannerImage from './BannerImage.jpg';
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import BannerImage from './Ramadan-Cover.jpg';
+import { Card} from 'react-bootstrap'
 function RamazanBanner() {
     return (
         <div>
