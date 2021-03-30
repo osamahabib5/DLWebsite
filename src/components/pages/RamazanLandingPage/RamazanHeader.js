@@ -14,7 +14,7 @@ function RamazanHeader() {
             <Row>
                 <Col>
                     <p className="mainheading">
-                        This year for the first time ever Dot & Line brings you the magical elements of Ramadan in a power packed 12 session series that bring the essence of Islam and all its glory to life.
+                        This year for the first time ever Dot & Line brings you the magical elements of Ramadan in a power packed 8 session series that bring the essence of Islam and all its glory to life.
                     </p>
                 </Col>
             </Row>

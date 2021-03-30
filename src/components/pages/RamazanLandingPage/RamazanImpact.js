@@ -32,8 +32,8 @@ function RamazanImpact() {
             </Row>
             <Row>
                 <Col>
-                    <p className="impactdetails" style = {{textAlign: "center"}}>
-                        This Ramadan give your Zakat for Education and TCF through which 266,000 deserving students are receiving a quality education.
+                    <p className="impactdetails" style = {{textAlign: "center", fontWeight : "normal"}}>
+                        This Ramadan, give your Zakat for Education and TCF, through which 266,000 deserving students are receiving  quality education.
                       </p>
                 </Col>
             </Row>

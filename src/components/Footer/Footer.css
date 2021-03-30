@@ -38,6 +38,7 @@
 @media only screen and (min-width: 769px) {
     .footer-show {
         display: block;
+        margin-top: 3rem;
     }
 }
 

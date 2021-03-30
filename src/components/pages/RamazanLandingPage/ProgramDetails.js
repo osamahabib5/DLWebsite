@@ -1,6 +1,6 @@
 const ProgramDetails = [{
     "id": 0,
-    "title": "1. 8 pre recorded story time sessions ",
+    "title": "1. 8 pre-recorded story time sessions ",
     "description": "Soar through galaxies with aspiring astronomer Najma; wear Gratitude glasses like Mr Gamal and see the world as never before, and learn compassion and bravery as shy Maimuna stands up to playground bullies!",
     "source": "video/RamazanTeaser.mp4"
 }, {

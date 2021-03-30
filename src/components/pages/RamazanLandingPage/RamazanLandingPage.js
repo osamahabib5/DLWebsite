@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import PaymentSection from './PaymentSection';
 import RamazanBanner from './RamazanBanner';
 import RamazanHeader from './RamazanHeader';
 import RamazanImpact from './RamazanImpact';
@@ -39,6 +40,14 @@ function RamazanLandingPage() {
                     <Col xs lg="6">
                         <div className="impact-section">
                             <RamazanImpact />
+                            <SignUpButtonRamazanProgram buttontext="Let's do it!" />
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col xs lg="6">
+                        <div className="impact-section">
+                            <PaymentSection />
                             <SignUpButtonRamazanProgram buttontext="Let's do it!" />
                         </div>
                     </Col>
