@@ -7,37 +7,34 @@ import RamazanImpact from './RamazanImpact';
 import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
-function RamazanLandingPage() {
+function RamazanLandingPage(props) {
     return (
         <div className="ramazan-page">
-            <Container fluid>
-                <Row>
-                    <Col>
-                        <div className="ramazan-banner">
-                            <RamazanBanner />
-                        </div>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center" style={{ marginTop: "6rem" }}>
-                    <Col xs lg="6">
+            <div className="ramazan-banner">
+                <RamazanBanner isMobile={props.isMobile} />
+            </div>
+
+            <Container>
+                <Row className="justify-content-md-center" style={{ marginTop: props.isMobile ? "3rem" : "6rem", width: props.isMobile ? "100%" : "" }}>
+                    <Col xs lg="12">
                         <div className="ramazan-header">
-                            <RamazanHeader />
+                            <RamazanHeader isMobile={props.isMobile} />
                             <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
                         </div>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center" >
-                    <Col xs lg="6">
+                    <Col xs lg="12">
                         <div className="ramazanprogramdetails">
-                            <RamazanProgramDetails />
+                            <RamazanProgramDetails isMobile = {props.isMobile}/>
                             <div style={{ marginTop: "2rem" }}>
                                 <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
                             </div>
                         </div>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
-                    <Col xs lg="6">
+                {/*<Row className="justify-content-md-center">
+                    <Col xs lg="9">
                         <div className="impact-section">
                             <RamazanImpact />
                             <SignUpButtonRamazanProgram buttontext="Let's do it!" />
@@ -46,12 +43,11 @@ function RamazanLandingPage() {
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col xs lg="6">
-                        <div className="impact-section">
+                        <div className="payment-section">
                             <PaymentSection />
-                            <SignUpButtonRamazanProgram buttontext="Let's do it!" />
                         </div>
                     </Col>
-                </Row>
+                </Row> */}
             </Container>
         </div>
     )

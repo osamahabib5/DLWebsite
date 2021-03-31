@@ -47,13 +47,13 @@ function App() {
     setNotification(false);
     cookies.set("notification", "true", { path: '/' });
   }
-  const [isMobile, setclassname] = useState(false);
+  const [isMobile, setisMobile] = useState(false);
   const mobileview = () => {
     if (window.innerWidth < 769) {
-      setclassname(true);
+      setisMobile(true);
     }
     if (window.innerWidth >= 769) {
-      setclassname(false);
+      setisMobile(false);
     }
   }
   let backdrop;
@@ -90,7 +90,7 @@ function App() {
           <Route path="/programs">
             <CoursePage />
           </Route>
-          <Route path="/pricing/:id" children={<BookaDemo />} />
+          {/* <Route path="/pricing/:id" children={<BookaDemo />} /> */}
           <Route path="/pricing">
             <BookaDemo />
           </Route>
@@ -113,13 +113,11 @@ function App() {
             <PricingFilters />
           </Route>
           <Route path="/ramzan">
-            <RamazanLandingPage />
+            <RamazanLandingPage isMobile = {isMobile}/>
             {/* <BookaDemo /> */}
           </Route>
           <Route path="/">
             <HomePage notification={notification} />
-            {/* <RamazanLandingPage /> */}
-            {/* <BookaDemo /> */}
           </Route>
         </Switch>
 

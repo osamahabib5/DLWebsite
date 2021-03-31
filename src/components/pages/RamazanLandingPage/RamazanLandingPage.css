@@ -43,14 +43,17 @@
     align-items: center;
     color: #000000;
 }
-.ramazanprogramdetails .justify-content-md-center{
+
+.ramazanprogramdetails .justify-content-md-center {
     margin-top: 3rem;
 }
-.ramazan-page .button-red{
-    width: 300px;
+
+.ramazan-page .button-red {
+    width: 200px;
     height: 60px;
     font-size: 20px;
 }
+
 .impactdetails {
     font-family: Avenir;
     font-style: normal;
@@ -60,10 +63,14 @@
     text-align: left;
     color: #000000;
 }
-.ramazan-page .ramazanprogramdetails img{
-    width: 553px;
-    height: 375px;
+
+@media only screen and (min-width: 769px) {
+    .ramazan-page .ramazanprogramdetails img {
+        width: 553px;
+        height: 375px;
+    }
 }
-.impact-section{
-    margin-top: 3rem;
+
+.impact-section {
+    margin-top: 5rem;
 }
