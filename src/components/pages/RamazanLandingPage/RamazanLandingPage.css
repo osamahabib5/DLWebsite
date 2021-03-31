@@ -64,10 +64,24 @@
     color: #000000;
 }
 
+@media only screen and (max-width: 769px) {
+    .ramazan-page .ramazanprogramdetails img {
+        width: 100%;
+        height: auto;
+    }
+    .ramazan-page .impact-section img {
+        width: 100%;
+        height: auto;
+    }
+}
 @media only screen and (min-width: 769px) {
     .ramazan-page .ramazanprogramdetails img {
         width: 553px;
         height: 375px;
+    }
+    .ramazan-page .impact-section img {
+        width: 800px;
+        height: 500px;
     }
 }
 

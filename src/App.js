@@ -25,9 +25,7 @@ import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
 import Cookies from 'universal-cookie';
 import RamazanLandingPage from './components/pages/RamazanLandingPage/RamazanLandingPage';
-import { TutorsContext } from './Provider';
 function App() {
-    // const {setisMobile} = useContext(TutorsContext) 
   const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
   const [toggleFooter, setToggleFooter] = useState(true);
@@ -115,7 +113,7 @@ function App() {
             <PricingFilters />
           </Route>
           <Route path="/ramzan">
-            <RamazanLandingPage isMobile = {isMobile}/>
+            <RamazanLandingPage/>
             {/* <BookaDemo /> */}
           </Route>
           <Route path="/">
