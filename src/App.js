@@ -4,7 +4,7 @@ import Backdrop from "./components/Backdrop/Backdrop";
 import './App.css'
 import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import NotificationToast from './components/Notification/NotificationToast';
 import NotificationToastMobile from "./components/Notification/NotificationToastMobile";
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,7 +25,9 @@ import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
 import Cookies from 'universal-cookie';
 import RamazanLandingPage from './components/pages/RamazanLandingPage/RamazanLandingPage';
+import { TutorsContext } from './Provider';
 function App() {
+    // const {setisMobile} = useContext(TutorsContext) 
   const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
   const [toggleFooter, setToggleFooter] = useState(true);

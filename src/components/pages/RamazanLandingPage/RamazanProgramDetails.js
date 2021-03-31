@@ -7,7 +7,7 @@ function RamazanProgramDetails(props) {
         <Container>
             <Row className="justify-content-md-center">
                 <Col xs lg="6">
-                    <p className="ramazanprogramheading">
+                    <p className="ramazanprogramheading" style = {{fontSize: props.isMobile ? "30px" :""}}>
                         What does it include?
                     </p>
                 </Col>
@@ -15,20 +15,23 @@ function RamazanProgramDetails(props) {
             {ProgramDetails.map((data, index) => {
                 if (index === 0) {
                     return (
-                        <Row className="justify-content-md-center" style = {{flexDirection: props.isMobile ? "column" : ""}} key = {index}>
-                            <Col xs lg="6" >
+                        <Row className="justify-content-md-center" style={{ flexDirection: props.isMobile ? "column" : "" }} key={index}>
+                            <Col xs lg="5" >
                                 <p className="programdetails">
                                     {data.title}
                                 </p>
-                                <p className="programdetails"  style = {{fontWeight : 'normal'}}>
-                                    {data.description} 
+                                <p className="programdetails" style={{ fontWeight: 'normal' }}>
+                                    {data.description}
                                 </p>
                             </Col>
-                            <Col xs lg="6">
+                            <Col xs lg="7">
                                 <ReactPlayer
                                     controls
                                     // height="360px"
-                                    width = {props.isMobile ? "100%" : ""}
+                                    controls
+                                    width="100%"
+                                    height="auto"
+                                    style={{ backgroundColor: "white", display: "flex" }}
                                     url={data.source}
                                 />
                             </Col>
@@ -37,32 +40,32 @@ function RamazanProgramDetails(props) {
                 }
                 if (index % 2 === 0 && index > 0) {
                     return (
-                        <Row className="justify-content-md-center" style = {{flexDirection: props.isMobile ? "column" : ""}} key = {index}>
+                        <Row className="justify-content-md-center" style={{ flexDirection: props.isMobile ? "column" : "" }} key={index}>
                             <Col xs lg="5">
                                 <p className="programdetails">
-                                    {data.title} 
+                                    {data.title}
                                 </p>
-                                <p className="programdetails" style = {{fontWeight : 'normal'}}>
-                                    {data.description} 
+                                <p className="programdetails" style={{ fontWeight: 'normal' }}>
+                                    {data.description}
                                 </p>
                             </Col>
                             <Col xs lg="7">
-                                <img src={data.source} style = {{width : props.isMobile ? "100%" : ""}}/>
+                                <img src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
                             </Col>
                         </Row>
                     )
                 } else {
                     return (
-                        <Row className="justify-content-md-center" style = {{flexDirection: props.isMobile ? 'column-reverse' : ""}} key = {index}>
+                        <Row className="justify-content-md-center" style={{ flexDirection: props.isMobile ? 'column-reverse' : "" }} key={index}>
                             <Col xs lg="7">
-                                <img src={data.source} style = {{width : props.isMobile ? "100%" : ""}}/>
+                                <img src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
                             </Col>
                             <Col xs lg="5">
                                 <p className="programdetails">
                                     {data.title}
                                 </p>
-                                <p className="programdetails"  style = {{fontWeight : 'normal'}}>
-                                    {data.description} 
+                                <p className="programdetails" style={{ fontWeight: 'normal' }}>
+                                    {data.description}
                                 </p>
                             </Col>
                         </Row>

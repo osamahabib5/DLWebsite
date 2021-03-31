@@ -8,6 +8,7 @@ import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
 function RamazanLandingPage(props) {
+    let mobile_style = {marginTop: props.isMobile ? "2rem" : "", width: props.isMobile ? "100%" : ""};
     return (
         <div className="ramazan-page">
             <div className="ramazan-banner">
@@ -15,7 +16,7 @@ function RamazanLandingPage(props) {
             </div>
 
             <Container>
-                <Row className="justify-content-md-center" style={{ marginTop: props.isMobile ? "3rem" : "6rem", width: props.isMobile ? "100%" : "" }}>
+                <Row className="justify-content-md-center" style={mobile_style}>
                     <Col xs lg="12">
                         <div className="ramazan-header">
                             <RamazanHeader isMobile={props.isMobile} />
@@ -23,7 +24,7 @@ function RamazanLandingPage(props) {
                         </div>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center" >
+                <Row className="justify-content-md-center" style={mobile_style, {padding: props.isMobile ? "2rem": ""}} >
                     <Col xs lg="12">
                         <div className="ramazanprogramdetails">
                             <RamazanProgramDetails isMobile = {props.isMobile}/>
@@ -33,7 +34,7 @@ function RamazanLandingPage(props) {
                         </div>
                     </Col>
                 </Row>
-                {/*<Row className="justify-content-md-center">
+               {/* <Row className="justify-content-md-center">
                     <Col xs lg="9">
                         <div className="impact-section">
                             <RamazanImpact />
