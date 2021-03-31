@@ -1,27 +1,69 @@
-import React from 'react'
-import { Card, CardDeck, Col, Row } from 'react-bootstrap'
-
+import React, { useEffect, useState } from 'react'
+import { Card, Form, Button, CardDeck, Col, Row, Container } from 'react-bootstrap'
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
+import PickTime from './PickTime'
+import axios from 'axios';
+import baseUrl from '../../../baseUrl/baseUrl';
 function PaymentSection() {
+    const [DaysList, setDaysList] = useState([]);
+    let timeofDays = ["morning", "afternoon", "night"]
+    const hello = "afternoon";
+    const getTimeSlotsUrl = baseUrl + "/api/ramzan/getTimeSlots";
+    // let i = 0;
+    // const timeslotsarr = [];
+    // for (i = 0; i < timeofDays.length; i++) {
+    //     if (response.data.data.timeofDays[i].length > 0) {
+    //         var temp = [];
+    //         response.data.data.timeofDays[i].map(data => {
+    //             temp.push(data);
+    //         })
+    //         timeslotsarr.push(temp)
+    //     }
+    // }
+    // setDaysList({
+    //     ...DaysList,
+    //     times: timeslotsarr
+    // });
+    const fetchTimeSlots = async () => {
+        await axios.get(getTimeSlotsUrl).then(response => {
+            console.log("TimeSlots of Teachers: " + JSON.stringify(response.data.data.morning))
+            // console.log("TimeSlots of Teachers: " + JSON.stringify(timeofDays[0]))
+            // let i = 0;
+            // const timeslotsarr = [];
+            // for (i = 0; i < timeofDays.length; i++) {
+            //     if (response.data.data.timeofDays[i].length > 0) {
+            //         var temp = [];
+            //         response.data.data.timeofDays[i].map(data => {
+            //             temp.push(data);
+            //         })
+            //         timeslotsarr.push(temp)
+            //     }
+            // }
+            // setDaysList(timeslotsarr);
+        }).catch(error => {
+            console.log("Error for Teachers: " + JSON.stringify(error))
+        })
+    }
+    useEffect(() => {
+        fetchTimeSlots();
+    }, [])
     return (
-        <div>
-            <CardDeck style={{ margin: "auto" }} >
-                {/* <Row xs={2} md={4} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
-                    {props.displayinfo.map((data, index) => {
-                        return (
-                            <Col>
-                                <Card key={index} >
-                                    <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
-                                    <Card.Body style={{ marginTop: props.cardBodySpacing }}>
-                                        <Card.Title><p className="title">{data.title}</p></Card.Title>
-                                        
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        )
-                    })}
-                </Row> */}
-            </CardDeck>
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <p className="ramazanprogramheading">
+                        Register Now
+                        </p>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <div className="picktimeslot">
+                        <PickTime />
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

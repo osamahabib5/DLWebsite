@@ -131,7 +131,6 @@ function ScheduleDemo(props) {
     }
     useEffect(() => {
         fetchDays();
-        // console.log("DaysList: " + JSON.stringify(DaysList))
     }, [])
     return (
         <Container>

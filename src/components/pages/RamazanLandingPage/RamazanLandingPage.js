@@ -52,12 +52,12 @@ function RamazanLandingPage() {
                     <Col xs lg="9">
                         <div className="impact-section" style={impact_mobile_style}>
                             <RamazanImpact isMobile={isMobile} />
-                            <SignUpButtonRamazanProgram buttontext="Let's do it!" />
+                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" />
                         </div>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="6">
+                    <Col xs lg="12">
                         <div className="payment-section">
                             <PaymentSection />
                         </div>
