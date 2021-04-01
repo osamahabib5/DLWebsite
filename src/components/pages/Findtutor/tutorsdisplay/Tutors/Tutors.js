@@ -56,7 +56,7 @@ function Tutors(props) {
                                                 <Row>
                                                     <Col style={{ height: "20px" }}>
                                                         <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
-                                                            <div className="d-flex flex-row bd-highlight mb-3">
+                                                           {item.active_students ?  <div className="d-flex flex-row bd-highlight mb-3">
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faUser} /></div>
                                                                 <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                     <p className="students">
@@ -68,12 +68,12 @@ function Tutors(props) {
                                                                         {item.active_students}
                                                                     </p>
                                                                 </div>
-                                                            </div>
+                                                            </div> : ""}
                                                         </Button>
                                                     </Col>
                                                     <Col>
                                                         <Button variant="outline-secondary" style={{ height: "30px", border: "none", backgroundColor : "none" }}>
-                                                            <div className="d-flex flex-row bd-highlight mb-3">
+                                                           {item.lifetime_hours ?  <div className="d-flex flex-row bd-highlight mb-3">
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                                 <div className="p-2 bd-highlight">
                                                                     <p className="students" style={{ marginLeft: "7px" }}>
@@ -85,7 +85,7 @@ function Tutors(props) {
                                                                         {item.lifetime_hours}
                                                                     </p>
                                                                 </div>
-                                                            </div>
+                                                            </div> : ""}
                                                         </Button>
                                                     </Col>
                                                 </Row>

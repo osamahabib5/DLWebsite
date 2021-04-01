@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef  } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import PaymentSection from './PaymentSection';
 import RamazanBanner from './RamazanBanner';
@@ -9,12 +9,21 @@ import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
 function RamazanLandingPage() {
     const [isMobile, setisMobile] = useState(false);
+    const scrollToPackage = useRef(null);
     const mobileview = () => {
         if (window.innerWidth >= 769) {
             setisMobile(false);
         }
         if (window.innerWidth < 769) {
             setisMobile(true);
+        }
+    }
+    const scrolltoRegistrationForm = () => {
+        if (scrollToPackage.current) {
+            scrollToPackage.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
         }
     }
     useEffect(() => {
@@ -34,7 +43,7 @@ function RamazanLandingPage() {
                     <Col xs lg="12">
                         <div className="ramazan-header">
                             <RamazanHeader isMobile={isMobile} />
-                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
+                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm = {scrolltoRegistrationForm}/>
                         </div>
                     </Col>
                 </Row>
@@ -43,7 +52,7 @@ function RamazanLandingPage() {
                         <div className="ramazanprogramdetails">
                             <RamazanProgramDetails isMobile={isMobile} />
                             <div style={{ marginTop: "2rem" }}>
-                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" />
+                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" onClick = {scrolltoRegistrationForm}/>
                             </div>
                         </div>
                     </Col>
@@ -52,13 +61,13 @@ function RamazanLandingPage() {
                     <Col xs lg="9">
                         <div className="impact-section" style={impact_mobile_style}>
                             <RamazanImpact isMobile={isMobile} />
-                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" />
+                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" onClick = {scrolltoRegistrationForm}/>
                         </div>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center" >
                     <Col xs lg="12">
-                        <div className="payment-section">
+                        <div className="payment-section" ref = {scrollToPackage}>
                             <PaymentSection />
                         </div>
                     </Col>

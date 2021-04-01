@@ -26,12 +26,13 @@ function PickTime(props) {
         TimeofDay: "Night",
         value: "night"
     }]
+
     let fetchAvailableTeachersUrl = baseUrl + "/api/ramzan/getTimeSlots/";
     const [Teachers, setTeachers] = useState(null)
     const [fillTeachersSlot, setTeacherSlots] = useState(null);
     const showAvailableTeachers = (e) => {
         e.preventDefault();
-        var temp = []
+        let temp = []
         if (e.target.value === "morning") {
             temp.push(props.DaysList.morning);
         }
@@ -41,25 +42,24 @@ function PickTime(props) {
         if (e.target.value === "night") {
             temp.push(props.DaysList.night);
         }
-        setTeachers(temp)
-
-        // console.log(Teachers ? "Teachers: " + JSON.stringify(Teachers) : "Hello")
-        if (Teachers) {
-            var temparr = [];
-            Teachers.map(firstarr => {
-                firstarr.map(secondarr => {
-                    secondarr.map(thirdarr => {
-                        thirdarr.map(data => {
-                            temparr.push(data);
-                        })
-                    })
-                })
-            })
-            setTeacherSlots(temparr);
+        if (temp.length > 0) {
+            setTeachers(temp)
         }
+        console.log(Teachers ? "Teachers: " + Teachers : "Hello")
+        // if (Teachers) {
+        //     var temparr = [];
+        //     Teachers.map(firstarr => {
+        //         firstarr.map(secondarr => {
+        //             secondarr.map(thirdarr => {
+        //                 thirdarr.map(data => {
+        //                     temparr.push(data);
+        //                 })
+        //             })
+        //         })
+        //     })
+        //     setTeacherSlots(temparr);
+        // }
     }
-    useEffect(() => {
-    }, [])
     return (
         <Container>
             <Row style={{ marginTop: "2rem" }}>
@@ -86,11 +86,12 @@ function PickTime(props) {
             </Row>
             <Row>
                 <Col>
-                    <div className="tutorslist">
-                        {Teachers && fillTeachersSlot ?
-                            // <AvailableRamazanTimings arr={fillTeachersSlot} avatar={avatar} /> :
-                            <Tutors dataarr={fillTeachersSlot} avatar={avatar} loading={loading} url={url} /> :
-                            "TimeSlots will be shown here!"}
+                    <div className="pickteacher">
+                        <div className="tutorslist">
+                            {fillTeachersSlot ?
+                                <Tutors dataarr={fillTeachersSlot} avatar={avatar} loading={loading} url={url} /> :
+                                "Hello Bro!"}
+                        </div>
                     </div>
                 </Col>
             </Row>
