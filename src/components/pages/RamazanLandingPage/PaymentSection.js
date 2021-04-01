@@ -26,26 +26,41 @@ function PaymentSection() {
     // });
     const fetchTimeSlots = async () => {
         await axios.get(getTimeSlotsUrl).then(response => {
-            console.log("TimeSlots of Teachers: " + JSON.stringify(response.data.data.morning))
+            // console.log("TimeSlots of Teachers: " + JSON.stringify(response.data.data))
             // console.log("TimeSlots of Teachers: " + JSON.stringify(timeofDays[0]))
-            // let i = 0;
-            // const timeslotsarr = [];
-            // for (i = 0; i < timeofDays.length; i++) {
-            //     if (response.data.data.timeofDays[i].length > 0) {
-            //         var temp = [];
-            //         response.data.data.timeofDays[i].map(data => {
-            //             temp.push(data);
-            //         })
-            //         timeslotsarr.push(temp)
-            //     }
-            // }
-            // setDaysList(timeslotsarr);
+            let i = 0;
+            const timeslotsarr = [];
+            for (i = 0; i < timeofDays.length; i++) {
+                if (timeofDays[i] === "morning") {
+                    var temp = [];
+                    response.data.data.morning.map(data => {
+                        temp.push(data);
+                    })
+                    timeslotsarr.push(temp)
+                }
+                else if (timeofDays[i] === "afternoon") {
+                    var temp = [];
+                    response.data.data.afternoon.map(data => {
+                        temp.push(data);
+                    })
+                    timeslotsarr.push(temp)
+                }
+                else if (timeofDays[i] === "night") {
+                    var temp = [];
+                    response.data.data.night.map(data => {
+                        temp.push(data);
+                    })
+                    timeslotsarr.push(temp)
+                }
+            }
+            setDaysList(timeslotsarr);
         }).catch(error => {
-            console.log("Error for Teachers: " + JSON.stringify(error))
+            console.log("Error for Teachers: " + error)
         })
     }
     useEffect(() => {
         fetchTimeSlots();
+        console.log("TimeSlotsArr: "+ DaysList)
     }, [])
     return (
         <Container>
