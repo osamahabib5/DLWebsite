@@ -4,12 +4,12 @@ import baseUrl from "../../../../../src/baseUrl/baseUrl";
 import avatar from "../Image/avatar.jpg";
 import './Tutorsdisplay.css'
 import Tutors from './Tutors/Tutors';
-import { useRouteMatch , useLocation} from 'react-router-dom';
+import { useRouteMatch, useLocation } from 'react-router-dom';
 import { TutorsContext } from "../../../../Provider";
 function Tutorsdisplay() {
     let location = useLocation();
-    let {state} = location;
-    const { results, loading, stopLoading, startLoading, parent_country, tutortype, setParentLocation, setParentCity, setresults} = useContext(TutorsContext);
+    let { state } = location;
+    const { results, loading, stopLoading, startLoading, parent_country, tutortype, setParentLocation, setParentCity, setresults } = useContext(TutorsContext);
     const [isMobile, setmobile] = useState(false);
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -45,12 +45,6 @@ function Tutorsdisplay() {
             })
     }
     useEffect(async () => {
-        // if(results && state){
-        //     if (state.findtutors){
-        //         setresults(null);
-        //         // console.log("Hello")
-        //     }
-        // }
         fetchlocation();
         mobileview();
         window.addEventListener("resize", mobileview);

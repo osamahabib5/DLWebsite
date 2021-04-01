@@ -112,7 +112,7 @@ function App() {
           <Route path="/pricingfilters">
             <PricingFilters />
           </Route>
-          <Route path="/ramzan">
+          <Route path="/ramadan">
             <RamazanLandingPage/>
             {/* <BookaDemo /> */}
           </Route>

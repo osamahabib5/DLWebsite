@@ -19,7 +19,7 @@ function RamazanImpact(props) {
                 </Col>
             </Row>
             <Row className="justify-content-md-center" style = {{marginTop: props.isMobile ? "0rem" : "3rem"}}>
-                <Col xs lg="10">
+                <Col xs lg="11">
                     <img src = {tcfimage} />
                 </Col>
             </Row>
@@ -33,7 +33,7 @@ function RamazanImpact(props) {
             <Row style = {{marginTop: props.isMobile ? "1rem" : "3rem"}}>
                 <Col>
                     <p className="impactdetails" style = {{textAlign: "center", fontWeight : "normal"}}>
-                        This Ramadan, give your Zakat for Education and TCF, through which 266,000 deserving students are receiving  quality education.
+                        This Ramadan, give your Zakat for education and TCF, through which 266,000 deserving students are receiving  quality education.
                       </p>
                 </Col>
             </Row>

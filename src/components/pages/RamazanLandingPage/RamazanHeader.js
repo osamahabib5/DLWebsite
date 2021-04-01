@@ -14,7 +14,7 @@ function RamazanHeader(props) {
             <Row className="justify-content-md-center">
                 <Col xs lg = "7">
                     <p className="mainheading" style = {{fontSize: props.isMobile ? "19px" :"", textAlign : props.isMobile ? "center" :"", padding: props.isMobile ? "1rem" :"",}}>
-                        This year for the first time ever Dot & Line brings you the magical elements of Ramadan in a power packed 8-session series that brings the essence of Islam and all its glory to life.
+                        This year, for the first time ever, Dot & Line brings you the magical elements of Ramadan in a power packed 10-session series that brings the essence of Islam and all its glory to life.
                     </p>
                 </Col>
             </Row>

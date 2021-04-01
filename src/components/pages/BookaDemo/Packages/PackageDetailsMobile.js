@@ -35,11 +35,11 @@ function PackageDetailsMobile(props) {
     //         setOptedPackage(index)
     //     }
     // }
-    const SetPricingPackage = (index)=>{
-        if (index == 0 || index == 2){
+    const SetPricingPackage = (index) => {
+        if (index == 0 || index == 2) {
             setSubscription("1_month")
         }
-        else{
+        else {
             setSubscription("3_month");
         }
     }
@@ -63,16 +63,8 @@ function PackageDetailsMobile(props) {
                 {parent_country === "Pakistan" ? Available_Packages.slice(0, 2).map((data, index) => (
                     <Carousel.Item key={index}>
                         <Carousel.Caption style={setPackagestyle(index)} onClick={() => {
-                            // if (cookies.get('leadid') != null) {
-                            //     props.showfeecalculator();
-                            //     setOptedPackage(index)
-                            // } else {
-                            //     props.showLeadsForm();
-                            //     setOptedPackage(index)
-                            // }
                             setSelectedPackage(index)
                         }}>
-                            {/* <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} /> */}
                             <p className="packagemobileheading">{data.title}</p>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">
@@ -96,17 +88,9 @@ function PackageDetailsMobile(props) {
                     </Carousel.Item>
                 )) : Available_Packages.slice(2, 4).map((data, index) => (
                     <Carousel.Item key={index} onClick={() => {
-                        // if (cookies.get('leadid') != null) {
-                        //     props.showfeecalculator();
-                        //     setOptedPackage(index)
-                        // } else {
-                        //     props.showLeadsForm();
-                        //     setOptedPackage(index)
-                        // }
                         setSelectedPackage(index)
                     }}>
                         <Carousel.Caption style={setPackagestyle(index)} >
-                            {/* <div style={{ width: "100%", height: "12px", background: "#5E6981", borderRadius: "7px 7px 0px 0px" }} /> */}
                             <p className="packagemobileheading">{data.title}</p>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">

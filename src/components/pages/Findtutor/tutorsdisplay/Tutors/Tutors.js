@@ -19,7 +19,8 @@ function Tutors(props) {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-    }, []);
+        console.log("TUtors: "+ props.dataarr)
+    }, [props.dataarr]);
 
     const rowslength = isMobile ? 2 : 4;
     const rows = [...Array(Math.ceil(props.dataarr.length / rowslength))];
@@ -46,7 +47,7 @@ function Tutors(props) {
                                         <div className="d-flex flex-row bd-highlight mb-3">
                                             <div className="p-2 bd-highlight">
                                                 <p className="teacher-name">
-                                                    {item.name}
+                                                    {item.name ? item.name : item.teacher_name}
                                                 </p>
                                             </div>
                                         </div>

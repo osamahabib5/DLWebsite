@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import AvailableRamazanTimings from './AvailableRamazanTimings'
 import axios from 'axios';
 import baseUrl from '../../../baseUrl/baseUrl';
-function PickTime() {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCloudSun, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import avatar from './avatar.jpg';
+import PaymentForm from './PaymentForm';
+import { useRouteMatch } from 'react-router';
+import Tutors from '../Findtutor/tutorsdisplay/Tutors/Tutors';
+import { TutorsContext } from '../../../Provider';
+function PickTime(props) {
+    const { loading } = useContext(TutorsContext);
+    let { url } = useRouteMatch();
     let RamazanSlots = [{
         id: 0,
         TimeofDay: "Morning",
@@ -17,11 +26,40 @@ function PickTime() {
         TimeofDay: "Night",
         value: "night"
     }]
-    let fetchAvailableTeachersUrl = baseUrl+ "/api/ramzan/getTimeSlots/";
-    const showAvailableTeachers = (e)=>{
+    let fetchAvailableTeachersUrl = baseUrl + "/api/ramzan/getTimeSlots/";
+    const [Teachers, setTeachers] = useState(null)
+    const [fillTeachersSlot, setTeacherSlots] = useState(null);
+    const showAvailableTeachers = (e) => {
         e.preventDefault();
-        console.log("Button-value: "+ e.target.value)
+        var temp = []
+        if (e.target.value === "morning") {
+            temp.push(props.DaysList.morning);
+        }
+        if (e.target.value === "afternoon") {
+            temp.push(props.DaysList.afternoon);
+        }
+        if (e.target.value === "night") {
+            temp.push(props.DaysList.night);
+        }
+        setTeachers(temp)
+
+        // console.log(Teachers ? "Teachers: " + JSON.stringify(Teachers) : "Hello")
+        if (Teachers) {
+            var temparr = [];
+            Teachers.map(firstarr => {
+                firstarr.map(secondarr => {
+                    secondarr.map(thirdarr => {
+                        thirdarr.map(data => {
+                            temparr.push(data);
+                        })
+                    })
+                })
+            })
+            setTeacherSlots(temparr);
+        }
     }
+    useEffect(() => {
+    }, [])
     return (
         <Container>
             <Row style={{ marginTop: "2rem" }}>
@@ -34,21 +72,31 @@ function PickTime() {
             <Row className="justify-content-md-center" style={{ marginTop: "2rem" }}>
                 {RamazanSlots.map((data, index) => {
                     return (
-                        <Col xs lg="2">
-                            <button key={index} value = {data.value} onClick = {(e)=>{
+                        <Col xs lg="2" key={index}>
+                            <button key={index} value={data.value} onClick={(e) => {
                                 showAvailableTeachers(e)
                             }} className="btn btn-lg button-cta button-blue">
                                 {data.TimeofDay}
+                                <FontAwesomeIcon style={{ marginLeft: "1rem" }} icon={index === 0 ? faSun : index == 1 ? faCloudSun : faMoon} />
                             </button>
+
                         </Col>
                     )
                 })}
             </Row>
             <Row>
                 <Col>
-                    <div className="showtimings">
-                        <AvailableRamazanTimings />
+                    <div className="tutorslist">
+                        {Teachers && fillTeachersSlot ?
+                            // <AvailableRamazanTimings arr={fillTeachersSlot} avatar={avatar} /> :
+                            <Tutors dataarr={fillTeachersSlot} avatar={avatar} loading={loading} url={url} /> :
+                            "TimeSlots will be shown here!"}
                     </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <PaymentForm />
                 </Col>
             </Row>
         </Container>
