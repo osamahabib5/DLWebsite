@@ -23,7 +23,8 @@ const initialState = {
     demo_day: "",
     tutortype: "",
     skippedpricing: false,
-    isMobile: false
+    isMobile: false,
+    courseid: 0,
 }
 
 const actions = {
@@ -51,7 +52,8 @@ const actions = {
     SETDEMODAY: 'SETDEMODAY',
     SETTUTORTYPE: 'SETTUTORTYPE',
     SKIPPRICING: 'SKIPPRICING',
-    SETISMOBILE: 'SETISMOBILE'
+    SETISMOBILE: 'SETISMOBILE',
+    SAVECOURSEID: 'SAVECOURSEID'
 }
 
 function reducer(state, action) {
@@ -182,6 +184,11 @@ function reducer(state, action) {
                 ...state,
                 isMobile: action.value
             }
+        case actions.SAVECOURSEID:
+            return {
+                ...state,
+                courseid: action.value
+            }
         default:
             return state;
     }
@@ -213,6 +220,7 @@ function Provider({ children }) {
         tutortype: state.tutortype,
         skippedpricing: state.skippedpricing,
         isMobile: state.isMobile,
+        courseid:state.courseid,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -238,7 +246,8 @@ function Provider({ children }) {
         setDemoDay: (value) => { dispatch({ type: actions.SETDEMODAY, value }) },
         setTutorType: (value) => { dispatch({ type: actions.SETTUTORTYPE, value }) },
         skipPricing: (value) => { dispatch({ type: actions.SKIPPRICING, value }) },
-        setisMobile : (value) => { dispatch({ type: actions.SETISMOBILE, value }) },
+        setisMobile: (value) => { dispatch({ type: actions.SETISMOBILE, value }) },
+        saveCourseId: (value) => { dispatch({ type: actions.SAVECOURSEID, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

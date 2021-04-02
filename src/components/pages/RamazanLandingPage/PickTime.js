@@ -56,6 +56,7 @@ function PickTime(props) {
                 })
             })
         })
+        console.log("Teachers: "+ JSON.stringify(fillTeachersSlot))
         setTeacherSlots(fillTeachersSlot)
     }
     return (
@@ -85,7 +86,7 @@ function PickTime(props) {
                 <Col>
                     <div className="pickteacher">
                         <div className="tutorslist">
-                            {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} /> : ""}
+                            {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} ramadanteachers = {true}/> : ""}
                         </div>
                     </div>
                 </Col>

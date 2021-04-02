@@ -95,3 +95,10 @@
 .showtimings{
     margin-top: 3rem;
 }
+.pickteacher{
+    margin-top: 3rem;
+}
+.pickteacher .tutorslist .btn-outline-secondary:hover{
+    background: none;
+    cursor: auto;
+}
