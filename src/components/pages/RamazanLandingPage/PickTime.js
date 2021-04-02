@@ -11,7 +11,7 @@ import { useRouteMatch } from 'react-router';
 import Tutors from '../Findtutor/tutorsdisplay/Tutors/Tutors';
 import { TutorsContext } from '../../../Provider';
 function PickTime(props) {
-    const { loading } = useContext(TutorsContext);
+    const { loading, startLoading, stopLoading } = useContext(TutorsContext);
     let { url } = useRouteMatch();
     let RamazanSlots = [{
         id: 0,
@@ -32,33 +32,33 @@ function PickTime(props) {
     const [fillTeachersSlot, setTeacherSlots] = useState(null);
     const showAvailableTeachers = (e) => {
         e.preventDefault();
-        let temp = []
+        startLoading();
         if (e.target.value === "morning") {
-            temp.push(props.DaysList.morning);
+            setTeachers(props.DaysList.morning);
+            // console.log("Morning: " + JSON.stringify(props.DaysList.morning));
         }
         if (e.target.value === "afternoon") {
-            temp.push(props.DaysList.afternoon);
+            setTeachers(props.DaysList.afternoon);
+            // console.log("Afternoon: " + JSON.stringify(props.DaysList.afternoon));
         }
         if (e.target.value === "night") {
-            temp.push(props.DaysList.night);
+            // temp.push(props.DaysList.night);
+            setTeachers(props.DaysList.night);
+            // console.log("Night: " + JSON.stringify(props.DaysList.night));
         }
-        if (temp.length > 0) {
-            setTeachers(temp)
+        stopLoading();
+        // console.log(Teachers ? "Teachers: "+JSON.stringify(Teachers) : "Hello Brothersasas");
+        if (Teachers) {
+            let temparr = [];
+            Teachers.map(firstarr => {
+                firstarr.map(data => {
+                    temparr.push(data);
+                })
+            })
+            setTeacherSlots(temparr)
         }
-        console.log(Teachers ? "Teachers: " + Teachers : "Hello")
-        // if (Teachers) {
-        //     var temparr = [];
-        //     Teachers.map(firstarr => {
-        //         firstarr.map(secondarr => {
-        //             secondarr.map(thirdarr => {
-        //                 thirdarr.map(data => {
-        //                     temparr.push(data);
-        //                 })
-        //             })
-        //         })
-        //     })
-        //     setTeacherSlots(temparr);
-        // }
+        // console.log(fillTeachersSlot ? "Teachers: "+JSON.stringify(fillTeachersSlot) : "Hello Brothersasas");
+
     }
     return (
         <Container>
@@ -79,7 +79,6 @@ function PickTime(props) {
                                 {data.TimeofDay}
                                 <FontAwesomeIcon style={{ marginLeft: "1rem" }} icon={index === 0 ? faSun : index == 1 ? faCloudSun : faMoon} />
                             </button>
-
                         </Col>
                     )
                 })}
@@ -90,7 +89,7 @@ function PickTime(props) {
                         <div className="tutorslist">
                             {fillTeachersSlot ?
                                 <Tutors dataarr={fillTeachersSlot} avatar={avatar} loading={loading} url={url} /> :
-                                "Hello Bro!"}
+                                ""}
                         </div>
                     </div>
                 </Col>

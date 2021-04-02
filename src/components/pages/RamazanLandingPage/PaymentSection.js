@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
-// import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 import PickTime from './PickTime'
 import axios from 'axios';
 import baseUrl from '../../../baseUrl/baseUrl';
@@ -16,20 +15,13 @@ function PaymentSection() {
             const nighttime = [];
             for (i = 0; i < timeofDays.length; i++) {
                 if (timeofDays[i] === "morning") {
-                    var temp = [];
-                    temp.push(response.data.data.morning);
-                    morningtime.push(temp)
-
+                    morningtime.push(response.data.data.morning)
                 }
                 else if (timeofDays[i] === "afternoon") {
-                    var temp = [];
-                    temp.push(response.data.data.afternoon);
-                    afternoontime.push(temp)
+                    afternoontime.push(response.data.data.afternoon)
                 }
                 else if (timeofDays[i] === "night") {
-                    var temp = [];
-                    temp.push(response.data.data.night);
-                    nighttime.push(temp)
+                    nighttime.push(response.data.data.night)
                 }
             }
             setDaysList({
