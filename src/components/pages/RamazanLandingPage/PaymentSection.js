@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
 import PickTime from './PickTime'
 import axios from 'axios';
 import baseUrl from '../../../baseUrl/baseUrl';
+import { TutorsContext } from '../../../Provider';
+import { ClipLoader } from 'react-spinners';
 function PaymentSection() {
     const [DaysList, setDaysList] = useState({ morning: null, afternoon: null, night: null });
+    const { loading, startLoading, stopLoading } = useContext(TutorsContext);
     let timeofDays = ["morning", "afternoon", "night"]
     const getTimeSlotsUrl = baseUrl + "/api/ramzan/getTimeSlots";
     const fetchTimeSlots = async () => {
         await axios.get(getTimeSlotsUrl).then(response => {
             let i = 0;
-            const morningtime = [];
-            const afternoontime = [];
-            const nighttime = [];
+            var morningtime = [];
+            var afternoontime = [];
+            var nighttime = [];
             for (i = 0; i < timeofDays.length; i++) {
                 if (timeofDays[i] === "morning") {
                     morningtime.push(response.data.data.morning)
@@ -30,12 +33,14 @@ function PaymentSection() {
                 afternoon: afternoontime,
                 night: nighttime
             });
+            
         }).catch(error => {
             console.log("Error for Teachers: " + error)
         })
     }
     useEffect(() => {
         fetchTimeSlots();
+        // console.log("DaysList: "+ JSON.stringify(DaysList))
     }, [])
     return (
         <Container>
@@ -48,7 +53,7 @@ function PaymentSection() {
             </Row>
             <Row>
                 <Col>
-                    <div className="picktimeslot">
+                   <div className="picktimeslot">
                         <PickTime DaysList={DaysList ? DaysList : ""} />
                     </div>
                 </Col>

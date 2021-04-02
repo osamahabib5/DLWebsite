@@ -7,7 +7,7 @@ import { faUser, faClock } from '@fortawesome/free-solid-svg-icons'
 import { ClipLoader } from 'react-spinners';
 function Tutors(props) {
     const [isMobile, setmobile] = useState(false);
-    
+
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setmobile(true);
@@ -19,7 +19,7 @@ function Tutors(props) {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-        console.log("TUtors: "+ props.dataarr)
+        // console.log("TUtors: "+ props.dataarr)
     }, [props.dataarr]);
 
     const rowslength = isMobile ? 2 : 4;
@@ -31,7 +31,7 @@ function Tutors(props) {
                 <Col key={index}>
                     <Link to={{
                         pathname: `${props.url}` ? `${props.url}/${item.id}` : `${"/tutors"}/${item.id}`,
-                        search: `${props.url}`? "" : `${item.name}`
+                        search: `${props.url}` ? "" : `${item.name}`
                     }}>
                         <Card key={item.id}>
                             <Card.Body>
@@ -56,7 +56,7 @@ function Tutors(props) {
                                                 <Row>
                                                     <Col style={{ height: "20px" }}>
                                                         <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
-                                                           {item.active_students ?  <div className="d-flex flex-row bd-highlight mb-3">
+                                                            {item.active_students ? <div className="d-flex flex-row bd-highlight mb-3">
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faUser} /></div>
                                                                 <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                     <p className="students">
@@ -72,8 +72,8 @@ function Tutors(props) {
                                                         </Button>
                                                     </Col>
                                                     <Col>
-                                                        <Button variant="outline-secondary" style={{ height: "30px", border: "none", backgroundColor : "none" }}>
-                                                           {item.lifetime_hours ?  <div className="d-flex flex-row bd-highlight mb-3">
+                                                        <Button variant="outline-secondary" style={{ height: "30px", border: "none", backgroundColor: "none" }}>
+                                                            {item.lifetime_hours ? <div className="d-flex flex-row bd-highlight mb-3">
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                                 <div className="p-2 bd-highlight">
                                                                     <p className="students" style={{ marginLeft: "7px" }}>

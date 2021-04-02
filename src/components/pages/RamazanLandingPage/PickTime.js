@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import AvailableRamazanTimings from './AvailableRamazanTimings'
 import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
 import baseUrl from '../../../baseUrl/baseUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudSun, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
@@ -28,37 +29,34 @@ function PickTime(props) {
     }]
 
     let fetchAvailableTeachersUrl = baseUrl + "/api/ramzan/getTimeSlots/";
-    const [Teachers, setTeachers] = useState(null)
-    const [fillTeachersSlot, setTeacherSlots] = useState(null);
+    let Teachers = [];
+    let fillTeachersSlot = [];
+    const [fillTeacherSlot, setTeacherSlots] = useState(null);
     const showAvailableTeachers = (e) => {
         e.preventDefault();
-        startLoading();
+        while (fillTeachersSlot.length > 0) {
+            fillTeachersSlot.pop();
+        }
+        while (Teachers.length > 0) {
+            Teachers.pop();
+        }
         if (e.target.value === "morning") {
-            setTeachers(props.DaysList.morning);
-            // console.log("Morning: " + JSON.stringify(props.DaysList.morning));
+            Teachers.push(props.DaysList.morning);
         }
-        if (e.target.value === "afternoon") {
-            setTeachers(props.DaysList.afternoon);
-            // console.log("Afternoon: " + JSON.stringify(props.DaysList.afternoon));
+        else if (e.target.value === "afternoon") {
+            Teachers.push(props.DaysList.afternoon);
         }
-        if (e.target.value === "night") {
-            // temp.push(props.DaysList.night);
-            setTeachers(props.DaysList.night);
-            // console.log("Night: " + JSON.stringify(props.DaysList.night));
+        else if (e.target.value === "night") {
+            Teachers.push(props.DaysList.night);
         }
-        stopLoading();
-        // console.log(Teachers ? "Teachers: "+JSON.stringify(Teachers) : "Hello Brothersasas");
-        if (Teachers) {
-            let temparr = [];
-            Teachers.map(firstarr => {
-                firstarr.map(data => {
-                    temparr.push(data);
+        Teachers.map(firstarr => {
+            firstarr.map(secondarr => {
+                secondarr.map(data => {
+                    fillTeachersSlot.push(data);
                 })
             })
-            setTeacherSlots(temparr)
-        }
-        // console.log(fillTeachersSlot ? "Teachers: "+JSON.stringify(fillTeachersSlot) : "Hello Brothersasas");
-
+        })
+        setTeacherSlots(fillTeachersSlot)
     }
     return (
         <Container>
@@ -87,9 +85,7 @@ function PickTime(props) {
                 <Col>
                     <div className="pickteacher">
                         <div className="tutorslist">
-                            {fillTeachersSlot ?
-                                <Tutors dataarr={fillTeachersSlot} avatar={avatar} loading={loading} url={url} /> :
-                                ""}
+                            {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} /> : ""}
                         </div>
                     </div>
                 </Col>
