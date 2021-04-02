@@ -39,7 +39,7 @@ function RamazanLandingPage() {
             </div>
 
             <Container>
-                <Row className="justify-content-md-center" style={mobile_style}>
+                <Row className="justify-content-md-center" style={mobile_style, {marginTop: "3rem",padding: isMobile ? "2rem" : "" }}>
                     <Col xs lg="12">
                         <div className="ramazan-header">
                             <RamazanHeader isMobile={isMobile} />
@@ -52,7 +52,7 @@ function RamazanLandingPage() {
                         <div className="ramazanprogramdetails">
                             <RamazanProgramDetails isMobile={isMobile} />
                             <div style={{ marginTop: "2rem" }}>
-                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" onClick = {scrolltoRegistrationForm}/>
+                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm = {scrolltoRegistrationForm}/>
                             </div>
                         </div>
                     </Col>
@@ -61,14 +61,14 @@ function RamazanLandingPage() {
                     <Col xs lg="9">
                         <div className="impact-section" style={impact_mobile_style}>
                             <RamazanImpact isMobile={isMobile} />
-                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" onClick = {scrolltoRegistrationForm}/>
+                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" scrolltoRegistrationForm = {scrolltoRegistrationForm}/>
                         </div>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center" >
                     <Col xs lg="12">
                         <div className="payment-section" ref = {scrollToPackage}>
-                            <PaymentSection />
+                            <PaymentSection isMobile = {isMobile}/>
                         </div>
                     </Col>
                 </Row>

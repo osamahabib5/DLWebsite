@@ -5,7 +5,7 @@ import axios from 'axios';
 import baseUrl from '../../../baseUrl/baseUrl';
 import { TutorsContext } from '../../../Provider';
 import { ClipLoader } from 'react-spinners';
-function PaymentSection() {
+function PaymentSection(props) {
     const [DaysList, setDaysList] = useState({ morning: null, afternoon: null, night: null });
     const { loading, startLoading, stopLoading } = useContext(TutorsContext);
     let timeofDays = ["morning", "afternoon", "night"]
@@ -33,14 +33,13 @@ function PaymentSection() {
                 afternoon: afternoontime,
                 night: nighttime
             });
-            
+
         }).catch(error => {
             console.log("Error for Teachers: " + error)
         })
     }
     useEffect(() => {
         fetchTimeSlots();
-        // console.log("DaysList: "+ JSON.stringify(DaysList))
     }, [])
     return (
         <Container>
@@ -53,8 +52,8 @@ function PaymentSection() {
             </Row>
             <Row>
                 <Col>
-                   <div className="picktimeslot">
-                        <PickTime DaysList={DaysList ? DaysList : ""} />
+                    <div className="picktimeslot">
+                        <PickTime DaysList={DaysList ? DaysList : ""} isMobile = {props.isMobile}/>
                     </div>
                 </Col>
             </Row>

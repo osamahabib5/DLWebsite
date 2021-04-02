@@ -102,3 +102,6 @@
     background: none;
     cursor: auto;
 }
+.paymentform .PhoneInput{
+    width: 123%;
+}

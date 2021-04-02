@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import AvailableRamazanTimings from './AvailableRamazanTimings'
 import axios from 'axios';
-import { ClipLoader } from 'react-spinners';
 import baseUrl from '../../../baseUrl/baseUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudSun, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +11,7 @@ import { useRouteMatch } from 'react-router';
 import Tutors from '../Findtutor/tutorsdisplay/Tutors/Tutors';
 import { TutorsContext } from '../../../Provider';
 function PickTime(props) {
-    const { loading, startLoading, stopLoading } = useContext(TutorsContext);
+    const { loading} = useContext(TutorsContext);
     let { url } = useRouteMatch();
     let RamazanSlots = [{
         id: 0,
@@ -56,7 +55,7 @@ function PickTime(props) {
                 })
             })
         })
-        console.log("Teachers: "+ JSON.stringify(fillTeachersSlot))
+        console.log("Teachers: " + JSON.stringify(fillTeachersSlot))
         setTeacherSlots(fillTeachersSlot)
     }
     return (
@@ -64,15 +63,15 @@ function PickTime(props) {
             <Row style={{ marginTop: "2rem" }}>
                 <Col>
                     <p className="mainheading" style={{ textAlign: "center" }}>
-                        Choose an Option!
+                        Step One : Choose your Timeslot!
                     </p>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center" style={{ marginTop: "2rem" }}>
+            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "" }}>
                 {RamazanSlots.map((data, index) => {
                     return (
                         <Col xs lg="2" key={index}>
-                            <button key={index} value={data.value} onClick={(e) => {
+                            <button key={index} value={data.value} style={{ marginTop:  props.isMobile ? "1rem" : "" }} onClick={(e) => {
                                 showAvailableTeachers(e)
                             }} className="btn btn-lg button-cta button-blue">
                                 {data.TimeofDay}
@@ -86,14 +85,16 @@ function PickTime(props) {
                 <Col>
                     <div className="pickteacher">
                         <div className="tutorslist">
-                            {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} ramadanteachers = {true}/> : ""}
+                            {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} ramadanteachers={true} /> : ""}
                         </div>
                     </div>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <PaymentForm />
+                    <div className="paymentform">
+                        <PaymentForm />
+                    </div>
                 </Col>
             </Row>
         </Container>

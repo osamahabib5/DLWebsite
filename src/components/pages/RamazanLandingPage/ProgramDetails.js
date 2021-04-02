@@ -6,7 +6,7 @@ const ProgramDetails = [{
 }, {
     "id": 1,
     "title": "2. Digital Learning Packs ",
-    "description": "Thought provoking activities that inspire our little Muslims to practice and reflect. From kindness badges, DIY mosques to our very own Sadaqah jar, we have creativity covered!",
+    "description": "Thought provoking activities that inspire our little Muslims to practice and reflect. From kindness badges and DIY mosques to our very own Sadaqah jar, we have creativity covered!",
     "source": "RamazanPageImages/Learning.jpg"
 }, {
     "id": 2,
@@ -16,7 +16,7 @@ const ProgramDetails = [{
 }, {
     "id": 3,
     "title": "4. Live-streamed art classes for children around the globe ",
-    "description": "We believe art is magic! What better way to give our imaginations flight than reimagining the famous Guljee’s calligraphy style and discovering Islamic patterns from some of the most beautiful mosques in the world!",
+    "description": "We believe art is magic! What better way to give our imaginations flight than reimagining the famous Gulgee’s calligraphy style and discovering Islamic patterns from some of the most beautiful mosques in the world!",
     "source": "RamazanPageImages/artpicture.jpg"
 }]
 

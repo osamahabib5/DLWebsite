@@ -25,6 +25,9 @@ const initialState = {
     skippedpricing: false,
     isMobile: false,
     courseid: 0,
+    days: "",
+    time: "",
+    PaymentForm: false
 }
 
 const actions = {
@@ -53,7 +56,10 @@ const actions = {
     SETTUTORTYPE: 'SETTUTORTYPE',
     SKIPPRICING: 'SKIPPRICING',
     SETISMOBILE: 'SETISMOBILE',
-    SAVECOURSEID: 'SAVECOURSEID'
+    SAVECOURSEID: 'SAVECOURSEID',
+    SETDAYS: 'SETDAYS',
+    SETTIME: 'SETTIME',
+    SETPAYMENTFORM: 'SETPAYMENTFORM'
 }
 
 function reducer(state, action) {
@@ -189,6 +195,21 @@ function reducer(state, action) {
                 ...state,
                 courseid: action.value
             }
+        case actions.SETDAYS:
+            return {
+                ...state,
+                days: action.value
+            }
+        case actions.SETTIME:
+            return {
+                ...state,
+                time: action.value
+            }
+        case actions.SHOWPAYMENTFORM:
+            return {
+                ...state,
+                PaymentForm: true
+            }
         default:
             return state;
     }
@@ -220,7 +241,10 @@ function Provider({ children }) {
         tutortype: state.tutortype,
         skippedpricing: state.skippedpricing,
         isMobile: state.isMobile,
-        courseid:state.courseid,
+        courseid: state.courseid,
+        days: state.days,
+        time: state.time,
+        PaymentForm: state.PaymentForm,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -248,6 +272,9 @@ function Provider({ children }) {
         skipPricing: (value) => { dispatch({ type: actions.SKIPPRICING, value }) },
         setisMobile: (value) => { dispatch({ type: actions.SETISMOBILE, value }) },
         saveCourseId: (value) => { dispatch({ type: actions.SAVECOURSEID, value }) },
+        setTimes: (value) => { dispatch({ type: actions.SETTIME, value }) },
+        setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },
+        showPaymentForm: () => { dispatch({ type: actions.SETPAYMENTFORM }) },
     }
     return (
         <TutorsContext.Provider value={value}>

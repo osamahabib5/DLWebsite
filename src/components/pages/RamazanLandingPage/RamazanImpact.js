@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import tcfimage from './tcfimage.jpg';
+import tcfimage from './tcf.jpg';
+import tcfmobile from './tcfmobile.jpg'
 function RamazanImpact(props) {
     return (
         <Container>
@@ -20,7 +21,7 @@ function RamazanImpact(props) {
             </Row>
             <Row className="justify-content-md-center" style = {{marginTop: props.isMobile ? "0rem" : "3rem"}}>
                 <Col xs lg="11">
-                    <img src = {tcfimage} />
+                    <img src = {props.isMobile ? tcfmobile : tcfimage} />
                 </Col>
             </Row>
             <Row style = {{marginTop: props.isMobile ? "2rem" : "3rem"}}>
