@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faCalendar, faClock } from '@fortawesome/free-solid-svg-icons'
 import { ClipLoader } from 'react-spinners';
 import { TutorsContext } from '../../../../../Provider';
+import Cookies from 'universal-cookie';
 function Tutors(props) {
     const [isMobile, setmobile] = useState(false);
-
+    const cookies = new Cookies();
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setmobile(true);
@@ -17,13 +18,18 @@ function Tutors(props) {
             setmobile(false);
         }
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays , showPaymentForm} = useContext(TutorsContext);
-    const saveRamadanTeachersInfo = (courseid, teacherid, times, days) => {
-        saveCourseId(courseid);
-        getTeacherId(teacherid);
+    const { saveCourseId, getTeacherId, setTimes, setDays } = useContext(TutorsContext);
+    const saveRamadanTeachersInfo = (courseid, teacherid, times, days, name) => {
+        saveCourseId(parseInt(courseid));
+        getTeacherId(parseInt(teacherid));
+        cookies.set("courseid", courseid, { path: '/' });
+        cookies.set("teacherid", teacherid, { path: '/' });
+        cookies.set("days", days, { path: '/' });
+        cookies.set("times", times, { path: '/' });
+        cookies.set("name", name, { path: '/' });
         setTimes(times);
         setDays(days);
-        showPaymentForm();
+        // showPaymentForm();
     }
     useEffect(() => {
         mobileview();
@@ -47,7 +53,7 @@ function Tutors(props) {
                                     <div className="p-2">
                                         <Container>
                                             {!props.ramadanteachers ? <Card.Img variant="top" src={item.picture == null ? props.avatar : item.picture} />
-                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile? "80px": "150px", height:isMobile? "80px": "150px", marginLeft: "2rem" }} roundedCircle />}
+                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "80px" : "150px", height: isMobile ? "80px" : "150px", marginLeft: "2rem" }} roundedCircle />}
                                         </Container>
                                     </div>
                                     <div className="p-2">
@@ -149,8 +155,9 @@ function Tutors(props) {
                                 </div>
                             </Card.Body>
                         </Card>
-                    </Link> : <Card key={item.id} onClick = {()=>{
-                        saveRamadanTeachersInfo(item.course_id, item.id,item.timings,item.days)
+                    </Link> : <Card key={item.id} onClick={() => {
+                        saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days , item.teacher_name);
+                        
                     }} style={{ height: props.ramadanteachers ? "300px" : "" }}>
                         <Card.Body>
                             <div className="d-flex flex-column">

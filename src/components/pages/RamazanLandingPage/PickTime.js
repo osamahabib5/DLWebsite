@@ -55,7 +55,6 @@ function PickTime(props) {
                 })
             })
         })
-        console.log("Teachers: " + JSON.stringify(fillTeachersSlot))
         setTeacherSlots(fillTeachersSlot)
     }
     return (

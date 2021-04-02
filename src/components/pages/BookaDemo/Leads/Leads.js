@@ -8,13 +8,13 @@ import { TutorsContext } from "../../../../Provider";
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie';
 import 'react-phone-number-input/style.css'
-import PhoneInput , {isValidPhoneNumber}from 'react-phone-number-input'
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 function Leads(props) {
     const { parent_country, setLeadId } = useContext(TutorsContext)
     const cookies = new Cookies();
     const postleadurl = baseUrl + '/api/lead/create';
-    const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "" , country: parent_country, city: "Karachi" });
-    const {phone, email} = leadsdetail;
+    const [leadsdetail, fillleaddetails] = useState({ name: "", email: "", phone: "", country: parent_country, city: "Karachi" });
+    const { phone, email } = leadsdetail;
     const handleOnChange = (e) => {
         fillleaddetails({
             ...leadsdetail,
@@ -44,7 +44,7 @@ function Leads(props) {
         }
         else if (!validateemail(email)) {
             opensweetalertdanger("Please enter a valid email");
-        }else if(!isValidPhoneNumber(phone)){
+        } else if (!isValidPhoneNumber(phone)) {
             opensweetalertdanger("Please enter a valid phone number!");
         }
         else {
@@ -64,8 +64,6 @@ function Leads(props) {
                 })
             })
         }
-        // props.setleadform(false);
-        // props.setsuccessfullead(true);
     }
     useEffect(() => {
         if (!parent_country) {
@@ -93,13 +91,13 @@ function Leads(props) {
                             <Form.Group controlId="formBasicEmail">
                                 <PhoneInput
                                     placeholder="+92 --- -------" value={phone}
-                                    onChange={(e)=>fillleaddetails({
+                                    onChange={(e) => fillleaddetails({
                                         ...leadsdetail,
                                         phone: e
                                     })}
-                                    />
+                                />
                             </Form.Group>
-                            <div style={{ marginTop: "4rem", marginBottom : "3rem" }}>
+                            <div style={{ marginTop: "4rem", marginBottom: "3rem" }}>
                                 <button className="btn button-cta button-blue" type="submit" onClick={PostLead}>
                                     Submit
                                 <FontAwesomeIcon icon={faChevronRight} style={{ marginLeft: "1rem" }} />

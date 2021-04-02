@@ -27,7 +27,8 @@ const initialState = {
     courseid: 0,
     days: "",
     time: "",
-    PaymentForm: false
+    PaymentForm: false,
+    teacher_name: ""
 }
 
 const actions = {
@@ -59,7 +60,8 @@ const actions = {
     SAVECOURSEID: 'SAVECOURSEID',
     SETDAYS: 'SETDAYS',
     SETTIME: 'SETTIME',
-    SETPAYMENTFORM: 'SETPAYMENTFORM'
+    SETPAYMENTFORM: 'SETPAYMENTFORM',
+    SETTEACHERNAME: 'SETTEACHERNAME'
 }
 
 function reducer(state, action) {
@@ -193,7 +195,7 @@ function reducer(state, action) {
         case actions.SAVECOURSEID:
             return {
                 ...state,
-                courseid: action.value
+                courseid: parseInt(action.value)
             }
         case actions.SETDAYS:
             return {
@@ -209,6 +211,11 @@ function reducer(state, action) {
             return {
                 ...state,
                 PaymentForm: true
+            }
+        case actions.SETTEACHERNAME:
+            return {
+                ...state,
+                teacher_name: action.value
             }
         default:
             return state;
@@ -244,6 +251,7 @@ function Provider({ children }) {
         courseid: state.courseid,
         days: state.days,
         time: state.time,
+        teacher_name: state.teacher_name, 
         PaymentForm: state.PaymentForm,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
@@ -275,6 +283,7 @@ function Provider({ children }) {
         setTimes: (value) => { dispatch({ type: actions.SETTIME, value }) },
         setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },
         showPaymentForm: () => { dispatch({ type: actions.SETPAYMENTFORM }) },
+        setTeacherName: (value) => { dispatch({ type: actions.SETTEACHERNAME, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

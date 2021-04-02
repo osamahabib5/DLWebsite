@@ -5,14 +5,15 @@ import baseUrl from '../../../baseUrl/baseUrl';
 import { TutorsContext } from '../../../Provider';
 import axios from "axios";
 import Swal from 'sweetalert2'
-import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
+import Cookies from 'universal-cookie';
 function PaymentForm() {
-    const { days, parent_country, time, teacher_id, courseid, parent_city } = useContext(TutorsContext);
+    const cookies = new Cookies();
+    const { days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId } = useContext(TutorsContext);
     const [PaymentRegistrationForm, setPaymentRegistrationForm] = useState({
-        name: "", phone: "", email: "",
-        course_id: courseid, teacher_id: teacher_id, country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None"
+        name: "", phone: "", email: "", country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
+        bookingdetails: cookies.get("days") + cookies.get("times") + cookies.get("name")
     });
-    const setUrlForPayment = baseUrl + "/api/ramzan/register";
+    const setUrlForPayment = baseUrl + '/api/lead/create';
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: 'Registration for Ramazan',
@@ -27,7 +28,7 @@ function PaymentForm() {
         }
         return true
     }
-    const handleOnSubmit = async(e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
         if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
             opensweetalertdanger("Please fill all the values");
@@ -38,11 +39,22 @@ function PaymentForm() {
             opensweetalertdanger("Please enter a valid phone number!");
         }
         else {
-            await axios.post(setUrlForPayment, PaymentRegistrationForm).then(response => {
-                console.log("Response: "+ JSON.stringify(response.data.data))
-            }).catch(error=>{
-                console.log("Error: "+ error)
-            })
+            console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
+            if (cookies.get("days") && cookies.get("times") && cookies.get("name")) {
+                await axios.post(setUrlForPayment, PaymentRegistrationForm).then(response => {
+                    const leadid = JSON.stringify(response.data.data.lead_id)
+                    setLeadId(leadid)
+                    cookies.set('leadid', leadid, { path: '/' });
+                    setPaymentRegistrationForm({
+                        name: "",
+                        email: "",
+                        phone: "",
+                        bookingdetails: ""
+                    })
+                })
+            }else{
+                opensweetalertdanger("Please select the tutor to fill the timeslots!")
+            }
         }
     }
     const handleonChange = (e) => {
@@ -82,8 +94,8 @@ function PaymentForm() {
                     <Form.Label>Timings</Form.Label>
                     <Form.Control type="string" placeholder="Timings" value={time} disabled />
                 </Form.Group>
-                <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className = "d-flex justify-content-center">
-                    <button className = "btn button-cta button-red" onClick = {handleOnSubmit}>
+                <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">
+                    <button className="btn button-cta button-red" onClick={handleOnSubmit}>
                         Submit
                     </button>
                 </div>

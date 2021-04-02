@@ -7,7 +7,9 @@ import RamazanImpact from './RamazanImpact';
 import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
+import Cookies from 'universal-cookie';
 function RamazanLandingPage() {
+    const cookies = new Cookies();
     const [isMobile, setisMobile] = useState(false);
     const scrollToPackage = useRef(null);
     const mobileview = () => {
@@ -29,6 +31,8 @@ function RamazanLandingPage() {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
+        // cookies.set("courseid", 0, { path: '/' });
+        // cookies.set("teacherid", 0, { path: '/' });
     },[]);
     let mobile_style = { marginTop: isMobile ? "2rem" : "", width: isMobile ? "100%" : "" };
     let impact_mobile_style = { marginTop: isMobile ? "0rem" : "5rem" };
