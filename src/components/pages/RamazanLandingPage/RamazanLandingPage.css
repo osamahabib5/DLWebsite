@@ -93,6 +93,9 @@
     .paymentform .PhoneInput {
         width: 122%;
     }
+    .paymentform{
+        margin-top: 2rem;
+    }
 }
 
 .impact-section {

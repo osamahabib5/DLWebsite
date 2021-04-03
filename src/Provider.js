@@ -27,8 +27,9 @@ const initialState = {
     courseid: 0,
     days: "",
     time: "",
-    PaymentForm: false,
-    teacher_name: ""
+    paymentForm: false,
+    teacher_name: "",
+    showTeachers: false, 
 }
 
 const actions = {
@@ -60,8 +61,9 @@ const actions = {
     SAVECOURSEID: 'SAVECOURSEID',
     SETDAYS: 'SETDAYS',
     SETTIME: 'SETTIME',
-    SETPAYMENTFORM: 'SETPAYMENTFORM',
-    SETTEACHERNAME: 'SETTEACHERNAME'
+    SHOWPAYMENTFORM: 'SHOWPAYMENTFORM',
+    SETTEACHERNAME: 'SETTEACHERNAME',
+    SHOWTEACHERS: 'SHOWTEACHERS'
 }
 
 function reducer(state, action) {
@@ -210,12 +212,17 @@ function reducer(state, action) {
         case actions.SHOWPAYMENTFORM:
             return {
                 ...state,
-                PaymentForm: true
+                paymentForm: true
             }
         case actions.SETTEACHERNAME:
             return {
                 ...state,
                 teacher_name: action.value
+            }
+        case actions.SHOWTEACHERS:
+            return {
+                ...state,
+                showTeachers: true
             }
         default:
             return state;
@@ -251,8 +258,9 @@ function Provider({ children }) {
         courseid: state.courseid,
         days: state.days,
         time: state.time,
-        teacher_name: state.teacher_name, 
-        PaymentForm: state.PaymentForm,
+        teacher_name: state.teacher_name,
+        paymentForm: state.paymentForm,
+        showTeachers: state.showTeachers,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -282,8 +290,9 @@ function Provider({ children }) {
         saveCourseId: (value) => { dispatch({ type: actions.SAVECOURSEID, value }) },
         setTimes: (value) => { dispatch({ type: actions.SETTIME, value }) },
         setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },
-        showPaymentForm: () => { dispatch({ type: actions.SETPAYMENTFORM }) },
+        showPaymentForm: () => { dispatch({ type: actions.SHOWPAYMENTFORM }) },
         setTeacherName: (value) => { dispatch({ type: actions.SETTEACHERNAME, value }) },
+        showTutors : () => { dispatch({ type: actions.SHOWTEACHERS }) },
     }
     return (
         <TutorsContext.Provider value={value}>

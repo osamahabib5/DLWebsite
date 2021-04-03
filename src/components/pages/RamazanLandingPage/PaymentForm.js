@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 import baseUrl from '../../../baseUrl/baseUrl';
@@ -53,9 +53,7 @@ function PaymentForm() {
             await axios.post(setUrlForPayment, PaymentRegistrationForm).then(response => {
                 const leadid = JSON.stringify(response.data.data.lead_id)
                 setLeadId(leadid)
-                console.log("LeadID:" + leadid)
                 cookies.set('leadid', leadid, { path: '/' });
-
                 setPaymentRegistrationForm({
                     name: "",
                     email: "",

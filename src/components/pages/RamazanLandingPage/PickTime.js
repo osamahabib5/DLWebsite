@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import AvailableRamazanTimings from './AvailableRamazanTimings'
 import axios from 'axios';
@@ -11,8 +11,18 @@ import { useRouteMatch } from 'react-router';
 import Tutors from '../Findtutor/tutorsdisplay/Tutors/Tutors';
 import { TutorsContext } from '../../../Provider';
 function PickTime(props) {
-    const { loading} = useContext(TutorsContext);
+    const { loading, showTeachers, showTutors, paymentForm } = useContext(TutorsContext);
     let { url } = useRouteMatch();
+    const scrollToTutors = useRef(null);
+    const scrolltoTeachers = () => {
+        showTutors();
+        if (scrollToTutors.current) {
+            scrollToTutors.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
+        }
+    }
     let RamazanSlots = [{
         id: 0,
         TimeofDay: "Morning",
@@ -56,21 +66,23 @@ function PickTime(props) {
             })
         })
         setTeacherSlots(fillTeachersSlot)
+        
+        scrolltoTeachers();
     }
     return (
         <Container>
             <Row style={{ marginTop: "2rem" }}>
                 <Col>
                     <p className="mainheading" style={{ textAlign: "center" }}>
-                        Step One : Choose your Timeslot!
+                        Step One : Choose a Timeslot
                     </p>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "" }}>
+            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "" , marginBottom: "3rem"}}>
                 {RamazanSlots.map((data, index) => {
                     return (
                         <Col xs lg="2" key={index}>
-                            <button key={index} value={data.value} style={{ marginTop:  props.isMobile ? "1rem" : "" }} onClick={(e) => {
+                            <button key={index} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "" }} onClick={(e) => {
                                 showAvailableTeachers(e)
                             }} className="btn btn-lg button-cta button-blue">
                                 {data.TimeofDay}
@@ -80,22 +92,28 @@ function PickTime(props) {
                     )
                 })}
             </Row>
-            <Row>
+            {showTeachers ? <Row style = {{marginBottom : "2rem"}} ref = {scrollToTutors}>
                 <Col>
                     <div className="pickteacher">
+                        <p className="mainheading" style={{ textAlign: "center" }}>
+                            Step Two : Select a Tutor
+                        </p>
                         <div className="tutorslist">
                             {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} ramadanteachers={true} /> : ""}
                         </div>
                     </div>
                 </Col>
-            </Row>
-            <Row>
+            </Row> : ""}
+            {paymentForm ? <Row>
                 <Col>
-                    <div className="paymentform" style = {{padding: props.isMobile ? "3rem" : ""}}>
+                    <div className="paymentform" style={{ padding: props.isMobile ? "3rem" : "" }}>
+                        <p className="mainheading" style={{ textAlign: "center" }}>
+                            Step Three : Fill out your details
+                        </p>
                         <PaymentForm />
                     </div>
                 </Col>
-            </Row>
+            </Row> : ""}
         </Container>
     )
 }

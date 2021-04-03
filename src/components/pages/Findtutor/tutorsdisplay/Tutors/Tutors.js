@@ -18,13 +18,14 @@ function Tutors(props) {
             setmobile(false);
         }
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, days, time, teacher_id, courseid, teacher_name } = useContext(TutorsContext);
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
         setTimes(times);
         setDays(days);
         setTeacherName(name);
+        showPaymentForm();
     }
     useEffect(() => {
         mobileview();
@@ -48,7 +49,7 @@ function Tutors(props) {
                                     <div className="p-2">
                                         <Container>
                                             {!props.ramadanteachers ? <Card.Img variant="top" src={item.picture == null ? props.avatar : item.picture} />
-                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "80px" : "150px", height: isMobile ? "80px" : "150px", marginLeft: "2rem" }} roundedCircle />}
+                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "80px" : "150px", height: isMobile ? "80px" : "150px", marginLeft: isMobile ? "0rem" : "2rem" }} roundedCircle />}
                                         </Container>
                                     </div>
                                     <div className="p-2">
@@ -159,7 +160,7 @@ function Tutors(props) {
                                 <div className="p-2">
                                     <Container>
                                         {!props.ramadanteachers ? <Card.Img variant="top" src={item.picture == null ? props.avatar : item.picture} />
-                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: "150px", height: "150px", marginLeft: "2rem" }} roundedCircle />}
+                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "150px", height: isMobile ? "120px" : "150px", marginLeft: "2rem" }} roundedCircle />}
                                     </Container>
                                 </div>
                                 <div className="p-2">
@@ -222,12 +223,12 @@ function Tutors(props) {
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                             <div className="p-2 bd-highlight">
                                                                 <p className="students" style={{ marginLeft: "7px", fontSize: props.ramadanteachers ? "12px" : "" }}>
-                                                                    Timings (in PKT):
+                                                                    Timings:
                                                                 </p>
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" style={{ fontSize: props.ramadanteachers ? "13px" : "" }}>
-                                                                    {item.timings}
+                                                                <p className="students" style={{ fontSize: props.ramadanteachers ? "13px" : "" , whiteSpace : isMobile ? "normal" : "nowrap"}}>
+                                                                    {item.timings} PKT
                                                                 </p>
                                                             </div>
                                                         </div> : ""}

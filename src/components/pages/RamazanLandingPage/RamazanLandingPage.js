@@ -7,10 +7,8 @@ import RamazanImpact from './RamazanImpact';
 import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
-import Cookies from 'universal-cookie';
 import { TutorsContext } from '../../../Provider';
 function RamazanLandingPage() {
-    const cookies = new Cookies();
     const [isMobile, setisMobile] = useState(false);
     const scrollToPackage = useRef(null);
     const mobileview = () => {
