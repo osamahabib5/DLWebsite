@@ -20,7 +20,8 @@ function BecomeTutor(props) {
                 cardsno = {5}
                 isMobile = {props.isMobile}
                 topSpacing = "-7rem"
-                cardBodySpacing = "-3rem"
+                cardBodySpacing = "-1rem"
+                mobilecards = {2}
                 />
             </div>
         </div>

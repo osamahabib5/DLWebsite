@@ -7,7 +7,7 @@ import baseUrl from "../../baseUrl/baseUrl";
 
 
 const NotificationToast = (props) => {
-    const [notificationtext, setnotificationtext] = useState("");
+    const [notificationtext, setnotificationtext] = useState(null);
     useEffect(async () => {
         await axios.get(baseUrl + "/api/getInfo/notification").then(response => {
             setnotificationtext(response.data.data.notification_toast)
@@ -20,8 +20,7 @@ const NotificationToast = (props) => {
             <div className="d-flex justify-content-end"  >
                 <img src={close} style={{ cursor: "pointer" }} alt="Text" className="rounded float-right" onClick={props.click} />
             </div>
-            <div className="d-flex justify-content-center" dangerouslySetInnerHTML={ {__html: notificationtext}} />
-                {/* {notificationtext} */}
+            <div className="d-flex justify-content-center" dangerouslySetInnerHTML={{ __html: notificationtext }} />
         </div>
     )
 }

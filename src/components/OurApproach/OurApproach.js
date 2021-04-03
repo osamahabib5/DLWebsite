@@ -15,21 +15,14 @@ function OurApproach(props) {
             </div>
             <div className="p-2 bd-highlight">
                 <CardDeck style={{ margin: "auto" }} >
-                    <Row xs={2} md={4} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%" , margin: props.isMobile ? "" : "auto"}}>
+                    <Row xs={2} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
                         {props.displayinfo.map((data, index) => {
                             return (
                                 <Col>
                                     <Card key={index} >
-                                        <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
+                                        <Card.Img variant="top" src={data.image} style={{width: props.isMobile ? "113%" : "", height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
                                             <Card.Title><p className="title">{data.title}</p></Card.Title>
-                                            {/* <Card.Text>
-                                                {data.description.map(description => {
-                                                    return (
-                                                        <p className="title-description">{description}</p>
-                                                    )
-                                                })}
-                                            </Card.Text> */}
                                         </Card.Body>
                                     </Card>
                                 </Col>

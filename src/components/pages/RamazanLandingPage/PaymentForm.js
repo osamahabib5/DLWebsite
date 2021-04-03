@@ -6,13 +6,22 @@ import { TutorsContext } from '../../../Provider';
 import axios from "axios";
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie';
+import PaymentDetailsPopup from './PaymentDetailsPopup';
 function PaymentForm() {
+    const [open, setOpen] = useState(false);
+    const onOpenModal = () => setOpen(true);
+    const onCloseModal = () => setOpen(false);
     const cookies = new Cookies();
-    const { days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId } = useContext(TutorsContext);
+    const { days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId, BookingDetails } = useContext(TutorsContext);
     const [PaymentRegistrationForm, setPaymentRegistrationForm] = useState({
         name: "", phone: "", email: "", country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
-        bookingdetails: ""
+        bookingdetails: BookingDetails
     });
+    function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return index === 0 ? word.toUpperCase() : word.toUpperCase();
+        }).replace(/\s+/g, ' ');
+    }
     const setUrlForPayment = baseUrl + '/api/lead/create';
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
@@ -33,14 +42,16 @@ function PaymentForm() {
             ...PaymentRegistrationForm,
             [e.target.name]: e.target.value
         })
+
+        console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm.bookingdetails))
     }
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         setPaymentRegistrationForm({
             ...PaymentRegistrationForm,
-            bookingdetails: document.getElementById("bookingdetails").value
+            bookingdetails: BookingDetails
         })
-        console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
+        console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm.bookingdetails))
         if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
             opensweetalertdanger("Please fill all the values");
         }
@@ -54,6 +65,7 @@ function PaymentForm() {
                 const leadid = JSON.stringify(response.data.data.lead_id)
                 setLeadId(leadid)
                 cookies.set('leadid', leadid, { path: '/' });
+                onOpenModal();
                 setPaymentRegistrationForm({
                     name: "",
                     email: "",
@@ -78,27 +90,31 @@ function PaymentForm() {
                                 ...PaymentRegistrationForm,
                                 phone: e
                             })}
+                            value = {PaymentRegistrationForm.phone}
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formBasicEmail">
                     <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Enter email" />
                 </Form.Group>
-                <Form.Group as={Row}>
+                {/* <Form.Group as={Row}>
                     <Form.Control type="hidden" id="bookingdetails" value={teacher_name + ", " + days + ", " + time} onChange={handleonChange} placeholder="Enter email" />
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group as={Row} >
-                    <Form.Control type="string" placeholder="Days" value={days} disabled />
+                    <Form.Control type="string" placeholder="Tutor Details" id="bookingdetails" value={camelize((teacher_name + " - " + days + " , " + time).toString())} disabled />
                 </Form.Group>
-                <Form.Group as={Row} >
+                {/* <Form.Group as={Row} >
                     <Form.Control type="string" placeholder="Timings" value={time} disabled />
-                </Form.Group>
+                </Form.Group> */}
                 <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">
                     <button className="btn button-cta button-red" onClick={handleOnSubmit}>
                         Submit
                     </button>
                 </div>
             </Form>
+            <div className = "paymentdetails">
+                <PaymentDetailsPopup open={open} onCloseModal={onCloseModal} />
+            </div>
         </div>
     )
 }

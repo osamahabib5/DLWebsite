@@ -29,13 +29,13 @@ function SideDrawer(props) {
         <div>
             <nav className={drawerClasses}>
                 <div>
-                    <ul>
+                    <ul style = {{paddingLeft: "0px"}}>
                         <li><div className="Logo">
                             <Link to="/"><img src={Logo} alt="Logo" onClick={props.handleDrawerToggleClick}/></Link>
                         </div></li>
-                        <li><Link to="/programs" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Programs & Courses</Link></li>
+                        {/* <li><Link to="/programs" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Programs & Courses</Link></li>
                         <li><Link to="/pricing" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Pricing</Link></li>
-                        <li><Link to="/tutors" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Our Tutors</Link></li>
+                        <li><Link to="/tutors" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Our Tutors</Link></li> */}
                         <li><Link to="/becometutor" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Become a Tutor</Link></li>
                         {/* <li><Link to="/aboutus" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>About Our Company</Link></li> */}
                         <li><Link to="/contact" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Contact</Link></li>

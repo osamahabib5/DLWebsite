@@ -30,7 +30,7 @@ function Footer(props) {
                 </Col>
                 <Col className="d-flex justify-content-end">
                     <ul className="list-group list-group-horizontal">
-                        <li className="list-group-item"><Link to = "/aboutus">About Our Company</Link></li>
+                        {/* <li className="list-group-item"><Link to = "/aboutus">About Our Company</Link></li> */}
                         <li className="list-group-item"><Link to = "/contact">Contact</Link></li>
                     </ul></Col>
             </Row>

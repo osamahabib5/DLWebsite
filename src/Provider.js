@@ -29,7 +29,8 @@ const initialState = {
     time: "",
     paymentForm: false,
     teacher_name: "",
-    showTeachers: false, 
+    showTeachers: false,
+    BookingDetails: null
 }
 
 const actions = {
@@ -63,7 +64,8 @@ const actions = {
     SETTIME: 'SETTIME',
     SHOWPAYMENTFORM: 'SHOWPAYMENTFORM',
     SETTEACHERNAME: 'SETTEACHERNAME',
-    SHOWTEACHERS: 'SHOWTEACHERS'
+    SHOWTEACHERS: 'SHOWTEACHERS',
+    SETBOOKINGDETAILS: 'SETBOOKINGDETAILS'
 }
 
 function reducer(state, action) {
@@ -224,6 +226,11 @@ function reducer(state, action) {
                 ...state,
                 showTeachers: true
             }
+        case actions.SETBOOKINGDETAILS:
+            return {
+                ...state,
+                BookingDetails: action.value
+            }
         default:
             return state;
     }
@@ -260,6 +267,7 @@ function Provider({ children }) {
         time: state.time,
         teacher_name: state.teacher_name,
         paymentForm: state.paymentForm,
+        BookingDetails : state.BookingDetails ,
         showTeachers: state.showTeachers,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
@@ -292,7 +300,8 @@ function Provider({ children }) {
         setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },
         showPaymentForm: () => { dispatch({ type: actions.SHOWPAYMENTFORM }) },
         setTeacherName: (value) => { dispatch({ type: actions.SETTEACHERNAME, value }) },
-        showTutors : () => { dispatch({ type: actions.SHOWTEACHERS }) },
+        showTutors: () => { dispatch({ type: actions.SHOWTEACHERS }) },
+        setBookingDetails : (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

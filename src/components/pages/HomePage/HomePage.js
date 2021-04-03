@@ -73,6 +73,7 @@ function HomePage(props) {
                     details="With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
                     isMobile={isMobile}
                     cardsno={4}
+                    mobilecards = {2}
                 />
             </div>
             <div className="Image-Slider">

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import './NotificationToastMobile.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import close from '../logo/Path.png'
@@ -18,7 +18,7 @@ const NotificationToastMobile = (props) => {
             <div className="d-flex justify-content-end mobile"  >
                 <img src={close} alt="Text" className="image" onClick={props.click} />
             </div>
-            <div className="d-flex justify-content-center mobile" dangerouslySetInnerHTML={ {__html: notificationtext}} />
+            <div className="d-flex justify-content-center mobile" dangerouslySetInnerHTML={{ __html: notificationtext }} />
         </div>
     )
 }

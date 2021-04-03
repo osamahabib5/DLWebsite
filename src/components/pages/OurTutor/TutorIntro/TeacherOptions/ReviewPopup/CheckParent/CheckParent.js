@@ -88,7 +88,7 @@ function CheckParent(props) {
                 <div className="d-flex justify-content-center">
                     <button className="btn button-cta button-blue" type="submit" onClick={handleSubmit}>
                         Continue
-            </button>
+                    </button>
                 </div>
             </Form>}
         </div>

@@ -1,64 +1,57 @@
-import React ,{useEffect,useState}from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Col, InputGroup, FormControl } from 'react-bootstrap';
 import './FormWindow.css'
 import axios from 'axios';
 import baseUrl from '../../../../../baseUrl/baseUrl'
+import Swal from 'sweetalert2'
 function FormWindow() {
-    const [nametext,setnametext] = useState("Your Name");
-    const [descriptiontext,setdescriptiontext] = useState("What would you like to be contacted about?")
+    const [nametext, setnametext] = useState("Your Name");
+    const [descriptiontext, setdescriptiontext] = useState("What would you like to be contacted about?")
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [form, setform] = useState({name: '',email:'',phone:'',message: ''})
-   const handleChange = (e) =>{
-       setform({
-           ...form,
-           [e.target.name]: e.target.value
-       })
-   }
-    const validate =() =>{
-       let err = {};
-       if (!form.name){
-           err.name = "Name is Required"
-       }
-       if (!form.email){
-        err.email = "Email is Required"
+    const [form, setform] = useState({ name: '', email: '', phone: '', message: '' })
+    const contacturl = baseUrl + "/api/contact";
+    const handleChange = (e) => {
+        setform({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+    }
+    const opensweetalertdanger = (alerttext) => {
+        Swal.fire({
+            title: 'Contact Page',
+            text: alerttext,
+            type: 'success',
+        })
+    }
+    const validateemail = (inputtxt) => {
+        var patternemail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!patternemail.test(inputtxt)) {
+            return false;
         }
-        if (!form.message){
-            err.message = "Message is Required"
+        return true
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!form.name || !form.phone || !form.message) {
+            opensweetalertdanger("Please fill all the values");
         }
-        return err;
-   }
-   const showError = (errObject) =>{
-       let errMsg = '';
-       for (let err in errObject){
-           errMsg += `${errObject[err]}` + ' '
-       }
-       alert(`Errors ${errMsg}`);
-   }
-   const postDetails = async (formdata) =>{
-    axios({
-        method: 'post',
-        url: baseUrl + "/api/contact",
-        data: formdata
-      })
-      .then(function (response) {
-      })
-      .catch(function (error) {
-          console.log("Error! :"+ error)
-      });
-   }
-   const handleSubmit =async (e) => {
-       e.preventDefault();
-       const errs = validate();
-       if(Object.keys(errs).length === 0){
-            setIsSubmitting(true);
-            await postDetails(form);
-            setform({name: '',email:'',phone:'',message: ''});
-       }
-       else{
-           showError(errs);
-       }
-   }
+        else if (!validateemail(form.email)) {
+            opensweetalertdanger("Please enter a valid email");
+        } 
+        else {
+            await axios.post(contacturl, form).then(response => {
+                opensweetalertdanger("Your query has been noted!")
+                setform({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    message: ""
+                })
+            })
+        }
+
+    }
     useEffect(() => {
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 769) {
@@ -72,58 +65,62 @@ function FormWindow() {
         })
     });
     return (
-            <Form>
-                <Form.Row className="align-items-center">
-                    <Col xs="auto">
-                        <Form.Control
-                            className="mb-2"
-                            id="inlineFormInput"
-                            name = "name"
-                            placeholder={nametext}
-                            onChange = {handleChange}
+        <Form>
+            <Form.Row className="align-items-center">
+                <Col xs="auto">
+                    <Form.Control
+                        className="mb-2"
+                        id="inlineFormInput"
+                        name="name"
+                        value = {form.name}
+                        placeholder={nametext}
+                        onChange={handleChange}
+                    />
+                </Col>
+            </Form.Row>
+            <Form.Row className="align-items-center">
+                <Col xs="auto">
+                    <InputGroup className="mb-2">
+                        <FormControl id="inlineFormInputGroup"
+                            type="email"
+                            name="email"
+                            value = {form.email}
+                            placeholder="Email" onChange={handleChange} />
+                    </InputGroup>
+                </Col>
+            </Form.Row>
+            <Form.Row className="align-items-center">
+                <Col xs="auto">
+                    <InputGroup className="mb-2">
+                        <FormControl id="inlineFormInputGroup" placeholder="Phone Number" type="number"
+                            onChange={handleChange}
+                            name="phone"
+                            value = {form.phone}
                         />
-                    </Col>
-                </Form.Row>
-                <Form.Row className="align-items-center">
-                    <Col xs="auto">
-                        <InputGroup className="mb-2">
-                            <FormControl id="inlineFormInputGroup"  
-                            type = "email"
-                            name = "email"
-                            placeholder="Email" onChange = {handleChange}/>
-                        </InputGroup>
-                    </Col>
-                </Form.Row>
-                <Form.Row className="align-items-center">
-                    <Col xs="auto">
-                        <InputGroup className="mb-2">
-                            <FormControl id="inlineFormInputGroup" placeholder="Phone Number" type = "number"
-                                onChange = {handleChange}
-                                name = "phone"
-                            />
-                        </InputGroup>
-                    </Col>
-                </Form.Row>
-                <Form.Row className="align-items-center">
-                    <Col xs="auto">
-                        <InputGroup className="mb-2">
-                            <FormControl as="textarea"
-                                rows={3}
-                                id="inlineFormInputGroup" placeholder={descriptiontext} 
-                                onChange = {handleChange}
-                                name = "message"
-                                />
-                        </InputGroup>
-                    </Col>
-                </Form.Row>
-                <Form.Row className="align-items-center">
-                    <Col xs="auto">
-                        <button type="submit" className="btn button-contact" onClick = {handleSubmit}>
-                            Submit
+                    </InputGroup>
+                </Col>
+            </Form.Row>
+            <Form.Row className="align-items-center">
+                <Col xs="auto">
+                    <InputGroup className="mb-2">
+                        <FormControl as="textarea"
+                            rows={3}
+                            id="inlineFormInputGroup" placeholder={descriptiontext}
+                            onChange={handleChange}
+                            name="message"
+                            value = {form.message}
+                        />
+                    </InputGroup>
+                </Col>
+            </Form.Row>
+            <Form.Row className="align-items-center">
+                <Col xs="auto">
+                    <button type="submit" className="btn button-contact" onClick={handleSubmit}>
+                        Submit
                         </button>
-                    </Col>
-                </Form.Row>
-            </Form>
+                </Col>
+            </Form.Row>
+        </Form>
     )
 }
 

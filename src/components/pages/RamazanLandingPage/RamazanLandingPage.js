@@ -7,7 +7,7 @@ import RamazanImpact from './RamazanImpact';
 import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
-import { TutorsContext } from '../../../Provider';
+
 function RamazanLandingPage() {
     const [isMobile, setisMobile] = useState(false);
     const scrollToPackage = useRef(null);

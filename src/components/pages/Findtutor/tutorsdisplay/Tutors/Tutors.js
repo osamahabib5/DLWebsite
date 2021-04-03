@@ -18,7 +18,12 @@ function Tutors(props) {
             setmobile(false);
         }
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm } = useContext(TutorsContext);
+      function camelize(str) {
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return index === 0 ? word.toUpperCase() : word.toUpperCase();
+        }).replace(/\s+/g, ' ');
+    }
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm,setBookingDetails } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
@@ -26,6 +31,7 @@ function Tutors(props) {
         setDays(days);
         setTeacherName(name);
         showPaymentForm();
+        setBookingDetails(camelize((name + " - " + days + " , " + times).toString()));
     }
     useEffect(() => {
         mobileview();
@@ -74,7 +80,7 @@ function Tutors(props) {
                                                                 </div>
                                                                 <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                     <p className="students">
-                                                                        {item.days}
+                                                                        {camelize(item.days.toString())}
                                                                     </p>
                                                                 </div>
                                                             </div> : ""}
@@ -185,7 +191,7 @@ function Tutors(props) {
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                 <p className="students">
-                                                                    {item.days}
+                                                                    {camelize(item.days.toString())}
                                                                 </p>
                                                             </div>
                                                         </div> : ""}

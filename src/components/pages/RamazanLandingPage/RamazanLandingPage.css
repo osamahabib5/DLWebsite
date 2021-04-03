@@ -120,3 +120,9 @@
     border-radius: 4px;
     border: 1px solid rgb(206, 212, 218);
 }
+.payment-section .picktimeslot .tutorslist .students{
+    font-weight: bold;
+}
+.paymentdetailslist .list-group-item{
+    color: black;
+}
