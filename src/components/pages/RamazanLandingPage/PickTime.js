@@ -91,7 +91,7 @@ function PickTime(props) {
             </Row>
             <Row>
                 <Col>
-                    <div className="paymentform">
+                    <div className="paymentform" style = {{padding: props.isMobile ? "3rem" : ""}}>
                         <PaymentForm />
                     </div>
                 </Col>

@@ -73,6 +73,9 @@
         width: 100%;
         height: auto;
     }
+    .paymentform .PhoneInput {
+        width: 106%;
+    }
 }
 
 @media only screen and (min-width: 769px) {
@@ -87,21 +90,30 @@
     .payment-section {
         margin-top: 5rem;
     }
+    .paymentform .PhoneInput {
+        width: 122%;
+    }
 }
 
 .impact-section {
     margin-top: 5rem;
 }
-.showtimings{
+
+.showtimings {
     margin-top: 3rem;
 }
-.pickteacher{
+
+.pickteacher {
     margin-top: 3rem;
 }
-.pickteacher .tutorslist .btn-outline-secondary:hover{
+
+.pickteacher .tutorslist .btn-outline-secondary:hover {
     background: none;
     cursor: auto;
 }
-.paymentform .PhoneInput{
-    width: 123%;
+
+.paymentform .PhoneInput .PhoneInputInput {
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid rgb(206, 212, 218);
 }

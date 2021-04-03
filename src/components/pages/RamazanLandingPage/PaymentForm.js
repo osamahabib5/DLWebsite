@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 import baseUrl from '../../../baseUrl/baseUrl';
 import { TutorsContext } from '../../../Provider';
@@ -11,7 +11,7 @@ function PaymentForm() {
     const { days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId } = useContext(TutorsContext);
     const [PaymentRegistrationForm, setPaymentRegistrationForm] = useState({
         name: "", phone: "", email: "", country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
-        bookingdetails: cookies.get("days") + cookies.get("times") + cookies.get("name")
+        bookingdetails: ""
     });
     const setUrlForPayment = baseUrl + '/api/lead/create';
     const opensweetalertdanger = (alerttext) => {
@@ -28,8 +28,19 @@ function PaymentForm() {
         }
         return true
     }
+    const handleonChange = (e) => {
+        setPaymentRegistrationForm({
+            ...PaymentRegistrationForm,
+            [e.target.name]: e.target.value
+        })
+    }
     const handleOnSubmit = async (e) => {
         e.preventDefault();
+        setPaymentRegistrationForm({
+            ...PaymentRegistrationForm,
+            bookingdetails: document.getElementById("bookingdetails").value
+        })
+        console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
         if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
             opensweetalertdanger("Please fill all the values");
         }
@@ -39,39 +50,29 @@ function PaymentForm() {
             opensweetalertdanger("Please enter a valid phone number!");
         }
         else {
-            console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
-            if (cookies.get("days") && cookies.get("times") && cookies.get("name")) {
-                await axios.post(setUrlForPayment, PaymentRegistrationForm).then(response => {
-                    const leadid = JSON.stringify(response.data.data.lead_id)
-                    setLeadId(leadid)
-                    cookies.set('leadid', leadid, { path: '/' });
-                    setPaymentRegistrationForm({
-                        name: "",
-                        email: "",
-                        phone: "",
-                        bookingdetails: ""
-                    })
+            await axios.post(setUrlForPayment, PaymentRegistrationForm).then(response => {
+                const leadid = JSON.stringify(response.data.data.lead_id)
+                setLeadId(leadid)
+                console.log("LeadID:" + leadid)
+                cookies.set('leadid', leadid, { path: '/' });
+
+                setPaymentRegistrationForm({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    bookingdetails: ""
                 })
-            }else{
-                opensweetalertdanger("Please select the tutor to fill the timeslots!")
-            }
+            })
         }
     }
-    const handleonChange = (e) => {
-        setPaymentRegistrationForm({
-            ...PaymentRegistrationForm,
-            [e.target.name]: e.target.value
-        })
-    }
+
     return (
         <div>
             <Form>
                 <Form.Group as={Row} controlId="formBasicEmail">
-                    <Form.Label>Name</Form.Label>
                     <Form.Control type="string" name="name" onChange={handleonChange} value={PaymentRegistrationForm.name} placeholder="Name" />
                 </Form.Group>
                 <Form.Group as={Row} style={{ flexDirection: "column" }} controlId="formBasicEmail">
-                    <Form.Label>Phone</Form.Label>
                     <Col sm="10">
                         <PhoneInput
                             placeholder="+92 --- -------"
@@ -83,15 +84,15 @@ function PaymentForm() {
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Enter email" />
                 </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Control type="hidden" id="bookingdetails" value={teacher_name + ", " + days + ", " + time} onChange={handleonChange} placeholder="Enter email" />
+                </Form.Group>
                 <Form.Group as={Row} >
-                    <Form.Label>Days of Weeks</Form.Label>
                     <Form.Control type="string" placeholder="Days" value={days} disabled />
                 </Form.Group>
                 <Form.Group as={Row} >
-                    <Form.Label>Timings</Form.Label>
                     <Form.Control type="string" placeholder="Timings" value={time} disabled />
                 </Form.Group>
                 <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">

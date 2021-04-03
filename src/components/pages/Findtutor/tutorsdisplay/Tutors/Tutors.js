@@ -18,18 +18,13 @@ function Tutors(props) {
             setmobile(false);
         }
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays } = useContext(TutorsContext);
-    const saveRamadanTeachersInfo = (courseid, teacherid, times, days, name) => {
-        saveCourseId(parseInt(courseid));
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, days, time, teacher_id, courseid, teacher_name } = useContext(TutorsContext);
+    const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
+        saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
-        cookies.set("courseid", courseid, { path: '/' });
-        cookies.set("teacherid", teacherid, { path: '/' });
-        cookies.set("days", days, { path: '/' });
-        cookies.set("times", times, { path: '/' });
-        cookies.set("name", name, { path: '/' });
         setTimes(times);
         setDays(days);
-        // showPaymentForm();
+        setTeacherName(name);
     }
     useEffect(() => {
         mobileview();
@@ -156,8 +151,8 @@ function Tutors(props) {
                             </Card.Body>
                         </Card>
                     </Link> : <Card key={item.id} onClick={() => {
-                        saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days , item.teacher_name);
-                        
+                        saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
+
                     }} style={{ height: props.ramadanteachers ? "300px" : "" }}>
                         <Card.Body>
                             <div className="d-flex flex-column">

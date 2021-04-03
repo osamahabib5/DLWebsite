@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef  } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import PaymentSection from './PaymentSection';
 import RamazanBanner from './RamazanBanner';
@@ -8,6 +8,7 @@ import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
 import Cookies from 'universal-cookie';
+import { TutorsContext } from '../../../Provider';
 function RamazanLandingPage() {
     const cookies = new Cookies();
     const [isMobile, setisMobile] = useState(false);
@@ -31,9 +32,8 @@ function RamazanLandingPage() {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-        // cookies.set("courseid", 0, { path: '/' });
-        // cookies.set("teacherid", 0, { path: '/' });
-    },[]);
+        window.scrollTo(0, 0)
+    }, []);
     let mobile_style = { marginTop: isMobile ? "2rem" : "", width: isMobile ? "100%" : "" };
     let impact_mobile_style = { marginTop: isMobile ? "0rem" : "5rem" };
     return (
@@ -43,11 +43,11 @@ function RamazanLandingPage() {
             </div>
 
             <Container>
-                <Row className="justify-content-md-center" style={mobile_style, {marginTop: "3rem",padding: isMobile ? "2rem" : "" }}>
+                <Row className="justify-content-md-center" style={mobile_style, { marginTop: "3rem", padding: isMobile ? "2rem" : "" }}>
                     <Col xs lg="12">
                         <div className="ramazan-header">
                             <RamazanHeader isMobile={isMobile} />
-                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm = {scrolltoRegistrationForm}/>
+                            <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm={scrolltoRegistrationForm} />
                         </div>
                     </Col>
                 </Row>
@@ -56,7 +56,7 @@ function RamazanLandingPage() {
                         <div className="ramazanprogramdetails">
                             <RamazanProgramDetails isMobile={isMobile} />
                             <div style={{ marginTop: "2rem" }}>
-                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm = {scrolltoRegistrationForm}/>
+                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm={scrolltoRegistrationForm} />
                             </div>
                         </div>
                     </Col>
@@ -65,14 +65,14 @@ function RamazanLandingPage() {
                     <Col xs lg="9">
                         <div className="impact-section" style={impact_mobile_style}>
                             <RamazanImpact isMobile={isMobile} />
-                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" scrolltoRegistrationForm = {scrolltoRegistrationForm}/>
+                            <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" scrolltoRegistrationForm={scrolltoRegistrationForm} />
                         </div>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center" >
                     <Col xs lg="12">
-                        <div className="payment-section" ref = {scrollToPackage}>
-                            <PaymentSection isMobile = {isMobile}/>
+                        <div className="payment-section" ref={scrollToPackage}>
+                            <PaymentSection isMobile={isMobile} />
                         </div>
                     </Col>
                 </Row>
