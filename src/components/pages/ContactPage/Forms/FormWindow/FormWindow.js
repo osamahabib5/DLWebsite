@@ -5,6 +5,7 @@ import './FormWindow.css'
 import axios from 'axios';
 import baseUrl from '../../../../../baseUrl/baseUrl'
 import Swal from 'sweetalert2'
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 function FormWindow() {
     const [nametext, setnametext] = useState("Your Name");
     const [descriptiontext, setdescriptiontext] = useState("What would you like to be contacted about?")
@@ -38,7 +39,10 @@ function FormWindow() {
         }
         else if (!validateemail(form.email)) {
             opensweetalertdanger("Please enter a valid email");
-        } 
+        }
+        else if (!isValidPhoneNumber(form.phone)) {
+            opensweetalertdanger("Please enter a valid phone number!");
+        }
         else {
             await axios.post(contacturl, form).then(response => {
                 opensweetalertdanger("Your query has been noted!")
@@ -72,7 +76,7 @@ function FormWindow() {
                         className="mb-2"
                         id="inlineFormInput"
                         name="name"
-                        value = {form.name}
+                        value={form.name}
                         placeholder={nametext}
                         onChange={handleChange}
                     />
@@ -84,20 +88,21 @@ function FormWindow() {
                         <FormControl id="inlineFormInputGroup"
                             type="email"
                             name="email"
-                            value = {form.email}
+                            value={form.email}
                             placeholder="Email" onChange={handleChange} />
                     </InputGroup>
                 </Col>
             </Form.Row>
             <Form.Row className="align-items-center">
                 <Col xs="auto">
-                    <InputGroup className="mb-2">
-                        <FormControl id="inlineFormInputGroup" placeholder="Phone Number" type="number"
-                            onChange={handleChange}
-                            name="phone"
-                            value = {form.phone}
-                        />
-                    </InputGroup>
+                    <PhoneInput
+                        placeholder="+92 --- -------"
+                        onChange={(e) => setform({
+                            ...form,
+                            phone: e
+                        })}
+                        value={form.phone}
+                    />
                 </Col>
             </Form.Row>
             <Form.Row className="align-items-center">
@@ -108,7 +113,7 @@ function FormWindow() {
                             id="inlineFormInputGroup" placeholder={descriptiontext}
                             onChange={handleChange}
                             name="message"
-                            value = {form.message}
+                            value={form.message}
                         />
                     </InputGroup>
                 </Col>

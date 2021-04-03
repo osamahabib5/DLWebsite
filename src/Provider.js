@@ -30,7 +30,8 @@ const initialState = {
     paymentForm: false,
     teacher_name: "",
     showTeachers: false,
-    BookingDetails: null
+    BookingDetails: null,
+    scrollToForm: false
 }
 
 const actions = {
@@ -65,7 +66,8 @@ const actions = {
     SHOWPAYMENTFORM: 'SHOWPAYMENTFORM',
     SETTEACHERNAME: 'SETTEACHERNAME',
     SHOWTEACHERS: 'SHOWTEACHERS',
-    SETBOOKINGDETAILS: 'SETBOOKINGDETAILS'
+    SETBOOKINGDETAILS: 'SETBOOKINGDETAILS',
+    SETSCROLLTOFORM: 'SETSCROLLTOFORM'
 }
 
 function reducer(state, action) {
@@ -231,6 +233,11 @@ function reducer(state, action) {
                 ...state,
                 BookingDetails: action.value
             }
+        case actions.SETSCROLLTOFORM:
+            return {
+                ...state,
+                scrollToForm: true
+            }
         default:
             return state;
     }
@@ -267,8 +274,9 @@ function Provider({ children }) {
         time: state.time,
         teacher_name: state.teacher_name,
         paymentForm: state.paymentForm,
-        BookingDetails : state.BookingDetails ,
+        BookingDetails: state.BookingDetails,
         showTeachers: state.showTeachers,
+        scrollToForm: state.scrollToForm,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -301,7 +309,8 @@ function Provider({ children }) {
         showPaymentForm: () => { dispatch({ type: actions.SHOWPAYMENTFORM }) },
         setTeacherName: (value) => { dispatch({ type: actions.SETTEACHERNAME, value }) },
         showTutors: () => { dispatch({ type: actions.SHOWTEACHERS }) },
-        setBookingDetails : (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
+        setBookingDetails: (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
+        scrollTotheForm: () => { dispatch({ type: actions.SETSCROLLTOFORM }) },
     }
     return (
         <TutorsContext.Provider value={value}>

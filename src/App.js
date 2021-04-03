@@ -70,9 +70,10 @@ function App() {
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
   useEffect(() => {
+    initFontAwesome();
     mobileview();
     window.addEventListener("resize", mobileview);
-    initFontAwesome();
+   
     window.scrollTo(0, 0)
   }, []);
   return (

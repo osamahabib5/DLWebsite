@@ -1,7 +1,5 @@
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import AvailableRamazanTimings from './AvailableRamazanTimings'
-import axios from 'axios';
 import baseUrl from '../../../baseUrl/baseUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudSun, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
@@ -11,9 +9,10 @@ import { useRouteMatch } from 'react-router';
 import Tutors from '../Findtutor/tutorsdisplay/Tutors/Tutors';
 import { TutorsContext } from '../../../Provider';
 function PickTime(props) {
-    const { loading, showTeachers, showTutors, paymentForm } = useContext(TutorsContext);
+    const { loading, showTeachers, showTutors, paymentForm, scrollToForm } = useContext(TutorsContext);
     let { url } = useRouteMatch();
     const scrollToTutors = useRef(null);
+    const scrollForm = useRef(null);
     const scrolltoTeachers = () => {
         showTutors();
         if (scrollToTutors.current) {
@@ -21,6 +20,16 @@ function PickTime(props) {
                 behavior: "smooth",
                 block: "nearest"
             })
+        }
+    }
+    const scrollToPaymentForm = () => {
+        if (scrollToForm) {
+            if (scrollForm.current) {
+                scrollForm.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                })
+            }
         }
     }
     let RamazanSlots = [{
@@ -42,6 +51,7 @@ function PickTime(props) {
     let fillTeachersSlot = [];
     const [fillTeacherSlot, setTeacherSlots] = useState(null);
     const showAvailableTeachers = (e) => {
+        scrolltoTeachers();
         e.preventDefault();
         while (fillTeachersSlot.length > 0) {
             fillTeachersSlot.pop();
@@ -66,9 +76,10 @@ function PickTime(props) {
             })
         })
         setTeacherSlots(fillTeachersSlot)
-        
-        scrolltoTeachers();
     }
+    useEffect(() => {
+        scrollToPaymentForm();
+    }, [scrollToForm])
     return (
         <Container>
             <Row style={{ marginTop: "2rem" }}>
@@ -78,7 +89,7 @@ function PickTime(props) {
                     </p>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "" , marginBottom: "3rem"}}>
+            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "", marginBottom: "3rem" }}>
                 {RamazanSlots.map((data, index) => {
                     return (
                         <Col xs lg="2" key={index}>
@@ -92,7 +103,7 @@ function PickTime(props) {
                     )
                 })}
             </Row>
-            {showTeachers ? <Row style = {{marginBottom : "2rem"}} ref = {scrollToTutors}>
+            {showTeachers ? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
                 <Col>
                     <div className="pickteacher">
                         <p className="mainheading" style={{ textAlign: "center" }}>
@@ -106,7 +117,7 @@ function PickTime(props) {
             </Row> : ""}
             {paymentForm ? <Row>
                 <Col>
-                    <div className="paymentform" style={{ padding: props.isMobile ? "3rem" : "" }}>
+                    <div className="paymentform" style={{ padding: props.isMobile ? "3rem" : "" }} ref={scrollForm}>
                         <p className="mainheading" style={{ textAlign: "center" }}>
                             Step Three : Fill out your details
                         </p>

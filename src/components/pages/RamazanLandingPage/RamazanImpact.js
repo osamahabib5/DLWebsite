@@ -27,7 +27,7 @@ function RamazanImpact(props) {
             <Row style = {{marginTop: props.isMobile ? "2rem" : "3rem"}}>
                 <Col>
                     <p className="impactdetails" style = {{textAlign: "center"}}>
-                        By signing up your child for Dot and Line's Ramadan Program you automatically sponsor one child in a less privileged community to attend a TCF school. The Covid pandemic has shattered the lives of nearly one million children who will be forced to drop out of school this year!
+                        By signing up your child for Dot and Line's Ramadan Program, you automatically sponsor one child in a less privileged community to attend a TCF school. The Covid pandemic has shattered the lives of nearly one million children who will be forced to drop out of school this year!
                     </p>
                 </Col>
             </Row>

@@ -23,7 +23,7 @@ function Tutors(props) {
             return index === 0 ? word.toUpperCase() : word.toUpperCase();
         }).replace(/\s+/g, ' ');
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm,setBookingDetails } = useContext(TutorsContext);
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm,setBookingDetails,scrollTotheForm } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
@@ -32,6 +32,7 @@ function Tutors(props) {
         setTeacherName(name);
         showPaymentForm();
         setBookingDetails(camelize((name + " - " + days + " , " + times).toString()));
+        scrollTotheForm();
     }
     useEffect(() => {
         mobileview();
