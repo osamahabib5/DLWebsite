@@ -161,13 +161,13 @@ function Tutors(props) {
                     </Link> : <Card key={item.id} onClick={() => {
                         saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
 
-                    }} style={{ height: props.ramadanteachers ? "300px" : "" }}>
+                    }} style={{ height: props.ramadanteachers ? "300px" :props.ramadanteachers && isMobile? "300px!important" :  "" , width: props.ramadanteachers && isMobile ? "100%" : "" }}>
                         <Card.Body>
                             <div className="d-flex flex-column">
                                 <div className="p-2">
                                     <Container>
                                         {!props.ramadanteachers ? <Card.Img variant="top" src={item.picture == null ? props.avatar : item.picture} />
-                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "150px", height: isMobile ? "120px" : "150px", marginLeft: "2rem" }} roundedCircle />}
+                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "150px", height: isMobile ? "120px" : "150px" }} roundedCircle />}
                                     </Container>
                                 </div>
                                 <div className="p-2">

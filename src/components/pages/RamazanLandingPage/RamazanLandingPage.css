@@ -115,7 +115,7 @@
     cursor: auto;
 }
 
-.paymentform .PhoneInput .PhoneInputInput {
+.PhoneInput .PhoneInputInput {
     height: 38px;
     border-radius: 4px;
     border: 1px solid rgb(206, 212, 218);
@@ -125,4 +125,7 @@
 }
 .paymentdetailslist .list-group-item{
     color: black;
+}
+.paymentdetailslist .react-responsive-modal-modal {
+    width: 100%;
 }
