@@ -7,7 +7,7 @@ const ProgramDetails = [{
     "id": 1,
     "title": "2. Digital Learning Packs ",
     "description": "Thought provoking activities that inspire our little Muslims to practice and reflect. From kindness badges and DIY mosques to our very own Sadaqah jar, we have creativity covered!",
-    "source": "RamazanPageImages/Learning.jpg"
+    "source": "RamazanPageImages/Learning.JPG"
 }, {
     "id": 2,
     "title": "3. 8 small group discussion and activity sessions",
