@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Toolbar.css'
 import Logo from '../logo/Logo.png'
@@ -9,9 +9,9 @@ import {
 } from "react-router-dom";
 import initFontAwesome from '../initFontAwesome/initFontAwesome';
 const Toolbar = (props) => {
-    useEffect(()=>{
+    useEffect(() => {
         initFontAwesome();
-    },[])
+    }, [])
     return (
         <header className="toolbar">
             <nav className="toolbar__navigation">
@@ -26,19 +26,19 @@ const Toolbar = (props) => {
                 <div className="toolbar-navigation-items">
                     <ul>
                         {/* <li><Link to="/programs">Programs & Courses</Link></li> */}
-                        {/* <li><Link to={{
+                        <li><Link to={{
                             pathname: "/pricing",
                             state: { PricingValue: "hello" }
-                        }}>Pricing</Link></li> */}
-                        {/* <li><Link to={{
+                        }}>Pricing</Link></li>
+                        <li><Link to={{
                             pathname: "/tutors",
                             state: { findtutors: "hello" }
-                        }}>Find a Tutor</Link></li> */}
+                        }}>Find a Tutor</Link></li>
                         <li><Link to="/contact">Contact Us</Link></li>
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
-                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target = "__blank"><FontAwesomeIcon icon={['fab', 'youtube']} size = "lg"/></a></li>
-                        <li><a href="https://www.facebook.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'facebook']} size = "lg"/></a></li>
-                        <li><a href="https://www.instagram.com/dotandlinecentres/" target = "__blank"><FontAwesomeIcon icon={['fab', 'instagram']} size = "lg"/></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank"><FontAwesomeIcon icon={['fab', 'youtube']} size="lg" /></a></li>
+                        <li><a href="https://www.facebook.com/dotandlinecentres/" target="__blank"><FontAwesomeIcon icon={['fab', 'facebook']} size="lg" /></a></li>
+                        <li><a href="https://www.instagram.com/dotandlinecentres/" target="__blank"><FontAwesomeIcon icon={['fab', 'instagram']} size="lg" /></a></li>
                     </ul>
 
                 </div>

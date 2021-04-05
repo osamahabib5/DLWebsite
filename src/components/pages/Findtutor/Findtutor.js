@@ -36,6 +36,7 @@ function Findtutor() {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
+        window.scrollTo(0, 0)
     }, []);
     return (
         <div className="FindATutor">

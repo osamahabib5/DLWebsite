@@ -34,7 +34,7 @@ function ChangeLocationPopup(props) {
             </Form.Row>
             <Form.Row className = "d-flex justify-content-center">
                 <Col>
-                    <Button onClick = {props.closeModal}>Close</Button>
+                    <button className = "btn button-cta button-blue" onClick = {props.closeModal}>Close</button>
                 </Col>
             </Form.Row>
         </Container>

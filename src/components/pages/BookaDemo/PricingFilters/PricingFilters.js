@@ -17,7 +17,7 @@ function PricingFilters(props) {
     const [skippedoption, setskippedoptions] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
     const [filledvalues, setfilledvalues] = useState(false);
     const url = baseUrl + '/api/calculateFee';
-    const { class_type, subscription, tutor_type } = advancedfilter;
+    const { class_type, subscription, tutor_type,hours_per_week } = advancedfilter;
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: result_type === "teachers" ? "Confirm Pricing!" : "Schedule a Demo",
@@ -124,10 +124,11 @@ function PricingFilters(props) {
     }
     useEffect(() => {
         changePricingPackage();
-        if (filledvalues) {
-            handleSubmit();
-        }
-    }, [subscription])
+        // if (filledvalues) {
+        //     handleSubmit();
+        // }
+        handleSubmit();
+    }, [subscription, class_type, tutor_type,hours_per_week])
     return (
         <Container>
             <Row>
@@ -197,13 +198,13 @@ function PricingFilters(props) {
                     }} />
                 </Form.Group>
             </Form>
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
                 <button className="btn button-cta button-blue" style={{ width: "200px" }} onClick={handleSubmit}>{result_type === "teachers" ? "Confirm Your Selections" : "Next"}
                 </button>
-            </div>
-            {result_type === "pricing" ? <Row className="justify-content-md-center">
+            </div> */}
+            <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
-            </Row> : ""}
+            </Row>
         </Container>
     )
 }

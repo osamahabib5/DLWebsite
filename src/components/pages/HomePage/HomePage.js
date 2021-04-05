@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import landingimage from './coverphoto2.jpg'
+import mobileimage from './phone2.jpg'
 import './HomePage.css'
 import Videocontent from '../../videocontent/videocontent';
 import OurApproach from '../../OurApproach/OurApproach';
@@ -48,7 +49,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={landingimage} className="card-img" alt="..." style={{ marginTop: !props.notification || cookies.get("notification") ? "3.4rem" : "0rem", height: isMobile ? "210px" : "" }} />
+                    <img src={isMobile ? mobileimage : landingimage} className="card-img" alt="..." style={{ marginTop: props.notification || cookies.get("notification") ? "3.4rem" : "0rem" }} />
                     {/* <ImageContent /> */}
                 </div>
             </div>
@@ -83,7 +84,7 @@ function HomePage(props) {
                             <Slider isMobile={isMobile} />
                         </Col>
                         <Col>
-                            <Image src={testimonial1} style={{ height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%", marginLeft:  isMobile ? "" : "6.7rem" }} fluid />
+                            <Image src={testimonial1} style={{ height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%"}} fluid />
                         </Col>
                     </Row>
                 </Container>
