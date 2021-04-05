@@ -83,6 +83,12 @@
         width: 553px;
         height: 375px;
     }
+    .ramazan-page .ramazanprogramdetails .react-video-player{
+        width: 100%;
+        height: auto;
+        display: flex;
+        background: white;
+    }
     .ramazan-page .impact-section img {
         width: 800px;
         height: 500px;

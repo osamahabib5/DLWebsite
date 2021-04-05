@@ -23,9 +23,8 @@ const initialState = {
     demo_day: "",
     tutortype: "",
     skippedpricing: false,
-    isMobile: false,
     courseid: 0,
-    days: "",
+    Days: "",
     time: "",
     paymentForm: false,
     teacher_name: "",
@@ -206,7 +205,7 @@ function reducer(state, action) {
         case actions.SETDAYS:
             return {
                 ...state,
-                days: action.value
+                Days: action.value
             }
         case actions.SETTIME:
             return {
@@ -270,7 +269,7 @@ function Provider({ children }) {
         skippedpricing: state.skippedpricing,
         isMobile: state.isMobile,
         courseid: state.courseid,
-        days: state.days,
+        Days: state.Days,
         time: state.time,
         teacher_name: state.teacher_name,
         paymentForm: state.paymentForm,
