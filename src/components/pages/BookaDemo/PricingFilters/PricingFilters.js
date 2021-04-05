@@ -202,9 +202,9 @@ function PricingFilters(props) {
                 <button className="btn button-cta button-blue" style={{ width: "200px" }} onClick={handleSubmit}>{result_type === "teachers" ? "Confirm Your Selections" : "Next"}
                 </button>
             </div> */}
-            <Row className="justify-content-md-center">
+            {result_type === "pricing" ? <Row className="justify-content-md-center">
                 <p className="skipbooking" onClick={SkipPricing}>Skip</p>
-            </Row>
+            </Row> : ""}
         </Container>
     )
 }

@@ -10,7 +10,7 @@ import FindaTutor from '../../FindaTutor/FindaTutor';
 import FindaTutorEnd from '../../FindaTutor/FindaTutor_End';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import ReactPixel from 'react-facebook-pixel';
-import TutorImage from './areamanager.jpg'
+import TutorImage from './BecomeTutorImage.jpg'
 import OurApproachDetails from './OurApproachDetails';
 import Cookies from 'universal-cookie';
 import testimonial1 from './osama.jpg';
