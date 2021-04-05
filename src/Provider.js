@@ -31,7 +31,7 @@ const initialState = {
     showTeachers: false,
     BookingDetails: null,
     scrollToForm: false,
-    // dollaValue: 0;
+    USDtoPKR: 0
 }
 
 const actions = {
@@ -239,11 +239,11 @@ function reducer(state, action) {
                 ...state,
                 scrollToForm: true
             }
-        // case actions.SETDOLLARVALUE:
-        //     return {
-        //         ...state,
-        //         dollar: true
-        //     }
+        case actions.SETDOLLARVALUE:
+            return {
+                ...state,
+                USDtoPKR: action.value
+            }
         default:
             return state;
     }
@@ -278,6 +278,7 @@ function Provider({ children }) {
         courseid: state.courseid,
         Days: state.Days,
         time: state.time,
+        USDtoPKR: state.USDtoPKR,
         teacher_name: state.teacher_name,
         paymentForm: state.paymentForm,
         BookingDetails: state.BookingDetails,
@@ -317,6 +318,7 @@ function Provider({ children }) {
         showTutors: () => { dispatch({ type: actions.SHOWTEACHERS }) },
         setBookingDetails: (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
         scrollTotheForm: () => { dispatch({ type: actions.SETSCROLLTOFORM }) },
+        setDollarToPKR: (value) => { dispatch({ type: actions.SETDOLLARVALUE, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>
