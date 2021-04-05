@@ -4,7 +4,7 @@ import Backdrop from "./components/Backdrop/Backdrop";
 import './App.css'
 import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect} from 'react'
 import NotificationToast from './components/Notification/NotificationToast';
 import NotificationToastMobile from "./components/Notification/NotificationToastMobile";
 import 'react-toastify/dist/ReactToastify.css';
@@ -70,6 +70,7 @@ function App() {
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
   useEffect(() => {
+    console.log("Ramazan Page here!")
     initFontAwesome();
     mobileview();
     window.addEventListener("resize", mobileview);

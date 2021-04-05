@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import initFontAwesome from '../../initFontAwesome/initFontAwesome';
 import PaymentSection from './PaymentSection';
 import RamazanBanner from './RamazanBanner';
 import RamazanHeader from './RamazanHeader';
@@ -7,6 +8,7 @@ import RamazanImpact from './RamazanImpact';
 import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
+
 
 function RamazanLandingPage() {
     const [isMobile, setisMobile] = useState(false);
@@ -28,8 +30,10 @@ function RamazanLandingPage() {
         }
     }
     useEffect(() => {
+        console.log("Brother! ")
         mobileview();
         window.addEventListener("resize", mobileview);
+        initFontAwesome();
         window.scrollTo(0, 0)
     }, []);
     let mobile_style = { marginTop: isMobile ? "2rem" : "", width: isMobile ? "100%" : "" };

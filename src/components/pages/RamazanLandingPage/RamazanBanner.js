@@ -5,7 +5,7 @@ import { Card, Image } from 'react-bootstrap'
 function RamazanBanner(props) {
     return (
         <div>
-            <Card className="bg-dark text-white" style={{ width: props.isMobile ? "104.3%" : "100%" }}>
+            <Card className="bg-dark text-white" style={{ backgroundColor: "#133188!important",width: props.isMobile ? "104.3%" : "100%" }}>
                 <Card.Img src={props.isMobile ? RamadanMobile : BannerImage} style={{ height: props.isMobile ? "225px" : "560px" }} />
             </Card>
         </div>

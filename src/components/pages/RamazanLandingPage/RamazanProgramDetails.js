@@ -27,11 +27,10 @@ function RamazanProgramDetails(props) {
                             <Col xs lg="7">
                                 <ReactPlayer
                                     controls
-                                    // height="360px"
-                                    controls
-                                    width="100%"
-                                    height="auto"
-                                    style={{ backgroundColor: "white", display: "flex" }}
+                                    className = "react-video-player"
+                                    // width="100%"
+                                    // height="auto"
+                                    // style={{ backgroundColor: "white", display: "flex" }}
                                     url={data.source}
                                 />
                             </Col>
@@ -50,7 +49,7 @@ function RamazanProgramDetails(props) {
                                 </p>
                             </Col>
                             <Col xs lg="7">
-                                <img src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
+                                <img alt = "...Loading" src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
                             </Col>
                         </Row>
                     )
@@ -58,7 +57,7 @@ function RamazanProgramDetails(props) {
                     return (
                         <Row className="justify-content-md-center" style={{ flexDirection: props.isMobile ? 'column-reverse' : "" }} key={index}>
                             <Col xs lg="7">
-                                <img src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
+                                <img alt = "...Loading" src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
                             </Col>
                             <Col xs lg="5">
                                 <p className="programdetails">

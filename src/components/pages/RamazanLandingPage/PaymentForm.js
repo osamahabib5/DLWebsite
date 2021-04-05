@@ -12,7 +12,7 @@ function PaymentForm() {
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
     const cookies = new Cookies();
-    const { days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId, BookingDetails } = useContext(TutorsContext);
+    const { Days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId, BookingDetails } = useContext(TutorsContext);
     const [PaymentRegistrationForm, setPaymentRegistrationForm] = useState({
         name: "", phone: "", email: "", country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
         bookingdetails: BookingDetails
@@ -98,7 +98,7 @@ function PaymentForm() {
                     <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Enter email" />
                 </Form.Group>
                 <Form.Group as={Row} >
-                    <Form.Control type="string" placeholder="Tutor Details" id="bookingdetails" value={camelize((teacher_name + " - " + days + " , " + time).toString())} disabled />
+                    <Form.Control type="string" placeholder="Tutor Details" id="bookingdetails" value={camelize((teacher_name + " - " + Days + " , " + time).toString())} disabled />
                 </Form.Group>
                 <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">
                     <button className="btn button-cta button-red" onClick={handleOnSubmit}>
