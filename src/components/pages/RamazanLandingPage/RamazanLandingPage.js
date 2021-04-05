@@ -30,7 +30,6 @@ function RamazanLandingPage() {
         }
     }
     useEffect(() => {
-        console.log("Brother! ")
         mobileview();
         window.addEventListener("resize", mobileview);
         initFontAwesome();

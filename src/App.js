@@ -70,7 +70,7 @@ function App() {
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
   useEffect(() => {
-    console.log("Ramazan Page here!")
+    // console.log("Ramazan Page here!")
     initFontAwesome();
     mobileview();
     window.addEventListener("resize", mobileview);
@@ -80,9 +80,9 @@ function App() {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {!cookies.get("notification") ? Notification : ""}
+        {/* {!cookies.get("notification") ? Notification : ""} */}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        {!cookies.get("notification") ? MobileNotification : ""}
+        {/* {!cookies.get("notification") ? MobileNotification : ""} */}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>
@@ -118,8 +118,8 @@ function App() {
             <RamazanLandingPage/>
           </Route>
           <Route path="/">
-            <HomePage notification={notification} />
-            {/* <RamazanLandingPage /> */}
+            {/* <HomePage notification={notification} /> */}
+            <RamazanLandingPage />
           </Route>
         </Switch>
 
