@@ -35,7 +35,19 @@ function HomePage(props) {
             setclassname(false);
         }
     }
+    const fetchPricing = async () => {
+        await fetch('https://free.currconv.com/api/v7/convert?apiKey=8555114407d4fcd7f823&q=USD_PKR')
+            .then(function (response) {
+                return response.json()
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            }).then(data => {
+                console.log("Pricing: " + JSON.stringify(data.results.USD_PKR.val));
+            })
+    }
     useEffect(() => {
+        fetchPricing();
         mobileview();
         window.addEventListener("resize", mobileview);
     });
@@ -74,7 +86,7 @@ function HomePage(props) {
                     details="With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
                     isMobile={isMobile}
                     cardsno={4}
-                    mobilecards = {2}
+                    mobilecards={2}
                 />
             </div>
             <div className="Image-Slider">
@@ -84,7 +96,7 @@ function HomePage(props) {
                             <Slider isMobile={isMobile} />
                         </Col>
                         <Col>
-                            <Image src={testimonial1} style={{ height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%"}} fluid />
+                            <Image src={testimonial1} style={{ height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%" }} fluid />
                         </Col>
                     </Row>
                 </Container>

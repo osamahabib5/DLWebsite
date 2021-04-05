@@ -30,7 +30,8 @@ const initialState = {
     teacher_name: "",
     showTeachers: false,
     BookingDetails: null,
-    scrollToForm: false
+    scrollToForm: false,
+    // dollaValue: 0;
 }
 
 const actions = {
@@ -66,7 +67,8 @@ const actions = {
     SETTEACHERNAME: 'SETTEACHERNAME',
     SHOWTEACHERS: 'SHOWTEACHERS',
     SETBOOKINGDETAILS: 'SETBOOKINGDETAILS',
-    SETSCROLLTOFORM: 'SETSCROLLTOFORM'
+    SETSCROLLTOFORM: 'SETSCROLLTOFORM',
+    SETDOLLARVALUE: 'SETDOLLARVALUE'
 }
 
 function reducer(state, action) {
@@ -237,6 +239,11 @@ function reducer(state, action) {
                 ...state,
                 scrollToForm: true
             }
+        // case actions.SETDOLLARVALUE:
+        //     return {
+        //         ...state,
+        //         dollar: true
+        //     }
         default:
             return state;
     }

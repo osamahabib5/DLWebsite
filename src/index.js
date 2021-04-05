@@ -7,13 +7,15 @@ import './fonts/AvenirLTStd-Roman.otf';
 import './fonts//AvenirLTStd-Book.otf';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Provider from "./Provider";
-
+import HttpsRedirect from 'react-https-redirect';
 
 
 ReactDOM.render(
   <Router>
     <Provider>
-      <App />
+      <HttpsRedirect>
+        <App />
+      </HttpsRedirect>
     </Provider>
   </Router>,
   document.getElementById('root')

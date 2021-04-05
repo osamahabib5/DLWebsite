@@ -15,6 +15,18 @@ function PackageDetails(props) {
             setSubscription("3_month");
         }
     }
+    
+    const fetchPricing = async () => {
+        await fetch('https://free.currconv.com/api/v7/convert?apiKey=8555114407d4fcd7f823&q=USD_PKR')
+            .then(function (response) {
+                return response.json()
+            })
+            .catch(function (error) {
+                console.log("Error: " + error);
+            }).then(data => {
+                console.log("Pricing: " + JSON.stringify(data.results.USD_PKR.val));
+            })
+    }
     const setSelectedPackage = (index) => {
         setResultType("teachers")
         if (cookies.get("leadid")) {

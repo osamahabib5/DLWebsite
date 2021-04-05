@@ -182,6 +182,7 @@ function BookaDemo() {
             }
         }
     }
+   
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
             .then(function (response) {

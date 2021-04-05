@@ -111,9 +111,9 @@ function App() {
           <Route path="/contact">
             <ContactPage notification={notification} />
           </Route>
-          {/* <Route path="/ramadan">
+          <Route path="/ramadan">
             <RamazanLandingPage />
-          </Route> */}
+          </Route>
           <Route path="/">
             {/* <HomePage notification={notification} /> */}
             <RamazanLandingPage />
