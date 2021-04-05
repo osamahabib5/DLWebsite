@@ -13,8 +13,8 @@ function PricingFilters(props) {
     const { setOptedPackage, opted_package, parent_country, lead_id,
         startLoading, getFilteredTeachersList, calculateFees, result_type,
         stopLoading, subscription_type, setConfirmPricing, setTutorType, skipPricing } = useContext(TutorsContext)
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
-    const [skippedoption, setskippedoptions] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 2, country: parent_country, lead_id: lead_id, result_type: result_type });
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 3, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
+    const [skippedoption, setskippedoptions] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 3, country: parent_country, lead_id: lead_id, result_type: result_type });
     const [filledvalues, setfilledvalues] = useState(false);
     const url = baseUrl + '/api/calculateFee';
     const { class_type, subscription, tutor_type,hours_per_week } = advancedfilter;
@@ -190,7 +190,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput mobile = {true} min={2} defaultValue={2} max={20} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput mobile = {true} min={2} defaultValue={3} max={20} size={10} className="numericinput" onChange={(e) => {
                         setadvancedfilters({
                             ...advancedfilter,
                             hours_per_week: parseInt(e)

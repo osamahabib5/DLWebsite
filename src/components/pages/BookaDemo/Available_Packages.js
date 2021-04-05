@@ -28,7 +28,7 @@ const Available_Packages = [{
 },{
     'id': 2,
     'title': 'MONTHLY PACKAGE',
-    'price': 4571.73,
+    'price': 6000,
     'international_price' : 30,
     'heading': 'Monthly Premium Package',
     'description': ["3 hours / week", "Class size up to 1:6", "Personalized practice worksheets, quizzes and critical thinking exercises"],
@@ -43,7 +43,7 @@ const Available_Packages = [{
  {
     'id': 3,
     'title': '3 MONTHS PACKAGE',
-    'price': 3352.60,
+    'price': 15100,
     'international_price' : 22,
     'heading': 'Dot & Line Exclusive Premium Package',
     'description': ["3 hours/week", "Class size up to 1:6", "Personalized practice worksheets, quizzes and critical thinking exercises", "Free live-streamed Art, STEM, Language classes "],

@@ -7,11 +7,11 @@ import Cookies from 'universal-cookie';
 function PackageDetails(props) {
     const cookies = new Cookies();
     const { setOptedPackage, parent_country, loading, setResultType, setSubscription } = useContext(TutorsContext);
-    const SetPricingPackage = (index)=>{
-        if (index == 0 || index == 2){
+    const SetPricingPackage = (index) => {
+        if (index == 0 || index == 2) {
             setSubscription("1_month")
         }
-        else{
+        else {
             setSubscription("3_month");
         }
     }
@@ -84,8 +84,8 @@ function PackageDetails(props) {
                             </ListGroup.Item>
                             <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].heading}</ListGroup.Item>
                             <div className="package_specification">
-                                {Available_Packages[1].description.map((val,index) => (
-                                    <ListGroup.Item key = {index}>{val}</ListGroup.Item>
+                                {Available_Packages[1].description.map((val, index) => (
+                                    <ListGroup.Item key={index}>{val}</ListGroup.Item>
                                 ))}
                             </div>
                         </ListGroup>
@@ -111,12 +111,16 @@ function PackageDetails(props) {
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">/month</p>
                                     </div>
+                                    
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item>{Available_Packages[2].heading}</ListGroup.Item>
+                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                                <p> ($30 /month)</p>
+                            </ListGroup.Item>
+                            <ListGroup.Item style={{ marginTop: "-2rem" }}>{Available_Packages[2].heading}</ListGroup.Item>
                             <div className="package_specification">
-                                {Available_Packages[2].description.map((val,index) => (
-                                    <ListGroup.Item key = {index}>{val}</ListGroup.Item>
+                                {Available_Packages[2].description.map((val, index) => (
+                                    <ListGroup.Item key={index}>{val}</ListGroup.Item>
                                 ))}
                             </div>
                         </ListGroup>
@@ -136,15 +140,18 @@ function PackageDetails(props) {
                                     <div className="p-2 bd-highlight">
                                         <p className="packagerate">Rs {Available_Packages[3].price}</p>
                                     </div>
-                                    {/* <div className="p-2 bd-highlight">
+                                    <div className="p-2 bd-highlight">
                                         <p className="startingat">/month</p>
-                                    </div> */}
+                                    </div>
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item>{Available_Packages[3].heading}</ListGroup.Item>
+                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                                <p> ($22 /month)</p>
+                            </ListGroup.Item>
+                            <ListGroup.Item style={{ marginTop: "-2rem" }}>{Available_Packages[3].heading}</ListGroup.Item>
                             <div className="package_specification">
-                                {Available_Packages[3].description.map((val,index) => (
-                                    <ListGroup.Item key = {index}>{val}</ListGroup.Item>
+                                {Available_Packages[3].description.map((val, index) => (
+                                    <ListGroup.Item key={index}>{val}</ListGroup.Item>
                                 ))}
                             </div>
                         </ListGroup>

@@ -301,7 +301,7 @@ function Provider({ children }) {
         setDemoDay: (value) => { dispatch({ type: actions.SETDEMODAY, value }) },
         setTutorType: (value) => { dispatch({ type: actions.SETTUTORTYPE, value }) },
         skipPricing: (value) => { dispatch({ type: actions.SKIPPRICING, value }) },
-        setisMobile: (value) => { dispatch({ type: actions.SETISMOBILE, value }) },
+        // setisMobile: (value) => { dispatch({ type: actions.SETISMOBILE, value }) },
         saveCourseId: (value) => { dispatch({ type: actions.SAVECOURSEID, value }) },
         setTimes: (value) => { dispatch({ type: actions.SETTIME, value }) },
         setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },

@@ -10,7 +10,7 @@ import testimonialphone3 from "../logo/Images/testimonialphone3.jpg";
 import './Slider.css'
 function Slider(props) {
     return (
-        <div className = "testimonial_slider">
+        <div className = "testimonialslider">
             <Carousel>
                 <Carousel.Item interval={3000}>
 

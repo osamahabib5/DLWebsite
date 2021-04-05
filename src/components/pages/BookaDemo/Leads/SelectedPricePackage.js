@@ -6,16 +6,16 @@ import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package, fee_amount, confirmpricing, result_type, parent_country,setOptedPackage } = useContext(TutorsContext);
-    useEffect(()=>{
-        if (result_type === "pricing" && !new Cookies().get("leadid")){
-            if (parent_country === "Pakistan"){
+    const { opted_package, fee_amount, confirmpricing, result_type, parent_country, setOptedPackage } = useContext(TutorsContext);
+    useEffect(() => {
+        if (result_type === "pricing" && !new Cookies().get("leadid")) {
+            if (parent_country === "Pakistan") {
                 setOptedPackage(1);
-            }else{
+            } else {
                 setOptedPackage(3);
             }
         }
-    },[parent_country])
+    }, [parent_country])
     return (
         <div className="selectedpackage">
             <Card style={Available_Packages[opted_package].styling} key={Available_Packages.id}>
@@ -29,14 +29,20 @@ function SelectedPricePackage(props) {
                                     <p className="startingat">starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
-                                    <p className="packagerate">Rs {fee_amount ? fee_amount : Available_Packages[opted_package].price}</p>
+                                    <p className="packagerate">Rs {fee_amount && (opted_package === 1 || opted_package === 3) ? Math.round(parseInt(fee_amount) / 3) : fee_amount ? fee_amount : Available_Packages[opted_package].price}</p>
                                 </div>
-                                {opted_package === 0 || opted_package === 2 ? <div className="p-2 bd-highlight">
+                                {/* {opted_package === 0 || opted_package === 2 ? <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
-                                </div> : ""}
+                                </div> : ""} */}
+                                <div className="p-2 bd-highlight">
+                                    <p className="startingat">/month</p>
+                                </div>
                             </div>
                         </ListGroup.Item>
-                        <ListGroup.Item style={{ marginTop: props.isMobile ? "1rem" : "" }}>{Available_Packages[opted_package].heading}</ListGroup.Item>
+                        {opted_package === 3 || opted_package === 1 ? <ListGroup.Item style = {{marginTop: "-1rem"}}>
+                            <p> (Rs.{fee_amount ? fee_amount : ""} for 3 months)</p>
+                        </ListGroup.Item> : ""}
+                        <ListGroup.Item style={{ marginTop: props.isMobile ? "1rem" : opted_package === 3 || opted_package === 1 ? "-2rem" : "" }}>{Available_Packages[opted_package].heading}</ListGroup.Item>
                         <div className="package_specification">
                             {Available_Packages[opted_package].description.map(val => (
                                 <ListGroup.Item>{val}</ListGroup.Item>
