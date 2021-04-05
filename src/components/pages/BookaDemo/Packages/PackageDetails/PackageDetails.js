@@ -77,9 +77,9 @@ function PackageDetails(props) {
                                     <div className="p-2 bd-highlight">
                                         <p className="packagerate">Rs {Available_Packages[1].price}</p>
                                     </div>
-                                    {/* <div className="p-2 bd-highlight">
+                                    <div className="p-2 bd-highlight">
                                         <p className="startingat">/month</p>
-                                    </div> */}
+                                    </div>
                                 </div>
                             </ListGroup.Item>
                             <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].heading}</ListGroup.Item>

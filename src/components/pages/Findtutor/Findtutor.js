@@ -12,7 +12,7 @@ import Tutorsdisplay from './tutorsdisplay/Tutorsdisplay';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import Image from "./Image/Image.png";
 import Cookies from 'universal-cookie';
-function Findtutor() {
+function Findtutor(props) {
     const cookies = new Cookies();
     const [isMobile, setclassname] = useState(false);
     const showContent = useRef(null);
@@ -38,10 +38,11 @@ function Findtutor() {
         window.addEventListener("resize", mobileview);
         window.scrollTo(0, 0)
     }, []);
+    // style={{ marginTop: props.notification || cookies.get("notification") ? "3.4rem" : "0rem" }} 
     return (
         <div className="FindATutor">
             <Card className="bg-dark text-white">
-                <Card.Img src={isMobile ? BackgroundMobile : Background} alt="Card image" style = {{marginTop: cookies.get("notification") ? "3.4rem" : "0rem"}}/>
+                <Card.Img src={isMobile ? BackgroundMobile : Background} alt="Card image" style = {{marginTop: props.notification ||cookies.get("notification") ? "3.4rem" : "0rem"}}/>
                 <Card.ImgOverlay>
                     <Container fluid>
                         <Row>

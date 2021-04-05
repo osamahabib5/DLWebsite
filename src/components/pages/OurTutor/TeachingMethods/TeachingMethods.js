@@ -25,24 +25,24 @@ function TeachingMethods(props) {
                 <Container>
                     <Row>
                         <Col className="active-students">
-                            <div className="d-flex flex-column bd-highlight mb-3">
+                            {props.active_students ? <div className="d-flex flex-column bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">
                                     <p className="methods-heading">Active Students</p>
                                 </div>
                                 <div className="p-2 bd-highlight" style={{ marginTop: '-1rem' }}>
                                     <p className="methods-number">{props.active_students}</p>
                                 </div>
-                            </div>
+                            </div> : ""}
                         </Col>
                         <Col className="teaching-hours">
-                            <div className="d-flex flex-column bd-highlight mb-3">
+                            {props.lifetime_hours ? <div className="d-flex flex-column bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">
                                     <p className="methods-heading">Hours Taught</p>
                                 </div>
                                 <div className="p-2 bd-highlight" style={{ marginTop: '-1rem' }}>
                                     <p className="methods-number">{props.lifetime_hours} hours</p>
                                 </div>
-                            </div>
+                            </div> : ""}
                         </Col>
                     </Row>
                 </Container>

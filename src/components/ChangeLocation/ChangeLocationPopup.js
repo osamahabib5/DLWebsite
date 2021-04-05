@@ -21,7 +21,7 @@ function ChangeLocationPopup(props) {
             <Form.Row>
                 <Col>
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="Pakistan" onChange={(e) =>setParentLocation(e.target.value)}>
+                        <Form.Control as="select" defaultValue={!parent_country ? "Pakistan" : parent_country} onChange={(e) =>setParentLocation(e.target.value)}>
                             <option>Select Country</option>
                             {countries_list.map((val, index) => (
                                 <option key={index}>

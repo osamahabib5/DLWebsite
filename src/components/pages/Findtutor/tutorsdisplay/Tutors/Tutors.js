@@ -18,12 +18,12 @@ function Tutors(props) {
             setmobile(false);
         }
     }
-      function camelize(str) {
+    function camelize(str) {
         return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
             return index === 0 ? word.toUpperCase() : word.toUpperCase();
         }).replace(/\s+/g, ' ');
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm,setBookingDetails,scrollTotheForm } = useContext(TutorsContext);
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollTotheForm } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
@@ -85,7 +85,7 @@ function Tutors(props) {
                                                                     </p>
                                                                 </div>
                                                             </div> : ""}
-                                                            {item.active_students ? <div className="d-flex flex-row bd-highlight mb-3">
+                                                            {item.active_students ? <div className="d-flex flex-row bd-highlight mb-3" >
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faUser} /></div>
                                                                 <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                     <p className="students">
@@ -102,7 +102,7 @@ function Tutors(props) {
                                                     </Col>
                                                     <Col>
                                                         <Button variant="outline-secondary" style={{ height: "30px", border: "none", backgroundColor: "none" }}>
-                                                            {item.lifetime_hours ? <div className="d-flex flex-row bd-highlight mb-3">
+                                                            {item.lifetime_hours ? <div className="d-flex flex-row bd-highlight mb-3" style={{ marginLeft: !item.active_students ? "-7.7rem" : "" }}>
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                                 <div className="p-2 bd-highlight">
                                                                     <p className="students" style={{ marginLeft: "7px" }}>
@@ -118,7 +118,7 @@ function Tutors(props) {
                                                             {item.timings ? <div className="d-flex flex-row bd-highlight mb-3">
                                                                 <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                                 <div className="p-2 bd-highlight">
-                                                                    <p className="students" style={{ marginLeft: "7px", fontSize: props.ramadanteachers ? "12px" : "" }}>
+                                                                    <p className="students" style={{ marginLeft: "7px", fontSize: props.ramadanteachers ? "13px" : "" }}>
                                                                         Timings (in PKT):
                                                                 </p>
                                                                 </div>
@@ -134,7 +134,7 @@ function Tutors(props) {
                                             </Container>
                                         </div>
                                     </div>
-                                    <div className="p-2" style={{ marginTop: (isMobile ? "-1rem" : "-1rem") }}>
+                                    <div className="p-2" style={{ marginTop: (!item.active_students && !item.lifetime_hours ? "-3rem" : isMobile ? "-1rem" : "-1rem") }}>
                                         {props.ramadanteachers ? "" : <StarRatings
                                             rating={item.tier === "1" ? 5 : item.tier === "2" ? 4 : item.tier === "3" ? 3 : 3}
                                             starRatedColor="#00ABBD"
@@ -161,7 +161,7 @@ function Tutors(props) {
                     </Link> : <Card key={item.id} onClick={() => {
                         saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
 
-                    }} style={{ height: props.ramadanteachers ? "300px" :props.ramadanteachers && isMobile? "300px!important" :  "" , width: props.ramadanteachers && isMobile ? "100%" : "" }}>
+                    }} style={{ height: props.ramadanteachers ? "300px" : props.ramadanteachers && isMobile ? "300px!important" : "", width: props.ramadanteachers && isMobile ? "100%" : "" }}>
                         <Card.Body>
                             <div className="d-flex flex-column">
                                 <div className="p-2">
@@ -229,12 +229,12 @@ function Tutors(props) {
                                                         {item.timings ? <div className="d-flex flex-row bd-highlight mb-3">
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                             <div className="p-2 bd-highlight">
-                                                                <p className="students" style={{ marginLeft: "7px", fontSize: props.ramadanteachers ? "12px" : "" }}>
+                                                                <p className="students" style={{ marginLeft: "7px", fontSize: props.ramadanteachers ? "13px" : "" }}>
                                                                     Timings:
                                                                 </p>
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" style={{ fontSize: props.ramadanteachers ? "13px" : "" , whiteSpace : isMobile ? "normal" : "nowrap"}}>
+                                                                <p className="students" style={{ fontSize: props.ramadanteachers ? "15px" : "", whiteSpace: isMobile ? "normal" : "nowrap" }}>
                                                                     {item.timings} PKT
                                                                 </p>
                                                             </div>
@@ -245,7 +245,7 @@ function Tutors(props) {
                                         </Container>
                                     </div>
                                 </div>
-                                <div className="p-2" style={{ marginTop: (isMobile ? "-1rem" : "-1rem") }}>
+                                <div className="p-2 bd-highlight" style={{ marginTop: isMobile ? "-1rem" : "-3rem" }}>
                                     {props.ramadanteachers ? "" : <StarRatings
                                         rating={item.tier === "1" ? 5 : item.tier === "2" ? 4 : item.tier === "3" ? 3 : 3}
                                         starRatedColor="#00ABBD"

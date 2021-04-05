@@ -54,7 +54,7 @@ function TutorName(props) {
                         </div>
                     </div>
                 </div>
-                {props.average_rating != 0 ? <div className="row" style={{ marginTop: '-2rem' }}>
+                {props.average_rating != 0 ? <div className="row" style={{ marginTop: '-1rem' }}>
                     <div className="col" style={{ textAlign: "left" }}>
                         <StarRatings
                             rating={props.average_rating}

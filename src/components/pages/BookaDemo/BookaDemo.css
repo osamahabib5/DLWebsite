@@ -133,6 +133,7 @@
     line-height: 16px;
     color: #000000;
     justify-content: center;
+    padding-inline: 3rem;
 }
 
 .bookademo .skipbooking {
@@ -369,9 +370,14 @@
         color: #777777;
         white-space: nowrap;
     }
-    .tutorslist .btn btn-outline-secondary, .tutorslist btn-outline-secondary:hover{
+    .tutorslist .btn-outline-secondary:hover {
         background: none;
+        cursor: auto;
     }
+    
+    /* .tutorslist .btn btn-outline-secondary, .tutorslist btn-outline-secondary:hover{
+        background: none;
+    } */
     .confirm-appointment {
         margin-top: 5rem;
     }

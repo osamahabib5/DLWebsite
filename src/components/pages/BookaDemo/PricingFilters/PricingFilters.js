@@ -95,7 +95,7 @@ function PricingFilters(props) {
                     console.log("Filters Error: " + error)
                 })
             }
-        } else {
+        } else if (result_type === "teachers") {
             opensweetalertdanger("Please fill all the values!")
         }
 

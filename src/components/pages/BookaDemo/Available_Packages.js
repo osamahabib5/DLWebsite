@@ -1,9 +1,9 @@
 const Available_Packages = [{
     'id': 0,
     'title': 'MONTHLY PACKAGE',
-    'price': 3000,
+    'price': 4500,
     'heading': 'Monthly Premium Package',
-    'description': ["2 hrs/week", "Focused Attention", "Small Batch Classes"],
+    'description': ["3 hours / week", "Class size up to 1:6", "Personalized practice worksheets, quizzes and critical thinking exercises"],
     'color': "#FCCFCB",
     "styling": {
         backgroundColor: "#FFF8F8",
@@ -14,9 +14,9 @@ const Available_Packages = [{
 }, {
     'id': 1,
     'title': '3 MONTHS PACKAGE',
-    'price': 6800,
+    'price': 3360,
     'heading': 'Dot & Line Exclusive Premium Package',
-    'description': ["2 hrs/week", "In-Person Classes & Online Classes", "Focused Attention"],
+    'description': ["3 hours/week", "Class size up to 1:6", "Personalized practice worksheets, quizzes and critical thinking exercises", "Free live-streamed Art, STEM, Language classes "],
     'url': 'video/English.mp4',
     'color': "#5E6981",
     "styling": {
@@ -28,9 +28,10 @@ const Available_Packages = [{
 },{
     'id': 2,
     'title': 'MONTHLY PACKAGE',
-    'price': 4000,
+    'price': 4571.73,
+    'international_price' : 30,
     'heading': 'Monthly Premium Package',
-    'description': ["2 hrs/week", "Focused Attention", "Small Batch Classes"],
+    'description': ["3 hours / week", "Class size up to 1:6", "Personalized practice worksheets, quizzes and critical thinking exercises"],
     'color': "#FCCFCB",
     "styling": {
         backgroundColor: "#FFF8F8",
@@ -42,9 +43,10 @@ const Available_Packages = [{
  {
     'id': 3,
     'title': '3 MONTHS PACKAGE',
-    'price': 10100,
+    'price': 3352.60,
+    'international_price' : 22,
     'heading': 'Dot & Line Exclusive Premium Package',
-    'description': ["2 hrs/week", "In-Person Classes & Online Classes", "Focused Attention"],
+    'description': ["3 hours/week", "Class size up to 1:6", "Personalized practice worksheets, quizzes and critical thinking exercises", "Free live-streamed Art, STEM, Language classes "],
     'color': "#5E6981",
     "styling": {
         backgroundColor: "#F8FAFF",

@@ -4,7 +4,7 @@ import Backdrop from "./components/Backdrop/Backdrop";
 import './App.css'
 import Toolbar from './components/Toolbar/Toolbar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import NotificationToast from './components/Notification/NotificationToast';
 import NotificationToastMobile from "./components/Notification/NotificationToastMobile";
 import 'react-toastify/dist/ReactToastify.css';
@@ -74,15 +74,15 @@ function App() {
     initFontAwesome();
     mobileview();
     window.addEventListener("resize", mobileview);
-   
+
     window.scrollTo(0, 0)
   }, []);
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {/* {!cookies.get("notification") ? Notification : ""} */}
+        {!cookies.get("notification") ? Notification : ""}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        {/* {!cookies.get("notification") ? MobileNotification : ""} */}
+        {!cookies.get("notification") ? MobileNotification : ""}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>
@@ -98,7 +98,7 @@ function App() {
           </Route>
           <Route path="/tutors/:id" children={<OurTutor />} />
           <Route path="/tutors">
-            <Findtutor />
+            <Findtutor notification={notification}/>
           </Route>
 
           <Route path="/becometutor">
@@ -111,15 +111,12 @@ function App() {
           <Route path="/contact">
             <ContactPage notification={notification} />
           </Route>
-          <Route path="/pricingfilters">
-            <PricingFilters />
-          </Route>
           <Route path="/ramadan">
-            <RamazanLandingPage/>
+            <RamazanLandingPage />
           </Route>
           <Route path="/">
-            {/* <HomePage notification={notification} /> */}
-            <RamazanLandingPage />
+            <HomePage notification={notification} />
+            {/* <RamazanLandingPage /> */}
           </Route>
         </Switch>
 

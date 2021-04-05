@@ -7,8 +7,15 @@ import baseUrl from '../../../../baseUrl/baseUrl';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
 import { TutorsContext } from "../../../../Provider";
-
+import Swal from 'sweetalert2'
 function CardBody(props) {
+    const opensweetalertdanger = (alerttext) => {
+        Swal.fire({
+            title: 'Find Tutor',
+            text: alerttext,
+            type: 'warning',
+        })
+    }
     const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects, tutortype } = useContext(TutorsContext)
     const [filter, showfilters] = useState(false);
     const animatedComponents = makeAnimated();
@@ -16,7 +23,7 @@ function CardBody(props) {
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", teaching_mode: "", tutor_type: tutortype ? tutortype : ""  });
+    const [filters, fillFilters] = useState({ teacher_name: null, budget: 0, subjects: [], grade: null, teaching_mode: null, tutor_type: tutortype ? tutortype : null });
     const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
@@ -34,22 +41,26 @@ function CardBody(props) {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Filters Values: "+ JSON.stringify(filters))
-        startLoading();
-        await axios({
-            method: 'get',
-            url: filter_url,
-            params: filters
-        })
-            .then(function (response) {
-                const item = response.data.data;
-                setresults(item);
-                props.scrolltotutors();
+        if (!filters.teacher_name && filters.subjects.length == 0 && !filters.grade && !filters.teaching_mode && !filters.tutor_type) {
+            opensweetalertdanger("Please fill any one of the fields!")
+        }
+        else {
+            startLoading();
+            await axios({
+                method: 'get',
+                url: filter_url,
+                params: filters
             })
-            .catch(function (error) {
-                console.log("Error's Response: " + error);
-                stopLoading();
-            });
+                .then(function (response) {
+                    const item = response.data.data;
+                    setresults(item);
+                    props.scrolltotutors();
+                })
+                .catch(function (error) {
+                    console.log("Error's Response: " + error);
+                    stopLoading();
+                });
+        }
     }
 
     const onChangeSubject = (data) => {
@@ -58,16 +69,16 @@ function CardBody(props) {
             arr.push(data.value);
         })
         if (arr.length == 1) {
-            if (arr[0] === "English Language"  || arr[0] === "Mathematics"){
+            if (arr[0] === "English Language" || arr[0] === "Mathematics") {
                 setmorefilters(false);
             }
         }
         else if (arr.length == 2) {
-            if ((arr[0] === "English Language"  && arr[1] === "Mathematics") || (arr[1] === "English Language"  && arr[0] === "Mathematics")){
+            if ((arr[0] === "English Language" && arr[1] === "Mathematics") || (arr[1] === "English Language" && arr[0] === "Mathematics")) {
                 setmorefilters(false);
             }
         }
-        else{
+        else {
             setmorefilters(true);
         }
         fillFilters({

@@ -4,7 +4,7 @@ const initialState = {
     loading: true,
     fetched_grades: [],
     subjects_list: [],
-    parent_country: "",
+    parent_country: null,
     parent_city: "",
     lead_id: 0,
     opted_package: 0,
