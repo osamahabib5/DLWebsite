@@ -6,7 +6,7 @@
     height: 56px;
     position: fixed;
     flex: 1;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .toolbar__navigation {

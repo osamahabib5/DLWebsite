@@ -4,7 +4,6 @@ import PickTime from './PickTime'
 import axios from 'axios';
 import baseUrl from '../../../baseUrl/baseUrl';
 import { TutorsContext } from '../../../Provider';
-import { ClipLoader } from 'react-spinners';
 function PaymentSection(props) {
     const [DaysList, setDaysList] = useState({ morning: null, afternoon: null, night: null });
     const { loading, startLoading, stopLoading } = useContext(TutorsContext);

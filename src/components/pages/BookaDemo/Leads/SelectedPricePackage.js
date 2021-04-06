@@ -54,7 +54,7 @@ function SelectedPricePackage(props) {
             {result_type === "pricing" ? <p className="parentlocation">
                 <ChangeLocation />
             </p> : ""}
-            {confirmpricing ? <div>
+            {confirmpricing || !props.isMobile? <div>
                 <GoToTutorsPage showAppointmentPageTutor={props.showAppointmentPageTutor} />
             </div> : ""}
         </div>

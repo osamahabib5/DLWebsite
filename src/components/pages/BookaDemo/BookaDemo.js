@@ -14,6 +14,7 @@ import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
 import Cookies from 'universal-cookie';
+import GoToTutorsPage from './GoToTutorsPage'
 function BookaDemo(props) {
     const scrollToPackage = useRef(null);
     let { id } = useParams();
@@ -182,7 +183,7 @@ function BookaDemo(props) {
             }
         }
     }
-   
+
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
             .then(function (response) {
@@ -262,7 +263,7 @@ function BookaDemo(props) {
         handleBackButton();
     }, [state])
     return (
-        <div className="bookademo" style = {{ marginTop: isMobile && !cookies.get("notification") ? "0rem " :!props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem": "3.4rem" }}>
+        <div className="bookademo" style={{ marginTop: isMobile && !cookies.get("notification") ? "0rem " : !props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem" : "3.4rem" }}>
             <Container>
                 {shownavigation ? <Row>
                     <Col>
@@ -286,7 +287,7 @@ function BookaDemo(props) {
                 </Row> : ""}
                 <Row>
                     <Col>
-                        <div className="bookademoheader" style={{ padding: isMobile ? "2rem" : "" }} ref = {scrollToPackage}>
+                        <div className="bookademoheader" style={{ padding: isMobile ? "2rem" : "" }} ref={scrollToPackage}>
                             <DemoTitle />
                         </div>
                     </Col>
@@ -300,7 +301,7 @@ function BookaDemo(props) {
                 </Row> : ''}
                 {!hidepackages ? <Row>
                     <Col>
-                        <div className="packages" style = {{padding: isMobile ? "0.5rem" : ""}}>
+                        <div className="packages" style={{ padding: isMobile ? "0.5rem" : "" }}>
                             <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
                                 PricingwithLeadId={PricingwithLeadId} isMobile={isMobile}
                                 showfeecalculator={showfeecalculator}
@@ -312,9 +313,9 @@ function BookaDemo(props) {
                     <Col>
                         <div className="leads">
                             <Leads fetchlocation={fetchlocation} hidepackages={hidepackages} setsuccessfullead={setsuccessfullead}
-                                setleadform={setleadform} shownavigation={shownavigation} setnavigation={setnavigation} 
-                                isMobile = {isMobile}
-                                />
+                                setleadform={setleadform} shownavigation={shownavigation} setnavigation={setnavigation}
+                                isMobile={isMobile}
+                            />
                         </div>
                     </Col>
                     <Col>
@@ -322,6 +323,9 @@ function BookaDemo(props) {
                     </Col>
                 </Row> : ''}
                 {successfullead ? <Row>
+                    {isMobile ? <Col>
+                        <GoToTutorsPage showAppointmentPageTutor={props.showAppointmentPageTutor} />
+                    </Col> : ""}
                     <Col>
                         <div className="pricingfilters">
                             <PricingFilters showtutoroptions={showtutoroptions}
@@ -333,12 +337,15 @@ function BookaDemo(props) {
                                 showNavigation={showNavigation}
                                 showAppointmentPageTutor={showAppointmentPageTutor}
                                 scrollToSelectedPackage={scrollToSelectedPackage}
-                                isMobile = {isMobile}
+                                isMobile={isMobile}
                             />
                         </div>
                     </Col>
+
                     {!skippedpricing ? <Col  >
+                        {isMobile ? <p className="swipepackage" style={{ marginTop: "-2rem" }}>Scroll down to customize your package</p> : ""}
                         <SelectedPricePackage showAppointmentPageTutor={showAppointmentPageTutor} />
+
                     </Col> : ""}
                 </Row> : ""}
                 {showappointmentpage ? <Row>

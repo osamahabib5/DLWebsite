@@ -2,10 +2,10 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 import './Slider.css'
-function Slider() {
+function Slider(props) {
     return (
         <div className="testimonialslider">
-            <Carousel>
+            <Carousel style = {{height: props.isMobile ? "470px" : ""}}>
                 <Carousel.Item interval={3000}>
                     <Carousel.Caption>
                         <h3>TESTIMONIALS</h3>

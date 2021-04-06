@@ -11,14 +11,14 @@ function PackageDetailsMobile(props) {
         border: "2px solid rgb(252, 207, 203)",
         boxSizing: "border-box",
         borderRadius: "7px 7px 0px 0px",
-        height: "500px"
+        height: "530px"
     }
     const secondpackage = {
         backgroundColor: "rgb(248, 250, 255)",
         border: "2px solid rgb(94, 105, 129)",
         boxSizing: "border-box",
         borderRadius: "7px 7px 0px 0px",
-        height: "500px"
+        height: "530px"
     }
     const fetchPricing = async () => {
         try {
@@ -68,7 +68,7 @@ function PackageDetailsMobile(props) {
     }
     return (
         <div className="pricingpackagemobile" style={{ padding: "1rem" }}>
-            <Carousel style = {{height: "450px"}}>
+            <Carousel>
                 {parent_country === "Pakistan" ? Available_Packages.slice(0, 2).map((data, index) => (
                     <Carousel.Item key={index}>
                         <Carousel.Caption style={setPackagestyle(index)} onClick={() => {
@@ -80,14 +80,16 @@ function PackageDetailsMobile(props) {
                                     <p className="startingat">starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
-                                    <p className="packagerate" style={{ whiteSpace: "nowrap" }}>Rs {data.price}</p>
+                                    <p className="packagerate" style={{ whiteSpace: "nowrap" }}>Rs {index === 1 ? Math.round(parseInt(data.price) / 3) : data.price}</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
-
-                            <p className="packagemobiletagline">{data.heading}</p>
+                            {index === 1 ? <ListGroup.Item>
+                                <p> (Rs. {data.price} for 3 months)</p>
+                            </ListGroup.Item> : ""}
+                            <p className="packagemobiletagline" style={{ marginTop: index === 1 ?"-1rem" : "" }}>{data.heading}</p>
                             <ListGroup>
                                 {data.description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>
@@ -107,16 +109,19 @@ function PackageDetailsMobile(props) {
                                     <p className="startingat" style={{ textAlign: "center" }}>starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
-                                    <p className="packagerate" style={{ whiteSpace: "nowrap" }}>Rs {data.price}</p>
+                                    <p className="packagerate" style={{ whiteSpace: "nowrap" }}>Rs {index === 1 ? Math.round(parseInt(data.price) / 3) : data.price}</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
-                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: "-0.5rem", justifyContent : "center" }}>
-                                <p style = {{textAlign: "center"}}> (USD ${Math.round(parseInt(data.price)/3 * USDtoPKR)} /month)</p>
+                            {index === 1 ? <ListGroup.Item>
+                                <p> (Rs. {data.price} for 3 months)</p>
                             </ListGroup.Item> : ""}
-                            <p className="packagemobiletagline" style = {{marginTop: "-1rem"}}>{data.heading}</p>
+                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: index === 1 ? "-2.5rem" :"-0.5rem", justifyContent: "center" }}>
+                                <p style={{ textAlign: "center" }}> (USD ${Math.round(parseInt(data.price) / 3 * USDtoPKR)} /month)</p>
+                            </ListGroup.Item> : ""}
+                            <p className="packagemobiletagline" style={{ marginTop: "-1rem" }}>{data.heading}</p>
                             <ListGroup>
                                 {data.description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>

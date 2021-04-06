@@ -28,7 +28,6 @@
 
 .packages .pricingpackagemobile .carousel-indicators {
     position: absolute;
-    bottom: -3rem;
 }
 
 .packages .pricingpackagemobile .carousel-indicators li {
@@ -55,7 +54,7 @@
     text-align: center;
 }
 
-.bookademo .packages .flex-column .swipepackage {
+.swipepackage {
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
