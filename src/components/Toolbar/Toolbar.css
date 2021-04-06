@@ -6,7 +6,7 @@
     height: 56px;
     position: fixed;
     flex: 1;
-    z-index: 1001;
+    z-index: 1002;
 }
 
 .toolbar__navigation {
@@ -14,6 +14,7 @@
     align-items: center;
     height: 100%;
     padding: 0 1rem;
+    /* z-index: 1002; */
 }
 
 .toolbar__logo a {
@@ -59,6 +60,15 @@
     }
     .spacer {
         flex: 0;
+    }
+    .sidedrawer .navbarsocialmediaicons{
+        margin-top: -2rem;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-inline-start: 0.5rem;
+        margin-bottom: -1rem;
     }
 }
 
