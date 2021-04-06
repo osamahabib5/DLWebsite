@@ -64,7 +64,7 @@ function PackageDetails(props) {
                     <div className="d-flex justify-content-center" >
                         <ListGroup variant="flush" >
                             <ListGroup.Item key={Available_Packages.id}>{Available_Packages[0].title}</ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -93,7 +93,7 @@ function PackageDetails(props) {
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
                             <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].title}</ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -106,7 +106,7 @@ function PackageDetails(props) {
                                     </div>
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
                                 <p> (Rs. {Available_Packages[1].price} for 3 months)</p>
                             </ListGroup.Item>
                             <ListGroup.Item style={{ marginTop: "-2rem" }} key={Available_Packages.id}>{Available_Packages[1].heading}</ListGroup.Item>
@@ -126,8 +126,8 @@ function PackageDetails(props) {
                     <Card.Header style={{ background: Available_Packages[2].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{Available_Packages[2].title}</ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item  key={Available_Packages.id} >{Available_Packages[2].title}</ListGroup.Item>
+                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>

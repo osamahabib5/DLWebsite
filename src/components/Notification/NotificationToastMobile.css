@@ -11,6 +11,7 @@
     color: white;
     margin-top: 56px;
     position: sticky;
+    z-index: 1001;
 }
 
 .notification-mobile a {

@@ -22,7 +22,7 @@ function AppointmentBooking(props) {
             </div>
             <Row >
                 <Col>
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center" style = {{marginBottom: "3rem"}}>
                         <button className = "btn button-cta button-blue" onClick = {props.showScheduleDemo}>Schedule a Demo</button>
                     </div>
                 </Col>

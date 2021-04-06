@@ -7,8 +7,9 @@ import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
     const { opted_package, fee_amount, confirmpricing, result_type, parent_country, setOptedPackage } = useContext(TutorsContext);
+    const cookies = new Cookies();
     useEffect(() => {
-        if (result_type === "pricing" && !new Cookies().get("leadid")) {
+        if (result_type === "pricing" && !cookies.get("leadid")) {
             if (parent_country === "Pakistan") {
                 setOptedPackage(1);
             } else {
@@ -54,7 +55,7 @@ function SelectedPricePackage(props) {
             {result_type === "pricing" ? <p className="parentlocation">
                 <ChangeLocation />
             </p> : ""}
-            {confirmpricing || !props.isMobile? <div>
+            {confirmpricing && !props.showappointmentpage? <div>
                 <GoToTutorsPage showAppointmentPageTutor={props.showAppointmentPageTutor} />
             </div> : ""}
         </div>

@@ -162,7 +162,7 @@ function BookaDemo(props) {
                 if (cookies.get('leadid')) {
                     if (fee_amount == 0) {
                         // showLeadsForm();
-                        skipPricing(true);
+                        // skipPricing(true);
                         showfeecalculator();
                         setnavigation(true);
                         setpackages(true);
@@ -344,7 +344,7 @@ function BookaDemo(props) {
 
                     {!skippedpricing ? <Col  >
                         {isMobile ? <p className="swipepackage" style={{ marginTop: "-2rem" }}>Scroll down to customize your package</p> : ""}
-                        <SelectedPricePackage showAppointmentPageTutor={showAppointmentPageTutor} />
+                        <SelectedPricePackage showappointmentpage = {showappointmentpage} showAppointmentPageTutor={showAppointmentPageTutor} />
 
                     </Col> : ""}
                 </Row> : ""}

@@ -13,7 +13,7 @@ import ReactPixel from 'react-facebook-pixel';
 import TutorImage from './BecomeTutorImage.jpg'
 import OurApproachDetails from './OurApproachDetails';
 import Cookies from 'universal-cookie';
-import testimonial1 from './osama.jpg';
+import testimonial1 from './TeacherWebImage.jpg';
 import { Col, Container, Row, Image } from 'react-bootstrap';
 function HomePage(props) {
     const cookies = new Cookies();
@@ -79,13 +79,13 @@ function HomePage(props) {
                 />
             </div>
             <div className="Image-Slider">
-                <Container fluid>
+                <Container fluid = {isMobile ? false : true} >
                     <Row>
                         <Col style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <Slider isMobile={isMobile} />
                         </Col>
                         <Col>
-                            <Image src={testimonial1} style={{ height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%" }} fluid />
+                            <Image src={testimonial1} style={{marginTop: isMobile ? "-1rem" : "", height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%" }} fluid />
                         </Col>
                     </Row>
                 </Container>
