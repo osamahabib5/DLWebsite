@@ -1,4 +1,4 @@
- .carousel-caption {
+ .testimonialslider .carousel-caption {
     text-align: center;
     color: black;
     position: relative;
@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.initials {
+.testimonialslider  .initials {
     font-family: Avenir;
     font-style: normal;
     font-weight: 800;
@@ -27,7 +27,7 @@
     color: #000000;
 }
 
-.testimonial {
+.testimonialslider .testimonial {
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
@@ -74,11 +74,12 @@
 }
 
 @media only screen and (max-width: 769px) {
-     .carousel-caption {
+    .carousel-caption {
         position: unset;
         background: #00ABBD;
         text-align: left;
         padding: 4rem;
+        height: 450px;
     }
      .carousel-indicators {
         justify-content: center;
@@ -118,7 +119,7 @@
      .carousel {
         background: #EDF0F5;
          margin-top: 3rem;
-        height: 380px;
+        /* height: 550px; */
     }
 }
 

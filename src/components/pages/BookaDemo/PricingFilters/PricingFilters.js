@@ -130,10 +130,10 @@ function PricingFilters(props) {
         handleSubmit();
     }, [subscription, class_type, tutor_type,hours_per_week])
     return (
-        <Container>
+        <Container style = {{padding: props.isMobile ? "1rem" : ""}}>
             <Row>
                 <Col>
-                    <p className="filteroptionsheading" style = {{textAlign : props.isMobile ? "center" : ""}}>Build Your Package</p>
+                    <p className="filteroptionsheading">Build Your Package</p>
                 </Col>
             </Row>
             <Row>
@@ -190,7 +190,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput mobile = {true} min={2} defaultValue={3} max={20} size={10} className="numericinput" onChange={(e) => {
+                    <NumericInput mobile size = {10} min={2} defaultValue={3} max={20} size={30} className="numericinput" onChange={(e) => {
                         setadvancedfilters({
                             ...advancedfilter,
                             hours_per_week: parseInt(e)

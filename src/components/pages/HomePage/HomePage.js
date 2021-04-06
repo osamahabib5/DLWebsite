@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import landingimage from './coverphoto2.jpg'
-import mobileimage from './phone2.jpg'
+import HomePageMobileimage from './phone1.jpg'
 import './HomePage.css'
 import Videocontent from '../../videocontent/videocontent';
 import OurApproach from '../../OurApproach/OurApproach';
@@ -35,19 +35,8 @@ function HomePage(props) {
             setclassname(false);
         }
     }
-    const fetchPricing = async () => {
-        await fetch('https://free.currconv.com/api/v7/convert?apiKey=8555114407d4fcd7f823&q=USD_PKR')
-            .then(function (response) {
-                return response.json()
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            }).then(data => {
-                console.log("Pricing: " + JSON.stringify(data.results.USD_PKR.val));
-            })
-    }
     useEffect(() => {
-        fetchPricing();
+        // fetchPricing();
         mobileview();
         window.addEventListener("resize", mobileview);
     });
@@ -61,7 +50,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={isMobile ? mobileimage : landingimage} className="card-img" alt="..." style={{ marginTop: props.notification || cookies.get("notification") ? "3.4rem" : "0rem" }} />
+                    <img src={isMobile ? HomePageMobileimage : landingimage} className="card-img" alt="..." style={{ marginTop: isMobile && !cookies.get("notification") ? "0rem " :!props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem": "3.4rem" }} />
                     {/* <ImageContent /> */}
                 </div>
             </div>

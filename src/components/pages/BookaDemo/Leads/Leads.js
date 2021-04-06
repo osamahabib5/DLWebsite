@@ -73,9 +73,9 @@ function Leads(props) {
     return (
         <div>
             <Container>
-                <Row style={{ marginTop: "-2rem" }}>
+                <Row >
                     <Col>
-                        <p className="contact_heading">Just take a minute to give us your details before you pop over to building your own customised package.</p>
+                        <p className="contact_heading" style = {{marginTop: props.isMobile ? "3rem" : ""}}>Just take a minute to give us your details before you pop over to building your own customised package.</p>
                     </Col>
                 </Row>
                 <Row style={{ textAlign: "center", marginTop: "2rem" }}>

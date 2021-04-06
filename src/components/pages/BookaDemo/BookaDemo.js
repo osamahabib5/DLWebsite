@@ -14,7 +14,7 @@ import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
 import Cookies from 'universal-cookie';
-function BookaDemo() {
+function BookaDemo(props) {
     const scrollToPackage = useRef(null);
     let { id } = useParams();
     let history = useHistory();
@@ -262,7 +262,7 @@ function BookaDemo() {
         handleBackButton();
     }, [state])
     return (
-        <div className="bookademo">
+        <div className="bookademo" style = {{ marginTop: isMobile && !cookies.get("notification") ? "0rem " :!props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem": "3.4rem" }}>
             <Container>
                 {shownavigation ? <Row>
                     <Col>
@@ -300,7 +300,7 @@ function BookaDemo() {
                 </Row> : ''}
                 {!hidepackages ? <Row>
                     <Col>
-                        <div className="packages">
+                        <div className="packages" style = {{padding: isMobile ? "0.5rem" : ""}}>
                             <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
                                 PricingwithLeadId={PricingwithLeadId} isMobile={isMobile}
                                 showfeecalculator={showfeecalculator}
@@ -312,7 +312,9 @@ function BookaDemo() {
                     <Col>
                         <div className="leads">
                             <Leads fetchlocation={fetchlocation} hidepackages={hidepackages} setsuccessfullead={setsuccessfullead}
-                                setleadform={setleadform} shownavigation={shownavigation} setnavigation={setnavigation} />
+                                setleadform={setleadform} shownavigation={shownavigation} setnavigation={setnavigation} 
+                                isMobile = {isMobile}
+                                />
                         </div>
                     </Col>
                     <Col>

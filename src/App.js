@@ -94,7 +94,7 @@ function App() {
           </Route>
           {/* <Route path="/pricing/:id" children={<BookaDemo />} /> */}
           <Route path="/pricing">
-            <BookaDemo />
+            <BookaDemo notification={notification}/>
           </Route>
           <Route path="/tutors/:id" children={<OurTutor />} />
           <Route path="/tutors">

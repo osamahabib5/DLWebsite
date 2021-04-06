@@ -26,6 +26,11 @@
     background: none;
 }
 
+.packages .pricingpackagemobile .carousel-indicators {
+    position: absolute;
+    bottom: -3rem;
+}
+
 .packages .pricingpackagemobile .carousel-indicators li {
     background-color: grey;
 }
@@ -59,6 +64,7 @@
     color: #32B9BB;
     text-align: center;
 }
+
 .bookademo .packages .packagedetails {
     margin-top: 3rem;
 }
@@ -170,9 +176,9 @@
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    font-size: 19px!important;
+    font-size: 20px!important;
     color: black;
-    position: relative;
+    /* position: relative; */
 }
 
 .pricingfilters, .show_tutors .filteroptionsheading {
@@ -215,7 +221,7 @@
     }
     .bookademo .selectedpackage .card {
         width: 360px;
-        height: 400px;
+        height: 430px;
         background: #FFFFFF;
         border-radius: 7px 7px 0px 0px;
     }
@@ -244,7 +250,7 @@
         flex-direction: column;
         text-align: center;
     }
-    .pricingfilters .numericinput, b {
+    .pricingfilters .react-numeric-input .numericinput, b {
         top: 1rem!important;
     }
     .pricingfilters, .show_tutors .filteroptionsheading {
@@ -279,7 +285,7 @@
     }
     .bookademo .selectedpackage .card {
         width: 245px;
-        height: 350px;
+        height: 400px;
         background: #FFFFFF;
         border-radius: 7px 7px 0px 0px;
     }
@@ -333,10 +339,6 @@
     margin-top: 1rem;
 }
 
-.pricingfilters {
-    margin-top: 2rem;
-}
-
 .pricingfilters .form-group .form-control, input {
     width: auto;
     height: auto;
@@ -374,7 +376,9 @@
         background: none;
         cursor: auto;
     }
-    
+    .pricingfilters {
+        margin-top: 2rem;
+    }
     /* .tutorslist .btn btn-outline-secondary, .tutorslist btn-outline-secondary:hover{
         background: none;
     } */
@@ -590,6 +594,7 @@
     /* Text Color / Color #1 */
     color: #000000;
 }
-.packages{
+
+.packages {
     margin-bottom: 3rem;
 }

@@ -1,19 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
-import testimonial1 from '../logo/Images/testimonials.jpg'
-import testimonial2 from '../logo/Images/testimonial2.jpg'
-import testimonial3 from '../logo/Images/testimonial3.jpg'
-import testimonialphone1 from "../logo/Images/testimonialphone1.jpg";
-import testimonialphone2 from "../logo/Images/testimonialphone2.jpg";
-import testimonialphone3 from "../logo/Images/testimonialphone3.jpg";
 import './Slider.css'
-function Slider(props) {
+function Slider() {
     return (
-        <div className = "testimonialslider">
+        <div className="testimonialslider">
             <Carousel>
                 <Carousel.Item interval={3000}>
-
                     <Carousel.Caption>
                         <h3>TESTIMONIALS</h3>
                         <p className="testimonial">"We didn’t want a teacher who simply educates our child. We wanted someone who cares for our child. By helping our daughter in developing her communication skills and feel confident, not only in the classroom but outside too. You have been exactly what we were looking for. We asked Hoorain about how the school is going this term and she said, she loves you and her new friends. Thank you!"</p>

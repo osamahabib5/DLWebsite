@@ -18,16 +18,22 @@ function PackageDetails(props) {
     }
 
     const fetchPricing = async () => {
-        await fetch('https://free.currconv.com/api/v7/convert?apiKey=8555114407d4fcd7f823&q=PKR_USD')
-            .then(function (response) {
-                return response.json()
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            }).then(data => {
-                console.log("Pricing: " + JSON.stringify(data.results.PKR_USD.val));
-                setDollarToPKR(JSON.stringify(data.results.PKR_USD.val))
-            })
+        try {
+            await fetch('https://free.currconv.com/api/v7/convert?apiKey=8555114407d4fcd7f823&q=PKR_USD')
+                .then(function (response) {
+                    return response.json()
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                }).then(data => {
+                    console.log("Pricing: " + JSON.stringify(data.results.PKR_USD.val));
+                    setDollarToPKR(JSON.stringify(data.results.PKR_USD.val))
+                })
+        }
+        catch (error) {
+            console.log("Error while converting from USD to PKR! " + error)
+            setDollarToPKR(0)
+        }
     }
     const setSelectedPackage = (index) => {
         setResultType("teachers")
@@ -58,7 +64,7 @@ function PackageDetails(props) {
                     <div className="d-flex justify-content-center" >
                         <ListGroup variant="flush" >
                             <ListGroup.Item key={Available_Packages.id}>{Available_Packages[0].title}</ListGroup.Item>
-                            <ListGroup.Item style = {{marginTop: "-1rem"}}>
+                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -87,7 +93,7 @@ function PackageDetails(props) {
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
                             <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].title}</ListGroup.Item>
-                            <ListGroup.Item style = {{marginTop: "-1rem"}}>
+                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -121,7 +127,7 @@ function PackageDetails(props) {
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
                             <ListGroup.Item>{Available_Packages[2].title}</ListGroup.Item>
-                            <ListGroup.Item style = {{marginTop: "-1rem"}}>
+                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -135,9 +141,9 @@ function PackageDetails(props) {
 
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
-                                <p> ($ {Math.round(parseInt(Available_Packages[2].price) * USDtoPKR)} /month)</p>
-                            </ListGroup.Item>
+                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                                <p> (USD ${Math.round(parseInt(Available_Packages[2].price) * USDtoPKR)} /month)</p>
+                            </ListGroup.Item> : ""}
                             <ListGroup.Item style={{ marginTop: "-2rem" }}>{Available_Packages[2].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[2].description.map((val, index) => (
@@ -153,7 +159,7 @@ function PackageDetails(props) {
                     <Card.Header style={{ background: Available_Packages[3].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{Available_Packages[3].title}</ListGroup.Item><ListGroup.Item style = {{marginTop: "-1rem"}}>
+                            <ListGroup.Item>{Available_Packages[3].title}</ListGroup.Item><ListGroup.Item style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -166,12 +172,12 @@ function PackageDetails(props) {
                                     </div>
                                 </div>
                             </ListGroup.Item>
-                             <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
                                 <p> (Rs. {Available_Packages[3].price} for 3 months)</p>
                             </ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-2rem" }}>
-                            <p> ($ {Math.round(parseInt(Available_Packages[3].price)/3 * USDtoPKR)} /month)</p>
-                            </ListGroup.Item>
+                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: "-2rem" }}>
+                                <p> (USD $ {Math.round(parseInt(Available_Packages[2].price) * USDtoPKR)} /month)</p>
+                            </ListGroup.Item> : ""}
                             <ListGroup.Item style={{ marginTop: "-2rem" }}>{Available_Packages[3].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[3].description.map((val, index) => (
