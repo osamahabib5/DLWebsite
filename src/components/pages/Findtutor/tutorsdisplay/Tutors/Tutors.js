@@ -186,12 +186,12 @@ function Tutors(props) {
                                                         {item.days ? <div className="d-flex flex-row bd-highlight mb-3">
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faCalendar} /></div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" >
+                                                                <p className="students" style = {{fontSize: "13px"}}>
                                                                     Days:
                                                                 </p>
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students">
+                                                                <p className="students" style = {{fontSize: "13px", color: "#FF4646"}}>
                                                                     {camelize(item.days.toString())}
                                                                 </p>
                                                             </div>
@@ -234,7 +234,7 @@ function Tutors(props) {
                                                                 </p>
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" style={{ fontSize: props.ramadanteachers ? "15px" : "", whiteSpace: isMobile ? "normal" : "nowrap" }}>
+                                                                <p className="students" style={{ color: "#FF4646", fontSize: props.ramadanteachers ? "13px" : "", whiteSpace: isMobile ? "normal" : "nowrap" }}>
                                                                     {item.timings} PKT
                                                                 </p>
                                                             </div>

@@ -7,7 +7,7 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie';
 import PaymentDetailsPopup from './PaymentDetailsPopup';
-import { initiateCheckout } from 'foree-checkout';
+import { initiateCheckout,getForeeCheckoutURL } from 'foree-checkout';
 import { ClipLoader } from 'react-spinners';
 function PaymentForm() {
     const [open, setOpen] = useState(false);
@@ -34,7 +34,7 @@ function PaymentForm() {
         //     console.log("Foree API Error: " + error)
         // })
         // opensweetalertdanger("Your Payment has been made successfully!")
-        console.log("Object: "+ obj)
+        console.log("Object: " + obj)
     }
     const setUrlForPayment = baseUrl + '/api/lead/create';
     const PaymentUrl = baseUrl + '/api/ramzan/register';
@@ -125,6 +125,8 @@ function PaymentForm() {
                 teacher_id: PaymentRegistrationForm.teacher_id,
             }).then(response => {
                 setLoading(false);
+                // setStudentId(response.data.data.student_id)
+                cookies.set('studentid', JSON.stringify(response.data.data.student_id), { path: '/' });
                 setPaymentRegistrationForm({
                     name: "",
                     email: "",
@@ -137,20 +139,31 @@ function PaymentForm() {
                     'amount': '6500.00',
                     'is_generated': '1',
                     'reference_number': 'SID' + response.data.data.student_id, //student id
-                    'callback': callbackPayment("https://checkout-sandbox.riteidentity.com/checkout.js"),
+                    // 'callback': callbackPayment,
                     'customer_email_address': PaymentRegistrationForm.email,
                     'customer_phone_number': PaymentRegistrationForm.phone,
                     'consumer_name': PaymentRegistrationForm.name,
+                    'callback_url' : "http://localhost:3000/ramadan"
                 }
-                initiateCheckout(urlParamObj, false);
+                initiateCheckout(urlParamObj, true)
             }).catch(error => {
-                if (error.response.status == 400) {
-                    opensweetalertdanger("You have already booked a demo with this teacher!")
-                }
+                // if (error.response.status == 400) {
+                //     opensweetalertdanger("You have already booked a demo with this teacher!")
+                // }
+                console.log("F Error: " + error)
             })
         }
     }
+
+
+
     useEffect(() => {
+        window.addEventListener("window:message", (e) => {
+            let URL = getForeeCheckoutURL();
+            if (e.origin !== URL) return;
+            e.onmessage()
+            console.log(e)
+        });
         // const script = document.createElement('script');
         // script.src = "https://checkout-sandbox.riteidentity.com/checkout.js";
         // script.async = true;
@@ -160,6 +173,7 @@ function PaymentForm() {
         // }
 
         // CheckAPI();
+        // eventListner(())
     }, []);
     return (
         <div>
