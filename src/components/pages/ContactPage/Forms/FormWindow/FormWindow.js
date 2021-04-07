@@ -9,7 +9,7 @@ import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 function FormWindow() {
     const [nametext, setnametext] = useState("Your Name");
     const [descriptiontext, setdescriptiontext] = useState("What would you like to be contacted about?")
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [Submitted, setIsSubmitted] = useState(false);
     const [form, setform] = useState({ name: '', email: '', phone: '', message: '' })
     const contacturl = baseUrl + "/api/contact";
     const handleChange = (e) => {
@@ -22,7 +22,7 @@ function FormWindow() {
         Swal.fire({
             title: 'Contact Page',
             text: alerttext,
-            type: 'success',
+            type: Submitted ? "success" : 'warning',
         })
     }
     const validateemail = (inputtxt) => {
@@ -45,6 +45,7 @@ function FormWindow() {
         }
         else {
             await axios.post(contacturl, form).then(response => {
+                setIsSubmitted(true);
                 opensweetalertdanger("Your query has been noted!")
                 setform({
                     name: "",

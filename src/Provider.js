@@ -31,7 +31,8 @@ const initialState = {
     showTeachers: false,
     BookingDetails: null,
     scrollToForm: false,
-    USDtoPKR: 0
+    USDtoPKR: 0,
+    changeCountry: false
 }
 
 const actions = {
@@ -68,7 +69,9 @@ const actions = {
     SHOWTEACHERS: 'SHOWTEACHERS',
     SETBOOKINGDETAILS: 'SETBOOKINGDETAILS',
     SETSCROLLTOFORM: 'SETSCROLLTOFORM',
-    SETDOLLARVALUE: 'SETDOLLARVALUE'
+    SETDOLLARVALUE: 'SETDOLLARVALUE',
+    CHANGECOUNTRY: 'CHANGECOUNTRY',
+    DONTCHANGECOUNTRY: 'DONTCHANGECOUNTRY'
 }
 
 function reducer(state, action) {
@@ -244,6 +247,16 @@ function reducer(state, action) {
                 ...state,
                 USDtoPKR: action.value
             }
+        case actions.CHANGECOUNTRY:
+            return {
+                ...state,
+                changeCountry: true
+            }
+        case actions.DONTCHANGECOUNTRY:
+            return {
+                ...state,
+                changeCountry: false
+            }
         default:
             return state;
     }
@@ -254,6 +267,7 @@ function Provider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState)
     const value = {
         results: state.results,
+        changeCountry: state.changeCountry,
         loading: state.loading,
         subjects_list: state.subjects_list,
         parent_country: state.parent_country,
@@ -309,7 +323,6 @@ function Provider({ children }) {
         setDemoDay: (value) => { dispatch({ type: actions.SETDEMODAY, value }) },
         setTutorType: (value) => { dispatch({ type: actions.SETTUTORTYPE, value }) },
         skipPricing: (value) => { dispatch({ type: actions.SKIPPRICING, value }) },
-        // setisMobile: (value) => { dispatch({ type: actions.SETISMOBILE, value }) },
         saveCourseId: (value) => { dispatch({ type: actions.SAVECOURSEID, value }) },
         setTimes: (value) => { dispatch({ type: actions.SETTIME, value }) },
         setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },
@@ -319,6 +332,8 @@ function Provider({ children }) {
         setBookingDetails: (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
         scrollTotheForm: () => { dispatch({ type: actions.SETSCROLLTOFORM }) },
         setDollarToPKR: (value) => { dispatch({ type: actions.SETDOLLARVALUE, value }) },
+        ChangeCountry: () => { dispatch({ type: actions.CHANGECOUNTRY }) },
+        dontChangeCountry : () => { dispatch({ type: actions.DONTCHANGECOUNTRY }) },
     }
     return (
         <TutorsContext.Provider value={value}>

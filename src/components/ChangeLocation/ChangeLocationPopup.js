@@ -6,7 +6,7 @@ import { TutorsContext } from '../../Provider';
 import countries_list from "./Countries_List";
 function ChangeLocationPopup(props) {
     const getcountries = baseUrl + '/api/getCountryList';
-    const {setParentLocation, parent_country} = useContext(TutorsContext)
+    const {setParentLocation, parent_country,ChangeCountry, changeCountry,dontChangeCountry} = useContext(TutorsContext)
     const [countrieslist, getcountrylist] = useState([]);
     useEffect(async () => {
         await (axios.get(getcountries)).then(function (response) {
@@ -21,7 +21,15 @@ function ChangeLocationPopup(props) {
             <Form.Row>
                 <Col>
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue={!parent_country ? "Pakistan" : parent_country} onChange={(e) =>setParentLocation(e.target.value)}>
+                        <Form.Control as="select" defaultValue={!parent_country ? "Pakistan" : parent_country} onChange={(e) =>{
+                            setParentLocation(e.target.value)
+                            if (changeCountry){
+                                dontChangeCountry();
+                            }else{
+                                ChangeCountry();
+                            }
+                            console.log("ChangeCountry: "+ changeCountry)
+                        }}>
                             <option>Select Country</option>
                             {countries_list.map((val, index) => (
                                 <option key={index}>

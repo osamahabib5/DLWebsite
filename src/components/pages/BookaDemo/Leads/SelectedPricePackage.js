@@ -9,8 +9,7 @@ function SelectedPricePackage(props) {
     const { opted_package, fee_amount, confirmpricing, result_type, parent_country, setOptedPackage, USDtoPKR } = useContext(TutorsContext);
     const cookies = new Cookies();
     useEffect(() => {
-        if (result_type === "pricing" && !cookies.get("leadid")) {
-            console.log("This is our tutor page!")
+        if (result_type === "pricing") {
             if (parent_country === "Pakistan") {
                 setOptedPackage(1);
             } else {
@@ -31,7 +30,7 @@ function SelectedPricePackage(props) {
                                     <p className="startingat">starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
-                                    <p className="packagerate">Rs { fee_amount && (opted_package === 1 || opted_package === 3) ? Math.round(parseInt(fee_amount) / 3) : fee_amount ? fee_amount : !fee_amount && (opted_package === 1 || opted_package === 3) ? Math.round(parseInt(Available_Packages[opted_package].price) / 3) : Available_Packages[opted_package].price}</p>
+                                    <p className="packagerate">Rs { fee_amount > 0 && (opted_package === 1 || opted_package === 3) ? Math.round(parseInt(fee_amount) / 3) : fee_amount > 0 ? fee_amount : fee_amount === 0 && (opted_package === 1 || opted_package === 3) ? Math.round(parseInt(Available_Packages[opted_package].price) / 3) : Available_Packages[opted_package].price}</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
@@ -43,8 +42,8 @@ function SelectedPricePackage(props) {
                         </ListGroup.Item> : ""}
                         {USDtoPKR > 0 && (opted_package === 2 || opted_package === 3)? <ListGroup.Item style={{ marginTop: "-1.5rem", justifyContent: "center" }}>
                             <p style={{ textAlign: "center" }}> (USD ${opted_package === 2 ?
-                            Math.round(parseInt(Available_Packages[opted_package].price) * USDtoPKR) :
-                            Math.round(parseInt(Available_Packages[opted_package].price) / 3 * USDtoPKR)} /month)</p>
+                            Math.round(fee_amount > 0 ? parseInt(fee_amount) * USDtoPKR: parseInt(Available_Packages[opted_package].price) * USDtoPKR) :
+                            Math.round(fee_amount > 0 ? parseInt(fee_amount)/3 * USDtoPKR:parseInt(Available_Packages[opted_package].price) / 3 * USDtoPKR)} /month)</p>
                         </ListGroup.Item> : ""}
                         <ListGroup.Item style={{ marginTop: props.isMobile ? "1rem" : opted_package === 3 || opted_package === 1 ? "-2rem" : "-1rem" }}>{Available_Packages[opted_package].heading}</ListGroup.Item>
                         <div className="package_specification">

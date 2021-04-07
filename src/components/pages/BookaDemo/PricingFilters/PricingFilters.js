@@ -9,15 +9,15 @@ import Cookies from 'universal-cookie';
 import Swal from 'sweetalert2'
 function PricingFilters(props) {
     const cookies = new Cookies();
-    
+
     const { setOptedPackage, opted_package, parent_country, lead_id,
         startLoading, getFilteredTeachersList, calculateFees, result_type,
-        stopLoading, subscription_type, setConfirmPricing, setTutorType, skipPricing } = useContext(TutorsContext)
-    const [advancedfilter, setadvancedfilters] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 3, country: parent_country, lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
+        stopLoading, subscription_type, setConfirmPricing, setTutorType, skipPricing, changeCountry } = useContext(TutorsContext)
+    const [advancedfilter, setadvancedfilters] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 3, country: parent_country ? parent_country : "Pakistan", lead_id: lead_id > 0 ? lead_id : cookies.get("leadid"), result_type: result_type })
     const [skippedoption, setskippedoptions] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 3, country: parent_country, lead_id: lead_id, result_type: result_type });
     const [filledvalues, setfilledvalues] = useState(false);
     const url = baseUrl + '/api/calculateFee';
-    const { class_type, subscription, tutor_type,hours_per_week , country} = advancedfilter;
+    const { class_type, subscription, tutor_type, hours_per_week, country } = advancedfilter;
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: result_type === "teachers" ? "Confirm Pricing!" : "Schedule a Demo",
@@ -57,22 +57,17 @@ function PricingFilters(props) {
         }
     }
     const handleSubmit = async (e) => {
-       
-        console.log("Filters: " + JSON.stringify(advancedfilter))
         if (class_type && subscription && tutor_type && advancedfilter.result_type) {
             if (result_type === "teachers") {
                 setfilledvalues(true);
                 props.scrollToSelectedPackage();
                 startLoading();
+                console.log("Filters: " + JSON.stringify(advancedfilter))
                 await axios.post(url, advancedfilter).then(response => {
                     setTutorType(tutor_type);
                     getFilteredTeachersList(response.data.data.teachers)
                     calculateFees(response.data.data.fee_amount)
                     setConfirmPricing(true);
-                    // setadvancedfilters({
-                    //     ...advancedfilter,
-                    //     subscription : ""
-                    // })
                     stopLoading();
                 }).catch(error => {
                     console.log("Filters Error: " + error)
@@ -82,6 +77,7 @@ function PricingFilters(props) {
                 props.scrollToSelectedPackage();
                 setfilledvalues(true);
                 skipPricing(false);
+                console.log("Filters: " + JSON.stringify(advancedfilter))
                 await axios.post(url, advancedfilter).then(response => {
                     getFilteredTeachersList(response.data.data.teachers)
                     calculateFees(response.data.data.fee_amount)
@@ -121,16 +117,23 @@ function PricingFilters(props) {
                 setOptedPackage(2);
             }
         }
+        // setadvancedfilters({
+        //     ...advancedfilter,
+        //     country: parent_country
+        // })
     }
     useEffect(() => {
-        // changePricingPackage();
-        // if (filledvalues) {
-        //     handleSubmit();
-        // }
+        if (changeCountry || !changeCountry) {
+            setadvancedfilters({
+                ...advancedfilter,
+                country: parent_country
+            })
+        }
+        changePricingPackage();
         handleSubmit();
-    }, [subscription, class_type, tutor_type,hours_per_week, country])
+    }, [subscription, class_type, tutor_type, hours_per_week, country, changeCountry])
     return (
-        <Container style = {{padding: props.isMobile ? "1rem" : ""}}>
+        <Container style={{ padding: props.isMobile ? "1rem" : "" }}>
             <Row>
                 <Col>
                     <p className="filteroptionsheading">Build Your Package</p>
@@ -190,7 +193,7 @@ function PricingFilters(props) {
                     </Col>
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail" style={{ marginLeft: "2.5rem" }}>
-                    <NumericInput mobile size = {10} min={2} defaultValue={3} max={20} size={30} className="numericinput" onChange={(e) => {
+                    <NumericInput mobile size={10} min={2} defaultValue={3} max={20} size={30} className="numericinput" onChange={(e) => {
                         setadvancedfilters({
                             ...advancedfilter,
                             hours_per_week: parseInt(e)
