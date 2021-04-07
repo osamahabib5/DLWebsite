@@ -151,13 +151,13 @@ function PaymentForm() {
                 </Form.Group>
                 <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">
                     <button className="btn button-cta button-red" onClick={handleOnSubmit}>
-                        Talk to Sales Representative    
+                        Submit    
                     </button>
-                    <div style={{ marginLeft: "2rem" }}>
+                    {/* <div style={{ marginLeft: "2rem" }}>
                         <button className="btn button-cta button-red" onClick={getPaymentDetails}>
                             Pay Online
                     </button>
-                    </div>
+                    </div> */}
                 </div>
             </Form>
             <div className="paymentdetails">
