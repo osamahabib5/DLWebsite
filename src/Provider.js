@@ -32,7 +32,8 @@ const initialState = {
     BookingDetails: null,
     scrollToForm: false,
     USDtoPKR: 0,
-    changeCountry: false
+    changeCountry: false,
+    studentid: null
 }
 
 const actions = {
@@ -71,7 +72,8 @@ const actions = {
     SETSCROLLTOFORM: 'SETSCROLLTOFORM',
     SETDOLLARVALUE: 'SETDOLLARVALUE',
     CHANGECOUNTRY: 'CHANGECOUNTRY',
-    DONTCHANGECOUNTRY: 'DONTCHANGECOUNTRY'
+    DONTCHANGECOUNTRY: 'DONTCHANGECOUNTRY',
+    SETSTUDENTID: 'SETSTUDENTID'
 }
 
 function reducer(state, action) {
@@ -257,6 +259,11 @@ function reducer(state, action) {
                 ...state,
                 changeCountry: false
             }
+        case actions.SETSTUDENTID:
+            return {
+                ...state,
+                studentid: action.value
+            }
         default:
             return state;
     }
@@ -298,6 +305,7 @@ function Provider({ children }) {
         BookingDetails: state.BookingDetails,
         showTeachers: state.showTeachers,
         scrollToForm: state.scrollToForm,
+        studentid: state.studentid,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -333,7 +341,8 @@ function Provider({ children }) {
         scrollTotheForm: () => { dispatch({ type: actions.SETSCROLLTOFORM }) },
         setDollarToPKR: (value) => { dispatch({ type: actions.SETDOLLARVALUE, value }) },
         ChangeCountry: () => { dispatch({ type: actions.CHANGECOUNTRY }) },
-        dontChangeCountry : () => { dispatch({ type: actions.DONTCHANGECOUNTRY }) },
+        dontChangeCountry: () => { dispatch({ type: actions.DONTCHANGECOUNTRY }) },
+        setStudentId : (value) => { dispatch({ type: actions.SETSTUDENTID, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

@@ -4,7 +4,6 @@ import { TutorsContext } from '../../../../../Provider';
 import Available_Packages from '../../Available_Packages';
 import { ClipLoader } from 'react-spinners';
 import Cookies from 'universal-cookie';
-import { parse } from '@fortawesome/fontawesome-svg-core';
 function PackageDetails(props) {
     const cookies = new Cookies();
     const { setOptedPackage, parent_country, loading, setResultType, setSubscription, setDollarToPKR, USDtoPKR } = useContext(TutorsContext);
