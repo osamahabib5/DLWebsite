@@ -254,6 +254,7 @@
     }
     .pricingfilters, .show_tutors .filteroptionsheading {
         margin-left: 1rem;
+        margin-top: -4rem;
     }
     .bookademo .leads form {
         margin-top: -2rem;

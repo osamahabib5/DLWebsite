@@ -76,6 +76,12 @@
     .paymentform .PhoneInput {
         width: 106%;
     }
+    .ramazan-page .ramazanprogramdetails .react-video-player{
+        width: 30%;
+        height: auto;
+        display: flex;
+        background: white;
+    }
 }
 
 @media only screen and (min-width: 769px) {

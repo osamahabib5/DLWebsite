@@ -66,7 +66,7 @@ function PackageDetailsMobile(props) {
         }
     }
     return (
-        <div className="pricingpackagemobile" style={{ padding: "1rem" }}>
+        <div className="pricingpackagemobile" style={{ padding: "1rem", marginTop : props.isMobile ? "-2rem" : "" }}>
             <Carousel>
                 {parent_country === "Pakistan" ? Available_Packages.slice(0, 2).map((data, index) => (
                     <Carousel.Item key={data.id}>

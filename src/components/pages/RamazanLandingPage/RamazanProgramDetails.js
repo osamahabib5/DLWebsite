@@ -27,10 +27,10 @@ function RamazanProgramDetails(props) {
                             <Col xs lg="7">
                                 <ReactPlayer
                                     controls
-                                    className = "react-video-player"
-                                    // width="100%"
-                                    // height="auto"
-                                    // style={{ backgroundColor: "white", display: "flex" }}
+                                    // className = "react-video-player"
+                                    width="100%"
+                                    height="auto"
+                                    style={{ backgroundColor: "white", display: "flex" }}
                                     url={data.source}
                                 />
                             </Col>

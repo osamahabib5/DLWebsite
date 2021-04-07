@@ -132,7 +132,7 @@ function PricingFilters(props) {
         <Container style={{ padding: props.isMobile ? "1rem" : "" }}>
             <Row>
                 <Col>
-                    <p className="filteroptionsheading">Build Your Package</p>
+                    <p className="filteroptionsheading" style = {{textAlign: "center"}}>Build Your Package</p>
                 </Col>
             </Row>
             <Row>
