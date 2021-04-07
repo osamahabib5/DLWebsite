@@ -16,7 +16,7 @@ function AppointmentBooking(props) {
                 <div className="p-2 bd-high light">
                     <SelectedTeacher />
                 </div>
-                {!skippedpricing ? <div className="p-2 bd-highlight">
+                {!skippedpricing || props.showappointmentpage ? <div className="p-2 bd-highlight">
                     <SelectedPricePackage />
                 </div> : ""}
             </div>

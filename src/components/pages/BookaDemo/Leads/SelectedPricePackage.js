@@ -8,6 +8,7 @@ import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
     const { opted_package, fee_amount, confirmpricing, result_type, parent_country, setOptedPackage, USDtoPKR } = useContext(TutorsContext);
     const cookies = new Cookies();
+    // const USDtoPKR = parseInt(cookies.get("PKRtoUSD"));
     useEffect(() => {
         if (result_type === "pricing") {
             if (parent_country === "Pakistan") {
@@ -40,7 +41,7 @@ function SelectedPricePackage(props) {
                         {opted_package === 3 || opted_package === 1 ? <ListGroup.Item style={{ marginTop: "-1rem" }}>
                             <p> (Rs.{fee_amount ? fee_amount : Available_Packages[opted_package].price} for 3 months)</p>
                         </ListGroup.Item> : ""}
-                        {USDtoPKR > 0 && (opted_package === 2 || opted_package === 3)? <ListGroup.Item style={{ marginTop: "-1.5rem", justifyContent: "center" }}>
+                        { USDtoPKR > 0 && (opted_package === 2 || opted_package === 3)? <ListGroup.Item style={{ marginTop: "-1.5rem", justifyContent: "center" }}>
                             <p style={{ textAlign: "center" }}> (USD ${opted_package === 2 ?
                             Math.round(fee_amount > 0 ? parseInt(fee_amount) * USDtoPKR: parseInt(Available_Packages[opted_package].price) * USDtoPKR) :
                             Math.round(fee_amount > 0 ? parseInt(fee_amount)/3 * USDtoPKR:parseInt(Available_Packages[opted_package].price) / 3 * USDtoPKR)} /month)</p>
@@ -57,7 +58,7 @@ function SelectedPricePackage(props) {
             {result_type === "pricing" ? <p className="parentlocation">
                 <ChangeLocation />
             </p> : ""}
-            {confirmpricing && !props.showappointmentpage ? <div>
+            { props.showappointmentpage === false ? <div>
                 <GoToTutorsPage showAppointmentPageTutor={props.showAppointmentPageTutor} />
             </div> : ""}
         </div>

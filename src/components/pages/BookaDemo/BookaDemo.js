@@ -354,7 +354,7 @@ function BookaDemo(props) {
                     <Col>
                         <div className="booking-demo-appointment">
                             <AppointmentBooking showScheduleDemo={showScheduleDemo}
-                            />
+                            showappointmentpage = {showappointmentpage} />
                         </div>
                     </Col>
                 </Row> : ""}

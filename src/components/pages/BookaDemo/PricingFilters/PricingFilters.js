@@ -117,10 +117,6 @@ function PricingFilters(props) {
                 setOptedPackage(2);
             }
         }
-        // setadvancedfilters({
-        //     ...advancedfilter,
-        //     country: parent_country
-        // })
     }
     useEffect(() => {
         if (changeCountry || !changeCountry) {

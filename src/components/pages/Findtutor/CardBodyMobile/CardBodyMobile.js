@@ -17,8 +17,9 @@ function CardBodyMobile(props) {
         40000: "40000"
 
     };
+    const [morefilters, setmorefilters] = useState(true);
     const filter_url = baseUrl + '/api/teachers/search'
-    const [filter_parameters, fillfilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "" ,  tutor_type: tutortype ? tutortype : "standard" });
+    const [filter_parameters, fillfilters] = useState({ teacher_name: '', budget: 0, subjects: [], grade: "", tutor_type: tutortype ? tutortype : "standard" });
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Filters: " + JSON.stringify(filter_parameters))
@@ -43,6 +44,23 @@ function CardBodyMobile(props) {
         data.forEach(data => {
             arr.push(data.value)
         })
+        if (arr.length == 1) {
+            if (arr[0] === "English Language" || arr[0] === "Mathematics") {
+                setmorefilters(false);
+            }
+        }
+        else if (arr.length == 2) {
+            if ((arr[0] === "English Language" && arr[1] === "Mathematics") || (arr[1] === "English Language" && arr[0] === "Mathematics")) {
+                setmorefilters(false);
+            }
+        }
+        else {
+            setmorefilters(true);
+        }
+        // fillFilters({
+        //     ...filters,
+        //     subjects: arr
+        // })
         fillfilters({
             ...filter_parameters,
             subjects: arr
@@ -120,9 +138,11 @@ function CardBodyMobile(props) {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <p className="advancedfilters" onClick={() => showadvancedfilters((prevState) => !prevState)}> Advanced Filters</p>
-                    </Col>
+                    {morefilters ? <Col>
+                        <p className="advancedfilters" onClick={() => showadvancedfilters((prevState) => !prevState)}>
+                            Advanced Filters
+                    </p>
+                    </Col> : ""}
                 </Row>
                 {advanced_filters ? <Row>
                     <Col>
@@ -140,7 +160,7 @@ function CardBodyMobile(props) {
                 </Row> : ""}
                 <Row>
                     <Col>
-                        <div className = "d-flex justify-content-center">
+                        <div className="d-flex justify-content-center">
                             <button className="btn button-cta button-blue" onClick={handleSubmit} style={{ marginTop: advanced_filters ? "3rem" : "0rem" }}>
                                 Search
                     </button>

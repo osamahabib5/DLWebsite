@@ -11,14 +11,14 @@ function PackageDetailsMobile(props) {
         border: "2px solid rgb(252, 207, 203)",
         boxSizing: "border-box",
         borderRadius: "7px 7px 0px 0px",
-        height: "530px"
+        height: "590px"
     }
     const secondpackage = {
         backgroundColor: "rgb(248, 250, 255)",
         border: "2px solid rgb(94, 105, 129)",
         boxSizing: "border-box",
         borderRadius: "7px 7px 0px 0px",
-        height: "530px"
+        height: "590px"
     }
     const fetchPricing = async () => {
         try {

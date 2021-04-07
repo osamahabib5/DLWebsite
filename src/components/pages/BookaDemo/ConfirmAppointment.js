@@ -5,11 +5,15 @@ import SelectedPricePackage from './Leads/SelectedPricePackage'
 import SelectedTeacher from './SelectedTeacher'
 import { Redirect } from 'react-router-dom'
 function ConfirmAppointment(props) {
-    const { teacher_info, demo_date, demo_time, skippedpricing } = useContext(TutorsContext);
+    const { teacher_info, demo_date, demo_time, skippedpricing,calculateFees } = useContext(TutorsContext);
     const [redirecttoHomePage, setredirecttoHomePage] = useState(false);
     const [count, setcount] = useState(10);
+    const RedirecttoHomePage = ()=>{
+        calculateFees(0);
+        setredirecttoHomePage(true)
+    }
     useEffect(() => {
-        setTimeout(()=>setredirecttoHomePage(true), 10000)
+        setTimeout(()=>RedirecttoHomePage(), 10000)
     }, [])
     return (
         <Container>
