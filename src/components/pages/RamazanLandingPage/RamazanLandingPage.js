@@ -68,6 +68,7 @@ function RamazanLandingPage() {
                     opensweetalertdanger("There was something wrong with the payment!!")
                 }
             }).catch(error => {
+                setLoading(false);
                 opensweetalertdanger("There was something wrong with the payment!!")
                 // if (error.response.status == 400){
                 //     opensweetalertdanger("There are some missing values!")
@@ -77,6 +78,7 @@ function RamazanLandingPage() {
             })
         }
         else if (query.get("bill_status") === "unpaid") {
+            setLoading(false);
             opensweetalertdanger("Your payment was unsuccessful. Please try again!")
         }
     }
@@ -95,7 +97,7 @@ function RamazanLandingPage() {
     let impact_mobile_style = { marginTop: isMobile ? "0rem" : "5rem" };
     return (
         <div className="ramazan-page">
-            {loading ? <div className="d-flex justify-content-center">
+            {loading ? <div className="d-flex justify-content-center" style = {{marginTop: "6rem"}}>
                 <ClipLoader size={80} color="#00ABBD" />
             </div> : <div>
                 <div className="ramazan-banner">

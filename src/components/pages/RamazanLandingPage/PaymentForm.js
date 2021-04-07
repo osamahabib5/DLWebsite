@@ -34,7 +34,6 @@ function PaymentForm() {
         //     console.log("Foree API Error: " + error)
         // })
         // opensweetalertdanger("Your Payment has been made successfully!")
-        console.log("Object: " + obj)
     }
     const setUrlForPayment = baseUrl + '/api/lead/create';
     const PaymentUrl = baseUrl + '/api/ramzan/register';
@@ -135,7 +134,8 @@ function PaymentForm() {
                 })
                 document.getElementById("bookingdetails").value = ""
                 var urlParamObj = {
-                    'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
+                    // 'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
+                    'key' : '065a0716-05f5-4539-92b5-482eafac127d',
                     'amount': '6500.00',
                     'is_generated': '1',
                     'reference_number': 'SID' + response.data.data.student_id, //student id
@@ -145,7 +145,7 @@ function PaymentForm() {
                     'consumer_name': PaymentRegistrationForm.name,
                     'callback_url' : "http://localhost:3000/ramadan"
                 }
-                initiateCheckout(urlParamObj, true)
+                initiateCheckout(urlParamObj, false)
             }).catch(error => {
                 // if (error.response.status == 400) {
                 //     opensweetalertdanger("You have already booked a demo with this teacher!")
@@ -158,12 +158,12 @@ function PaymentForm() {
 
 
     useEffect(() => {
-        window.addEventListener("window:message", (e) => {
-            let URL = getForeeCheckoutURL();
-            if (e.origin !== URL) return;
-            e.onmessage()
-            console.log(e)
-        });
+        // window.addEventListener("window:message", (e) => {
+        //     let URL = getForeeCheckoutURL();
+        //     if (e.origin !== URL) return;
+        //     e.onmessage()
+        //     console.log(e)
+        // });
         // const script = document.createElement('script');
         // script.src = "https://checkout-sandbox.riteidentity.com/checkout.js";
         // script.async = true;
