@@ -11,7 +11,7 @@ function BecomeTutor(props) {
     return (
         <div className="become-a-tutor">
             <div className="becomeatutorheader">
-                <BecomeTutorHeader isMobile={props.isMobile} />
+                <BecomeTutorHeader notification = {props.notification} isMobile={props.isMobile} />
             </div>
             <div className="teachersignup">
                 <TeacherSignUp isMobile={props.isMobile} />

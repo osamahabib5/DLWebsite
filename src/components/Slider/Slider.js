@@ -6,14 +6,14 @@ function Slider(props) {
     return (
         <div className="testimonialslider">
             <Carousel style = {{height: props.isMobile ? "650px" : "", padding: props.isMobile ? "2rem" : ""}}>
-                <Carousel.Item interval={3000}>
+                <Carousel.Item interval={3000} style = {{marginTop: !props.isMobile ? "2rem" : ""}}>
                     <Carousel.Caption>
                         <h3>TESTIMONIALS</h3>
                         <p className="testimonial">"We didn’t want a teacher who simply educates our child. We wanted someone who cares for our child. By helping our daughter in developing her communication skills and feel confident, not only in the classroom but outside too. You have been exactly what we were looking for. We asked Hoorain about how the school is going this term and she said, she loves you and her new friends. Thank you!"</p>
                         <p className="initials">- Arsalan Ahmed Khan</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={3000}>
+                <Carousel.Item interval={3000} style = {{marginTop: !props.isMobile ? "2rem" : ""}}>
 
                     <Carousel.Caption>
                         <h3>TESTIMONIALS</h3>
@@ -21,7 +21,7 @@ function Slider(props) {
                         <p className="initials">- Abdul Wasih</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={3000}>
+                <Carousel.Item interval={3000} style = {{marginTop: !props.isMobile ? "2rem" : ""}}>
 
                     <Carousel.Caption>
                         <h3>TESTIMONIALS</h3>

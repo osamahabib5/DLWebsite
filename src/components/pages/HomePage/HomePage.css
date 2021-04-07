@@ -280,6 +280,8 @@
 
 .Tutor .justify-content-start {
     height: 80px;
+    justify-content: center!important;
+    flex-direction: row-reverse;
 }
 
 .Tutor {

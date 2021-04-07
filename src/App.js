@@ -95,7 +95,7 @@ function App() {
           <Route path="/pricing">
             <BookaDemo notification={notification}/>
           </Route>
-          <Route path="/tutors/:id" children={<OurTutor />} />
+          <Route path="/tutors/:id" children={<OurTutor notification={notification}/>} />
           <Route path="/tutors">
             <Findtutor notification={notification}/>
           </Route>
@@ -105,13 +105,13 @@ function App() {
           </Route>
 
           <Route path="/aboutus">
-            <About />
+            <About notification={notification}/>
           </Route>
           <Route path="/contact">
             <ContactPage notification={notification} />
           </Route>
           <Route path="/ramadan">
-            <RamazanLandingPage />
+            <RamazanLandingPage notification={notification}/>
           </Route>
           <Route path="/">
             <HomePage notification={notification} />

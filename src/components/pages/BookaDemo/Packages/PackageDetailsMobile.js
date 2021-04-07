@@ -115,10 +115,10 @@ function PackageDetailsMobile(props) {
                                 </div>
                             </div>
                             {index === 1 ? <ListGroup.Item key={data.id}>
-                                <p> (Rs. {data.price} for 3 months)</p>
+                                <p style = {{whiteSpace: "nowrap"}}> Rs. {data.price} for 3 months</p>
                             </ListGroup.Item> : ""}
                             {USDtoPKR > 0 ? <ListGroup.Item key={data.id} style={{ marginTop: index === 1 ? "-2.5rem" :"-0.5rem", justifyContent: "center" }}>
-                                <p style={{ textAlign: "center" }}> (USD ${Math.round(parseInt(data.price) / 3 * USDtoPKR)} /month)</p>
+                                <p style={{ textAlign: "center", whiteSpace: "nowrap" }}> (USD ${Math.round(parseInt(data.price) / 3 * USDtoPKR)} /month)</p>
                             </ListGroup.Item> : ""}
                             <p className="packagemobiletagline" style={{ marginTop: "-1rem" }}>{data.heading}</p>
                             <ListGroup key={data.id}>
