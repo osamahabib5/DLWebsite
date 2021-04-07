@@ -73,7 +73,8 @@ const actions = {
     SETDOLLARVALUE: 'SETDOLLARVALUE',
     CHANGECOUNTRY: 'CHANGECOUNTRY',
     DONTCHANGECOUNTRY: 'DONTCHANGECOUNTRY',
-    SETSTUDENTID: 'SETSTUDENTID'
+    SETSTUDENTID: 'SETSTUDENTID',
+    REVERSESCROLLTOFORM: 'REVERSESCROLLTOFORM'
 }
 
 function reducer(state, action) {
@@ -244,6 +245,11 @@ function reducer(state, action) {
                 ...state,
                 scrollToForm: true
             }
+            case actions.REVERSESCROLLTOFORM:
+            return {
+                ...state,
+                scrollToForm: false
+            }
         case actions.SETDOLLARVALUE:
             return {
                 ...state,
@@ -339,6 +345,7 @@ function Provider({ children }) {
         showTutors: () => { dispatch({ type: actions.SHOWTEACHERS }) },
         setBookingDetails: (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
         scrollTotheForm: () => { dispatch({ type: actions.SETSCROLLTOFORM }) },
+        reverseScrollPayment: () => { dispatch({ type: actions.REVERSESCROLLTOFORM }) },
         setDollarToPKR: (value) => { dispatch({ type: actions.SETDOLLARVALUE, value }) },
         ChangeCountry: () => { dispatch({ type: actions.CHANGECOUNTRY }) },
         dontChangeCountry: () => { dispatch({ type: actions.DONTCHANGECOUNTRY }) },

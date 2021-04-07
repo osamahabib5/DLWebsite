@@ -23,7 +23,7 @@ function Tutors(props) {
             return index === 0 ? word.toUpperCase() : word.toUpperCase();
         }).replace(/\s+/g, ' ');
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollTotheForm } = useContext(TutorsContext);
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollToForm, reverseScrollPayment,scrollTotheForm } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
@@ -32,7 +32,12 @@ function Tutors(props) {
         setTeacherName(name);
         showPaymentForm();
         setBookingDetails(camelize((name + " - " + days + " , " + times).toString()));
-        scrollTotheForm();
+        if (scrollToForm){
+            reverseScrollPayment()
+        }
+        else if(!scrollToForm){
+            scrollTotheForm();
+        }
     }
     useEffect(() => {
         mobileview();
@@ -190,6 +195,7 @@ function Tutors(props) {
                                                                     Days:
                                                                 </p>
                                                             </div>
+                                                            <br />
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                 <p className="students" style = {{fontSize: "13px", color: "#FF4646"}}>
                                                                     {camelize(item.days.toString())}
