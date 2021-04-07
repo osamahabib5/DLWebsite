@@ -29,7 +29,6 @@ function PackageDetailsMobile(props) {
                 .catch(function (error) {
                     console.log("Error: " + error);
                 }).then(data => {
-                    console.log("Pricing: " + JSON.stringify(data.results.PKR_USD.val));
                     setDollarToPKR(JSON.stringify(data.results.PKR_USD.val))
                 })
         }
@@ -70,8 +69,8 @@ function PackageDetailsMobile(props) {
         <div className="pricingpackagemobile" style={{ padding: "1rem" }}>
             <Carousel>
                 {parent_country === "Pakistan" ? Available_Packages.slice(0, 2).map((data, index) => (
-                    <Carousel.Item key={index}>
-                        <Carousel.Caption style={setPackagestyle(index)} onClick={() => {
+                    <Carousel.Item key={data.id}>
+                        <Carousel.Caption key={data.id} style={setPackagestyle(index)} onClick={() => {
                             setSelectedPackage(index)
                         }}>
                             <p className="packagemobileheading">{data.title}</p>
@@ -86,11 +85,11 @@ function PackageDetailsMobile(props) {
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
-                            {index === 1 ? <ListGroup.Item>
+                            {index === 1 ? <ListGroup.Item key={data.id}>
                                 <p> (Rs. {data.price} for 3 months)</p>
                             </ListGroup.Item> : ""}
                             <p className="packagemobiletagline" style={{ marginTop: index === 1 ?"-1rem" : "" }}>{data.heading}</p>
-                            <ListGroup>
+                            <ListGroup key={data.id}>
                                 {data.description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}
@@ -99,10 +98,10 @@ function PackageDetailsMobile(props) {
 
                     </Carousel.Item>
                 )) : Available_Packages.slice(2, 4).map((data, index) => (
-                    <Carousel.Item key={index} onClick={() => {
+                    <Carousel.Item key={data.id}onClick={() => {
                         setSelectedPackage(index)
                     }}>
-                        <Carousel.Caption style={setPackagestyle(index)} >
+                        <Carousel.Caption key={data.id} style={setPackagestyle(index)} >
                             <p className="packagemobileheading">{data.title}</p>
                             <div className="d-flex flex-row bd-highlight mb-3">
                                 <div className="p-2 bd-highlight">
@@ -115,14 +114,14 @@ function PackageDetailsMobile(props) {
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
-                            {index === 1 ? <ListGroup.Item>
+                            {index === 1 ? <ListGroup.Item key={data.id}>
                                 <p> (Rs. {data.price} for 3 months)</p>
                             </ListGroup.Item> : ""}
-                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: index === 1 ? "-2.5rem" :"-0.5rem", justifyContent: "center" }}>
+                            {USDtoPKR > 0 ? <ListGroup.Item key={data.id} style={{ marginTop: index === 1 ? "-2.5rem" :"-0.5rem", justifyContent: "center" }}>
                                 <p style={{ textAlign: "center" }}> (USD ${Math.round(parseInt(data.price) / 3 * USDtoPKR)} /month)</p>
                             </ListGroup.Item> : ""}
                             <p className="packagemobiletagline" style={{ marginTop: "-1rem" }}>{data.heading}</p>
-                            <ListGroup>
+                            <ListGroup key={data.id}>
                                 {data.description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>
                                 ))}

@@ -22,7 +22,6 @@ import About from './components/pages/About/About';
 import CourseDetails from './components/pages/CoursesPage/Products/CoursePacks/CourseDetails/CourseDetails';
 import Findtutor from './components/pages/Findtutor/Findtutor';
 import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
-import PricingFilters from './components/pages/BookaDemo/PricingFilters/PricingFilters';
 import Cookies from 'universal-cookie';
 import RamazanLandingPage from './components/pages/RamazanLandingPage/RamazanLandingPage';
 function App() {

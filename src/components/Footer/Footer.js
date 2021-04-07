@@ -21,7 +21,6 @@ function Footer(props) {
         console.log("Footer Error: " + error)
         })
     }, [])
-    const [main, setmain] = useState(false);
     return (
         <Container fluid className="footer-show">
             <Row>

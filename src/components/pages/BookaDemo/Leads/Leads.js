@@ -66,6 +66,7 @@ function Leads(props) {
         }
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (!parent_country) {
             props.fetchlocation();
         };

@@ -17,7 +17,7 @@ function PricingFilters(props) {
     const [skippedoption, setskippedoptions] = useState({ class_type: "batch", subscription: subscription_type, tutor_type: "standard", hours_per_week: 3, country: parent_country, lead_id: lead_id, result_type: result_type });
     const [filledvalues, setfilledvalues] = useState(false);
     const url = baseUrl + '/api/calculateFee';
-    const { class_type, subscription, tutor_type,hours_per_week } = advancedfilter;
+    const { class_type, subscription, tutor_type,hours_per_week , country} = advancedfilter;
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: result_type === "teachers" ? "Confirm Pricing!" : "Schedule a Demo",
@@ -123,12 +123,12 @@ function PricingFilters(props) {
         }
     }
     useEffect(() => {
-        changePricingPackage();
+        // changePricingPackage();
         // if (filledvalues) {
         //     handleSubmit();
         // }
         handleSubmit();
-    }, [subscription, class_type, tutor_type,hours_per_week])
+    }, [subscription, class_type, tutor_type,hours_per_week, country])
     return (
         <Container style = {{padding: props.isMobile ? "1rem" : ""}}>
             <Row>

@@ -18,9 +18,9 @@ function OurApproach(props) {
                     <Row xs={2} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
                         {props.displayinfo.map((data, index) => {
                             return (
-                                <Col>
-                                    <Card key={index} >
-                                        <Card.Img variant="top" src={data.image} style={{width: props.isMobile ? "113%" : "", height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
+                                <Col key={data.id}>
+                                    <Card key={data.id} >
+                                        <Card.Img variant="top" src={data.image} style={{height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
                                             <Card.Title><p className="title">{data.title}</p></Card.Title>
                                         </Card.Body>

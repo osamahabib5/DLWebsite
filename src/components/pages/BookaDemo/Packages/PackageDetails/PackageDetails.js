@@ -26,7 +26,6 @@ function PackageDetails(props) {
                 .catch(function (error) {
                     console.log("Error: " + error);
                 }).then(data => {
-                    console.log("Pricing: " + JSON.stringify(data.results.PKR_USD.val));
                     setDollarToPKR(JSON.stringify(data.results.PKR_USD.val))
                 })
         }
@@ -56,15 +55,15 @@ function PackageDetails(props) {
         <div className="packagedetails">
             {loading && !parent_country ? <div className="d-flex justify-content-center">
                 <ClipLoader size={80} color="#00ABBD" />
-            </div> : parent_country === "Pakistan" ? <CardDeck key={Available_Packages.id}>
-                <Card style={Available_Packages[0].styling} key={Available_Packages.id} onClick={() => {
+            </div> : parent_country === "Pakistan" ? <CardDeck key={Available_Packages[0].id}>
+                <Card style={Available_Packages[0].styling} key={Available_Packages[0].id} onClick={() => {
                     setSelectedPackage(0)
                 }}>
-                    <Card.Header key={Available_Packages.id} style={{ background: Available_Packages[0].color }}></Card.Header>
+                    <Card.Header key={Available_Packages[0].id} style={{ background: Available_Packages[0].color }}></Card.Header>
                     <div className="d-flex justify-content-center" >
                         <ListGroup variant="flush" >
-                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[0].title}</ListGroup.Item>
-                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item key={Available_Packages[0].id}>{Available_Packages[0].title}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages[0].id} style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -77,7 +76,7 @@ function PackageDetails(props) {
                                     </div>
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[0].heading}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages[0].id}>{Available_Packages[0].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[0].description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>
@@ -86,14 +85,14 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={Available_Packages[1].styling} key={Available_Packages.id} onClick={() => {
+                <Card style={Available_Packages[1].styling} key={Available_Packages[1].id} onClick={() => {
                     setSelectedPackage(1)
                 }}>
-                    <Card.Header key={Available_Packages.id} style={{ background: Available_Packages[1].color }}></Card.Header>
+                    <Card.Header key={Available_Packages[1].id} style={{ background: Available_Packages[1].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
-                            <ListGroup.Item key={Available_Packages.id}>{Available_Packages[1].title}</ListGroup.Item>
-                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item key={Available_Packages[1].id}>{Available_Packages[1].title}</ListGroup.Item>
+                            <ListGroup.Item  key={Available_Packages[1].id} style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -106,10 +105,10 @@ function PackageDetails(props) {
                                     </div>
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item  key={Available_Packages[1].id} style={{ marginTop: "-1rem" }}>
                                 <p> (Rs. {Available_Packages[1].price} for 3 months)</p>
                             </ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-2rem" }} key={Available_Packages.id}>{Available_Packages[1].heading}</ListGroup.Item>
+                            <ListGroup.Item style={{ marginTop: "-2rem" }} key={Available_Packages[1].id}>{Available_Packages[1].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[1].description.map((val, index) => (
                                     <ListGroup.Item key={index}>{val}</ListGroup.Item>
@@ -119,15 +118,15 @@ function PackageDetails(props) {
 
                     </div>
                 </Card>
-            </CardDeck> : <CardDeck key={Available_Packages.id}>
-                <Card style={Available_Packages[2].styling} key={Available_Packages.id} onClick={() => {
+            </CardDeck> : <CardDeck key={Available_Packages[2].id}>
+                <Card style={Available_Packages[2].styling} key={Available_Packages[1].id} onClick={() => {
                     setSelectedPackage(2)
                 }}>
                     <Card.Header style={{ background: Available_Packages[2].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
                         <ListGroup variant="flush">
-                            <ListGroup.Item  key={Available_Packages.id} >{Available_Packages[2].title}</ListGroup.Item>
-                            <ListGroup.Item  key={Available_Packages.id} style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item  key={Available_Packages[1].id} >{Available_Packages[2].title}</ListGroup.Item>
+                            <ListGroup.Item  key={Available_Packages[1].id} style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -141,10 +140,10 @@ function PackageDetails(props) {
 
                                 </div>
                             </ListGroup.Item>
-                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            {USDtoPKR > 0 ? <ListGroup.Item key={Available_Packages[2].id} style={{ marginTop: "-1rem" }}>
                                 <p> (USD ${Math.round(parseInt(Available_Packages[2].price) * USDtoPKR)} /month)</p>
                             </ListGroup.Item> : ""}
-                            <ListGroup.Item style={{ marginTop: "-2rem" }}>{Available_Packages[2].heading}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages[1].id} style={{ marginTop: "-2rem" }}>{Available_Packages[2].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[2].description.map((val, index) => (
                                     <ListGroup.Item key={index}>{val}</ListGroup.Item>
@@ -153,13 +152,13 @@ function PackageDetails(props) {
                         </ListGroup>
                     </div>
                 </Card>
-                <Card style={Available_Packages[3].styling} key={Available_Packages.id} onClick={() => {
+                <Card style={Available_Packages[3].styling} key={Available_Packages[3].id} onClick={() => {
                     setSelectedPackage(3)
                 }}>
-                    <Card.Header style={{ background: Available_Packages[3].color }}></Card.Header>
+                    <Card.Header key={Available_Packages[3].id} style={{ background: Available_Packages[3].color }}></Card.Header>
                     <div className="d-flex justify-content-center">
-                        <ListGroup variant="flush">
-                            <ListGroup.Item>{Available_Packages[3].title}</ListGroup.Item><ListGroup.Item style={{ marginTop: "-1rem" }}>
+                        <ListGroup variant="flush" key={Available_Packages[3].id}>
+                            <ListGroup.Item key={Available_Packages[3].id}>{Available_Packages[3].title}</ListGroup.Item><ListGroup.Item style={{ marginTop: "-1rem" }}>
                                 <div className="d-flex flex-row bd-highlight mb-3">
                                     <div className="p-2 bd-highlight">
                                         <p className="startingat">starts at</p>
@@ -172,13 +171,13 @@ function PackageDetails(props) {
                                     </div>
                                 </div>
                             </ListGroup.Item>
-                            <ListGroup.Item style={{ marginTop: "-1rem" }}>
+                            <ListGroup.Item key={Available_Packages[3].id} style={{ marginTop: "-1rem" }}>
                                 <p> (Rs. {Available_Packages[3].price} for 3 months)</p>
                             </ListGroup.Item>
-                            {USDtoPKR > 0 ? <ListGroup.Item style={{ marginTop: "-2rem" }}>
-                                <p> (USD $ {Math.round(parseInt(Available_Packages[2].price) * USDtoPKR)} /month)</p>
+                            {USDtoPKR > 0 ? <ListGroup.Item key={Available_Packages[3].id} style={{ marginTop: "-2rem" }}>
+                                <p> (USD $ {Math.round(parseInt(Available_Packages[3].price)/3 * USDtoPKR)} /month)</p>
                             </ListGroup.Item> : ""}
-                            <ListGroup.Item style={{ marginTop: "-2rem" }}>{Available_Packages[3].heading}</ListGroup.Item>
+                            <ListGroup.Item key={Available_Packages[3].id} style={{ marginTop: "-2rem" }}>{Available_Packages[3].heading}</ListGroup.Item>
                             <div className="package_specification">
                                 {Available_Packages[3].description.map((val, index) => (
                                     <ListGroup.Item key={index}>{val}</ListGroup.Item>
