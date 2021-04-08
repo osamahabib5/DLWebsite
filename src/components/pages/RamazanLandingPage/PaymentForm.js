@@ -7,7 +7,7 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie';
 import PaymentDetailsPopup from './PaymentDetailsPopup';
-import { initiateCheckout,getForeeCheckoutURL } from 'foree-checkout';
+import { initiateCheckout } from 'foree-checkout';
 import { ClipLoader } from 'react-spinners';
 function PaymentForm() {
     const [open, setOpen] = useState(false);
@@ -59,44 +59,6 @@ function PaymentForm() {
 
         console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
     }
-    // const handleOnSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setPaymentRegistrationForm({
-    //         ...PaymentRegistrationForm,
-    //         bookingdetails: BookingDetails
-    //     })
-    //     // console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm.bookingdetails))
-    //     if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
-    //         opensweetalertdanger("Please fill all the values");
-    //     }
-    //     else if (!validateemail(PaymentRegistrationForm.email)) {
-    //         opensweetalertdanger("Please enter a valid email");
-    //     } else if (!isValidPhoneNumber(PaymentRegistrationForm.phone)) {
-    //         opensweetalertdanger("Please enter a valid phone number!");
-    //     }
-    //     else {
-    //         await axios.post(setUrlForPayment, {
-    //             name: PaymentRegistrationForm.name,
-    //             phone: PaymentRegistrationForm.phone,
-    //             email: PaymentRegistrationForm.email,
-    //             country: PaymentRegistrationForm.country,
-    //             city: PaymentRegistrationForm.city,
-    //             lead_type: PaymentRegistrationForm.lead_type,
-    //             bookingdetails: PaymentRegistrationForm.bookingdetails,
-    //         }).then(response => {
-    //             const leadid = JSON.stringify(response.data.data.lead_id)
-    //             setLeadId(leadid)
-    //             cookies.set('leadid', leadid, { path: '/' });
-    //             onOpenModal();
-    //             setPaymentRegistrationForm({
-    //                 name: "",
-    //                 email: "",
-    //                 phone: "",
-    //                 bookingdetails: ""
-    //             })
-    //         })
-    //     }
-    // }
     const getPaymentDetails = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -122,6 +84,7 @@ function PaymentForm() {
                 city: PaymentRegistrationForm.city,
                 course_id: PaymentRegistrationForm.course_id,
                 teacher_id: PaymentRegistrationForm.teacher_id,
+                promo_code: PaymentRegistrationForm.promo_code,
             }).then(response => {
                 setLoading(false);
                 // setStudentId(response.data.data.student_id)
@@ -130,28 +93,28 @@ function PaymentForm() {
                     name: "",
                     email: "",
                     phone: "",
+                    promo_code : "",
                     bookingdetails: ""
                 })
                 document.getElementById("bookingdetails").value = ""
                 var urlParamObj = {
                     // 'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
                     'key' : '065a0716-05f5-4539-92b5-482eafac127d',
-                    'amount': '6500.00',
+                    'amount': response.data.data.amount,
                     'is_generated': '1',
                     'reference_number': 'SID' + response.data.data.student_id, //student id
                     // 'callback': callbackPayment,
                     'customer_email_address': PaymentRegistrationForm.email,
                     'customer_phone_number': PaymentRegistrationForm.phone,
                     'consumer_name': PaymentRegistrationForm.name,
-                    // 'callback_url' : "http://localhost:3000/ramadan",
-                    'callback_url' : "https://www.dotandlinelearning.com",
+                    'callback_url' : "http://localhost:3000/ramadan",
+                    // 'callback_url' : "https://www.dotandlinelearning.com",
                 }
                 initiateCheckout(urlParamObj, false)
             }).catch(error => {
-                // if (error.response.status == 400) {
-                //     opensweetalertdanger("You have already booked a demo with this teacher!")
-                // }
-                console.log("F Error: " + error)
+                if (error.response.status == 400) {
+                    opensweetalertdanger("You have already booked a demo with this teacher!")
+                }
             })
         }
     }
@@ -200,7 +163,7 @@ function PaymentForm() {
                     <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Email" />
                 </Form.Group>
                 <Form.Group as={Row} controlId="formBasicEmail">
-                    <Form.Control type="email" name="promo_code" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Promo Code" />
+                    <Form.Control type="string" name="promo_code" value={PaymentRegistrationForm.promo_code} onChange={handleonChange} placeholder="Promo Code" />
                 </Form.Group>
                 <Form.Group as={Row} >
                     <Form.Control type="string" placeholder="" id="bookingdetails" value={camelize((teacher_name + " - " + Days + " , " + time).toString())} disabled />

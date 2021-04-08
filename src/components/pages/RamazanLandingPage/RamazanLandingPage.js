@@ -89,7 +89,7 @@ function RamazanLandingPage() {
                 }else if(error.response.status == 401){
                     opensweetalertdanger("Something went wrong getting the invoice!")
                 }else if(error.response.status == 402){
-                    opensweetalertdanger("Your payment was unsuccessful. Please try again")     
+                    opensweetalertdanger("Your payment was unsuccessful. Please try again later")     
                 }
             })
         }

@@ -169,26 +169,26 @@ function Tutors(props) {
                     </Link> : <Card key={item.id} style={{ borderRadius: "12px", height: isMobile ? "350px!important" : "" , width: isMobile ? "75%" : "", 
                      marginTop:"1rem"}} onClick={() => {
                         saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
-                    }} style={{ height: props.ramadanteachers ? "300px" : props.ramadanteachers && isMobile ? "300px!important" : "", width: props.ramadanteachers && isMobile ? "100%" : "" }}>
+                    }} style={{ height: isMobile ? "400px" : "300px", width: props.ramadanteachers && isMobile ? "70%" : "" , margin: isMobile ? "auto" : "", marginTop: isMobile ? "2rem": ""}}>
                         <Card.Body>
                             <div className="d-flex flex-column">
                                 <div className="p-2">
                                     <Container>
                                         {!props.ramadanteachers ? <Card.Img variant="top" src={item.picture == null ? props.avatar : item.picture} />
-                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "120px", height: isMobile ? "120px" : "120px", marginLeft: isMobile ? "0rem" : "3rem" }} roundedCircle />}
+                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "120px", height: isMobile ? "120px" : "120px", marginLeft: isMobile ? "2.5rem" : "3rem" }} roundedCircle />}
                                     </Container>
                                 </div>
                                 <div className="p-2">
                                     <div className="d-flex flex-row bd-highlight mb-3">
                                         <div className="p-2 bd-highlight">
-                                            <p className="teacher-name" style={{ marginLeft: isMobile ? "4rem" : "2.5rem" }}>
+                                            <p className="teacher-name" style={{ marginLeft: isMobile ? "3rem" : "2.5rem" }}>
                                                 {item.name ? item.name : item.teacher_name}
                                             </p>
                                         </div>
                                     </div>
                                     <div className="p-2 bd-highlight" style={{ marginLeft: "-0.8rem", marginTop: "-2rem", marginBottom: '1rem' }}>
                                         <Container>
-                                            <Row style={{ background: "#00ABBD", borderRadius: "5px", width: "100%", margin: "auto", height: isMobile ? "155px" : "", marginLeft: "0.5rem", marginTop: isMobile ? "3rem" : "" }}>
+                                            <Row style={{ background: "#00ABBD", borderRadius: "5px", width: "100%", margin: "auto", height: isMobile ? "155px" : "", marginLeft: "0.5rem", marginTop: isMobile ? "2.5rem" : "" }}>
                                                 <Col style={{ height: "20px" }} style={{ marginLeft: "-1rem" }}>
                                                     <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
                                                         {item.days ? <div className="d-flex flex-row bd-highlight mb-3" style={{
@@ -261,7 +261,7 @@ function Tutors(props) {
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: isMobile ? "-1.5rem":"7px", position: isMobile ? "absolute" : "",
                                                         top: isMobile ? "1.2rem" : ""}}>
-                                                                <p className="students">
+                                                                <p className="students" style = {{marginLeft: isMobile ? "1rem" : ""}}>
                                                                     {item.timings} PKT
                                                                 </p>
                                                             </div>
