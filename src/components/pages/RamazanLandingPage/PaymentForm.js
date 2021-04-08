@@ -143,8 +143,8 @@ function PaymentForm() {
                     'customer_email_address': PaymentRegistrationForm.email,
                     'customer_phone_number': PaymentRegistrationForm.phone,
                     'consumer_name': PaymentRegistrationForm.name,
-                    'callback_url' : "http://localhost:3000/ramadan",
-                    // 'callback_url' : "https://www.dotandlinelearning.com",
+                    // 'callback_url' : "http://localhost:3000/ramadan",
+                    'callback_url' : "https://www.dotandlinelearning.com",
                 }
                 initiateCheckout(urlParamObj, false)
             }).catch(error => {
