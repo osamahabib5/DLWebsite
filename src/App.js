@@ -79,9 +79,9 @@ function App() {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        {/* {!cookies.get("notification") ? Notification : ""} */}
+        {!cookies.get("notification") ? Notification : ""}
         <Toolbar handleDrawerToggleClick={handleDrawerToggleClick} />
-        {/* {!cookies.get("notification") ? MobileNotification : ""} */}
+        {!cookies.get("notification") ? MobileNotification : ""}
         <SideDrawer show={sideDrawerOpen} handleDrawerToggleClick={handleDrawerToggleClick} />
 
         <Switch>

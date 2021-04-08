@@ -16,7 +16,7 @@ function PaymentForm() {
     const cookies = new Cookies();
     const { Days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId, BookingDetails, setStudentId, studentid } = useContext(TutorsContext);
     const [PaymentRegistrationForm, setPaymentRegistrationForm] = useState({
-        name: "", phone: "", email: "", course_id: courseid, teacher_id: teacher_id, country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
+        name: "", phone: "", email: "", course_id: courseid, teacher_id: teacher_id, promo_code: "", country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
         bookingdetails: BookingDetails
     });
     const [loading, setLoading] = useState(false);
@@ -59,44 +59,44 @@ function PaymentForm() {
 
         console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
     }
-    const handleOnSubmit = async (e) => {
-        e.preventDefault();
-        setPaymentRegistrationForm({
-            ...PaymentRegistrationForm,
-            bookingdetails: BookingDetails
-        })
-        // console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm.bookingdetails))
-        if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
-            opensweetalertdanger("Please fill all the values");
-        }
-        else if (!validateemail(PaymentRegistrationForm.email)) {
-            opensweetalertdanger("Please enter a valid email");
-        } else if (!isValidPhoneNumber(PaymentRegistrationForm.phone)) {
-            opensweetalertdanger("Please enter a valid phone number!");
-        }
-        else {
-            await axios.post(setUrlForPayment, {
-                name: PaymentRegistrationForm.name,
-                phone: PaymentRegistrationForm.phone,
-                email: PaymentRegistrationForm.email,
-                country: PaymentRegistrationForm.country,
-                city: PaymentRegistrationForm.city,
-                lead_type: PaymentRegistrationForm.lead_type,
-                bookingdetails: PaymentRegistrationForm.bookingdetails,
-            }).then(response => {
-                const leadid = JSON.stringify(response.data.data.lead_id)
-                setLeadId(leadid)
-                cookies.set('leadid', leadid, { path: '/' });
-                onOpenModal();
-                setPaymentRegistrationForm({
-                    name: "",
-                    email: "",
-                    phone: "",
-                    bookingdetails: ""
-                })
-            })
-        }
-    }
+    // const handleOnSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setPaymentRegistrationForm({
+    //         ...PaymentRegistrationForm,
+    //         bookingdetails: BookingDetails
+    //     })
+    //     // console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm.bookingdetails))
+    //     if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
+    //         opensweetalertdanger("Please fill all the values");
+    //     }
+    //     else if (!validateemail(PaymentRegistrationForm.email)) {
+    //         opensweetalertdanger("Please enter a valid email");
+    //     } else if (!isValidPhoneNumber(PaymentRegistrationForm.phone)) {
+    //         opensweetalertdanger("Please enter a valid phone number!");
+    //     }
+    //     else {
+    //         await axios.post(setUrlForPayment, {
+    //             name: PaymentRegistrationForm.name,
+    //             phone: PaymentRegistrationForm.phone,
+    //             email: PaymentRegistrationForm.email,
+    //             country: PaymentRegistrationForm.country,
+    //             city: PaymentRegistrationForm.city,
+    //             lead_type: PaymentRegistrationForm.lead_type,
+    //             bookingdetails: PaymentRegistrationForm.bookingdetails,
+    //         }).then(response => {
+    //             const leadid = JSON.stringify(response.data.data.lead_id)
+    //             setLeadId(leadid)
+    //             cookies.set('leadid', leadid, { path: '/' });
+    //             onOpenModal();
+    //             setPaymentRegistrationForm({
+    //                 name: "",
+    //                 email: "",
+    //                 phone: "",
+    //                 bookingdetails: ""
+    //             })
+    //         })
+    //     }
+    // }
     const getPaymentDetails = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -197,10 +197,13 @@ function PaymentForm() {
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formBasicEmail">
-                    <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Enter email" />
+                    <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Email" />
+                </Form.Group>
+                <Form.Group as={Row} controlId="formBasicEmail">
+                    <Form.Control type="email" name="promo_code" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Promo Code" />
                 </Form.Group>
                 <Form.Group as={Row} >
-                    <Form.Control type="string" placeholder="Tutor Details" id="bookingdetails" value={camelize((teacher_name + " - " + Days + " , " + time).toString())} disabled />
+                    <Form.Control type="string" placeholder="" id="bookingdetails" value={camelize((teacher_name + " - " + Days + " , " + time).toString())} disabled />
                 </Form.Group>
                 <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">
                     {/* <button className="btn button-cta button-red" onClick={handleOnSubmit}>

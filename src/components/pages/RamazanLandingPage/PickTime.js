@@ -51,7 +51,7 @@ function PickTime(props) {
     let fillTeachersSlot = [];
     const [fillTeacherSlot, setTeacherSlots] = useState(null);
     const showAvailableTeachers = (e) => {
-        scrolltoTeachers();
+
         e.preventDefault();
         while (fillTeachersSlot.length > 0) {
             fillTeachersSlot.pop();
@@ -76,8 +76,14 @@ function PickTime(props) {
             })
         })
         setTeacherSlots(fillTeachersSlot)
+        if (fillTeachersSlot) {
+            scrolltoTeachers();
+        }
     }
     useEffect(() => {
+        // if (fillTeachersSlot){
+        //     scrolltoTeachers();
+        // }
         scrollToPaymentForm();
     }, [scrollToForm])
     return (
@@ -85,7 +91,7 @@ function PickTime(props) {
             <Row style={{ marginTop: "2rem" }}>
                 <Col>
                     <p className="mainheading" style={{ textAlign: "center" }}>
-                        Step One : Choose a Timeslot
+                        Step One : Select a Timeslot  (Pakistan Standard Time)
                     </p>
                 </Col>
             </Row>
@@ -103,15 +109,15 @@ function PickTime(props) {
                     )
                 })}
             </Row>
-            {showTeachers ? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
+            {showTeachers? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
                 <Col>
                     <div className="pickteacher">
                         <p className="mainheading" style={{ textAlign: "center" }}>
                             Step Two : Select a Tutor
                         </p>
-                        <div className="tutorslist">
-                            {fillTeacherSlot ? <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} ramadanteachers={true} /> : ""}
-                        </div>
+                        {fillTeachersSlot ? <div className="tutorslist">
+                            <Tutors dataarr={fillTeacherSlot} avatar={avatar} loading={loading} url={url} ramadanteachers={true} />
+                        </div> : ""}
                     </div>
                 </Col>
             </Row> : ""}

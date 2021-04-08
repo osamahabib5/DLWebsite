@@ -82,6 +82,11 @@
         display: flex;
         background: white;
     }
+    .payment-section .picktimeslot .tutorslist .students{
+       white-space: normal;
+       font-size: 14px;
+        color: white;
+    }
 }
 
 @media only screen and (min-width: 769px) {
@@ -95,12 +100,19 @@
         display: flex;
         background: white;
     }
+    .payment-section .picktimeslot .tutorslist .students{
+        /* font-weight: bold; */
+        font-size: 14px;
+        color: white;
+        font-family: Avenir;
+        /* white-space: normal; */
+    }
     .ramazan-page .impact-section img {
         width: 800px;
         height: 500px;
     }
     .payment-section {
-        margin-top: 5rem;
+        margin-top: 3rem;
     }
     .paymentform .PhoneInput {
         width: 122%;
@@ -132,12 +144,7 @@
     border-radius: 4px;
     border: 1px solid rgb(206, 212, 218);
 }
-.payment-section .picktimeslot .tutorslist .students{
-    /* font-weight: bold; */
-    font-size: 14px;
-    color: white;
-    font-family: Avenir;
-}
+
 .paymentdetailslist .list-group-item{
     color: black;
 }

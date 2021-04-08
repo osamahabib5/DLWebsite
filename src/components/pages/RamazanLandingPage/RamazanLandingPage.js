@@ -143,7 +143,7 @@ function RamazanLandingPage() {
                         <Col xs lg="9">
                             <div className="impact-section" style={impact_mobile_style}>
                                 <RamazanImpact isMobile={isMobile} />
-                                <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" scrolltoRegistrationForm={scrolltoRegistrationForm} />
+                                {/* <SignUpButtonRamazanProgram buttontext="Sponsor a Child Now!" scrolltoRegistrationForm={scrolltoRegistrationForm} /> */}
                             </div>
                         </Col>
                     </Row>
