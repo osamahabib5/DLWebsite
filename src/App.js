@@ -114,8 +114,8 @@ function App() {
             <RamazanLandingPage notification={notification}/>
           </Route>
           <Route path="/">
-            {/* <HomePage notification={notification} /> */}
-            <RamazanLandingPage notification={notification}/>
+            <HomePage notification={notification} />
+            {/* <RamazanLandingPage notification={notification}/> */}
           </Route>
         </Switch>
 

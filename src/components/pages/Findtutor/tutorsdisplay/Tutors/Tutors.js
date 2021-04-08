@@ -78,7 +78,9 @@ function Tutors(props) {
                                                     <Col style={{ height: "20px" }}>
                                                         <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
                                                             {item.days ? <div className="d-flex flex-row bd-highlight mb-3">
-                                                                <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faCalendar} /></div>
+                                                                <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}>
+                                                                    <span style={{ color: "white" }}><FontAwesomeIcon icon={faCalendar} /></span>
+                                                                </div>
                                                                 <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                     <p className="students" >
                                                                         Days:
@@ -163,7 +165,7 @@ function Tutors(props) {
                                 </div>
                             </Card.Body>
                         </Card>
-                    </Link> : <Card key={item.id} onClick={() => {
+                    </Link> : <Card key={item.id} style = {{borderRadius: "12px"}} onClick={() => {
                         saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
                     }} style={{ height: props.ramadanteachers ? "300px" : props.ramadanteachers && isMobile ? "300px!important" : "", width: props.ramadanteachers && isMobile ? "100%" : "" }}>
                         <Card.Body>
@@ -177,18 +179,20 @@ function Tutors(props) {
                                 <div className="p-2">
                                     <div className="d-flex flex-row bd-highlight mb-3">
                                         <div className="p-2 bd-highlight">
-                                            <p className="teacher-name">
+                                            <p className="teacher-name" style = {{marginLeft:"2.5rem"}}>
                                                 {item.name ? item.name : item.teacher_name}
                                             </p>
                                         </div>
                                     </div>
                                     <div className="p-2 bd-highlight" style={{ marginLeft: "-0.8rem", marginTop: "-2rem", marginBottom: '1rem' }}>
                                         <Container>
-                                            <Row>
-                                                <Col style={{ height: "20px" }}>
+                                            <Row style={{ background: "#00ABBD",borderRadius: "5px", width: "100%", margin: "auto", marginLeft: "0.5rem" }}>
+                                                <Col style={{ height: "20px" }} style = {{marginLeft: "-1rem"}}>
                                                     <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
                                                         {item.days ? <div className="d-flex flex-row bd-highlight mb-3">
-                                                            <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faCalendar} /></div>
+                                                            <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}>
+                                                                <span style={{ color: "white" }}><FontAwesomeIcon icon={faCalendar} /></span>
+                                                            </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
                                                                 <p className="students" >
                                                                     Days:
@@ -216,7 +220,7 @@ function Tutors(props) {
                                                         </div> : ""}
                                                     </Button>
                                                 </Col>
-                                                <Col>
+                                                <Col style = {{marginLeft: "-1rem"}}>
                                                     <Button variant="outline-secondary" style={{ height: "30px", border: "none", backgroundColor: "none" }}>
                                                         {item.lifetime_hours ? <div className="d-flex flex-row bd-highlight mb-3">
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
@@ -232,9 +236,13 @@ function Tutors(props) {
                                                             </div>
                                                         </div> : ""}
                                                         {item.timings ? <div className="d-flex flex-row bd-highlight mb-3">
-                                                            <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
+                                                            <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}>
+                                                                <span style = {{color: "white"}}>
+                                                                <FontAwesomeIcon icon={faClock} />
+                                                                </span>
+                                                            </div>
                                                             <div className="p-2 bd-highlight">
-                                                                <p className="students" style = {{marginLeft: "0.5rem"}}>
+                                                                <p className="students" style={{ marginLeft: "0.5rem" }}>
                                                                     Timings:
                                                                 </p>
                                                             </div>

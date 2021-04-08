@@ -133,10 +133,10 @@
     border: 1px solid rgb(206, 212, 218);
 }
 .payment-section .picktimeslot .tutorslist .students{
-    font-weight: bold;
-    font-size: 15px;
-    color: #626ec3;
-    font-family: Avenir-Next;
+    /* font-weight: bold; */
+    font-size: 14px;
+    color: white;
+    font-family: Avenir;
 }
 .paymentdetailslist .list-group-item{
     color: black;
