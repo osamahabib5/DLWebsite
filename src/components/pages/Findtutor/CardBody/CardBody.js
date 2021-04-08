@@ -179,6 +179,7 @@ function CardBody(props) {
                         Advanced Filters
                     </p>
                 </Col> : ""}
+                
             </Form.Row>
             {filter ? <Form.Row >
                 <Col>
@@ -196,7 +197,7 @@ function CardBody(props) {
                         marks={heightMarks}
                     />
                 </Col>
-
+                        
             </Form.Row> : ''}
         </Form>
     )

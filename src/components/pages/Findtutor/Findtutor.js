@@ -42,20 +42,32 @@ function Findtutor(props) {
     return (
         <div className="FindATutor">
             <Card className="bg-dark text-white">
-                <Card.Img src={isMobile ? BackgroundMobile : Background} alt="Card image" style = {{marginTop: props.notification ||cookies.get("notification") ? "3.4rem" : "0rem"}}/>
+                <Card.Img src={isMobile ? BackgroundMobile : Background} alt="Card image" style={{ marginTop: props.notification || cookies.get("notification") ? "3.4rem" : "0rem" }} />
                 <Card.ImgOverlay>
                     <Container fluid>
                         <Row>
                             <Col>
                                 <div className="ourtutor-cardtitle">
-                                    {isMobile ? <CardBodyMobile scrolltotutors = {scrolltotutors}/> : <CardTitle description = {description}/>}
+                                    {isMobile ? <CardBodyMobile scrolltotutors={scrolltotutors} /> : <CardTitle description={description} />}
                                 </div>
+                            </Col>
+                            <Col>
+                                <Col>
+                                    <div className = "clearSearchFilters">
+                                        {/* <p className = "clearFiltersText">
+                                            Clear
+                                    </p> */}
+                                    <button className = "btn button-cta button-red">
+                                        Clear
+                                    </button>
+                                    </div>
+                                </Col>
                             </Col>
                         </Row>
                         {isMobile ? <Row>
                             <Col>
                                 <div className="d-flex justify-content-center" >
-                                    <button type="button" className="btn btn-danger btn-circle btn-xl" onClick = {scrolltotutors}>
+                                    <button type="button" className="btn btn-danger btn-circle btn-xl" onClick={scrolltotutors}>
                                         <FontAwesomeIcon icon={faArrowDown} />
                                     </button>
                                 </div>
@@ -64,14 +76,14 @@ function Findtutor(props) {
                         <Row>
                             <Col>
                                 <div className="ourtutor-cardtext-window">
-                                    <CardBody scrolltotutors = {scrolltotutors}/>
+                                    <CardBody scrolltotutors={scrolltotutors} />
                                 </div>
                             </Col>
                         </Row>
                     </Container>
                 </Card.ImgOverlay>
             </Card>
-            <div className="displaytutors" ref = {showContent} >
+            <div className="displaytutors" ref={showContent} >
                 <Tutorsdisplay />
             </div>
             <div>

@@ -19,6 +19,17 @@
     background: white!important;
 }
 
+.clearSearchFilters {
+    position: absolute;
+    right: 17rem;
+    top: 28rem;
+}
+
+.clearFiltersText{
+    color: black;
+    font-size: 30px;
+    cursor: pointer;
+}
 @media only screen and (min-width: 769px) {
     .FindATutor .card-img-overlay {
         margin-left: 12rem;
@@ -247,7 +258,6 @@
         /* or 162% */
         color: #000000;
     }
-   
     .FindATutor .bg-dark {
         margin-top: 3rem;
         height: 550px;
