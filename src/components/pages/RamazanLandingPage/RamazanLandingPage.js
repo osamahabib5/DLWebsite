@@ -9,7 +9,7 @@ import './RamazanLandingPage.css'
 import RamazanProgramDetails from './RamazanProgramDetails';
 import SignUpButtonRamazanProgram from './SignUpButtonRamazanProgram';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import baseUrl from '../../../baseUrl/baseUrl';
 import Cookies from 'universal-cookie';
@@ -18,6 +18,7 @@ function RamazanLandingPage() {
     const [loading, setLoading] = useState(false);
     const [isMobile, setisMobile] = useState(false);
     const scrollToPackage = useRef(null);
+    const history = useHistory()
     const mobileview = () => {
         if (window.innerWidth >= 769) {
             setisMobile(false);
@@ -34,11 +35,21 @@ function RamazanLandingPage() {
             })
         }
     }
+    function useQuery() {
+        return new URLSearchParams(useLocation().search);
+    }
+    let query = useQuery();
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
             title: 'Fee Payment',
             text: alerttext,
             type: "warning",
+        }).then(() => {
+            query.delete("reference_number")
+            query.delete("bill_status")
+            history.replace({
+                search: query.toString(),
+            })
         })
     }
     const opensweetalertsuccess = (alerttext) => {
@@ -46,12 +57,16 @@ function RamazanLandingPage() {
             title: 'Fee Payment',
             text: alerttext,
             type: "success",
+        }).then(() => {
+            query.delete("reference_number")
+            query.delete("bill_status")
+            history.replace({
+                search: query.toString(),
+            })
         })
     }
-    function useQuery() {
-        return new URLSearchParams(useLocation().search);
-    }
-    let query = useQuery();
+
+
     const cookies = new Cookies();
     async function validatePayment() {
         setLoading(true);
@@ -59,22 +74,23 @@ function RamazanLandingPage() {
             await axios.post(baseUrl + "/api/ramzan/processInvoice", {
                 student_id: cookies.get("studentid")
             }).then(response => {
-                console.log("Repasaasasa: " + JSON.stringify(response))
                 setLoading(false);
                 if (response.data.success) {
-                    opensweetalertsuccess("Payment Successful!")
+                    opensweetalertsuccess("Payment Successful.")
                 }
                 else {
-                    opensweetalertdanger("There was something wrong with the payment!!")
+                    opensweetalertdanger("There was something wrong with the payment.")
                 }
             }).catch(error => {
                 setLoading(false);
-                opensweetalertdanger("There was something wrong with the payment!!")
-                // if (error.response.status == 400){
-                //     opensweetalertdanger("There are some missing values!")
-                // }else if(error.response.status == 401){
-                //     opensweetalertdanger("Something went wrong getting the invoice!")
-                // }
+                // opensweetalertdanger("There was something wrong with the payment!!")
+                if (error.response.status == 400){
+                    opensweetalertdanger("There are some missing values!")
+                }else if(error.response.status == 401){
+                    opensweetalertdanger("Something went wrong getting the invoice!")
+                }else if(error.response.status == 402){
+                    opensweetalertdanger("Your payment was unsuccessful. Please try again")     
+                }
             })
         }
         else if (query.get("bill_status") === "unpaid") {
@@ -87,9 +103,9 @@ function RamazanLandingPage() {
         window.addEventListener("resize", mobileview);
         initFontAwesome();
         window.scrollTo(0, 0);
-        if (query.get("bill_status")){
+        if (query.get("bill_status")) {
             validatePayment()
-        }else{
+        } else {
             setLoading(false)
         }
     }, []);
@@ -97,7 +113,7 @@ function RamazanLandingPage() {
     let impact_mobile_style = { marginTop: isMobile ? "0rem" : "5rem" };
     return (
         <div className="ramazan-page">
-            {loading ? <div className="d-flex justify-content-center" style = {{marginTop: "6rem"}}>
+            {loading ? <div className="d-flex justify-content-center" style={{ marginTop: "6rem" }}>
                 <ClipLoader size={80} color="#00ABBD" />
             </div> : <div>
                 <div className="ramazan-banner">

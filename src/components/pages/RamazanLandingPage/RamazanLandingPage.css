@@ -124,7 +124,7 @@
 
 .pickteacher .tutorslist .btn-outline-secondary:hover {
     background: none;
-    cursor: auto;
+    cursor: pointer;
 }
 
 .PhoneInput .PhoneInputInput {
@@ -134,7 +134,9 @@
 }
 .payment-section .picktimeslot .tutorslist .students{
     font-weight: bold;
-    font-size: 17px;
+    font-size: 15px;
+    color: #626ec3;
+    font-family: Avenir-Next;
 }
 .paymentdetailslist .list-group-item{
     color: black;

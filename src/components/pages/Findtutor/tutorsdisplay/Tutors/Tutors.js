@@ -23,7 +23,7 @@ function Tutors(props) {
             return index === 0 ? word.toUpperCase() : word.toUpperCase();
         }).replace(/\s+/g, ' ');
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollToForm, reverseScrollPayment,scrollTotheForm } = useContext(TutorsContext);
+    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollToForm, reverseScrollPayment, scrollTotheForm } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
@@ -32,10 +32,10 @@ function Tutors(props) {
         setTeacherName(name);
         showPaymentForm();
         setBookingDetails(camelize((name + " - " + days + " , " + times).toString()));
-        if (scrollToForm){
+        if (scrollToForm) {
             reverseScrollPayment()
         }
-        else if(!scrollToForm){
+        else if (!scrollToForm) {
             scrollTotheForm();
         }
     }
@@ -165,14 +165,13 @@ function Tutors(props) {
                         </Card>
                     </Link> : <Card key={item.id} onClick={() => {
                         saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
-
                     }} style={{ height: props.ramadanteachers ? "300px" : props.ramadanteachers && isMobile ? "300px!important" : "", width: props.ramadanteachers && isMobile ? "100%" : "" }}>
                         <Card.Body>
                             <div className="d-flex flex-column">
                                 <div className="p-2">
                                     <Container>
                                         {!props.ramadanteachers ? <Card.Img variant="top" src={item.picture == null ? props.avatar : item.picture} />
-                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "150px", height: isMobile ? "120px" : "150px" }} roundedCircle />}
+                                            : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "120px" : "150px", height: isMobile ? "120px" : "150px", marginLeft: props.isMobile ? "" : "1.5rem" }} roundedCircle />}
                                     </Container>
                                 </div>
                                 <div className="p-2">
@@ -191,13 +190,13 @@ function Tutors(props) {
                                                         {item.days ? <div className="d-flex flex-row bd-highlight mb-3">
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faCalendar} /></div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" style = {{fontSize: "13px"}}>
+                                                                <p className="students" >
                                                                     Days:
                                                                 </p>
                                                             </div>
                                                             <br />
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" style = {{fontSize: "13px", color: "#FF4646"}}>
+                                                                <p className="students">
                                                                     {camelize(item.days.toString())}
                                                                 </p>
                                                             </div>
@@ -235,12 +234,12 @@ function Tutors(props) {
                                                         {item.timings ? <div className="d-flex flex-row bd-highlight mb-3">
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}><FontAwesomeIcon icon={faClock} /></div>
                                                             <div className="p-2 bd-highlight">
-                                                                <p className="students" style={{ marginLeft: "7px", fontSize: props.ramadanteachers ? "13px" : "" }}>
+                                                                <p className="students" style = {{marginLeft: "0.5rem"}}>
                                                                     Timings:
                                                                 </p>
                                                             </div>
                                                             <div className="p-2 bd-highlight" style={{ marginLeft: "7px" }}>
-                                                                <p className="students" style={{ color: "#FF4646", fontSize: props.ramadanteachers ? "13px" : "", whiteSpace: isMobile ? "normal" : "nowrap" }}>
+                                                                <p className="students">
                                                                     {item.timings} PKT
                                                                 </p>
                                                             </div>

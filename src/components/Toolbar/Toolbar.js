@@ -26,10 +26,10 @@ const Toolbar = (props) => {
                 <div className="toolbar-navigation-items">
                     <ul>
                         {/* <li><Link to="/programs">Programs & Courses</Link></li> */}
-                        <li><Link to={{
+                        {/* <li><Link to={{
                             pathname: "/pricing",
                             state: { PricingValue: "hello" }
-                        }}>Pricing</Link></li>
+                        }}>Pricing</Link></li> */}
                         {/* <li><Link to={{
                             pathname: "/tutors",
                             state: { findtutors: "hello" }

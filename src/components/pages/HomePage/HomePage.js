@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import landingimage from './coverphoto2.jpg'
-import HomePageMobileimage from './MoBile.jpg'
+import landingimage from './coverphotoweb.jpg'
+import HomePageMobileimage from './MobileCoverHome.jpg'
 import './HomePage.css'
 import Videocontent from '../../videocontent/videocontent';
 import OurApproach from '../../OurApproach/OurApproach';
