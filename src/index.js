@@ -13,9 +13,9 @@ import HttpsRedirect from 'react-https-redirect';
 ReactDOM.render(
   <Router>
     <Provider>
-      {/* <HttpsRedirect> */}
-      <App />
-      {/* </HttpsRedirect> */}
+      <HttpsRedirect>
+        <App />
+      </HttpsRedirect>
     </Provider>
   </Router>,
   document.getElementById('root')
