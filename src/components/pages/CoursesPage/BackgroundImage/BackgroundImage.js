@@ -1,12 +1,12 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Background from './Images/Background.png'
+import Background from './Images/programbanner.JPG'
 import { Card } from 'react-bootstrap';
 import VideoComponents from './VideoComponents/VideoComponents';
 import './BackgroundImage.css';
 const BackgroundImage = (props) => {
     const [isMobile, setclassname] = useState(false);
-    
+
     const mobileview = () => {
         if (window.innerWidth < 769) {
             setclassname(true);
@@ -23,19 +23,19 @@ const BackgroundImage = (props) => {
     return (
         <div>
             <div className="bg-dark text-white">
-                <img src={Background} alt="Card image" className="card-img" />
+                <img src={Background} style={{ height: "560px" }} alt="Card image" className="card-img" />
                 <div className={cardtextclass}>
-
-                    <h5 className="card-title">OUR PROGRAMS & COURSES</h5>
-                    <p className="card-text"> Developed by experts and taught by trained tutors, explore our wide range of world class online classes.
-            <div className="programs">
+                    <div className = "overlaycoursesheading"/>
+                    <h5 className="card-title">Programs & Courses</h5>
+                    <p className="card-text">
+                        <div className="programs">
                             <VideoComponents changeVideo={props.changeVideo} />
                         </div>
 
                     </p>
                 </div>
             </div>
-            
+
         </div>
 
     )

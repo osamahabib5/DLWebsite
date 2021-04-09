@@ -6,9 +6,10 @@
     left: 0;
     padding: 1.25rem;
     border-radius: calc(.25rem - 1px);
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
     margin-left: 2rem;
 }
+
 .find-a-tutor {
     background: #EDF0F5;
 }
@@ -54,25 +55,25 @@
 }
 
 .coursesimage .card-img {
-    margin-top: 3rem;
+    margin-top: 3.4rem;
 }
 
 .coursesimage .card-mobile {
     background: #00ABBD;
 }
-.packs-detail .justify-content-end{
+
+.packs-detail .justify-content-end {
     margin-top: -16rem;
 }
-
 
 @media only screen and (min-width: 769px) {
     .coursesimage .flex-column {
         display: none!important;
     }
-    .kits-details{
+    .kits-details {
         display: none;
     }
-    .programs .card-deck{
+    .programs .card-deck {
         margin-top: 6rem;
     }
     .products .card-img-overlay {
@@ -84,7 +85,6 @@
         margin-left: 0rem;
         margin-bottom: 2rem;
     }
-
     .products .card-img-overlay .card-text {
         margin-top: 0rem;
         font-family: Avenir;
@@ -97,12 +97,23 @@
     .coursesimage .card-title {
         font-family: Avenir;
         font-style: normal;
-        font-weight: 800;
-        font-size: 12px;
+        font-weight: bold;
+        font-size: 28px;
         line-height: 16px;
+        color: white;
+        margin-top: -2.5rem;
         display: flex;
-        color: #000000;
+        flex: 1 1;
+        justify-content: center;
+    }
+    .coursesimage .overlaycoursesheading {
+        height: 71px;
+        width: 511px;
+        background: #00abbdbd;
+        display: flex;
+        margin: auto;
         margin-top: 8rem;
+        border-radius: 4rem;
     }
     .coursesimage .card-text {
         font-family: Avenir;
@@ -118,19 +129,19 @@
     .programs-mobile {
         display: none;
     }
-    .video-popup{
+    .video-popup {
         display: none;
     }
     .find-a-tutor {
         margin-top: 2rem;
     }
-    .programs .card{
+    .programs .card {
         width: 280px;
     }
 }
 
 .coursesimage .bg-dark {
-    background: #00ABBD!important;
+    background: white!important;
 }
 
 @media only screen and (max-width: 769px) {
@@ -151,17 +162,17 @@
         border-radius: none;
         position: relative;
     }
-    .kits-details{
+    .kits-details {
         margin-top: 3rem;
     }
-    .kits-details .flex-column{
+    .kits-details .flex-column {
         align-items: flex-start;
-    } 
-    .kits-details .card-img-overlay{
+    }
+    .kits-details .card-img-overlay {
         position: relative;
         background: #00ABBD;
-    } 
-    .kits-details .list-group-item{
+    }
+    .kits-details .list-group-item {
         color: black;
         text-align: left;
     }

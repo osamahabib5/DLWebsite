@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Toolbar.css'
-import Logo from '../logo/Logo.png'
+import Logo from '../logo/d&llogo.png'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -20,13 +20,13 @@ const Toolbar = (props) => {
                 </div>
                 <div className="toolbar__logo">
 
-                    <Link to="/"> <img src={Logo} alt="Text" className="rounded mx-auto d-block" /></Link>
+                    <Link to="/"> <img src={Logo} style = {{width: "150px", height: "60px"}}alt="Text" className="rounded mx-auto d-block" /></Link>
                 </div>
                 <div className="spacer" />
                 <div className="toolbar-navigation-items">
                     <ul>
-                        {/* <li><Link to="/programs">Programs & Courses</Link></li>
-                        <li><Link to={{
+                        <li><Link to="/programs">Programs & Courses</Link></li>
+                        {/* <li><Link to={{
                             pathname: "/pricing",
                             state: { PricingValue: "hello" }
                         }}>Pricing</Link></li> */}

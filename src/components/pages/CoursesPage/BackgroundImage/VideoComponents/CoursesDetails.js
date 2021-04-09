@@ -7,20 +7,27 @@ const CoursesDetails = [{
 },
 {
     id: 1,
+    backgroundcolor: "rgb(140 154 223)",
+    title: "English Junior 3",
+    curriculum: "Vocabulary Building, Sentence Structure, Key Grammar concepts (nouns, pronouns, adjectives, punctuation and more) ",
+    levels: null
+},
+{
+    id: 2,
     backgroundcolor: "#FCCFCB",
     title: "Math K - 7",
     curriculum: " Practice worksheets on each concept as per school curriculum, quizzes, critical thinking puzzles, tearable activities, mental math calculation skill building",
     levels: null
 },
 {
-    id: 2,
+    id: 3,
     backgroundcolor: "#FCAA93",
     title: "Urdu",
     curriculum: "Haroof recognition, learning how to build words, inspiring local stories, our culture and much more.",
     levels: null
 },
 {
-    id: 3,
+    id: 4,
     title: "Coding",
     backgroundcolor: "rgb(27 179 195)",
     curriculum: "Introduction to Coding, sequencing, loops, animation, parallelism and events, debugging, broadcasts, conditionals and sensing, game design, cloning and more. ",
