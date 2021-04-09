@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 import baseUrl from '../../../baseUrl/baseUrl';
 import Cookies from 'universal-cookie';
 import { ClipLoader } from 'react-spinners';
-function RamazanLandingPage() {
+function RamazanLandingPage(props) {
     const [loading, setLoading] = useState(false);
     const [isMobile, setisMobile] = useState(false);
     const scrollToPackage = useRef(null);
@@ -117,7 +117,7 @@ function RamazanLandingPage() {
                 <ClipLoader size={80} color="#00ABBD" />
             </div> : <div>
                 <div className="ramazan-banner">
-                    <RamazanBanner isMobile={isMobile} />
+                    <RamazanBanner isMobile={isMobile} notification = {props.notification}/>
                 </div>
 
                 <Container>

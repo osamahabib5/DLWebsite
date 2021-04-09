@@ -38,6 +38,24 @@
     text-align: left;
 }
 
+.programs .view-more{
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    font-size: 12px;
+    color: #000000;
+    display: "flex";
+    justify-content: center;
+    cursor: pointer;
+}
+.programs .view-more:hover{
+    /* background: red; */
+    color: white;
+    display: "flex";
+    justify-content: center;
+    cursor: pointer;
+}
 .programs .card {
     width: 250px;
 }

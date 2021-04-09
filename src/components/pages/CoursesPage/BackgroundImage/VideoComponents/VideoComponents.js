@@ -43,8 +43,8 @@ const VideoComponents = (props) => {
                                 <ListGroup.Item style = {{fontWeight : "bold", fontSize : "14px"}}>{data.title}</ListGroup.Item>
                                 <ListGroup.Item style = {{fontWeight : "bold", fontSize : "12px"}}>Curriculum Includes: </ListGroup.Item>
                                 <ListGroup.Item style={{ fontSize: "12px", fontWeight: "light", height: "95px" }}>{data.curriculum}</ListGroup.Item>
-                                <ListGroup.Item style={{ display: "flex", justifyContent: "center" }}>
-                                    View More</ListGroup.Item>
+                                <ListGroup.Item bsPrefix = "view-more">
+                                    View Detailed Curriculum</ListGroup.Item>
                                 {data.levels ? <ListGroup.Item >{data.levels}</ListGroup.Item> : ""}
 
                             </ListGroup>
