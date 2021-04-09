@@ -25,7 +25,7 @@ const Toolbar = (props) => {
                 <div className="spacer" />
                 <div className="toolbar-navigation-items">
                     <ul>
-                        {/* <li><Link to="/programs">Programs & Courses</Link></li> */}
+                        <li><Link to="/programs">Programs & Courses</Link></li>
                         <li><Link to={{
                             pathname: "/pricing",
                             state: { PricingValue: "hello" }

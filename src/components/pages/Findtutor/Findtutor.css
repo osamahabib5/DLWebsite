@@ -27,8 +27,9 @@
 
 .clearFiltersText{
     color: black;
-    font-size: 30px;
+    font-size: 20px;
     cursor: pointer;
+    background: #00ABBD;
 }
 @media only screen and (min-width: 769px) {
     .FindATutor .card-img-overlay {

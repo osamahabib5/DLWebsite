@@ -10,7 +10,7 @@
 }
 
 .programs .card {
-    max-height: 300px;
+    max-height: 600px;
 }
 
 .card-text:last-child {
@@ -22,12 +22,17 @@
 }
 
 .programs .list-group-item {
-    height: 30px;
+    /* height: 30px; */
     font-family: Avenir;
     font-style: normal;
-    font-weight: 800;
-    font-size: 14px;
-    line-height: 11px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000000;
+    /* font-family: Avenir;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px; */
     align-items: center;
     color: #000000;
     text-align: left;

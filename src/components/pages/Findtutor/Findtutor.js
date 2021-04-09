@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef , useContext} from 'react'
 import './Findtutor.css'
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,10 +12,12 @@ import Tutorsdisplay from './tutorsdisplay/Tutorsdisplay';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
 import Image from "./Image/Image.png";
 import Cookies from 'universal-cookie';
+import { TutorsContext } from '../../../Provider';
 function Findtutor(props) {
     const cookies = new Cookies();
     const [isMobile, setclassname] = useState(false);
     const showContent = useRef(null);
+    const {tutortype} = useContext(TutorsContext)
     const description = "Find the best tutor for your child!"
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -32,6 +34,17 @@ function Findtutor(props) {
                 block: "nearest"
             })
         }
+    }
+    const clearFilters = ()=>{
+        // fillFilters({
+        //     ...filters,
+        //     teacher_name: null,
+        //     budget: 0,
+        //     subjects : [],
+        //     grade: null,
+        //     teaching_mode: null,
+        //     tutor_type: null
+        // })
     }
     useEffect(() => {
         mobileview();
@@ -55,10 +68,10 @@ function Findtutor(props) {
                                 <Col>
                                     <div className = "clearSearchFilters">
                                         {/* <p className = "clearFiltersText">
-                                            Clear
+                                            Clear Filters
                                     </p> */}
-                                    <button className = "btn button-cta button-red">
-                                        Clear
+                                    <button className = "btn button-cta button-red" onClick = {clearFilters }>
+                                        Clear Filters
                                     </button>
                                     </div>
                                 </Col>
@@ -76,7 +89,7 @@ function Findtutor(props) {
                         <Row>
                             <Col>
                                 <div className="ourtutor-cardtext-window">
-                                    <CardBody scrolltotutors={scrolltotutors} />
+                                    <CardBody scrolltotutors={scrolltotutors} clearFilters = {clearFilters} />
                                 </div>
                             </Col>
                         </Row>
