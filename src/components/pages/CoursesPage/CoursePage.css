@@ -1,3 +1,7 @@
+/* .coursesimage{
+    margin-bottom: 20rem;
+} */
+
 .coursesimage .card-img-overlay {
     position: absolute;
     top: 0;
@@ -15,7 +19,7 @@
 }
 
 .courses-video {
-    margin-top: 20rem;
+    margin-top: 45%;
 }
 
 .products .card-img-overlay .card-title {

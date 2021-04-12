@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { CardDeck, Card, ListGroup, Row, Col } from 'react-bootstrap';
+import { Container, Card, ListGroup, Row, Col } from 'react-bootstrap';
 import CoursesDetails from './CoursesDetails';
 import play from '../../../../images/Courses/Play.png'
 import './VideoComponent.css'
@@ -32,40 +32,51 @@ const VideoComponents = (props) => {
     }
     return (
         <div className="d-flex justify-content-end">
-            {/* <CardDeck> */}
-            <Row xs = {1} md = {3} className = "d-flex justify-content-center">
-                {CoursesDetails.map(data => {
-                    return (
-                        <Col>
-                            <Card key={data.id} style={{
-                                backgroundColor: data.backgroundcolor,
-                                height: "500px"
-                            }}>
-                                <ListGroup variant="flush">
-                                    <ListGroup.Item style={{ fontWeight: "bold", fontSize: "14px" }}>{data.title}</ListGroup.Item>
-                                    <ListGroup.Item style={{ fontWeight: "bold", fontSize: "12px" }}>Curriculum Includes: </ListGroup.Item>
-                                    <ListGroup.Item style={{ fontSize: "12px", fontWeight: "light", height: "95px" }}>{data.curriculum}</ListGroup.Item>
-                                    <ListGroup.Item bsPrefix="view-more">
-                                        View Detailed Curriculum</ListGroup.Item>
-                                    {data.levels ? <ListGroup.Item >{data.levels}</ListGroup.Item> : ""}
+            <Container>
+                <Row xs={1} md={3} className="d-flex justify-content-center">
+                    {CoursesDetails.map(data => {
+                        return (
+                            <Col style={{ marginTop: "2.5rem" }}>
+                                <Card key={data.id} style={{
+                                    backgroundColor: data.backgroundcolor,
+                                    height: "550px",
+                                    width: "330px"
+                                }}>
+                                    <ListGroup variant="flush">
+                                        <ListGroup.Item style={{ fontWeight: "bold", fontSize: "25px" }}>{data.title}</ListGroup.Item>
+                                        <ListGroup.Item style={{ fontWeight: "bold", fontSize: "20px" }}>Curriculum Includes: </ListGroup.Item>
+                                        <ListGroup.Item style={{ fontSize: "17px", fontWeight: "light", height: "120px" }}>{data.curriculum}</ListGroup.Item>
+                                        <Link to={data.lessonpack1} target="_blank" download>
+                                            <ListGroup.Item bsPrefix="view-more">
+                                                View Detailed Curriculum</ListGroup.Item>
+                                        </Link>
 
-                                </ListGroup>
-                                <div className="d-flex justify-content-center" style={{ marginBottom: "2rem" }}>
-                                    <Link to="/tutors">
-                                        <button className="btn button-cta button-red">
-                                            Book a Demo
-                                </button>
-                                    </Link>
-                                </div>
-                                <div style={{ marginTop: "1rem" }}>
-                                    <p className="view-more">Learn More</p>
-                                </div>
-                            </Card>
-                        </Col>
-                    )
-                })}
-            </Row>
-            {/* </CardDeck> */}
+                                        {data.levels ? <div>
+                                            <ListGroup.Item >{data.levels}</ListGroup.Item>
+                                            <Link to={data.lessonpack2} target="_blank" download>
+                                                <ListGroup.Item bsPrefix="view-more">
+                                                    View Detailed Curriculum</ListGroup.Item>
+                                            </Link>
+                                        </div>
+                                            : ""}
+
+                                    </ListGroup>
+                                    <div className="d-flex justify-content-center" style={{ marginTop: "-5rem" }}>
+                                        <Link to="/tutors">
+                                            <button className="btn button-cta button-red">
+                                                Book a Demo
+                                        </button>
+                                        </Link>
+                                    </div>
+                                    <div >
+                                        <p className="view-more">Learn More</p>
+                                    </div>
+                                </Card>
+                            </Col>
+                        )
+                    })}
+                </Row>
+            </Container>
         </div>
     )
 }
