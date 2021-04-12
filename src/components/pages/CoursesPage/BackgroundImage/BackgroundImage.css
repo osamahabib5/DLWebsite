@@ -22,37 +22,32 @@
 }
 
 .programs .list-group-item {
-    /* height: 30px; */
+    justify-content: center;
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
     font-size: 17px;
-    line-height: 18px;
-    color: #000000;
-    /* font-family: Avenir;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px; */
+    /* line-height: 18px; */
+    color: white;
     align-items: center;
-    color: #000000;
-    text-align: left;
+    text-align: center;
 }
 
-.programs .view-more{
+.view-more{
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
     text-align: center;
     font-size: 14px;
-    color: #000000;
+    color: white;
     /* display: "flex";
     justify-content: flex-start; */
     cursor: pointer;
     margin-top: 2rem;
 }
-.programs .view-more:hover{
+ .view-more:hover{
     /* background: red; */
-    color: blue;
+    color: white;
     text-decoration: underline;
     display: "flex";
     justify-content: center;

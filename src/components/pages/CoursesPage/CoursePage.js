@@ -61,6 +61,7 @@ function CoursePage() {
                 <MainVideo source={source} play={play} />
             </div>
             <div className="programs-mobile">
+                {/* <p>Swipe to view other courses</p> */}
                 <ProgramSlider changeVideoPopup={changeVideoPopup} />
             </div>
             <div className="video-popup">

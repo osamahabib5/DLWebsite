@@ -39,26 +39,19 @@ const VideoComponents = (props) => {
                             <Col style={{ marginTop: "2.5rem" }}>
                                 <Card key={data.id} style={{
                                     backgroundColor: data.backgroundcolor,
-                                    height: "550px",
-                                    width: "330px"
+                                    height: "500px",
+                                    width: "330px",
+                                    border: "0px"
                                 }}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item style={{ fontWeight: "bold", fontSize: "25px" }}>{data.title}</ListGroup.Item>
-                                        <ListGroup.Item style={{ fontWeight: "bold", fontSize: "20px" }}>Curriculum Includes: </ListGroup.Item>
-                                        <ListGroup.Item style={{ fontSize: "17px", fontWeight: "light", height: "120px" }}>{data.curriculum}</ListGroup.Item>
-                                        <Link to={data.lessonpack1} target="_blank" download>
+                                        <ListGroup.Item style={{ fontWeight: "bold", fontSize: "20px" }}>Curriculum Includes </ListGroup.Item>
+                                        <ListGroup.Item style={{ fontSize: "17px", fontWeight: "light", height: "150px" }}>{data.curriculum}</ListGroup.Item>
+                                        <Link to={data.lessonpack} target="_blank" download>
                                             <ListGroup.Item bsPrefix="view-more">
                                                 View Detailed Curriculum</ListGroup.Item>
                                         </Link>
 
-                                        {data.levels ? <div>
-                                            <ListGroup.Item >{data.levels}</ListGroup.Item>
-                                            <Link to={data.lessonpack2} target="_blank" download>
-                                                <ListGroup.Item bsPrefix="view-more">
-                                                    View Detailed Curriculum</ListGroup.Item>
-                                            </Link>
-                                        </div>
-                                            : ""}
 
                                     </ListGroup>
                                     <div className="d-flex justify-content-center" style={{ marginTop: "-5rem" }}>
