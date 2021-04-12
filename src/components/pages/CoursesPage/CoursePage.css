@@ -2,6 +2,9 @@
     background: #EDF0F5;
 }
 
+.Courses .find-a-tutor{
+    background: white;
+}
 .coursesimage .card-img-overlay {
     position: absolute;
     top: 0;
@@ -16,6 +19,8 @@
 
 .find-a-tutor {
     background: #EDF0F5;
+    justify-content: center;
+    display: flex;
 }
 
 .courses-video {

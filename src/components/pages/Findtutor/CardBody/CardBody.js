@@ -24,7 +24,7 @@ function CardBody(props) {
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
     const [filters, fillFilters] = useState({ teacher_name: null, budget: 0, subjects: [], grade: null, teaching_mode: null, tutor_type: tutortype ? tutortype : null });
-    const { subjects } = filters;
+    // const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
         5000: "5000",

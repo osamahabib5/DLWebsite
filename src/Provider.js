@@ -33,7 +33,9 @@ const initialState = {
     scrollToForm: false,
     USDtoPKR: 0,
     changeCountry: false,
-    studentid: null
+    studentid: null,
+    setsubject: null,
+    grade: null
 }
 
 const actions = {
@@ -74,7 +76,9 @@ const actions = {
     CHANGECOUNTRY: 'CHANGECOUNTRY',
     DONTCHANGECOUNTRY: 'DONTCHANGECOUNTRY',
     SETSTUDENTID: 'SETSTUDENTID',
-    REVERSESCROLLTOFORM: 'REVERSESCROLLTOFORM'
+    REVERSESCROLLTOFORM: 'REVERSESCROLLTOFORM',
+    SETGRADE: "SETGRADE",
+    SETSUBJECT: "SETSUBJECT"
 }
 
 function reducer(state, action) {
@@ -245,7 +249,7 @@ function reducer(state, action) {
                 ...state,
                 scrollToForm: true
             }
-            case actions.REVERSESCROLLTOFORM:
+        case actions.REVERSESCROLLTOFORM:
             return {
                 ...state,
                 scrollToForm: false
@@ -269,6 +273,16 @@ function reducer(state, action) {
             return {
                 ...state,
                 studentid: action.value
+            }
+        case actions.SETSUBJECT:
+            return {
+                ...state,
+                setsubject: action.value
+            }
+        case actions.SETGRADE:
+            return {
+                ...state,
+                grade: action.value
             }
         default:
             return state;
@@ -312,6 +326,8 @@ function Provider({ children }) {
         showTeachers: state.showTeachers,
         scrollToForm: state.scrollToForm,
         studentid: state.studentid,
+        setsubject: state.setsubject,
+        grade: state.grade,
         setresults: (value) => { dispatch({ type: actions.FILTERS_RESULTS, value }) },
         stopLoading: () => { dispatch({ type: actions.STOPPINGLOADER }) },
         startLoading: () => { dispatch({ type: actions.STARTINGLOADER }) },
@@ -349,7 +365,9 @@ function Provider({ children }) {
         setDollarToPKR: (value) => { dispatch({ type: actions.SETDOLLARVALUE, value }) },
         ChangeCountry: () => { dispatch({ type: actions.CHANGECOUNTRY }) },
         dontChangeCountry: () => { dispatch({ type: actions.DONTCHANGECOUNTRY }) },
-        setStudentId : (value) => { dispatch({ type: actions.SETSTUDENTID, value }) },
+        setStudentId: (value) => { dispatch({ type: actions.SETSTUDENTID, value }) },
+        getSubject: (value) => { dispatch({ type: actions.SETSUBJECT, value }) },
+        getGrade: (value) => { dispatch({ type: actions.SETGRADE, value }) },
     }
     return (
         <TutorsContext.Provider value={value}>

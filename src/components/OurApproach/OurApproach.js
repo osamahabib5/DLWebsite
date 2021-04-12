@@ -19,10 +19,12 @@ function OurApproach(props) {
                         {props.displayinfo.map((data, index) => {
                             return (
                                 <Col key={data.id}>
-                                    <Card key={data.id} >
-                                        <Card.Img variant="top" src={data.image} style={{height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
+                                    <Card key={data.id} style = {{background: props.coursespage ? "#EDF0F5": ""}}>
+                                        <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
                                             <Card.Title><p className="title">{data.title}</p></Card.Title>
+                                            <Card.Title style = {{marginTop: "4rem"}}><p className="title" 
+                                            style = {{fontSize: "15px"}}>{data.description}</p></Card.Title>
                                         </Card.Body>
                                     </Card>
                                 </Col>

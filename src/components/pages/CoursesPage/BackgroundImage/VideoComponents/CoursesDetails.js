@@ -4,6 +4,8 @@ const CoursesDetails = [{
     borderColor: "#ED1847",
     title: "English Junior 1",
     lessonpack: "/lessonpacks/EnglishGrade1.pdf",
+    subject : "English Language",
+    grade: "Nursery",
     curriculum: "Learn how to read in 100 easy lessons, tracing from 2 letter to 4 letter words and sound recognition, early learning themes such as transport, bugs and insects, emotions, seasons and much more.",
     
 },
@@ -13,6 +15,8 @@ const CoursesDetails = [{
     borderColor: "#B41E8E",
     lessonpack: "/lessonpacks/EnglishGrade2.pdf",
     title: "English Junior 2",
+    subject : "English Language",
+    grade: "KG",
     curriculum: "Introduction to comprehension and early early writing through famous personalities like Einstein and Maryam Mirzakhani.",
 },
 {
@@ -21,6 +25,8 @@ const CoursesDetails = [{
     borderColor: "#50B848",
     lessonpack: "/lessonpacks/EnglishGrade3.pdf",
     title: "English Junior 3",
+    subject : "English Language",
+    grade: "Grade 1",
     curriculum: "Vocabulary Building, Sentence Structure, Key Grammar concepts (nouns, pronouns, adjectives, punctuation and more) ",
 },
 {
@@ -29,6 +35,8 @@ const CoursesDetails = [{
     borderColor: "#FFA748",
     lessonpack: "",
     title: "Math K - 7",
+    subject : "Mathematics",
+    grade: "",
     curriculum: " Practice worksheets on each concept as per school curriculum, quizzes, critical thinking puzzles, tearable activities, mental math calculation skill building",
 },
 {
@@ -37,6 +45,8 @@ const CoursesDetails = [{
     borderColor: "#00ABBD",
     lessonpack: "",
     title: "Urdu",
+    subject : "",
+    grade: null,
     curriculum: "Haroof recognition, learning how to build words, inspiring local stories, our culture and much more.",
 },
 {
@@ -44,6 +54,8 @@ const CoursesDetails = [{
     title: "Coding",
     borderColor: "#FDB913",
     lessonpack: "",
+    subject : "Computer Studies",
+    grade: "",
     backgroundcolor: "rgb(27 179 195)",
     curriculum: "Introduction to Coding, sequencing, loops, animation, parallelism and events, debugging, broadcasts, conditionals and sensing, game design, cloning and more. ",
 }

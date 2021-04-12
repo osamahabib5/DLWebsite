@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './CoursePage.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackgroundImage from './BackgroundImage/BackgroundImage';
@@ -9,6 +9,8 @@ import ModalPopup from './Videos/VideoPopup/ModalPopup';
 import ProgramSlider from './ProgramSlider/ProgramSlider';
 import ReactPixel from 'react-facebook-pixel';
 import VideoComponents from './BackgroundImage/VideoComponents/VideoComponents';
+import OurApproachDetails from "./OurApproachDetails";
+import OurApproach from '../../OurApproach/OurApproach';
 function CoursePage() {
     const [source, setsource] = useState(videos[0]);
     const [play, startplaying] = useState(false);
@@ -17,10 +19,19 @@ function CoursePage() {
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
     const [displaytext, setdisplaytext] = useState("Book a free trial class now!");
+    const [isMobile, setclassname] = useState(false);
+    const mobileview = () => {
+        if (window.innerWidth < 769) {
+            setclassname(true);
+        }
+        if (window.innerWidth >= 769) {
+            setclassname(false);
+        }
+    }
     const textInput = useRef(null);
-    const advancedMatching = { em: 'some@email.com' }; 
+    const advancedMatching = { em: 'some@email.com' };
     const options = {
-        autoConfig: true, 
+        autoConfig: true,
     };
     ReactPixel.init('423237308932969', advancedMatching, options);
 
@@ -49,21 +60,25 @@ function CoursePage() {
             setsource(videos[0])
         } else if (e.target.className === "maths-mobile") {
             setsource(videos[1])
-        } 
+        }
     }
-
+    useEffect(() => {
+        // fetchPricing();
+        mobileview();
+        window.addEventListener("resize", mobileview);
+    });
     return (
 
         <div className="Courses">
             <div className="coursesimage">
                 <BackgroundImage changeVideo={changeVideo} />
             </div>
-            <div className = "programs">
-                <VideoComponents />
+            <div className="programs">
+                <VideoComponents changeVideo={changeVideo} />
             </div>
-            <div className="courses-video" ref={textInput}>
+            {/* <div className="courses-video" ref={textInput}>
                 <MainVideo source={source} play={play} />
-            </div>
+            </div> */}
             <div className="programs-mobile">
                 {/* <p>Swipe to view other courses</p> */}
                 <ProgramSlider changeVideoPopup={changeVideoPopup} />
@@ -74,7 +89,7 @@ function CoursePage() {
                     source={source} open={open} onOpenModal={onOpenModal} onCloseModal={onCloseModal} />
             </div>
             <div className="find-a-tutor">
-                <FindaTutorEnd displaytext = {displaytext}/>
+                <FindaTutorEnd displaytext={displaytext} />
             </div>
             {/* <div className="products">
                 <Products />
@@ -82,6 +97,15 @@ function CoursePage() {
             <div className="packs-detail">
                 <PacksPopup />
             </div> */}
+            <div className="OurApproach">
+                <OurApproach displayinfo={OurApproachDetails} 
+                    approachcontent="Only The Best Instructors On Our Platform "
+                    coursespage = "true"
+                    isMobile={isMobile}
+                    cardsno={4}
+                    mobilecards={2}
+                />
+            </div>
         </div>
     )
 }

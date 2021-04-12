@@ -28,7 +28,7 @@
     font-weight: normal;
     font-size: 17px;
     /* line-height: 18px; */
-    color: white;
+    color: black;
     align-items: center;
     text-align: center;
 }
@@ -39,7 +39,7 @@
     font-weight: normal;
     text-align: center;
     font-size: 14px;
-    color: white;
+    color: black;
     /* display: "flex";
     justify-content: flex-start; */
     cursor: pointer;
@@ -47,7 +47,7 @@
 }
  .view-more:hover{
     /* background: red; */
-    color: white;
+    color: blue;
     text-decoration: underline;
     display: "flex";
     justify-content: center;
