@@ -1,4 +1,4 @@
-.Courses{
+.Courses {
     background: #EDF0F5;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .courses-video {
-    margin-top: 45%;
+    margin-top: 2rem;
 }
 
 .products .card-img-overlay .card-title {
@@ -105,19 +105,20 @@
         font-size: 28px;
         line-height: 16px;
         color: white;
-        margin-top: -2.5rem;
+        margin-top: -9.5rem;
         display: flex;
         flex: 1 1;
         justify-content: center;
     }
+   
     .coursesimage .overlaycoursesheading {
-        height: 71px;
-        width: 511px;
+        height: 200px;
+        width: 760px;
         background: #00abbdbd;
         display: flex;
         margin: auto;
-        margin-top: 8rem;
-        border-radius: 4rem;
+        margin-top: 13rem;
+        border-radius: 1rem;
     }
     .coursesimage .card-text {
         font-family: Avenir;
@@ -127,8 +128,8 @@
         line-height: 44px;
         /* or 122% */
         display: flex;
-        color: #000000;
-        margin-top: 2rem;
+        color: white;
+        /* margin-top: 2rem; */
     }
     .programs-mobile {
         display: none;
@@ -212,10 +213,10 @@
     .programs-mobile {
         margin-top: 2rem;
     }
-    .programs-mobile .carousel-indicators li{
+    .programs-mobile .carousel-indicators li {
         background-color: grey;
     }
-    .programs-mobile .carousel-caption .mobilecoursesdetails{
+    .programs-mobile .carousel-caption .mobilecoursesdetails {
         font-weight: bold;
         color: white;
         text-align: center;

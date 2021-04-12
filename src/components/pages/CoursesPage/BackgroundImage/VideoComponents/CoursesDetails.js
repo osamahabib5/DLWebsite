@@ -1,6 +1,7 @@
 const CoursesDetails = [{
     id: 0,
     backgroundcolor: "rgb(90 170 179)",
+    borderColor: "#ED1847",
     title: "English Junior 1",
     lessonpack: "/lessonpacks/EnglishGrade1.pdf",
     curriculum: "Learn how to read in 100 easy lessons, tracing from 2 letter to 4 letter words and sound recognition, early learning themes such as transport, bugs and insects, emotions, seasons and much more.",
@@ -9,6 +10,7 @@ const CoursesDetails = [{
 {
     id: 1,
     backgroundcolor: "rgb(212 179 255)",
+    borderColor: "#B41E8E",
     lessonpack: "/lessonpacks/EnglishGrade2.pdf",
     title: "English Junior 2",
     curriculum: "Introduction to comprehension and early early writing through famous personalities like Einstein and Maryam Mirzakhani.",
@@ -16,6 +18,7 @@ const CoursesDetails = [{
 {
     id: 2,
     backgroundcolor: "rgb(140 154 223)",
+    borderColor: "#50B848",
     lessonpack: "/lessonpacks/EnglishGrade3.pdf",
     title: "English Junior 3",
     curriculum: "Vocabulary Building, Sentence Structure, Key Grammar concepts (nouns, pronouns, adjectives, punctuation and more) ",
@@ -23,6 +26,7 @@ const CoursesDetails = [{
 {
     id: 3,
     backgroundcolor: "rgb(195 116 116)",
+    borderColor: "#FFA748",
     lessonpack: "",
     title: "Math K - 7",
     curriculum: " Practice worksheets on each concept as per school curriculum, quizzes, critical thinking puzzles, tearable activities, mental math calculation skill building",
@@ -30,6 +34,7 @@ const CoursesDetails = [{
 {
     id: 4,
     backgroundcolor: "#FCAA93",
+    borderColor: "#00ABBD",
     lessonpack: "",
     title: "Urdu",
     curriculum: "Haroof recognition, learning how to build words, inspiring local stories, our culture and much more.",
@@ -37,6 +42,7 @@ const CoursesDetails = [{
 {
     id: 5,
     title: "Coding",
+    borderColor: "#FDB913",
     lessonpack: "",
     backgroundcolor: "rgb(27 179 195)",
     curriculum: "Introduction to Coding, sequencing, loops, animation, parallelism and events, debugging, broadcasts, conditionals and sensing, game design, cloning and more. ",

@@ -8,6 +8,7 @@ import videos from './Videos/video_list';
 import ModalPopup from './Videos/VideoPopup/ModalPopup';
 import ProgramSlider from './ProgramSlider/ProgramSlider';
 import ReactPixel from 'react-facebook-pixel';
+import VideoComponents from './BackgroundImage/VideoComponents/VideoComponents';
 function CoursePage() {
     const [source, setsource] = useState(videos[0]);
     const [play, startplaying] = useState(false);
@@ -56,6 +57,9 @@ function CoursePage() {
         <div className="Courses">
             <div className="coursesimage">
                 <BackgroundImage changeVideo={changeVideo} />
+            </div>
+            <div className = "programs">
+                <VideoComponents />
             </div>
             <div className="courses-video" ref={textInput}>
                 <MainVideo source={source} play={play} />
