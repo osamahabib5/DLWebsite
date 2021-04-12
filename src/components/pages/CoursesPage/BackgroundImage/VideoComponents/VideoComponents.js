@@ -83,15 +83,6 @@ const  setSearchResults = (grade, subject) =>{
                                             </button>
                                         {/* </Link> */}
                                     </div>
-                                    <div style={{ display: "flex", justifyContent: "center" }}>
-                                        {/* <p className="view-more">Learn More</p>
-                                        <div style={{ marginTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                            <img src={play} style={{ width: "30px", height: "30px" }} />
-                                        </div> */}
-                                        {/* <ListGroup.Item style = {{marginTop: "-1rem"}}>
-                                           
-                                        </ListGroup.Item> */}
-                                    </div>
                                 </Card>
                             </Col>
                         )
