@@ -38,6 +38,7 @@ function PickTime(props) {
         if (e.target.value === "teaching") {
             setramadanprogram(true);
             setramadanpack(false);
+            scrolltoTeachers();
             hideTutors();
             hidePaymentForm();    
         } else if (e.target.value === "nonteaching") {
@@ -45,6 +46,7 @@ function PickTime(props) {
             setramadanprogram(false);
             scrollTotheForm();
             setcoursetype("nonteaching");
+            hidePaymentForm();   
         }
         
     }
@@ -124,8 +126,10 @@ function PickTime(props) {
             <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "3.5rem" : "", marginBottom: "3rem" }}>
                 {TeachingOptions.map((data, index) => {
                     return (
-                        <Col xs lg="3" key={data.id}>
-                            <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "", width: "240px", height: "60px" }} onClick={(e) => {
+                        <Col xs lg="6" key={data.id}>
+                            <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "", width: props.isMobile ?  "250px": "500px", 
+                            height: props.isMobile ? "60px": "70px",
+                             fontSize:  props.isMobile ? "15px":"20px" }} onClick={(e) => {
                                 setProgramType(e)
                             }} className="btn btn-lg button-cta button-blue">
                                 {data.Option}

@@ -14,7 +14,7 @@ function PaymentForm(props) {
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
     const cookies = new Cookies();
-    const { Days, parent_country, time, teacher_id, courseid, parent_city, teacher_name, setLeadId, BookingDetails, setStudentId, studentid } = useContext(TutorsContext);
+    const { Days, parent_country, time, teacher_id, courseid, parent_city,paymentForm, teacher_name, setLeadId, BookingDetails, setStudentId, studentid } = useContext(TutorsContext);
     const [PaymentRegistrationForm, setPaymentRegistrationForm] = useState({
         name: "", phone: "", email: "", course_id: courseid, teacher_id: teacher_id, promo_code: "", country: parent_country ? parent_country : "Pakistan", city: parent_city ? parent_city : "None", lead_type: "ramzan_program",
         bookingdetails: BookingDetails
@@ -98,8 +98,8 @@ function PaymentForm(props) {
                 })
                 // document.getElementById("bookingdetails").value = ""
                 var urlParamObj = {
-                    'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
-                    // 'key': '065a0716-05f5-4539-92b5-482eafac127d',
+                    // 'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
+                    'key': '065a0716-05f5-4539-92b5-482eafac127d',
                     'amount': response.data.data.amount,
                     'is_generated': '1',
                     'reference_number': 'LK' + response.data.data.id, //student id
@@ -107,8 +107,8 @@ function PaymentForm(props) {
                     'customer_email_address': PaymentRegistrationForm.email,
                     'customer_phone_number': PaymentRegistrationForm.phone,
                     'consumer_name': PaymentRegistrationForm.name,
-                    'callback_url': "http://localhost:3000/ramadan",
-                    // 'callback_url': "https://www.dotandlinelearning.com",
+                    // 'callback_url': "http://localhost:3000/ramadan",
+                    'callback_url': "https://www.dotandlinelearning.com",
                 }
                 initiateCheckout(urlParamObj, true)
             }).catch(error => {
@@ -206,7 +206,7 @@ function PaymentForm(props) {
                 <Form.Group as={Row} controlId="formBasicEmail">
                     <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Email" />
                 </Form.Group>
-                {props.paymentForm ? <div>
+                {paymentForm ? <div>
                     <Form.Group as={Row} controlId="formBasicEmail">
                         <Form.Control type="string" name="promo_code" value={PaymentRegistrationForm.promo_code} onChange={handleonChange} placeholder="Promo Code" />
                     </Form.Group>

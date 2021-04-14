@@ -125,7 +125,7 @@ function RamazanLandingPage(props) {
                         <Col xs lg="12">
                             <div className="ramazan-header">
                                 <RamazanHeader isMobile={isMobile} />
-                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm={scrolltoRegistrationForm} />
+                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" isMobile = {isMobile} scrolltoRegistrationForm={scrolltoRegistrationForm} />
                             </div>
                         </Col>
                     </Row>
@@ -134,7 +134,7 @@ function RamazanLandingPage(props) {
                             <div className="ramazanprogramdetails">
                                 <RamazanProgramDetails isMobile={isMobile} />
                                 <div style={{ marginTop: "2rem" }}>
-                                    <SignUpButtonRamazanProgram buttontext="Sign Me Up!" scrolltoRegistrationForm={scrolltoRegistrationForm} />
+                                    <SignUpButtonRamazanProgram buttontext="Sign Me Up!" isMobile = {isMobile} scrolltoRegistrationForm={scrolltoRegistrationForm} />
                                 </div>
                             </div>
                         </Col>

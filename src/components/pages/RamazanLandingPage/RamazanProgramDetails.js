@@ -6,9 +6,9 @@ function RamazanProgramDetails(props) {
     return (
         <Container>
             <Row className="justify-content-md-center">
-                <Col xs lg="6">
-                    <p className="ramazanprogramheading" style = {{fontSize: props.isMobile ? "30px" :""}}>
-                        What does it include?
+                <Col xs lg="8">
+                    <p className="ramazanprogramheading" style={{ fontSize: props.isMobile ? "30px" : "" }}>
+                        What does the program include?
                     </p>
                 </Col>
             </Row>
@@ -23,6 +23,7 @@ function RamazanProgramDetails(props) {
                                 <p className="programdetails" style={{ fontWeight: 'normal' }}>
                                     {data.description}
                                 </p>
+
                             </Col>
                             <Col xs lg="7">
                                 <ReactPlayer
@@ -47,9 +48,12 @@ function RamazanProgramDetails(props) {
                                 <p className="programdetails" style={{ fontWeight: 'normal' }}>
                                     {data.description}
                                 </p>
+                                {data.terms ? <p className="programdetails" style={{ fontWeight: 'normal', fontSize: "15px" }}>
+                                    {data.terms}
+                                </p> : ""}
                             </Col>
                             <Col xs lg="7">
-                                <img alt = "...Loading" src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
+                                <img alt="...Loading" src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
                             </Col>
                         </Row>
                     )
@@ -57,7 +61,7 @@ function RamazanProgramDetails(props) {
                     return (
                         <Row className="justify-content-md-center" style={{ flexDirection: props.isMobile ? 'column-reverse' : "" }} key={index}>
                             <Col xs lg="7">
-                                <img alt = "...Loading" src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
+                                <img alt="...Loading" src={data.source} style={{ width: props.isMobile ? "100%" : "" }} />
                             </Col>
                             <Col xs lg="5">
                                 <p className="programdetails">
