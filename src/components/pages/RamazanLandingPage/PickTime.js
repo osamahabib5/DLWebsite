@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import baseUrl from '../../../baseUrl/baseUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudSun, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { faCloudSun, faMoon, faSun , faFemale, faBook} from '@fortawesome/free-solid-svg-icons'
 import avatar from './avatar.jpg';
 import PaymentForm from './PaymentForm';
 import { useRouteMatch } from 'react-router';
@@ -32,6 +32,15 @@ function PickTime(props) {
             }
         }
     }
+    let TeachingOptions = [{
+        id: 0,
+        Option: "Register with a Teacher",
+        value: "teaching"
+    }, {
+        id: 1,
+        Option: "Get Ramadan Books, Videos and Other Content",
+        value: "nonteaching"
+    }]
     let RamazanSlots = [{
         id: 0,
         TimeofDay: "Morning",
@@ -45,8 +54,6 @@ function PickTime(props) {
         TimeofDay: "Night",
         value: "night"
     }]
-
-    let fetchAvailableTeachersUrl = baseUrl + "/api/ramzan/getTimeSlots/";
     let Teachers = [];
     let fillTeachersSlot = [];
     const [fillTeacherSlot, setTeacherSlots] = useState(null);
@@ -91,6 +98,27 @@ function PickTime(props) {
             <Row style={{ marginTop: "2rem" }}>
                 <Col>
                     <p className="mainheading" style={{ textAlign: "center" }}>
+                        Select an Option
+                    </p>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "", marginBottom: "3rem" }}>
+                {TeachingOptions.map((data, index) => {
+                    return (
+                        <Col xs lg="3" key={data.id}>
+                            <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "", width: "240px", height: "60px" }} onClick={(e) => {
+                                showAvailableTeachers(e)
+                            }} className="btn btn-lg button-cta button-blue">
+                                {data.Option}
+                                <FontAwesomeIcon size = {20} style={{ marginLeft: "1rem" }} icon={index === 0 ? faFemale : faBook} />
+                            </button>
+                        </Col>
+                    )
+                })}
+            </Row>
+            <Row style={{ marginTop: "2rem" }}>
+                <Col>
+                    <p className="mainheading" style={{ textAlign: "center" }}>
                         Step One : Select a Timeslot  (Pakistan Standard Time)
                     </p>
                 </Col>
@@ -98,8 +126,8 @@ function PickTime(props) {
             <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "", marginBottom: "3rem" }}>
                 {RamazanSlots.map((data, index) => {
                     return (
-                        <Col xs lg="2" key={index}>
-                            <button key={index} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "" }} onClick={(e) => {
+                        <Col xs lg="2" key={data.id}>
+                            <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "" }} onClick={(e) => {
                                 showAvailableTeachers(e)
                             }} className="btn btn-lg button-cta button-blue">
                                 {data.TimeofDay}
@@ -109,7 +137,7 @@ function PickTime(props) {
                     )
                 })}
             </Row>
-            {showTeachers? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
+            {showTeachers ? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
                 <Col>
                     <div className="pickteacher">
                         <p className="mainheading" style={{ textAlign: "center" }}>

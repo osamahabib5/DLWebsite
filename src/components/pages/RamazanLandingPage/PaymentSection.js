@@ -45,7 +45,7 @@ function PaymentSection(props) {
             <Row>
                 <Col>
                     <p className="ramazanprogramheading">
-                        Register Now
+                        Register for the Ramadan Program
                         </p>
                 </Col>
             </Row>

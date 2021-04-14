@@ -15,7 +15,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import initFontAwesome from './components/initFontAwesome/initFontAwesome';
+// import initFontAwesome from './components/initFontAwesome/initFontAwesome';
 import OurTutor from './components/pages/OurTutor/OurTutor';
 import BecomeTutor from './components/pages/BecomeTutor/BecomeTutor';
 import About from './components/pages/About/About';
@@ -24,6 +24,8 @@ import Findtutor from './components/pages/Findtutor/Findtutor';
 import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import Cookies from 'universal-cookie';
 import RamazanLandingPage from './components/pages/RamazanLandingPage/RamazanLandingPage';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab, faTwitterSquare, faFacebook, faLinkedin, faGithub, faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
 function App() {
   const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
@@ -70,7 +72,8 @@ function App() {
   }
   useEffect(() => {
     // console.log("Ramazan Page here!")
-    initFontAwesome();
+    // initFontAwesome();
+    library.add(fab, faTwitterSquare, faFacebook, faLinkedin, faGithub, faYoutube, faInstagram)
     mobileview();
     window.addEventListener("resize", mobileview);
 

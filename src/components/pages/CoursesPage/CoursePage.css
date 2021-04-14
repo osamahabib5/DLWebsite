@@ -2,9 +2,10 @@
     background: #EDF0F5;
 }
 
-.Courses .find-a-tutor{
+.Courses .find-a-tutor {
     background: white;
 }
+
 .coursesimage .card-img-overlay {
     position: absolute;
     top: 0;
@@ -115,7 +116,6 @@
         flex: 1 1;
         justify-content: center;
     }
-   
     .coursesimage .overlaycoursesheading {
         height: 200px;
         width: 760px;
@@ -160,14 +160,13 @@
         font-style: normal;
         font-weight: 800;
         font-size: 24px;
-        /* line-height: 14px; */
+        padding: 1rem;
         text-align: center;
         color: #00ABBD;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    
     .products .card-img-overlay {
         height: 70px;
         width: 100%;
@@ -216,7 +215,7 @@
         display: none;
     }
     .programs-mobile {
-        margin-top: 2rem;
+        margin-top: 7rem;
     }
     .programs-mobile .carousel-indicators li {
         background-color: grey;
@@ -248,7 +247,7 @@
         text-align: left;
     }
     .find-a-tutor .flex-column {
-        background: #CAD2E3;
+        /* background: #CAD2E3; */
         margin-top: 2rem;
         padding: 1rem;
     }

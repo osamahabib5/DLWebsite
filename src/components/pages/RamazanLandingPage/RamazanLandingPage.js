@@ -83,7 +83,6 @@ function RamazanLandingPage(props) {
                 }
             }).catch(error => {
                 setLoading(false);
-                // opensweetalertdanger("There was something wrong with the payment!!")
                 if (error.response.status == 400){
                     opensweetalertdanger("There are some missing values!")
                 }else if(error.response.status == 401){

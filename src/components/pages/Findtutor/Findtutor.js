@@ -65,18 +65,15 @@ function Findtutor(props) {
                                     {isMobile ? <CardBodyMobile scrolltotutors={scrolltotutors} /> : <CardTitle description={description} />}
                                 </div>
                             </Col>
-                            <Col>
+                            {/* <Col>
                                 <Col>
                                     <div className = "clearSearchFilters">
-                                        {/* <p className = "clearFiltersText">
-                                            Clear Filters
-                                    </p> */}
                                     <button className = "btn button-cta button-red" onClick = {clearFilters }>
                                         Clear Filters
                                     </button>
                                     </div>
                                 </Col>
-                            </Col>
+                            </Col> */}
                         </Row>
                         {isMobile ? <Row>
                             <Col>

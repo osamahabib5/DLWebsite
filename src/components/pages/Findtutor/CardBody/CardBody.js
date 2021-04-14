@@ -55,6 +55,7 @@ function CardBody(props) {
                     const item = response.data.data;
                     setresults(item);
                     props.scrolltotutors();
+                    stopLoading();
                 })
                 .catch(function (error) {
                     console.log("Error's Response: " + error);
@@ -87,8 +88,24 @@ function CardBody(props) {
         })
 
     }
-
-
+    const clearFilters = ()=> {
+        startLoading();
+        let arr = [];
+        fillFilters({
+            ...filters,
+            teacher_name: "",
+            budget: 0,
+            subjects: "",
+            grade: "",
+            tutor_type: "",
+            teaching_mode: "null"
+        })
+        stopLoading();
+        // if (!filters.teacher_name){
+        //     console.log("Hello!")
+        //     stopLoading();
+        // }
+    }
     useEffect(async () => {
         const response = await fetch(subjects_url);
         const data = await response.json();
@@ -149,7 +166,7 @@ function CardBody(props) {
 
                 <Col >
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="online" name="methods" onChange={(e) => fillFilters({
+                        <Form.Control as="select" value = {filters.teaching_mode} defaultValue="online" name="methods" onChange={(e) => fillFilters({
                             ...filters,
                             teaching_mode: e.target.value
                         })}>
@@ -179,9 +196,33 @@ function CardBody(props) {
                         Advanced Filters
                     </p>
                 </Col> : ""}
-                
+
             </Form.Row>
-            {filter ? <Form.Row >
+            <Form.Row bsPrefix="justify-content-md-center">
+                <Col />
+                {filter ?
+                    <Col xs lg={8}>
+                        <Form.Label style={{ marginLeft: "-0.6rem" }}>
+                            Price Range
+                    </Form.Label>
+                        <Slider
+                            value={filters.budget}
+                            min={1000}
+                            max={50000}
+                            onChange={(e) => fillFilters({
+                                ...filters,
+                                budget: e
+                            })}
+                            marks={heightMarks}
+                        />
+                    </Col> : ''}
+                <Col xs lg={4}>
+                    <p className="advancedfilters" onClick={clearFilters}>
+                        Clear Filters
+                    </p>
+                </Col>
+            </Form.Row>
+            {/* {filter ? <Form.Row >
                 <Col>
                     <Form.Label style={{ marginLeft: "1rem" }}>
                         Price Range
@@ -198,7 +239,7 @@ function CardBody(props) {
                     />
                 </Col>
                         
-            </Form.Row> : ''}
+            </Form.Row> : ''} */}
         </Form>
     )
 }
