@@ -110,7 +110,7 @@ function PaymentForm(props) {
                     // 'callback_url': "http://localhost:3000/ramadan",
                     'callback_url': "https://www.dotandlinelearning.com",
                 }
-                initiateCheckout(urlParamObj, true)
+                initiateCheckout(urlParamObj, false)
             }).catch(error => {
                 // if (error.response.status == 400) {
                 //     opensweetalertdanger("You have already booked a demo with this teacher!")
