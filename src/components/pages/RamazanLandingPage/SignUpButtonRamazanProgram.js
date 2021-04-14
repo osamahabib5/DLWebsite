@@ -9,7 +9,10 @@ function SignUpButtonRamazanProgram(props) {
                 </button>
             </div>
             <div className="d-flex justify-content-center">
-                <p className="programdetails" > Program Fees: PKR 6500 (All Inclusive)</p >
+                <div style = {{display: "flex", flexDirection: "column"}}>
+                    <p className="programdetails" > Ramadan Pack: PKR 4500 (USD $30 - All Inclusive)</p >
+                    <p className="programdetails" style = {{marginTop: "-1rem"}}> Program Fees: PKR 6500 (USD $43 - All Inclusive)</p >
+                </div>
             </div>
         </div>
     )

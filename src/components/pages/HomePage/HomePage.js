@@ -76,6 +76,7 @@ function HomePage(props) {
                     isMobile={isMobile}
                     cardsno={4}
                     mobilecards={2}
+                    homepage = "true"
                 />
             </div>
             <div className="Image-Slider">

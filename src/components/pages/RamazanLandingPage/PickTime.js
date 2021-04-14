@@ -38,7 +38,7 @@ function PickTime(props) {
         value: "teaching"
     }, {
         id: 1,
-        Option: "Get Ramadan Books, Videos and Other Content",
+        Option: "Get Ramadan Pack, Videos and Other Content",
         value: "nonteaching"
     }]
     let RamazanSlots = [{

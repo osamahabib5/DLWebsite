@@ -110,18 +110,19 @@
         font-weight: bold;
         font-size: 28px;
         line-height: 16px;
-        color: white;
+        color: black;
         margin-top: -9.5rem;
         display: flex;
         flex: 1 1;
-        justify-content: center;
+        margin-left: 1rem;
+        /* justify-content: center; */
     }
     .coursesimage .overlaycoursesheading {
         height: 200px;
-        width: 760px;
-        background: #00abbdbd;
+        width: 1390px;
+        background: #ffffffa8;
         display: flex;
-        margin: auto;
+        /* margin: auto; */
         margin-top: 13rem;
         border-radius: 1rem;
     }

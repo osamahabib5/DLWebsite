@@ -60,8 +60,9 @@ function Tutors(props) {
                                 <div className="d-flex flex-column">
                                     <div className="p-2">
                                         <Container>
-                                            {!props.ramadanteachers ? <Card.Img variant="top" style = {{marginLeft: "-1.4rem"}} src={item.picture == null ? props.avatar : item.picture} />
-                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "80px" : "120px", height: isMobile ? "80px" : "120px", marginLeft: isMobile ? "-1.4rem" : "2.5rem" }} roundedCircle />}
+                                            {!props.ramadanteachers ? <Card.Img variant="top" style = {{marginLeft: "-1.4rem",margin: isMobile ?  "auto":""}} src={item.picture == null ? props.avatar : item.picture} />
+                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "80px" : "120px", height: isMobile ? "80px" : "120px", marginLeft: isMobile ? "" : "2.5rem", 
+                                                 }} roundedCircle />}
                                         </Container>
                                     </div>
                                     <div className="p-2">

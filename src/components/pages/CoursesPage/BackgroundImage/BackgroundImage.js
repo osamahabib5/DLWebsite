@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import CourseBannerWeb from './Images/Image1.JPG'
-import CourseBannerWeb from './Images/Image2.JPG'
+import CourseBannerWeb from './Images/Background.png'
 // import CourseBannerWeb from './Images/Image3.JPG'
 import CourseBannerMobile from './Images/mobile.jpg'
 import VideoComponents from './VideoComponents/VideoComponents';
@@ -30,7 +30,7 @@ const BackgroundImage = (props) => {
                     <div className="overlaycoursesheading" />
                     <h5 className="card-title">Programs & Courses</h5>
                      
-                    <h5 className="card-title" style = {{marginTop: isMobile ?  "0rem!important" : "0.5rem", width: isMobile ? "auto" : "700px", lineHeight : isMobile ? "" : "40px"}}>
+                    <h5 className="card-title" style = {{marginTop: isMobile ?  "0rem!important" : "1rem", width: isMobile ? "auto" : "", lineHeight : isMobile ? "" : "40px"}}>
                        
                         Developed by experts and taught by trained tutors, explore our wide range of world-class online programs.
                     </h5>

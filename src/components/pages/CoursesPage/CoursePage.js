@@ -97,9 +97,11 @@ function CoursePage() {
             <div className="packs-detail">
                 <PacksPopup />
             </div> */}
-            <div className="OurApproach">
+            <div className="OurApproach" style = {{background: "white"}}>
                 <OurApproach displayinfo={OurApproachDetails} 
-                    approachcontent="Only The Best Instructors On Our Platform "
+                    heading = "OUR MOTIVE"
+                    approachcontent="Only The Best Instructors On Our Platform"
+                    details = ""
                     coursespage = "true"
                     isMobile={isMobile}
                     cardsno={4}

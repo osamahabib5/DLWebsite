@@ -49,7 +49,7 @@ const  setSearchResults = (grade, subject) =>{
                                 <Card key={data.id} style={{
                                     // backgroundColor: data.backgroundcolor,
                                     padding: "2rem",
-                                    height: "500px",
+                                    height: "530px",
                                     width: "355px",
                                     border: "3px solid" + data.borderColor,
                                     borderRadius: "2rem"

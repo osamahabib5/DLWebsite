@@ -10,7 +10,7 @@ const ProgramDetails = [{
     "source": "RamazanPageImages/Learning.JPG"
 }, {
     "id": 2,
-    "title": "3. 8 small group discussion and activity sessions",
+    "title": "3. 8 small group discussion and activity sessions (Optional)",
     "description": "Meet young Muslims from around the world in these personalised interactive sessions where we discuss lessons from stories heard and bring them to life with our crafts. ",
     "source": "RamazanPageImages/Teacher2.jpeg"
 }, {
