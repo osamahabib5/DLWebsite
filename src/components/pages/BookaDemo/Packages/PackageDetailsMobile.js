@@ -73,22 +73,22 @@ function PackageDetailsMobile(props) {
                         <Carousel.Caption key={data.id} style={setPackagestyle(index)} onClick={() => {
                             setSelectedPackage(index)
                         }}>
-                            <p className="packagemobileheading">{data.title}</p>
-                            <div className="d-flex flex-row bd-highlight mb-3">
+                            <p className="packagemobileheading" key={data.id}>{data.title}</p>
+                            <div className="d-flex flex-row bd-highlight mb-3" key={data.id}>
                                 <div className="p-2 bd-highlight">
-                                    <p className="startingat">starts at</p>
+                                    <p className="startingat" key={data.id}>starts at</p>
                                 </div>
-                                <div className="p-2 bd-highlight">
+                                <div className="p-2 bd-highlight" key={data.id}>
                                     <p className="packagerate" style={{ whiteSpace: "nowrap" }}>Rs {index === 1 ? Math.round(parseInt(data.price) / 3) : data.price}</p>
                                 </div>
-                                <div className="p-2 bd-highlight">
+                                <div className="p-2 bd-highlight" key={data.id}>
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
                             {index === 1 ? <ListGroup.Item key={data.id}>
-                                <p> (Rs. {data.price} for 3 months)</p>
+                                <p> (Rs {data.price} for 3 months)</p>
                             </ListGroup.Item> : ""}
-                            <p className="packagemobiletagline" style={{ marginTop: index === 1 ?"-1rem" : "" }}>{data.heading}</p>
+                            <p className="packagemobiletagline" key={data.id} style={{ marginTop: index === 1 ?"-1rem" : "" }}>{data.heading}</p>
                             <ListGroup key={data.id}>
                                 {data.description.map(val => (
                                     <ListGroup.Item>{val}</ListGroup.Item>
@@ -115,7 +115,7 @@ function PackageDetailsMobile(props) {
                                 </div>
                             </div>
                             {index === 1 ? <ListGroup.Item key={data.id}>
-                                <p style = {{whiteSpace: "nowrap"}}> Rs. {data.price} for 3 months</p>
+                                <p style = {{whiteSpace: "nowrap"}}> Rs {data.price} for 3 months</p>
                             </ListGroup.Item> : ""}
                             {USDtoPKR > 0 ? <ListGroup.Item key={data.id} style={{ marginTop: index === 1 ? "-2.5rem" :"-0.5rem", justifyContent: "center" }}>
                                 <p style={{ textAlign: "center", whiteSpace: "nowrap" }}> (USD ${Math.round(parseInt(data.price) / 3 * USDtoPKR)} /month)</p>

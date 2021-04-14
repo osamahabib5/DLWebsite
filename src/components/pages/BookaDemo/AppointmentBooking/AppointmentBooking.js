@@ -9,7 +9,7 @@ function AppointmentBooking(props) {
         <Container>
             <Row className="justify-content-md-center">
                 <Col>
-                    <p className="AppointmentConfirmationHeading">Confirm your selections.</p>
+                    <p className="AppointmentConfirmationHeading">Confirm Your Selection.</p>
                 </Col>
             </Row>
             <div className="d-flex flex-row bd-highlight mb-3">

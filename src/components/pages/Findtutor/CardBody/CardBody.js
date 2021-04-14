@@ -23,7 +23,7 @@ function CardBody(props) {
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: null, budget: 0, subjects: [], grade: null, teaching_mode: null, tutor_type: tutortype ? tutortype : null });
+    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: [], grade: "", teaching_mode: "", tutor_type: tutortype ? tutortype : "" });
     // const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
@@ -95,16 +95,12 @@ function CardBody(props) {
             ...filters,
             teacher_name: "",
             budget: 0,
-            subjects: "",
+            subjects: [{}],
             grade: "",
             tutor_type: "",
             teaching_mode: "null"
         })
         stopLoading();
-        // if (!filters.teacher_name){
-        //     console.log("Hello!")
-        //     stopLoading();
-        // }
     }
     useEffect(async () => {
         const response = await fetch(subjects_url);
@@ -228,7 +224,7 @@ function CardBody(props) {
                         Price Range
                     </Form.Label>
                     <Slider
-                        value={filters.budget}
+                        value={filteRsbudget}
                         min={1000}
                         max={50000}
                         onChange={(e) => fillFilters({

@@ -177,7 +177,7 @@ function PricingFilters(props) {
                                 <Form.Check inline label="Super Tutor" value="super"
                                     checked={tutor_type === "super"}
                                     type={type} id={`inline-${type}-4`} onChange={handleOnChangeTutorType} />
-                                <FiltersDescription text="These are our top-tier teachers. The price to the right will reflect this premium option." />
+                                <FiltersDescription text="These are our top-tier teacheRs The price to the right will reflect this premium option." />
                             </div>
                         ))}
                     </Col>

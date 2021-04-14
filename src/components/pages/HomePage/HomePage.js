@@ -18,9 +18,9 @@ import { Col, Container, Row, Image } from 'react-bootstrap';
 function HomePage(props) {
     const cookies = new Cookies();
     const [displaytext, settext] = useState("Book a free trial class now! ")
-    const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
+    const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developeRsfacebook.com/docs/facebook-pixel/advanced/advanced-matching
     const options = {
-        autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+        autoConfig: true, // set pixel's autoConfig. More info: https://developeRsfacebook.com/docs/facebook-pixel/advanced/
         debug: false, // enable logs
     };
     ReactPixel.init('4212718168756467', advancedMatching, options);

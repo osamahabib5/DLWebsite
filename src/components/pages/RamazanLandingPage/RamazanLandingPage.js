@@ -72,7 +72,8 @@ function RamazanLandingPage(props) {
         setLoading(true);
         if (query.get("bill_status") === "paid") {
             await axios.post(baseUrl + "/api/ramzan/processInvoice", {
-                student_id: cookies.get("studentid")
+                id: cookies.get("studentid"),
+                type: cookies.get("type"),
             }).then(response => {
                 setLoading(false);
                 if (response.data.success) {

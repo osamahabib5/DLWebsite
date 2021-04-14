@@ -9,7 +9,7 @@ import Cookies from 'universal-cookie';
 import PaymentDetailsPopup from './PaymentDetailsPopup';
 import { initiateCheckout } from 'foree-checkout';
 import { ClipLoader } from 'react-spinners';
-function PaymentForm() {
+function PaymentForm(props) {
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
@@ -57,7 +57,7 @@ function PaymentForm() {
             [e.target.name]: e.target.value
         })
 
-        console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
+        // console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
     }
     const getPaymentDetails = async (e) => {
         e.preventDefault();
@@ -69,11 +69,54 @@ function PaymentForm() {
         console.log("PaymentForm: " + JSON.stringify(PaymentRegistrationForm))
         if (!PaymentRegistrationForm.name || !PaymentRegistrationForm.phone) {
             opensweetalertdanger("Please fill all the values");
+            setLoading(false);
         }
         else if (!validateemail(PaymentRegistrationForm.email)) {
             opensweetalertdanger("Please enter a valid email");
+            setLoading(false);
         } else if (!isValidPhoneNumber(PaymentRegistrationForm.phone)) {
             opensweetalertdanger("Please enter a valid phone number!");
+            setLoading(false);
+        }
+        else if (props.coursetype === "nonteaching") {
+            await axios.post(baseUrl + "/api/ramzan/registerDigitalPack", {
+                name: PaymentRegistrationForm.name,
+                phone: PaymentRegistrationForm.phone,
+                email: PaymentRegistrationForm.email
+            }).then(response => {
+                console.log("Response: "+ JSON.stringify(response))
+                setLoading(false);
+                setStudentId(response.data.data.id)
+                cookies.set('studentid', JSON.stringify(response.data.data.id), { path: '/' });
+                cookies.set('type', "learning_pack", { path: '/' });
+                setPaymentRegistrationForm({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    promo_code: "",
+                    bookingdetails: ""
+                })
+                // document.getElementById("bookingdetails").value = ""
+                var urlParamObj = {
+                    'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
+                    // 'key': '065a0716-05f5-4539-92b5-482eafac127d',
+                    'amount': response.data.data.amount,
+                    'is_generated': '1',
+                    'reference_number': 'LK' + response.data.data.id, //student id
+                    // 'callback': callbackPayment,
+                    'customer_email_address': PaymentRegistrationForm.email,
+                    'customer_phone_number': PaymentRegistrationForm.phone,
+                    'consumer_name': PaymentRegistrationForm.name,
+                    'callback_url': "http://localhost:3000/ramadan",
+                    // 'callback_url': "https://www.dotandlinelearning.com",
+                }
+                initiateCheckout(urlParamObj, true)
+            }).catch(error => {
+                // if (error.response.status == 400) {
+                //     opensweetalertdanger("You have already booked a demo with this teacher!")
+                // }
+                console.log("Ramazan Error: "+ error)
+            })
         }
         else {
             await axios.post(PaymentUrl, {
@@ -84,22 +127,23 @@ function PaymentForm() {
                 city: PaymentRegistrationForm.city,
                 course_id: PaymentRegistrationForm.course_id,
                 teacher_id: PaymentRegistrationForm.teacher_id,
-                promo_code: PaymentRegistrationForm.promo_code,
+                promo_code: PaymentRegistrationForm.promo_code
             }).then(response => {
                 setLoading(false);
                 // setStudentId(response.data.data.student_id)
                 cookies.set('studentid', JSON.stringify(response.data.data.student_id), { path: '/' });
+                cookies.set('type', "student", { path: '/' });
                 setPaymentRegistrationForm({
                     name: "",
                     email: "",
                     phone: "",
-                    promo_code : "",
+                    promo_code: "",
                     bookingdetails: ""
                 })
                 document.getElementById("bookingdetails").value = ""
                 var urlParamObj = {
-                    // 'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
-                    'key' : '065a0716-05f5-4539-92b5-482eafac127d',
+                    'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
+                    // 'key': '065a0716-05f5-4539-92b5-482eafac127d',
                     'amount': response.data.data.amount,
                     'is_generated': '1',
                     'reference_number': 'SID' + response.data.data.student_id, //student id
@@ -107,10 +151,10 @@ function PaymentForm() {
                     'customer_email_address': PaymentRegistrationForm.email,
                     'customer_phone_number': PaymentRegistrationForm.phone,
                     'consumer_name': PaymentRegistrationForm.name,
-                    // 'callback_url' : "http://localhost:3000/ramadan",
-                    'callback_url' : "https://www.dotandlinelearning.com",
+                    'callback_url': "http://localhost:3000/ramadan",
+                    // 'callback_url': "https://www.dotandlinelearning.com",
                 }
-                initiateCheckout(urlParamObj, false)
+                initiateCheckout(urlParamObj, true)
             }).catch(error => {
                 if (error.response.status == 400) {
                     opensweetalertdanger("You have already booked a demo with this teacher!")
@@ -162,12 +206,14 @@ function PaymentForm() {
                 <Form.Group as={Row} controlId="formBasicEmail">
                     <Form.Control type="email" name="email" value={PaymentRegistrationForm.email} onChange={handleonChange} placeholder="Email" />
                 </Form.Group>
-                <Form.Group as={Row} controlId="formBasicEmail">
-                    <Form.Control type="string" name="promo_code" value={PaymentRegistrationForm.promo_code} onChange={handleonChange} placeholder="Promo Code" />
-                </Form.Group>
-                <Form.Group as={Row} >
-                    <Form.Control type="string" placeholder="" id="bookingdetails" value={camelize((teacher_name + " - " + Days + " , " + time).toString())} disabled />
-                </Form.Group>
+                {props.paymentForm ? <div>
+                    <Form.Group as={Row} controlId="formBasicEmail">
+                        <Form.Control type="string" name="promo_code" value={PaymentRegistrationForm.promo_code} onChange={handleonChange} placeholder="Promo Code" />
+                    </Form.Group>
+                    <Form.Group as={Row} >
+                        <Form.Control type="string" placeholder="" id="bookingdetails" value={camelize((teacher_name + " - " + Days + " , " + time).toString())} disabled />
+                    </Form.Group>
+                </div> : ""}
                 <div style={{ marginBottom: "2rem", marginTop: "3rem" }} className="d-flex justify-content-center">
                     {/* <button className="btn button-cta button-red" onClick={handleOnSubmit}>
                         Submit    

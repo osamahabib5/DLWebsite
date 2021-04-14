@@ -4,17 +4,17 @@ import './PacksPopup.css'
 import Gallery from './ImageGallery/ImageGallery';
 import ReactPixel from 'react-facebook-pixel';
 function MyVerticallyCenteredModal(props) {
-    const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
+    const advancedMatching = { em: 'some@email.com' }; // optional, more info: https://developeRsfacebook.com/docs/facebook-pixel/advanced/advanced-matching
     const options = {
-        autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+        autoConfig: true, // set pixel's autoConfig. More info: https://developeRsfacebook.com/docs/facebook-pixel/advanced/
         debug: false, // enable logs
     };
     ReactPixel.init('252400769619363', advancedMatching, options);
 
     ReactPixel.pageView(); // For tracking page view
-    // ReactPixel.track(event, data); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
+    // ReactPixel.track(event, data); // For tracking default events. More info about standard events: https://developeRsfacebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
     // ReactPixel.trackSingle('PixelId', event, data); // For tracking default events.
-    // ReactPixel.trackCustom(event, data); // For tracking custom events. More info about custom events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#custom-events
+    // ReactPixel.trackCustom(event, data); // For tracking custom events. More info about custom events: https://developeRsfacebook.com/docs/facebook-pixel/implementation/conversion-tracking#custom-events
     // ReactPixel.trackSingleCustom('PixelId', event, data);
     return (
         <Modal

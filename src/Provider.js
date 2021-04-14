@@ -68,8 +68,10 @@ const actions = {
     SETDAYS: 'SETDAYS',
     SETTIME: 'SETTIME',
     SHOWPAYMENTFORM: 'SHOWPAYMENTFORM',
+    HIDEPAYMENTFORM: 'HIDEPAYMENTFORM:',
     SETTEACHERNAME: 'SETTEACHERNAME',
     SHOWTEACHERS: 'SHOWTEACHERS',
+    HIDETEACHERS: 'HIDETEACHERS',
     SETBOOKINGDETAILS: 'SETBOOKINGDETAILS',
     SETSCROLLTOFORM: 'SETSCROLLTOFORM',
     SETDOLLARVALUE: 'SETDOLLARVALUE',
@@ -229,6 +231,11 @@ function reducer(state, action) {
                 ...state,
                 paymentForm: true
             }
+        case actions.HIDEPAYMENTFORM:
+            return {
+                ...state,
+                paymentForm: false
+            }
         case actions.SETTEACHERNAME:
             return {
                 ...state,
@@ -283,6 +290,11 @@ function reducer(state, action) {
             return {
                 ...state,
                 grade: action.value
+            }
+        case actions.HIDETEACHERS:
+            return {
+                ...state,
+                showTeachers: false
             }
         default:
             return state;
@@ -357,8 +369,10 @@ function Provider({ children }) {
         setTimes: (value) => { dispatch({ type: actions.SETTIME, value }) },
         setDays: (value) => { dispatch({ type: actions.SETDAYS, value }) },
         showPaymentForm: () => { dispatch({ type: actions.SHOWPAYMENTFORM }) },
+        hidePaymentForm: () => { dispatch({ type: actions.HIDEPAYMENTFORM }) },
         setTeacherName: (value) => { dispatch({ type: actions.SETTEACHERNAME, value }) },
         showTutors: () => { dispatch({ type: actions.SHOWTEACHERS }) },
+        hideTutors: () => { dispatch({ type: actions.HIDETEACHERS }) },
         setBookingDetails: (value) => { dispatch({ type: actions.SETBOOKINGDETAILS, value }) },
         scrollTotheForm: () => { dispatch({ type: actions.SETSCROLLTOFORM }) },
         reverseScrollPayment: () => { dispatch({ type: actions.REVERSESCROLLTOFORM }) },

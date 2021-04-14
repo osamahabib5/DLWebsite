@@ -2,16 +2,17 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import baseUrl from '../../../baseUrl/baseUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudSun, faMoon, faSun , faFemale, faBook} from '@fortawesome/free-solid-svg-icons'
+import { faCloudSun, faMoon, faSun, faFemale, faBook } from '@fortawesome/free-solid-svg-icons'
 import avatar from './avatar.jpg';
 import PaymentForm from './PaymentForm';
 import { useRouteMatch } from 'react-router';
 import Tutors from '../Findtutor/tutorsdisplay/Tutors/Tutors';
 import { TutorsContext } from '../../../Provider';
 function PickTime(props) {
-    const { loading, showTeachers, showTutors, paymentForm, scrollToForm } = useContext(TutorsContext);
+    const { loading, showTeachers, showTutors, hideTutors, paymentForm,hidePaymentForm, scrollToForm ,scrollTotheForm} = useContext(TutorsContext);
     let { url } = useRouteMatch();
     const scrollToTutors = useRef(null);
+    const [coursetype, setcoursetype] = useState("");
     const scrollForm = useRef(null);
     const scrolltoTeachers = () => {
         showTutors();
@@ -32,6 +33,24 @@ function PickTime(props) {
             }
         }
     }
+    const setProgramType = (e) => {
+        e.preventDefault();
+        if (e.target.value === "teaching") {
+            setramadanprogram(true);
+            setramadanpack(false);
+            hideTutors();
+            hidePaymentForm();    
+        } else if (e.target.value === "nonteaching") {
+            setramadanpack(true);
+            setramadanprogram(false);
+            scrollTotheForm();
+            setcoursetype("nonteaching");
+        }
+        
+    }
+    const [ramadanpack, setramadanpack] = useState(false);
+    const [ramadanprogram, setramadanprogram] = useState(false);
+    
     let TeachingOptions = [{
         id: 0,
         Option: "Register with a Teacher",
@@ -102,42 +121,44 @@ function PickTime(props) {
                     </p>
                 </Col>
             </Row>
-            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "", marginBottom: "3rem" }}>
+            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "3.5rem" : "", marginBottom: "3rem" }}>
                 {TeachingOptions.map((data, index) => {
                     return (
                         <Col xs lg="3" key={data.id}>
                             <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "", width: "240px", height: "60px" }} onClick={(e) => {
-                                showAvailableTeachers(e)
+                                setProgramType(e)
                             }} className="btn btn-lg button-cta button-blue">
                                 {data.Option}
-                                <FontAwesomeIcon size = {20} style={{ marginLeft: "1rem" }} icon={index === 0 ? faFemale : faBook} />
+                                <FontAwesomeIcon size={20} style={{ marginLeft: "1rem" }} icon={index === 0 ? faFemale : faBook} />
                             </button>
                         </Col>
                     )
                 })}
             </Row>
-            <Row style={{ marginTop: "2rem" }}>
-                <Col>
-                    <p className="mainheading" style={{ textAlign: "center" }}>
-                        Step One : Select a Timeslot  (Pakistan Standard Time)
+            {ramadanprogram ? <div>
+                <Row style={{ marginTop: "2rem" }}>
+                    <Col>
+                        <p className="mainheading" style={{ textAlign: "center" }}>
+                            Step One : Select a Timeslot  (Pakistan Standard Time)
                     </p>
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "", marginBottom: "3rem" }}>
-                {RamazanSlots.map((data, index) => {
-                    return (
-                        <Col xs lg="2" key={data.id}>
-                            <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "" }} onClick={(e) => {
-                                showAvailableTeachers(e)
-                            }} className="btn btn-lg button-cta button-blue">
-                                {data.TimeofDay}
-                                <FontAwesomeIcon style={{ marginLeft: "1rem" }} icon={index === 0 ? faSun : index == 1 ? faCloudSun : faMoon} />
-                            </button>
-                        </Col>
-                    )
-                })}
-            </Row>
-            {showTeachers ? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center" style={{ marginTop: "2rem", marginLeft: props.isMobile ? "5rem" : "", marginBottom: "3rem" }}>
+                    {RamazanSlots.map((data, index) => {
+                        return (
+                            <Col xs lg="2" key={data.id}>
+                                <button key={data.id} value={data.value} style={{ marginTop: props.isMobile ? "1rem" : "" }} onClick={(e) => {
+                                    showAvailableTeachers(e)
+                                }} className="btn btn-lg button-cta button-blue">
+                                    {data.TimeofDay}
+                                    <FontAwesomeIcon style={{ marginLeft: "1rem" }} icon={index === 0 ? faSun : index == 1 ? faCloudSun : faMoon} />
+                                </button>
+                            </Col>
+                        )
+                    })}
+                </Row>
+            </div> : ""}
+            {showTeachers && ramadanprogram  ? <Row style={{ marginBottom: "2rem" }} ref={scrollToTutors}>
                 <Col>
                     <div className="pickteacher">
                         <p className="mainheading" style={{ textAlign: "center" }}>
@@ -149,13 +170,13 @@ function PickTime(props) {
                     </div>
                 </Col>
             </Row> : ""}
-            {paymentForm ? <Row>
+            {paymentForm && ramadanprogram|| ramadanpack ? <Row>
                 <Col>
                     <div className="paymentform" style={{ padding: props.isMobile ? "3rem" : "" }} ref={scrollForm}>
                         <p className="mainheading" style={{ textAlign: "center" }}>
-                            Step Three : Fill out your details
+                           {paymentForm ?  "Step Three : Fill out your details" : "Fill out your details"}
                         </p>
-                        <PaymentForm />
+                        <PaymentForm coursetype = {coursetype} paymentForm = {paymentForm}/>
                     </div>
                 </Col>
             </Row> : ""}

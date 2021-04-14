@@ -2,7 +2,7 @@ const OurApproachDetails = [{
     'id': 0,
     'title': 'Stringent selection',
     'image' : 'OurApproachImages/Icons-01.png',
-    'description': "Less than 9% of applicants make the cut as Dot and Line teachers. Each applicant passes an initial application stage, series of assessments, interviews and a background check."
+    'description': "Less than 9% of applicants make the cut as Dot and Line teacheRs Each applicant passes an initial application stage, series of assessments, interviews and a background check."
     
    
 },{

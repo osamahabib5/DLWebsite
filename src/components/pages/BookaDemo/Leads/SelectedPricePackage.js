@@ -39,7 +39,7 @@ function SelectedPricePackage(props) {
                             </div>
                         </ListGroup.Item>
                         {opted_package === 3 || opted_package === 1 ? <ListGroup.Item style={{ marginTop: "-1rem" }}>
-                            <p> (Rs.{fee_amount ? fee_amount : Available_Packages[opted_package].price} for 3 months)</p>
+                            <p> (Rs{fee_amount ? fee_amount : Available_Packages[opted_package].price} for 3 months)</p>
                         </ListGroup.Item> : ""}
                         { USDtoPKR > 0 && (opted_package === 2 || opted_package === 3)? <ListGroup.Item style={{ marginTop: "-1.5rem", justifyContent: "center" }}>
                             <p style={{ textAlign: "center" }}> (USD ${opted_package === 2 ?

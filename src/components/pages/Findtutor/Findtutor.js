@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef , useContext} from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Findtutor.css'
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,7 +18,8 @@ function Findtutor(props) {
     const cookies = new Cookies();
     const [isMobile, setclassname] = useState(false);
     const showContent = useRef(null);
-    const {tutortype} = useContext(TutorsContext)
+    const scrollToTop = useRef(null);
+    const { tutortype } = useContext(TutorsContext)
     const description = "Find the best tutor for your child!"
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -35,8 +36,14 @@ function Findtutor(props) {
                 block: "nearest"
             })
         }
+        if (scrollToTop.current) {
+            scrollToTop.current.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            })
+        }
     }
-    const clearFilters = ()=>{
+    const clearFilters = () => {
         // fillFilters({
         //     ...filters,
         //     teacher_name: null,
@@ -87,7 +94,7 @@ function Findtutor(props) {
                         <Row>
                             <Col>
                                 <div className="ourtutor-cardtext-window">
-                                    <CardBody scrolltotutors={scrolltotutors} clearFilters = {clearFilters} />
+                                    <CardBody scrolltotutors={scrolltotutors} clearFilters={clearFilters} />
                                 </div>
                             </Col>
                         </Row>
@@ -95,13 +102,13 @@ function Findtutor(props) {
                 </Card.ImgOverlay>
             </Card>
             <div className="displaytutors" ref={showContent} >
-                <Tutorsdisplay />
+                <Tutorsdisplay scrolltotutors={scrolltotutors} scrollToTop={scrollToTop} />
             </div>
             <div>
 
             </div>
             <div className="Ourtutors">
-                <BecomeaTutor image={Image} width = {804} height = {440}/>
+                <BecomeaTutor image={Image} width={804} height={440} />
             </div>
         </div>
     )

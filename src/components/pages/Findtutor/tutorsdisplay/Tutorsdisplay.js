@@ -6,7 +6,7 @@ import './Tutorsdisplay.css'
 import Tutors from './Tutors/Tutors';
 import { useRouteMatch, useLocation } from 'react-router-dom';
 import { TutorsContext } from "../../../../Provider";
-function Tutorsdisplay() {
+function Tutorsdisplay(props) {
     let location = useLocation();
     let { state } = location;
     const { results, loading, stopLoading, startLoading, parent_country, tutortype, setParentLocation, setParentCity, setresults } = useContext(TutorsContext);
@@ -30,6 +30,8 @@ function Tutorsdisplay() {
     const paginate = (pageNum) => {
         setCurrPage(pageNum)
         setactive(pageNum);
+        props.scrolltotutors();
+        window.scrollTo(0, 0);
     }
     const fetchlocation = async () => {
         await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
@@ -80,8 +82,8 @@ function Tutorsdisplay() {
         );
     }
     return (
-        <div className="tutors-list">
-            <div className="tutorslist">
+        <div className="tutors-list" >
+            <div className="tutorslist" ref={props.scrollToTop}>
                 <Tutors dataarr={currentPosts} avatar={avatar} loading={loading} url={url} />
             </div>
             <div className="paginationlist">

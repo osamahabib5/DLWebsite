@@ -60,9 +60,7 @@ function Tutors(props) {
                                 <div className="d-flex flex-column">
                                     <div className="p-2">
                                         <Container>
-                                            {!props.ramadanteachers ? <Card.Img variant="top" style = {{marginLeft: "-1.4rem",margin: isMobile ?  "auto":""}} src={item.picture == null ? props.avatar : item.picture} />
-                                                : <Image src={item.picture == null ? props.avatar : item.picture} style={{ width: isMobile ? "80px" : "120px", height: isMobile ? "80px" : "120px", marginLeft: isMobile ? "" : "2.5rem", 
-                                                 }} roundedCircle />}
+                                            <Card.Img variant="top" style={{ marginLeft: !isMobile ? "-1.4rem" : "0.2rem" }} src={item.picture == null ? props.avatar : item.picture} />
                                         </Container>
                                     </div>
                                     <div className="p-2">
@@ -159,17 +157,19 @@ function Tutors(props) {
                                     {item.min_budget ?
                                         <div className="p-2 bd-highlight" style={{ marginTop: "1rem", position: "absolute", bottom: "0px" }}>
                                             <p className="budget">
-                                                Starting from Rs. {item.min_budget}
+                                                Starting from Rs {item.min_budget}
                                             </p>
                                         </div> : ''}
 
                                 </div>
                             </Card.Body>
                         </Card>
-                    </Link> : <Card key={item.id} style={{ borderRadius: "12px", height: isMobile ? "350px!important" : "" , width: isMobile ? "75%" : "", 
-                     marginTop:"1rem"}} onClick={() => {
+                    </Link> : <Card key={item.id} style={{
+                        borderRadius: "12px", height: isMobile ? "350px!important" : "", width: isMobile ? "75%" : "",
+                        marginTop: "1rem"
+                    }} onClick={() => {
                         saveRamadanTeachersInfo(item.course_id, item.id, item.timings, item.days, item.teacher_name);
-                    }} style={{ height: isMobile ? "400px" : "300px", width: props.ramadanteachers && isMobile ? "70%" : "" , margin: isMobile ? "auto" : "", marginTop: isMobile ? "2rem": ""}}>
+                    }} style={{ height: isMobile ? "400px" : "300px", width: props.ramadanteachers && isMobile ? "70%" : "", margin: isMobile ? "auto" : "", marginTop: isMobile ? "2rem" : "" }}>
                         <Card.Body>
                             <div className="d-flex flex-column">
                                 <div className="p-2">
@@ -244,11 +244,11 @@ function Tutors(props) {
                                                             </div>
                                                         </div> : ""}
                                                         {item.timings ? <div className="d-flex flex-row bd-highlight mb-3" style={{
-                                                            marginTop: props.isMobile ? "0.5rem": "-0.5rem",
+                                                            marginTop: props.isMobile ? "0.5rem" : "-0.5rem",
                                                             position: isMobile ? "absolute" : "", right: isMobile ? "1.8rem" : "",
                                                             top: isMobile ? "5rem" : ""
                                                         }}
-                                                            >
+                                                        >
                                                             <div className="p-2 bd-highlight" style={{ marginTop: "-1rem", fontWeight: "10" }}>
                                                                 <span style={{ color: "white" }}>
                                                                     <FontAwesomeIcon icon={faClock} />
@@ -259,9 +259,11 @@ function Tutors(props) {
                                                                     Timings:
                                                                 </p>
                                                             </div>
-                                                            <div className="p-2 bd-highlight" style={{ marginLeft: isMobile ? "-1.5rem":"7px", position: isMobile ? "absolute" : "",
-                                                        top: isMobile ? "1.2rem" : ""}}>
-                                                                <p className="students" style = {{marginLeft: isMobile ? "1rem" : ""}}>
+                                                            <div className="p-2 bd-highlight" style={{
+                                                                marginLeft: isMobile ? "-1.5rem" : "7px", position: isMobile ? "absolute" : "",
+                                                                top: isMobile ? "1.2rem" : ""
+                                                            }}>
+                                                                <p className="students" style={{ marginLeft: isMobile ? "1rem" : "" }}>
                                                                     {item.timings} PKT
                                                                 </p>
                                                             </div>
@@ -289,7 +291,7 @@ function Tutors(props) {
                                 {item.min_budget ?
                                     <div className="p-2 bd-highlight" style={{ marginTop: "1rem", position: "absolute", bottom: "0px" }}>
                                         <p className="budget">
-                                            Starting from Rs. {item.min_budget}
+                                            Starting from Rs {item.min_budget}
                                         </p>
                                     </div> : ''}
 

@@ -25,7 +25,7 @@ function PackageDetails(props) {
                 .catch(function (error) {
                     console.log("Error: " + error);
                 }).then(data => {
-                    console.log("Pricing: " + JSON.stringify(data.results.PKR_USD.val));
+                    // console.log("Pricing: " + JSON.stringify(data.results.PKR_USD.val));
                     setDollarToPKR(JSON.stringify(data.results.PKR_USD.val))
                 })
         }
@@ -106,7 +106,7 @@ function PackageDetails(props) {
                                 </div>
                             </ListGroup.Item>
                             <ListGroup.Item  key={Available_Packages[1].id} style={{ marginTop: "-1rem" }}>
-                                <p> (Rs. {Available_Packages[1].price} for 3 months)</p>
+                                <p> (Rs {Available_Packages[1].price} for 3 months)</p>
                             </ListGroup.Item>
                             <ListGroup.Item style={{ marginTop: "-2rem" }} key={Available_Packages[1].id}>{Available_Packages[1].heading}</ListGroup.Item>
                             <div className="package_specification">
@@ -172,7 +172,7 @@ function PackageDetails(props) {
                                 </div>
                             </ListGroup.Item>
                             <ListGroup.Item key={Available_Packages[3].id} style={{ marginTop: "-1rem" }}>
-                                <p> (Rs. {Available_Packages[3].price} for 3 months)</p>
+                                <p> (Rs {Available_Packages[3].price} for 3 months)</p>
                             </ListGroup.Item>
                             {USDtoPKR > 0 ? <ListGroup.Item key={Available_Packages[3].id} style={{ marginTop: "-2rem" }}>
                                 <p> (USD $ {Math.round(parseInt(Available_Packages[3].price) * USDtoPKR)} /month)</p>

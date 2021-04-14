@@ -28,10 +28,12 @@ const BackgroundImage = (props) => {
                 <img src={isMobile ? CourseBannerMobile : CourseBannerWeb} style={{ height: isMobile ? "auto" : "560px" }} alt="Card image" className="card-img" />
                 <div className={cardtextclass}>
                     <div className="overlaycoursesheading" />
-                    <h5 className="card-title">Programs & Courses</h5>
-                     
-                    <h5 className="card-title" style = {{marginTop: isMobile ?  "0rem!important" : "1rem", width: isMobile ? "auto" : "", lineHeight : isMobile ? "" : "40px"}}>
-                       
+                    <div style = {{marginTop: "-12rem", marginLeft:"1rem"}}>
+                        <h5 className="our-tutors">PROGRAMS & COURSES</h5>
+                    </div>
+
+                    <h5 className="card-title" style={{ marginTop: isMobile ? "0rem!important" : "1rem", width: isMobile ? "auto" : "", lineHeight: isMobile ? "" : "40px" }}>
+
                         Developed by experts and taught by trained tutors, explore our wide range of world-class online programs.
                     </h5>
                 </div>
