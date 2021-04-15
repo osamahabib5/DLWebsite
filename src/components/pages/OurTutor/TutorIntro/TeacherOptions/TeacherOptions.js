@@ -29,21 +29,23 @@ function TeacherOptions() {
             <Row>
                 <Col>
                     <div className="d-flex justify-content-center" style={{ flexDirection: "column" }}>
+
+                        <button className="btn button-cta button-blue" onClick={handleShow}>Leave a review</button>
+                        <div style={{ marginTop: "4rem" }}></div>
                         <Link
                             to={{
                                 pathname: "/pricing",
                                 search: "showLeads",
                                 state: { TeacherFunnel: "true" }
                             }}
-
-                            // position: -webkit-sticky; /* Safari */
-                            // position: sticky;
-                            // top: 0;
-                        ><button className="btn button-cta button-blue" style = {{position: "sticky", bottom: "0",
-                        position: "-webkit-sticky"
-                        }}>Book a Demo</button></Link>
-                        <div style={{ marginTop: "1rem" }}></div>
-                        <button className="btn button-cta button-blue" onClick={handleShow}>Leave a review</button>
+                        ><button className="btn button-cta button-blue"
+                        style = {{
+                            position:"fixed",
+                            left: "0rem",
+                            bottom: "0rem",
+                            width: "100%"
+                        }}
+                        >Book a Demo</button></Link>
                         <div style={{ marginTop: "1rem" }}></div>
                     </div>
                 </Col>

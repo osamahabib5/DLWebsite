@@ -32,7 +32,7 @@ function BookaDemo(props) {
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
     const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id
-        , setConfirmPricing, skipPricing, skippedpricing,setSubscription
+        , setConfirmPricing, skipPricing, skippedpricing, setSubscription
     } = useContext(TutorsContext)
     const scrollToSelectedPackage = () => {
         if (scrollToPackage.current) {
@@ -161,25 +161,23 @@ function BookaDemo(props) {
                 setpackages(false);
             }
             if (state.TeacherFunnel) {
+                setSubscription("3_month")
                 if (cookies.get('leadid')) {
                     if (fee_amount == 0) {
-                        console.log("1")
                         showfeecalculator();
                         setnavigation(true);
                         setpackages(true);
-                        setSubscription("3_month")
+
                     }
                     else if (fee_amount > 0) {
                         // setResultType("pricing");
                         // skipPricing(true);
-                        console.log("2")
                         setappointmentpage(true);
                         setnavigation(true);
                         setpackages(true);
                     }
                 }
                 else {
-                    console.log("3")
                     showLeadsForm();
                     setpackages(true);
                     setnavigation(false);
@@ -327,8 +325,8 @@ function BookaDemo(props) {
                         <SelectedPricePackage isMobile={isMobile} />
                     </Col>
                 </Row> : ''}
-                {successfullead ? <Row>
-                        {/* {isMobile ? <Col>
+                {successfullead ? <Row style = {{flexDirection : isMobile ? "column":""}}>
+                    {/* {isMobile ? <Col>
                             <GoToTutorsPage showfeecalculator = {showfeecalculator} showAppointmentPageTutor={showAppointmentPageTutor} />
                         </Col> : ""} */}
                     <Col>
@@ -348,8 +346,8 @@ function BookaDemo(props) {
                     </Col>
 
                     {!skippedpricing ? <Col  >
-                        {isMobile ? <p className="swipepackage" style={{ marginTop: "-2rem" }}>Scroll down to customize your package</p> : ""}
-                        <SelectedPricePackage showappointmentpage = {showappointmentpage} showAppointmentPageTutor={showAppointmentPageTutor} />
+                        {/* {isMobile ? <p className="swipepackage" style={{ marginTop: "-2rem" }}>Scroll down to customize your package</p> : ""} */}
+                        <SelectedPricePackage showappointmentpage={showappointmentpage} showAppointmentPageTutor={showAppointmentPageTutor} />
 
                     </Col> : ""}
                 </Row> : ""}
@@ -357,7 +355,9 @@ function BookaDemo(props) {
                     <Col>
                         <div className="booking-demo-appointment">
                             <AppointmentBooking showScheduleDemo={showScheduleDemo}
-                            showappointmentpage = {showappointmentpage} />
+                                showappointmentpage={showappointmentpage} 
+                                isMobile = {isMobile}
+                                />
                         </div>
                     </Col>
                 </Row> : ""}

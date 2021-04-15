@@ -1,10 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import SelectedPricePackage from '../Leads/SelectedPricePackage'
 import SelectedTeacher from '../SelectedTeacher';
 import { TutorsContext } from '../../../../Provider';
 function AppointmentBooking(props) {
     const { skippedpricing } = useContext(TutorsContext);
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[])
     return (
         <Container>
             <Row className="justify-content-md-center">
@@ -15,7 +18,7 @@ function AppointmentBooking(props) {
             <div className="d-flex flex-row bd-highlight mb-3">
                 <div className="p-2 bd-high light">
                     <div className="selectedteacher">
-                        <SelectedTeacher />
+                        <SelectedTeacher isMobile = {props.isMobile}/>
                     </div>
                 </div>
                 {!skippedpricing || props.showappointmentpage ? <div className="p-2 bd-highlight">

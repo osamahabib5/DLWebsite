@@ -109,6 +109,8 @@ function PaymentForm(props) {
                     'consumer_name': PaymentRegistrationForm.name,
                     // 'callback_url': "http://localhost:3000/ramadan",
                     'callback_url': "https://www.dotandlinelearning.com",
+                    // 'callback_url': "https://dot-and-line-learning.mykajabi.com/offers/okgRBfYi/checkout",
+                    
                 }
                 initiateCheckout(urlParamObj, false)
             }).catch(error => {

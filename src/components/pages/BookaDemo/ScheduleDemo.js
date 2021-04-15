@@ -141,7 +141,7 @@ function ScheduleDemo(props) {
             </Row>
             <Row >
                 <Col >
-                    <SelectedTeacher />
+                    <SelectedTeacher isMobile = {props.isMobile}/>
                 </Col>
                 <Col>
                     <DayPicker

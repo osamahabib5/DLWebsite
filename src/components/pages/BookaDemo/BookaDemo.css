@@ -155,9 +155,7 @@
     cursor: pointer;
 }
 
-.bookademo .leads {
-    margin-top: 3rem;
-}
+
 
 .bookademo .leads .contact_heading {
     font-family: Avenir;
@@ -381,6 +379,9 @@
         color: #777777;
         white-space: nowrap;
     }
+    .bookademo .leads {
+        margin-top: 3rem;
+    }
     .tutorslist .btn-outline-secondary:hover {
         background: none;
         cursor: auto;
@@ -412,6 +413,9 @@
 @media only screen and (max-width: 769px) {
     .tutorslist .row {
         flex-direction: row;
+    }
+    .bookademo .leads {
+        margin-top: -4rem;
     }
     .tutorslist .container .card-img-top {
         width: 150px;
@@ -594,6 +598,7 @@
     font-weight: 800;
     font-size: 16px;
     line-height: 12px;
+    color: black;
 }
 
 .teacher-timezone {

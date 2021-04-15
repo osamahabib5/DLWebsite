@@ -25,15 +25,15 @@ const Toolbar = (props) => {
                 <div className="spacer" />
                 <div className="toolbar-navigation-items">
                     <ul>
-                        <li><Link to="/programs">Programs & Courses</Link></li>
-                        <li><Link to={{
+                        {/* <li><Link to="/programs">Programs & Courses</Link></li> */}
+                        {/* <li><Link to={{
                             pathname: "/pricing",
                             state: { PricingValue: "hello" }
                         }}>Pricing</Link></li>
                         <li><Link to={{
                             pathname: "/tutors",
                             state: { findtutors: "hello" }
-                        }}>Find a Tutor</Link></li>
+                        }}>Find a Tutor</Link></li> */}
                         {/* <li><Link to="/contact">Contact Us</Link></li> */}
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
                         <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank"><FontAwesomeIcon icon={['fab', 'youtube']} size="lg" /></a></li>

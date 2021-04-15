@@ -76,7 +76,7 @@ function CardBodyMobile(props) {
                     <Col><p className="our-tutors">OUR TUTORS</p></Col>
                 </Row>
                 <Row>
-                    <Col><p className="our-tutors-description">Get the best teachers for your children</p></Col>
+                    <Col><p className="our-tutors-description">Get the best teachers for your children (Scroll down to view)</p></Col>
                 </Row>
                 <Row>
                     <Col>
