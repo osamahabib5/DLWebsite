@@ -26,7 +26,6 @@
     font-size: 16px;
     line-height: 24px;
     color: #00ABBD;
-    
 }
 
 .tutor-intro .btn-primary:hover {
@@ -35,11 +34,13 @@
     border-radius: 6px;
     width: 100%!important;
 }
+
 .teacher-option .btn-primary:hover {
     border: 1px solid #00ABBD;
     box-sizing: border-box;
     border-radius: 6px;
 }
+
 .Tutor-Name .flex-column {
     background: white;
 }
@@ -79,6 +80,9 @@
     .tutor-intro .card-body {
         display: none;
     }
+    /* .teacher-credentials .container, .teaching-methods .container, .Tutor-Name .container{
+        margin-left: 0rem;
+    } */
     .teacher-description {
         margin-top: -2rem;
     }
@@ -134,11 +138,8 @@
     .teacher-option {
         display: none;
     }
-    .teacher-credentials{
+    .teacher-credentials {
         margin-bottom: 5rem;
-    }
-    .teacher-credentials .container, .teaching-methods .container, .Tutor-Name .container{
-        margin-left: -1rem;
     }
     .tutor-intro .card-img, .card-img-top {
         width: 100%;
@@ -147,4 +148,8 @@
     .name {
         display: none;
     }
+}
+
+.teacher-credentials .container, .teaching-methods .container, .Tutor-Name .container {
+    margin-left: -1rem;
 }

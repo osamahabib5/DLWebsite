@@ -35,7 +35,13 @@ function TeacherOptions() {
                                 search: "showLeads",
                                 state: { TeacherFunnel: "true" }
                             }}
-                        ><button className="btn button-cta button-blue">Book a Demo</button></Link>
+
+                            // position: -webkit-sticky; /* Safari */
+                            // position: sticky;
+                            // top: 0;
+                        ><button className="btn button-cta button-blue" style = {{position: "sticky", bottom: "0",
+                        position: "-webkit-sticky"
+                        }}>Book a Demo</button></Link>
                         <div style={{ marginTop: "1rem" }}></div>
                         <button className="btn button-cta button-blue" onClick={handleShow}>Leave a review</button>
                         <div style={{ marginTop: "1rem" }}></div>

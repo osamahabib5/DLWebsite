@@ -1,9 +1,10 @@
-.Courses {
+/* .Courses {
     background: #EDF0F5;
-}
+} */
 
 .Courses .find-a-tutor {
-    background: white;
+    background: #EDF0F5;
+    padding: 1rem;
 }
 
 .coursesimage .card-img-overlay {

@@ -13,13 +13,13 @@ function ConfirmAppointment(props) {
         setredirecttoHomePage(true)
     }
     useEffect(() => {
-        setTimeout(()=>RedirecttoHomePage(), 20000)
+        setTimeout(()=>RedirecttoHomePage(), 40000)
     }, [])
     return (
         <Container>
             <Row>
                 <Col>
-                    <p className="AppointmentConfirmationHeading">Teacher {teacher_info ? teacher_info.name : ""} will be  reaching out to you via your shared contact information at  {demo_date ? demo_date : ""} , {demo_time ? demo_time : ""}
+                    <p className="AppointmentConfirmationHeading">{teacher_info ? teacher_info.name : ""} will be  reaching out to you via your shared contact information soon. Your free demo has been scheduled for {demo_date ? demo_date : ""} at {demo_time ? demo_time : ""}
                     </p>
                 </Col>
             </Row>

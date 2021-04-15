@@ -328,9 +328,9 @@ function BookaDemo(props) {
                     </Col>
                 </Row> : ''}
                 {successfullead ? <Row>
-                    {isMobile ? <Col>
-                        <GoToTutorsPage showfeecalculator = {showfeecalculator} showAppointmentPageTutor={showAppointmentPageTutor} />
-                    </Col> : ""}
+                        {/* {isMobile ? <Col>
+                            <GoToTutorsPage showfeecalculator = {showfeecalculator} showAppointmentPageTutor={showAppointmentPageTutor} />
+                        </Col> : ""} */}
                     <Col>
                         <div className="pricingfilters">
                             <PricingFilters showtutoroptions={showtutoroptions}

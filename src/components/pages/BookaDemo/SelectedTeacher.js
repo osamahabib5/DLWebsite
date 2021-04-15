@@ -22,7 +22,7 @@ function SelectedTeacher(props) {
     }, [])
     return (
         <div className = {props.isMobile ? "d-flex justify-content-center" : ""}>
-            {teacher_info ? <div style={{ marginRight: "3rem" }}>
+            {teacher_info ? <div style={{ marginRight: props.isMobile ? "0rem" : "3rem" }}>
                 <Image src={teacher_info.image ? teacher_info.image : avatar} style={{ width: "146px", height: "150px" }} fluid />
                 <div style={{ marginTop: "2rem" }}>
                     <p className="teacher-info-name">{teacher_info.name.toString()}</p>

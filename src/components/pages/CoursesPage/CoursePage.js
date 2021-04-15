@@ -99,8 +99,8 @@ function CoursePage() {
             </div> */}
             <div className="OurApproach" style = {{background: "white"}}>
                 <OurApproach displayinfo={OurApproachDetails} 
-                    heading = "OUR MOTIVE"
-                    approachcontent="Only The Best Instructors On Our Platform"
+                    // heading = "HOW DO WE STRIVE?"
+                    approachcontent="Only the best instructors on our platform"
                     details = ""
                     coursespage = "true"
                     isMobile={isMobile}

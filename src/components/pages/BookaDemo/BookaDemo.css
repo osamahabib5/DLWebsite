@@ -16,7 +16,7 @@
     font-family: Avenir;
     font-style: normal;
     font-weight: 800;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 16px;
     color: #000000;
     text-align: center;
@@ -48,10 +48,11 @@
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
-    font-size: 35px;
+    font-size: 25px;
     line-height: 33px;
     color: #32B9BB;
     text-align: center;
+    width: 738px;
 }
 
 .swipepackage {
@@ -249,6 +250,10 @@
         flex-direction: column;
         text-align: center;
     }
+    .bookademo .packages .flex-column .packageselection {
+        padding: 2rem;
+        width: auto;
+    }
     .pricingfilters .react-numeric-input .numericinput, b {
         top: 1rem!important;
     }
@@ -288,6 +293,9 @@
         height: 400px;
         background: #FFFFFF;
         border-radius: 7px 7px 0px 0px;
+    }
+   .booking-demo-appointment .selectedteacher{
+        margin-top: -2rem;
     }
 }
 

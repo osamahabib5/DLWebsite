@@ -172,10 +172,10 @@ function ScheduleDemo(props) {
                     {/* {selectedday ? selecteddate : <div>Please select a day</div>} */}
                 </Col>
             </Row>
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-md-center" style = {{marginTop: props.isMobile ?  "2rem": ""}}>
                 <Col xs lg={props.isMobile ? "12" : "6"}>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Any comments for the teacher</Form.Label>
+                        <Form.Label style = {{marginLeft:"0rem"}}>Any comments for the teacher</Form.Label>
                         <Form.Control as="textarea" value={demodata.note} onChange={(e) => setdemodata({
                             ...demodata,
                             note: e.target.value
