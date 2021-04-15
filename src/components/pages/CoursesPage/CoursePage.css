@@ -119,8 +119,8 @@
     }
     .coursesimage .overlaycoursesheading {
         height: 200px;
-        width: 1390px;
-        /* background: #ffffffa8; */
+        width: 850px;
+        background: white;
         display: flex;
         /* margin: auto; */
         margin-top: 13rem;
@@ -167,6 +167,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .coursesimage .overlaycoursesheading {
+        height: 200px;
+        width: auto;
+        background: white;
+        display: flex;
+        /* margin: auto; */
+        margin-top: 13rem;
+        border-radius: 1rem;
     }
     .products .card-img-overlay {
         height: 70px;

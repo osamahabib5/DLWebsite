@@ -32,7 +32,7 @@ function BookaDemo(props) {
     const [scheduledemo, setscheduledemo] = useState(false);
     const [confirmappointment, setconfirmappointment] = useState(false);
     const { parent_country, setParentLocation, setParentCity, getTeacherId, setResultType, lead_id, fee_amount, result_type, calculateFees, teacher_id
-        , setConfirmPricing, skipPricing, skippedpricing
+        , setConfirmPricing, skipPricing, skippedpricing,setSubscription
     } = useContext(TutorsContext)
     const scrollToSelectedPackage = () => {
         if (scrollToPackage.current) {
@@ -167,6 +167,7 @@ function BookaDemo(props) {
                         showfeecalculator();
                         setnavigation(true);
                         setpackages(true);
+                        setSubscription("3_month")
                     }
                     else if (fee_amount > 0) {
                         // setResultType("pricing");

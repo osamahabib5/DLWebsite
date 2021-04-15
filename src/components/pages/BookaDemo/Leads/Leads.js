@@ -30,7 +30,7 @@ function Leads(props) {
     }
     const opensweetalertdanger = (alerttext) => {
         Swal.fire({
-            title: 'Create Lead',
+            title: 'Schedule a Demo',
             text: alerttext,
             type: 'warning',
 

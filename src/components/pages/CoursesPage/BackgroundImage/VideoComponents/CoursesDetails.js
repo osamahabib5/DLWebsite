@@ -9,16 +9,16 @@ const CoursesDetails = [{
     curriculum: "Learn how to read in 100 easy lessons, tracing 2 letter to 4 letter words and preschool early learning themes. ",
     
 },
-// {
-//     id: 1,
-//     backgroundcolor: "rgb(212 179 255)",
-//     borderColor: "#B41E8E",
-//     lessonpack: "/lessonpacks/EnglishGrade2.pdf",
-//     title: "English Junior 2",
-//     subject : "English Language",
-//     grade: "KG",
-//     curriculum: "Introduction to comprehension and early early writing through famous personalities like Einstein and Maryam Mirzakhani.",
-// },
+{
+    id: 1,
+    backgroundcolor: "rgb(212 179 255)",
+    borderColor: "#B41E8E",
+    lessonpack: "/lessonpacks/EnglishGrade2.pdf",
+    title: "English Junior 3",
+    subject : "English Language",
+    grade: "KG",
+    curriculum: "Vocabulary Building, Sentence Structure, Key Grammar concepts (nouns, pronouns, adjectives, punctuation and more) ",
+},
 {
     id: 1,
     backgroundcolor: "rgb(140 154 223)",

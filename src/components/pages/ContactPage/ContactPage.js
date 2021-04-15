@@ -24,22 +24,24 @@ function ContactPage(props) {
     const classname = isMobile ? 'd-flex flex-column' : 'd-flex flex-row';
     const contentclassname = isMobile ? 'tutor-mobile' : 'tutor-window';
     return (
-        <div className = "contact_page">
+        <div className="contact_page">
             <div className={classname}>
                 <div className="Image-Window">
-                    <Image src={Image_Contact} style = {{height: "900px"}} fluid />
+                    <Image src={Image_Contact} style={{ height: "900px" }} fluid />
                 </div>
                 <div className="Image-Mobile" style={{ marginTop: props.notification ? "0rem" : "3rem" }}>
                     <ImageWindow />
                 </div>
-                <div className={contentclassname}>
-                    <div className="description-class">
-                        <p className="contact-heading"> CONTACT </p>
-                        <p className="Description">{Contactdescription}</p>
+                <div className = "contact-form">
+                    <div className={contentclassname}>
+                        <div className="description-class">
+                            <p className="contact-heading"> CONTACT </p>
+                            <p className="Description">{Contactdescription}</p>
+                        </div>
+                        <p className="third">
+                            <FormWindow />
+                        </p>
                     </div>
-                    <p className="third">
-                        <FormWindow />
-                    </p>
                 </div>
             </div>
         </div>

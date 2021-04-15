@@ -137,6 +137,9 @@
     .teacher-credentials{
         margin-bottom: 5rem;
     }
+    .teacher-credentials .container, .teaching-methods .container, .Tutor-Name .container{
+        margin-left: -1rem;
+    }
     .tutor-intro .card-img, .card-img-top {
         width: 100%;
         margin: auto;

@@ -63,7 +63,7 @@ function Findtutor(props) {
     return (
         <div className="FindATutor">
             <Card className="bg-dark text-white">
-                <Card.Img src={isMobile ? BackgroundMobile : Background} alt="Card image" style={{ marginTop: props.notification || cookies.get("notification") ? "3.4rem" : "0rem" }} />
+                <Card.Img src={isMobile ? BackgroundMobile : Background} alt="Card image" style={{ marginTop: isMobile && !cookies.get("notification") ? "-2rem " : !props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "0.4rem" : "3.4rem" }} />
                 <Card.ImgOverlay>
                     <Container fluid>
                         <Row>
@@ -107,8 +107,8 @@ function Findtutor(props) {
             <div>
 
             </div>
-            <div className="Ourtutors">
-                <BecomeaTutor image={Image} findtutor = "true" height={440} />
+            <div className="BecomeTutor">
+                <BecomeaTutor image={Image} findtutor="true" height={440} />
             </div>
         </div>
     )

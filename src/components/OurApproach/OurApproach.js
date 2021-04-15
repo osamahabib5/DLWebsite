@@ -11,7 +11,7 @@ function OurApproach(props) {
             borderRadius: props.coursespage ? "2rem" : "",
         }}>
             <div className="p-2 bd-highlight" style={{ marginTop: props.topSpacing }}>
-                <p className="heading">{props.heading}</p>
+                <p className="heading" style = {{marginTop : props.coursespage ? "2rem" : ""}}>{props.heading}</p>
             </div>
             <div className="p-2 bd-highlight">
                 <p className="Approach-content">{props.approachcontent}</p></div>
@@ -21,7 +21,7 @@ function OurApproach(props) {
             <div className="p-2 bd-highlight">
                 <CardDeck style={{ margin: "auto" }} >
                     <Row xs={2} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
-                        {props.displayinfo.map((data, index) => {
+                        {props.displayinfo.map((data) => {
                             return (
                                 <Col key={data.id}>
                                     <Card key={data.id} style={{
@@ -29,6 +29,8 @@ function OurApproach(props) {
                                         marginBottom: props.coursespage ? "2rem" : "",
                                         border: props.coursespage ? "2px solid black" : "",
                                         borderRadius: props.coursespage ? "2rem" : "",
+                                        width: props.coursespage ? "280px" : "",
+                                        marginRight: props.coursespage ? "1rem" : "",
                                     }}>
                                         <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>

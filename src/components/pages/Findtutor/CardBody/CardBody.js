@@ -23,7 +23,7 @@ function CardBody(props) {
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: [], grade: "", teaching_mode: "", tutor_type: tutortype ? tutortype : "" });
+    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: [], grade: "Grade 1", teaching_mode: "online", tutor_type: tutortype ? tutortype : "" });
     // const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
@@ -122,7 +122,7 @@ function CardBody(props) {
             <Form.Row >
                 <Col style={{ marginTop: "0.5rem" }}>
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" defaultValue="Grade 1" value={filters.grade} onChange={(e) => fillFilters({
+                        <Form.Control as="select" value={filters.grade} onChange={(e) => fillFilters({
                             ...filters,
                             grade: e.target.value
                         })} placeholder="Filter by Grade">
@@ -162,7 +162,7 @@ function CardBody(props) {
 
                 <Col >
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" value={filters.teaching_mode} defaultValue="online" name="methods" onChange={(e) => fillFilters({
+                        <Form.Control as="select" value={filters.teaching_mode} name="methods" onChange={(e) => fillFilters({
                             ...filters,
                             teaching_mode: e.target.value
                         })}>

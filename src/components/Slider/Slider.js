@@ -5,7 +5,7 @@ import './Slider.css'
 function Slider(props) {
     return (
         <div className="testimonialslider">
-            <Carousel style = {{height: props.isMobile ? "650px" : "", padding: props.isMobile ? "2rem" : ""}}>
+            <Carousel style = {{height: props.isMobile ? "700px" : "", padding: props.isMobile ? "2rem" : ""}}>
                 <Carousel.Item interval={3000} style = {{marginTop: !props.isMobile ? "2rem" : ""}}>
                     <Carousel.Caption>
                         <h3>TESTIMONIALS</h3>

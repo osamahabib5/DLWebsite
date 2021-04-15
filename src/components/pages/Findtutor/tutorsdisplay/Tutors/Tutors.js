@@ -43,7 +43,7 @@ function Tutors(props) {
         }
     }
     useEffect(() => {
-        if (state.findtutors){
+        if (state && state.findtutors){
             setTutorType("standard")
         }
         mobileview();
@@ -79,7 +79,7 @@ function Tutors(props) {
                                         </div>
                                         <div className="p-2 bd-highlight" style={{ marginLeft: "-0.8rem", marginTop: "-2rem", marginBottom: '1rem' }}>
                                             <Container>
-                                                <Row>
+                                                <Row style = {{marginLeft: "-1.6rem"}}>
                                                     <Col style={{ height: "20px" }}>
                                                         <Button variant="outline-secondary" style={{ height: "30px", border: "none" }}>
                                                             {item.days ? <div className="d-flex flex-row bd-highlight mb-3">

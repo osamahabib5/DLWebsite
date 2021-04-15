@@ -5,7 +5,7 @@ function TeacherCredential(props) {
     return (
         <Container >
             {props.programs ?
-                <Container >
+                <Container>
                     <Row>
                         <Col><p className="credentials">Programs</p></Col>
                     </Row>
