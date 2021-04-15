@@ -10,7 +10,7 @@ import CardBody from './CardBody/CardBody';
 import CardBodyMobile from './CardBodyMobile/CardBodyMobile';
 import Tutorsdisplay from './tutorsdisplay/Tutorsdisplay';
 import BecomeaTutor from '../../BecomeaTutor/BecomeaTutor';
-import Image from "./Image/Image.png";
+import Image from "./Image/BecomeTutorImage.jpg";
 // import Image from "./Image/BecomeTutorImage.jpg";
 import Cookies from 'universal-cookie';
 import { TutorsContext } from '../../../Provider';
@@ -108,7 +108,7 @@ function Findtutor(props) {
 
             </div>
             <div className="Ourtutors">
-                <BecomeaTutor image={Image} width={804} height={440} />
+                <BecomeaTutor image={Image} findtutor = "true" height={440} />
             </div>
         </div>
     )

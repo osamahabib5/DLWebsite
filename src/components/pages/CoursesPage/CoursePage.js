@@ -106,6 +106,7 @@ function CoursePage() {
                     isMobile={isMobile}
                     cardsno={4}
                     mobilecards={2}
+                    topSpacing = "0rem"
                 />
             </div>
         </div>

@@ -6,9 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faCalendar, faClock } from '@fortawesome/free-solid-svg-icons'
 import { ClipLoader } from 'react-spinners';
 import { TutorsContext } from '../../../../../Provider';
+import {  useLocation} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 function Tutors(props) {
     const [isMobile, setmobile] = useState(false);
+    let location = useLocation();
+    let { state } = location;
     const cookies = new Cookies();
     const mobileview = () => {
         if (window.innerWidth < 769) {
@@ -23,7 +26,7 @@ function Tutors(props) {
             return index === 0 ? word.toUpperCase() : word.toUpperCase();
         }).replace(/\s+/g, ' ');
     }
-    const { saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollToForm, reverseScrollPayment, scrollTotheForm } = useContext(TutorsContext);
+    const {setTutorType, saveCourseId, getTeacherId, setTimes, setDays, setTeacherName, showPaymentForm, setBookingDetails, scrollToForm, reverseScrollPayment, scrollTotheForm } = useContext(TutorsContext);
     const saveRamadanTeachersInfo = (course_id, teacherid, times, days, name) => {
         saveCourseId(parseInt(course_id));
         getTeacherId(parseInt(teacherid));
@@ -40,6 +43,9 @@ function Tutors(props) {
         }
     }
     useEffect(() => {
+        if (state.findtutors){
+            setTutorType("standard")
+        }
         mobileview();
         window.addEventListener("resize", mobileview);
     }, [props.dataarr]);

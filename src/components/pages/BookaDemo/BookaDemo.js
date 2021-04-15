@@ -141,6 +141,7 @@ function BookaDemo(props) {
         setnavigation(false);
     }
     const SetDemoFlow = () => {
+        console.log("I am here!")
         if (id) {
             getTeacherId(id);
             showAppointmentPage();
@@ -162,8 +163,7 @@ function BookaDemo(props) {
             if (state.TeacherFunnel) {
                 if (cookies.get('leadid')) {
                     if (fee_amount == 0) {
-                        // showLeadsForm();
-                        // skipPricing(true);
+                        console.log("1")
                         showfeecalculator();
                         setnavigation(true);
                         setpackages(true);
@@ -171,12 +171,14 @@ function BookaDemo(props) {
                     else if (fee_amount > 0) {
                         // setResultType("pricing");
                         // skipPricing(true);
+                        console.log("2")
                         setappointmentpage(true);
                         setnavigation(true);
                         setpackages(true);
                     }
                 }
                 else {
+                    console.log("3")
                     showLeadsForm();
                     setpackages(true);
                     setnavigation(false);
@@ -326,7 +328,7 @@ function BookaDemo(props) {
                 </Row> : ''}
                 {successfullead ? <Row>
                     {isMobile ? <Col>
-                        <GoToTutorsPage showAppointmentPageTutor={props.showAppointmentPageTutor} />
+                        <GoToTutorsPage showfeecalculator = {showfeecalculator} showAppointmentPageTutor={showAppointmentPageTutor} />
                     </Col> : ""}
                     <Col>
                         <div className="pricingfilters">

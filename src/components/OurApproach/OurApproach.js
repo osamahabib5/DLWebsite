@@ -4,7 +4,12 @@ import './OurApproach.css';
 import { Card, CardDeck, Col, Row } from 'react-bootstrap';
 function OurApproach(props) {
     return (
-        <div className="d-flex flex-column bd-highlight mb-3">
+        <div className="d-flex flex-column bd-highlight mb-3" style={{
+            marginTop: props.coursespage ? "0rem" : "",
+            background: props.coursespage ? "#EDF0F5" : "",
+            border: props.coursespage ? "3px solid black" : "",
+            borderRadius: props.coursespage ? "2rem" : "",
+        }}>
             <div className="p-2 bd-highlight" style={{ marginTop: props.topSpacing }}>
                 <p className="heading">{props.heading}</p>
             </div>
@@ -19,12 +24,17 @@ function OurApproach(props) {
                         {props.displayinfo.map((data, index) => {
                             return (
                                 <Col key={data.id}>
-                                    <Card key={data.id} style = {{background: props.coursespage ? "" : "" }}>
+                                    <Card key={data.id} style={{
+                                        background: props.coursespage ? "" : "", height: props.coursespage ? "510px" : "",
+                                        marginBottom: props.coursespage ? "2rem" : "",
+                                        border: props.coursespage ? "2px solid black" : "",
+                                        borderRadius: props.coursespage ? "2rem" : "",
+                                    }}>
                                         <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
-                                            <Card.Title><p className="title" style = {{height: props.coursespage ? "50px" : "30px"}}>{data.title}</p></Card.Title>
-                                            {!props.homepage ? <Card.Title style = {{marginTop: "4rem"}}><p className="title" 
-                                            style = {{fontSize: "15px"}}>{data.description}</p></Card.Title> : ""}
+                                            <Card.Title><p className="title" style={{ height: props.coursespage ? "50px" : "30px" }}>{data.title}</p></Card.Title>
+                                            {!props.homepage ? <Card.Title style={{ marginTop: "4rem" }}><p className="title"
+                                                style={{ fontSize: "15px" }}>{data.description}</p></Card.Title> : ""}
                                         </Card.Body>
                                     </Card>
                                 </Col>

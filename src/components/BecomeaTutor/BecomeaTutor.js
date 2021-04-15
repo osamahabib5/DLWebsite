@@ -20,7 +20,7 @@ function BecomeaTutor(props) {
     const contentclassname = isMobile ? 'tutor-mobile' : 'tutor-window'
     return (
         <div className={classname}>
-            <img src={props.image} alt="loading" className="img-fluid" />
+            <img src={props.image} style = {{width : props.findtutor ? "50%": ""}}alt="loading" className="img-fluid" />
             <div className={contentclassname}>
                 <p className="first"> BECOME A TUTOR </p>
                 <p className="second">  Transform your career by joining our thriving community of global teachers!</p>
@@ -29,7 +29,7 @@ function BecomeaTutor(props) {
                 </p>
                 <Link to="/becometutor">
                     <div className = {isMobile ? "d-flex justify-content-end" : ""}>
-                        <button type="button" className="btn btn-info">Learn More</button>
+                        <button type="button" className="btn button-cta button-blue" style = {{color: "white"}}>Learn More</button>
                     </div>
                 </Link>
             </div>

@@ -88,7 +88,7 @@ function CardBody(props) {
         })
 
     }
-    const clearFilters = ()=> {
+    const clearFilters = () => {
         startLoading();
         let arr = [];
         fillFilters({
@@ -162,7 +162,7 @@ function CardBody(props) {
 
                 <Col >
                     <Form.Group controlId="formGridState">
-                        <Form.Control as="select" value = {filters.teaching_mode} defaultValue="online" name="methods" onChange={(e) => fillFilters({
+                        <Form.Control as="select" value={filters.teaching_mode} defaultValue="online" name="methods" onChange={(e) => fillFilters({
                             ...filters,
                             teaching_mode: e.target.value
                         })}>
@@ -196,35 +196,27 @@ function CardBody(props) {
             </Form.Row>
             <Form.Row bsPrefix="justify-content-md-center">
                 <Col />
-                {filter ?
-                    <Col xs lg={8}>
-                        <Form.Label style={{ marginLeft: "-0.6rem" }}>
-                            Price Range
-                    </Form.Label>
-                        <Slider
-                            value={filters.budget}
-                            min={1000}
-                            max={50000}
-                            onChange={(e) => fillFilters({
-                                ...filters,
-                                budget: e
-                            })}
-                            marks={heightMarks}
-                        />
-                    </Col> : ''}
+                {tutortype ? <Col xs lg={8}>
+                    <p className="advancedfilters" style = {{textAlign :"center"}}>
+                        You are looking at {tutortype && tutortype === "standard" ? "Standard Tutors" : tutortype && tutortype === "super" ? "Super Tutors" : ""}
+                    </p>
+                </Col> : ""}
                 <Col xs lg={4}>
                     <p className="advancedfilters" onClick={clearFilters}>
                         Clear Filters
                     </p>
                 </Col>
             </Form.Row>
-            {/* {filter ? <Form.Row >
+            <Form.Row>
+
+            </Form.Row>
+            {filter ? <Form.Row >
                 <Col>
                     <Form.Label style={{ marginLeft: "1rem" }}>
                         Price Range
                     </Form.Label>
                     <Slider
-                        value={filteRsbudget}
+                        value={filters.budget}
                         min={1000}
                         max={50000}
                         onChange={(e) => fillFilters({
@@ -235,7 +227,7 @@ function CardBody(props) {
                     />
                 </Col>
                         
-            </Form.Row> : ''} */}
+            </Form.Row> : ''}
         </Form>
     )
 }

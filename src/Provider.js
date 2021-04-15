@@ -21,7 +21,7 @@ const initialState = {
     demo_date: "",
     demo_time: "",
     demo_day: "",
-    tutortype: "",
+    tutortype: null,
     skippedpricing: false,
     courseid: 0,
     Days: "",
