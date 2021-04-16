@@ -36,7 +36,7 @@ function SideDrawer(props) {
                         </div></li>
                         <li><Link to="/pricing" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Pricing</Link></li>
                         <li><Link to="/programs" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Programs & Courses</Link></li>
-                        
+
                         <li><Link to="/tutors" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Find a Tutor</Link></li>
                         <li><Link to="/becometutor" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>Become a Tutor</Link></li>
                         <li><Link to="/aboutus" style={{ cursor: "pointer" }} onClick={props.handleDrawerToggleClick}>About Our Company</Link></li>
@@ -45,10 +45,16 @@ function SideDrawer(props) {
                     <hr />
                     <div className="container">
                         <div className="text-center">
-                            <ul className = "navbarsocialmediaicons" >
-                                <li ><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank"><FontAwesomeIcon icon={['fab', 'youtube']} size="lg" /></a></li>
-                                <li ><a href="https://www.facebook.com/dotandlinecentres/" target="__blank"><FontAwesomeIcon icon={['fab', 'facebook']} size="lg" /></a></li>
-                                <li><a href="https://www.instagram.com/dotandlinecentres/" target="__blank"><FontAwesomeIcon icon={['fab', 'instagram']} size="lg" /></a></li>
+                            <ul className="navbarsocialmediaicons" >
+                                <li ><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank">
+                                    <img src="youtube.png" style={{ width: "15px", height: "15px" }} />
+                                </a></li>
+                                <li ><a href="https://www.facebook.com/dotandlinecentres/" target="__blank">
+                                    <img src="facebook.png" style={{ width: "15px", height: "15px"  }} />
+                                </a></li>
+                                <li><a href="https://www.instagram.com/dotandlinecentres/" target="__blank">
+                                    <img src="instagram.png" style={{ width: "15px", height: "15px"  }} />
+                                </a></li>
                             </ul>
                         </div>
                         <div className="text-center">{footervalues.address.substring(1, footervalues.address.length - 1)}  {footervalues.phone_1.substring(1, footervalues.phone_1.length - 1)} | {footervalues.phone_2.substring(1, footervalues.phone_2.length - 1)}</div>

@@ -18,7 +18,7 @@ function OurApproach(props) {
             <div className="p-2 bd-highlight">
                 <p className="details">{props.details}</p>
             </div>
-            <div className="p-2 bd-highlight">
+            <div className="p-2 bd-highlight" style = {{marginBottom: props.coursespage ? "3rem": ""}}>
                 <CardDeck style={{ margin: "auto" }} >
                     <Row xs={2} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
                         {props.displayinfo.map((data, index) => {
@@ -32,7 +32,7 @@ function OurApproach(props) {
                                         // border: props.coursespage ? "2px solid black" : "",
                                         // borderRadius: props.coursespage ? "2rem" : "",
                                         marginTop: props.coursespage ? setMargin + "rem" : "",
-                                        width: props.coursespage ? "280px" : "",
+                                        // width: props.coursespage ? "280px" : "",
                                         marginRight: props.coursespage ? "1rem" : "",
                                     }}>
                                         {props.coursespage ? <p className="Approach-content" style = {{marginTop: "0rem"}}>Step {index+1}</p> : ""}

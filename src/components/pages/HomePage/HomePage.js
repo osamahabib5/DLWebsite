@@ -24,7 +24,7 @@ function HomePage(props) {
         debug: false, // enable logs
     };
     ReactPixel.init('4212718168756467', advancedMatching, options);
-
+    
     ReactPixel.pageView();
     const [isMobile, setclassname] = useState(false);
     const mobileview = () => {
@@ -36,10 +36,9 @@ function HomePage(props) {
         }
     }
     useEffect(() => {
-        // fetchPricing();
         mobileview();
         window.addEventListener("resize", mobileview);
-    });
+    },[]);
     const classname = isMobile ? 'd-flex flex-column' : 'd-flex flex-row';
     const contentclassname = isMobile ? 'video-content-mobile' : 'd-flex justify-content-center'
     const ourmission = isMobile ? 'p-mobile' : 'p-window'
@@ -50,7 +49,7 @@ function HomePage(props) {
             <div className="HomeImage">
                 <div className="card bg-dark text-white">
                     {/* <img src={logo} className="card-img" alt="..." /> */}
-                    <img src={isMobile ? HomePageMobileimage : landingimage} className="card-img" alt="..." style={{ marginTop: isMobile && !cookies.get("notification") ? "0rem " :!props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem": "3.4rem" }} />
+                    <img src={isMobile ? HomePageMobileimage : landingimage} className="card-img" alt="..." style={{ marginTop: isMobile && !cookies.get("notification") ? "0rem " : !props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem" : "3.4rem" }} />
                     {/* <ImageContent /> */}
                 </div>
             </div>
@@ -76,17 +75,17 @@ function HomePage(props) {
                     isMobile={isMobile}
                     cardsno={4}
                     mobilecards={2}
-                    homepage = "true"
+                    homepage="true"
                 />
             </div>
             <div className="Image-Slider">
-                <Container fluid = {isMobile ? false : true} >
+                <Container fluid={isMobile ? false : true} >
                     <Row>
                         <Col style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <Slider isMobile={isMobile} />
                         </Col>
                         <Col>
-                            <Image src={testimonial1} style={{marginTop: isMobile ? "-1rem" : "", height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%" }} fluid />
+                            <Image src={testimonial1} style={{ marginTop: isMobile ? "-1rem" : "", height: isMobile ? "100%" : "500px", width: isMobile ? "100%" : "90%" }} fluid />
                         </Col>
                     </Row>
                 </Container>

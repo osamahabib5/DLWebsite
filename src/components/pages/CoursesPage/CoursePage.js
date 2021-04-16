@@ -3,7 +3,6 @@ import './CoursePage.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BackgroundImage from './BackgroundImage/BackgroundImage';
 import FindaTutorEnd from '../../FindaTutor/FindaTutor_End';
-import MainVideo from './Videos/MainVideo/MainVideo';
 import videos from './Videos/video_list';
 import ModalPopup from './Videos/VideoPopup/ModalPopup';
 import ProgramSlider from './ProgramSlider/ProgramSlider';

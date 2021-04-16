@@ -73,15 +73,15 @@ function PackageDetailsMobile(props) {
                         <Carousel.Caption key={data.id} style={setPackagestyle(index)} onClick={() => {
                             setSelectedPackage(index)
                         }}>
-                            <p className="packagemobileheading" key={data.id}>{data.title}</p>
+                            <p className="packagemobileheading" >{data.title}</p>
                             <div className="d-flex flex-row bd-highlight mb-3" key={data.id}>
                                 <div className="p-2 bd-highlight">
-                                    <p className="startingat" key={data.id}>starts at</p>
+                                    <p className="startingat">starts at</p>
                                 </div>
-                                <div className="p-2 bd-highlight" key={data.id}>
+                                <div className="p-2 bd-highlight">
                                     <p className="packagerate" style={{ whiteSpace: "nowrap" }}>Rs {index === 1 ? Math.round(parseInt(data.price) / 3) : data.price}</p>
                                 </div>
-                                <div className="p-2 bd-highlight" key={data.id}>
+                                <div className="p-2 bd-highlight">
                                     <p className="startingat">/month</p>
                                 </div>
                             </div>
@@ -103,8 +103,8 @@ function PackageDetailsMobile(props) {
                     }}>
                         <Carousel.Caption key={data.id} style={setPackagestyle(index)} >
                             <p className="packagemobileheading">{data.title}</p>
-                            <div className="d-flex flex-row bd-highlight mb-3">
-                                <div className="p-2 bd-highlight">
+                            <div className="d-flex flex-row bd-highlight mb-3" key={data.id}>
+                                <div className="p-2 bd-highlight" key={data.id}>
                                     <p className="startingat" style={{ textAlign: "center" }}>starts at</p>
                                 </div>
                                 <div className="p-2 bd-highlight">
@@ -122,8 +122,8 @@ function PackageDetailsMobile(props) {
                             </ListGroup.Item> : ""}
                             <p className="packagemobiletagline" style={{ marginTop: "-1rem" }}>{data.heading}</p>
                             <ListGroup key={data.id}>
-                                {data.description.map(val => (
-                                    <ListGroup.Item>{val}</ListGroup.Item>
+                                {data.description.map((val,dataindex) => (
+                                    <ListGroup.Item key = {dataindex} >{val}</ListGroup.Item>
                                 ))}
                             </ListGroup>
 

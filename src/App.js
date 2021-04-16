@@ -15,6 +15,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import tawkTo from "tawkto-react";
 // import initFontAwesome from './components/initFontAwesome/initFontAwesome';
 import OurTutor from './components/pages/OurTutor/OurTutor';
 import BecomeTutor from './components/pages/BecomeTutor/BecomeTutor';
@@ -24,10 +25,12 @@ import Findtutor from './components/pages/Findtutor/Findtutor';
 import BookaDemo from "./components/pages/BookaDemo/BookaDemo";
 import Cookies from 'universal-cookie';
 import RamazanLandingPage from './components/pages/RamazanLandingPage/RamazanLandingPage';
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab, faTwitterSquare, faFacebook, faLinkedin, faGithub, faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
+
 function App() {
   const cookies = new Cookies();
+  const tawkToPropertyId = '603e065a385de407571b92c8';
+  const tawkToKey = '65fd64ca89ca6c6879e1a85ce8b3e231f4f6dc16'
+
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
   const [notification, setNotification] = useState(true);
   //Toggle the SideDrawer 
@@ -66,7 +69,6 @@ function App() {
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
   useEffect(() => {
-    library.add(fab, faTwitterSquare, faFacebook, faLinkedin, faGithub, faYoutube, faInstagram)
     mobileview();
     window.addEventListener("resize", mobileview);
     window.scrollTo(0, 0)

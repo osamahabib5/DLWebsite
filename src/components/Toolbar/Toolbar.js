@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Toolbar.css'
 import Logo from '../logo/d&llogo.png'
@@ -7,11 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     Link
 } from "react-router-dom";
-import initFontAwesome from '../initFontAwesome/initFontAwesome';
 const Toolbar = (props) => {
-    useEffect(() => {
-        initFontAwesome();
-    }, [])
     return (
         <header className="toolbar">
             <nav className="toolbar__navigation">
@@ -20,7 +16,7 @@ const Toolbar = (props) => {
                 </div>
                 <div className="toolbar__logo">
 
-                    <Link to="/"> <img src={Logo} style = {{width: "150px", height: "60px"}}alt="Text" className="rounded mx-auto d-block" /></Link>
+                    <Link to="/"> <img src={Logo} style={{ width: "150px", height: "60px" }} alt="Text" className="rounded mx-auto d-block" /></Link>
                 </div>
                 <div className="spacer" />
                 <div className="toolbar-navigation-items">
@@ -36,9 +32,14 @@ const Toolbar = (props) => {
                         }}>Find a Tutor</Link></li>
                         {/* <li><Link to="/contact">Contact Us</Link></li> */}
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
-                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank"><FontAwesomeIcon icon={['fab', 'youtube']} size="lg" /></a></li>
-                        <li><a href="https://www.facebook.com/dotandlinecentres/" target="__blank"><FontAwesomeIcon icon={['fab', 'facebook']} size="lg" /></a></li>
-                        <li><a href="https://www.instagram.com/dotandlinecentres/" target="__blank"><FontAwesomeIcon icon={['fab', 'instagram']} size="lg" /></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank">
+                            <img src="youtube.png" style={{ width: "20px", height: "20px" }} /></a></li>
+                        <li><a href="https://www.facebook.com/dotandlinecentres/" target="__blank">
+                            <img src="facebook.png" style={{ width: "20px", height: "20px" }} />
+                        </a></li>
+                        <li><a href="https://www.instagram.com/dotandlinecentres/" target="__blank">
+                            <img src="instagram.png" style={{ width: "20px", height: "20px" }} />
+                        </a></li>
                     </ul>
 
                 </div>

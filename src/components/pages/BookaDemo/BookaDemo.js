@@ -14,7 +14,6 @@ import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
 import Cookies from 'universal-cookie';
-import initFontAwesome from '../../initFontAwesome/initFontAwesome'
 function BookaDemo(props) {
     const scrollToPackage = useRef(null);
     let { id } = useParams();
@@ -260,7 +259,6 @@ function BookaDemo(props) {
     useEffect(() => {
         mobileview();
         window.addEventListener("resize", mobileview);
-        initFontAwesome();
         reloadPage();
         window.addEventListener("reload", reloadPage);
         if (!parent_country) {
