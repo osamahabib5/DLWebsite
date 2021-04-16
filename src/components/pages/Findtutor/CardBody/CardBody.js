@@ -17,14 +17,14 @@ function CardBody(props) {
         })
     }
     const [clearFilter, setclearFilters] = useState(false);
-    const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects, tutortype } = useContext(TutorsContext)
+    const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects, tutortype , setsubject} = useContext(TutorsContext)
     const [filter, showfilters] = useState(false);
     const animatedComponents = makeAnimated();
     const subjects_url = baseUrl + '/api/getSubjects'
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: [], grade: "", teaching_mode: "online", tutor_type: tutortype ? tutortype : "" });
+    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: setsubject.length > 1 ? setsubject : [], grade: "", teaching_mode: "online", tutor_type: tutortype ? tutortype : "" });
     // const { subjects } = filters;
     const heightMarks = {
         1000: "1000",

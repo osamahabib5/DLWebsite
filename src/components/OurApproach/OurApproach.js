@@ -42,16 +42,16 @@ function OurApproach(props) {
                                     textAlign : props.isMobile ? "center" : ""
                                     }}>Step {index+1}</p> : ""}
                                         <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px",
-                                        margin : (props.coursespage && props.isMobile) ? "auto" : ""
+                                        margin : props.isMobile ? "auto" : ""
                                     }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
                                             <Card.Title><p className="title" style={{ height: props.coursespage ? "50px" : "30px",
-                                        textAlign : (props.coursespage && props.isMobile) ? "center" : ""
+                                        textAlign :  props.isMobile ? "center" : ""
                                         }}>{data.title}</p></Card.Title>
                                             {!props.homepage ? <Card.Title style={{ 
-                                                marginTop:(props.coursespage && props.isMobile) ?  "0rem":
+                                                marginTop:props.isMobile ?  "0rem":
                                                  "4rem",
-                                            textAlign : (props.coursespage && props.isMobile) ? "center" : "" }}><p className="title"
+                                            textAlign :  props.isMobile ? "center" : "" }}><p className="title"
                                                 style={{ fontSize: "15px" }}>{data.description}</p></Card.Title> : ""}
                                         </Card.Body>
                                     </Card>

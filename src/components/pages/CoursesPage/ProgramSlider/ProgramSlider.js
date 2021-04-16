@@ -8,12 +8,12 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const ProgramSlider = (props) => {
     return (
-        <Carousel style={{ margin: "auto", width: "85%", background : "white" }}>
+        <Carousel style={{ margin: "auto", width: "85%", background: "white" }}>
             {CoursesDetails.map((data) => {
                 return (
                     <Carousel.Item key={data.id}>
-                        <Carousel.Caption  style={{
-                            height: "650px", backgroundColor: "white",
+                        <Carousel.Caption style={{
+                            height: "400px", backgroundColor: "white",    //original height was 690px
                             border: "3px solid" + data.borderColor,
                             borderRadius: "2rem"
                         }} >
@@ -21,7 +21,7 @@ const ProgramSlider = (props) => {
                             <p className="mobilecoursesdetails" style={{ fontSize: "19\px" }}>Curriculum includes </p>
                             <p className="mobilecoursesdetails">{data.curriculum}</p>
                             <div>
-                                <div className = "d-flex justify-content-center">
+                                {/* <div className="d-flex justify-content-center">
                                     <Link to={data.lessonpack1} target="_blank" download>
                                         <p className="view-more">
                                             View Detailed Curriculum</p>
@@ -30,18 +30,20 @@ const ProgramSlider = (props) => {
                                         </span>
                                     </Link>
                                 </div>
-                                {/* <div >
+                                <div style={{ margin: "auto" }}>
                                     <p className="view-more">Learn More</p>
-                                    <img src = {play}/>
-                                </div> */}
+                                    <div style = {{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                                        <img src={play} style={{ margin: "auto" }} />
+                                    </div>
+                                </div>
                                 <div className="d-flex justify-content-center" style={{ marginTop: "3rem" }}>
                                     <Link to="/tutors">
                                         <button className="btn button-cta button-red">
                                             Book a Demo
                                         </button>
                                     </Link>
-                                </div>
-                               
+                                </div> */}
+
                             </div>
                             {/* <p><img src={play} style={{ cursor: "pointer" }} className="maths-mobile" onClick={props.changeVideoPopup} /></p> */}
                         </Carousel.Caption>

@@ -34,7 +34,7 @@ const initialState = {
     USDtoPKR: 0,
     changeCountry: false,
     studentid: null,
-    setsubject: null,
+    setsubject: [],
     grade: null
 }
 

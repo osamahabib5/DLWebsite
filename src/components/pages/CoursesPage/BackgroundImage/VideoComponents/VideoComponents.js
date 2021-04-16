@@ -9,7 +9,7 @@ import './VideoComponent.css'
 import { Link } from 'react-router-dom';
 import { TutorsContext } from '../../../../../Provider';
 const VideoComponents = (props) => {
-    const {getSubject, getGrade} = useContext(TutorsContext)
+    const { getSubject, getGrade } = useContext(TutorsContext)
     const card1 = useRef(null);
     const card2 = useRef(null);
     const card3 = useRef(null);
@@ -35,21 +35,23 @@ const VideoComponents = (props) => {
         }
     }
 
-const  setSearchResults = (grade, subject) =>{
-    getSubject(subject)
-    getGrade(grade)
-}
+    const setSearchResults = (subject) => {
+        console.log("Subject: "+ subject)
+        let arr = [];
+        arr.push(subject);
+        getSubject(arr)
+    }
     return (
         <div className="d-flex justify-content-end">
             <Container>
                 <Row xs={1} className="d-flex justify-content-center">
                     {CoursesDetails.map(data => {
                         return (
-                            <Col key={data.id}  xs lg={4} style={{ marginTop: "2.5rem" }}>
+                            <Col key={data.id} xs lg={4} style={{ marginTop: "2.5rem" }}>
                                 <Card key={data.id} style={{
                                     // backgroundColor: data.backgroundcolor,
                                     padding: "2rem",
-                                    height: "530px",
+                                    height: "430px",  //original height was 530px
                                     width: "355px",
                                     border: "3px solid" + data.borderColor,
                                     borderRadius: "2rem"
@@ -58,7 +60,7 @@ const  setSearchResults = (grade, subject) =>{
                                         <ListGroup.Item style={{ fontWeight: "bold", fontSize: "25px", height: "70px" }}>{data.title}</ListGroup.Item>
                                         <ListGroup.Item style={{ fontWeight: "bold", fontSize: "20px" }}>Curriculum Includes </ListGroup.Item>
                                         <ListGroup.Item style={{ fontSize: "17px", fontWeight: "light", height: "150px" }}>{data.curriculum}</ListGroup.Item>
-                                        <Link to={data.lessonpack} target="_blank" download>
+                                        {/* <Link to={data.lessonpack} target="_blank" download>
                                             <div key={data.id}  style={{ display: "flex", justifyContent: "center", alignItems: "flex-end", marginBottom: "2rem" }}>
                                                 <ListGroup.Item  bsPrefix="view-more">
                                                     View Detailed Curriculum</ListGroup.Item>
@@ -74,14 +76,16 @@ const  setSearchResults = (grade, subject) =>{
                                             <div style={{ marginLeft: "0.5rem", marginTop: "1rem" }}>
                                                 <img src={play} style={{ width: "30px", height: "30px" }} />
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </ListGroup>
                                     <div className="d-flex justify-content-center" style={{ marginTop: "2rem" }}>
-                                        {/* <Link to="/tutors"> */}
-                                            <button className="btn button-cta button-red" onClick = {setSearchResults}>
+                                        <Link to="/tutors">
+                                            <button className="btn button-cta button-red" value={data.subject} onClick={(e) => {
+                                                setSearchResults(e.target.value)
+                                            }}>
                                                 Book a Demo
                                             </button>
-                                        {/* </Link> */}
+                                        </Link>
                                     </div>
                                 </Card>
                             </Col>
