@@ -144,8 +144,8 @@ function PaymentForm(props) {
                 })
                 document.getElementById("bookingdetails").value = ""
                 var urlParamObj = {
-                    'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
-                    // 'key': '065a0716-05f5-4539-92b5-482eafac127d',
+                    // 'key': 'd679572f-8a6c-40ee-99ac-02c8fb454c8b',
+                    'key': '065a0716-05f5-4539-92b5-482eafac127d',
                     'amount': response.data.data.amount,
                     'is_generated': '1',
                     'reference_number': 'SID' + response.data.data.student_id, //student id
@@ -153,10 +153,10 @@ function PaymentForm(props) {
                     'customer_email_address': PaymentRegistrationForm.email,
                     'customer_phone_number': PaymentRegistrationForm.phone,
                     'consumer_name': PaymentRegistrationForm.name,
-                    'callback_url': "http://localhost:3000/ramadan",
-                    // 'callback_url': "https://www.dotandlinelearning.com",
+                    // 'callback_url': "http://localhost:3000/ramadan",
+                    'callback_url': "https://www.dotandlinelearning.com/ramadan",
                 }
-                initiateCheckout(urlParamObj, true)
+                initiateCheckout(urlParamObj, false)
             }).catch(error => {
                 if (error.response.status == 400) {
                     opensweetalertdanger("You have already booked a demo with this teacher!")
