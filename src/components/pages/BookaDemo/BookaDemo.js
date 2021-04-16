@@ -312,7 +312,7 @@ function BookaDemo(props) {
                         </div>
                     </Col>
                 </Row> : ''}
-                {showleads ? <Row>
+                {showleads ? <Row style = {{flexDirection : isMobile ? "column" : ""}}>
                     <Col>
                         <div className="leads">
                             <Leads fetchlocation={fetchlocation} hidepackages={hidepackages} setsuccessfullead={setsuccessfullead}

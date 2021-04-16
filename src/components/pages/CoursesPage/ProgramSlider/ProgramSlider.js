@@ -8,11 +8,11 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const ProgramSlider = (props) => {
     return (
-        <Carousel style={{ margin: "auto", width: "85%" }}>
+        <Carousel style={{ margin: "auto", width: "85%", background : "white" }}>
             {CoursesDetails.map((data) => {
                 return (
                     <Carousel.Item key={data.id}>
-                        <Carousel.Caption key={data.id} style={{
+                        <Carousel.Caption  style={{
                             height: "650px", backgroundColor: "white",
                             border: "3px solid" + data.borderColor,
                             borderRadius: "2rem"

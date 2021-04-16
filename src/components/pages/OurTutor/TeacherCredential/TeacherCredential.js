@@ -33,7 +33,7 @@ function TeacherCredential(props) {
                                     <div key={index} style={{ marginBottom: "3rem" }}>
                                         <p className="programs-display"><span style={{ fontWeight: "bold" }}>{data.title}</span> - PKR {data.amount} / month</p>
                                         <p className="programs-display">{data.hours_per_week} hrs/week - {data.timings}</p>
-                                        <p className="programs-display">{data.description}</p>
+                                        <p className="programs-display" dangerouslySetInnerHTML={{ __html: data.description }}></p>
                                     </div>
                                 )
                             }) : ""}

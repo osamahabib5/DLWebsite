@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import baseUrl from '../../baseUrl/baseUrl';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function SideDrawer(props) {
     let drawerClasses = "sidedrawer"
     if (props.show) {

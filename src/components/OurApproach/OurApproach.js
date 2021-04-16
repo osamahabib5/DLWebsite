@@ -13,33 +13,45 @@ function OurApproach(props) {
             <div className="p-2 bd-highlight" style={{ marginTop: props.topSpacing }}>
                 <p className="heading" style = {{marginTop : props.coursespage ? "2rem" : ""}}>{props.heading}</p>
             </div>
-            <div className="p-2 bd-highlight">
+            <div className="p-2 bd-highlight"
+            style = {{
+                padding : (props.coursespage && props.isMobile) ? "1rem!important" : ""
+            }}>
                 <p className="Approach-content">{props.approachcontent}</p></div>
             <div className="p-2 bd-highlight">
                 <p className="details">{props.details}</p>
             </div>
             <div className="p-2 bd-highlight" style = {{marginBottom: props.coursespage ? "3rem": ""}}>
                 <CardDeck style={{ margin: "auto" }} >
-                    <Row xs={2} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
+                    <Row xs={props.mobilecards} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
                         {props.displayinfo.map((data, index) => {
                             let setMargin = index*3;
                             return (
                                 <Col key={data.id}>
                                     
                                     <Card key={data.id} style={{
-                                        background: props.coursespage ? "" : "", height: props.coursespage ? "510px" : "",
-                                        marginBottom: props.coursespage ? "2rem" : "",
+                                        background: (props.coursespage && !props.isMobile) ? "" : "", height:(props.coursespage && !props.isMobile) ? "510px" : "",
+                                        marginBottom: (props.coursespage && !props.isMobile) ? "2rem" : "",
                                         // border: props.coursespage ? "2px solid black" : "",
                                         // borderRadius: props.coursespage ? "2rem" : "",
-                                        marginTop: props.coursespage ? setMargin + "rem" : "",
+                                        marginTop: (props.coursespage && !props.isMobile) ? setMargin + "rem" : "",
                                         // width: props.coursespage ? "280px" : "",
-                                        marginRight: props.coursespage ? "1rem" : "",
+                                        marginRight: (props.coursespage && !props.isMobile) ? "1rem" : "",
                                     }}>
-                                        {props.coursespage ? <p className="Approach-content" style = {{marginTop: "0rem"}}>Step {index+1}</p> : ""}
-                                        <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px" }} />
+                                        {props.coursespage ? <p className="Approach-content" style = {{marginTop: "0rem",
+                                    textAlign : props.isMobile ? "center" : ""
+                                    }}>Step {index+1}</p> : ""}
+                                        <Card.Img variant="top" src={data.image} style={{ height: props.isMobile ? "120px" : "190px", width: props.isMobile ? "120px" : "190px",
+                                        margin : (props.coursespage && props.isMobile) ? "auto" : ""
+                                    }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
-                                            <Card.Title><p className="title" style={{ height: props.coursespage ? "50px" : "30px" }}>{data.title}</p></Card.Title>
-                                            {!props.homepage ? <Card.Title style={{ marginTop: "4rem" }}><p className="title"
+                                            <Card.Title><p className="title" style={{ height: props.coursespage ? "50px" : "30px",
+                                        textAlign : (props.coursespage && props.isMobile) ? "center" : ""
+                                        }}>{data.title}</p></Card.Title>
+                                            {!props.homepage ? <Card.Title style={{ 
+                                                marginTop:(props.coursespage && props.isMobile) ?  "0rem":
+                                                 "4rem",
+                                            textAlign : (props.coursespage && props.isMobile) ? "center" : "" }}><p className="title"
                                                 style={{ fontSize: "15px" }}>{data.description}</p></Card.Title> : ""}
                                         </Card.Body>
                                     </Card>

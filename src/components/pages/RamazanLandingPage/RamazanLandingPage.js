@@ -84,12 +84,12 @@ function RamazanLandingPage(props) {
                 }
             }).catch(error => {
                 setLoading(false);
-                if (error.response.status == 400){
+                if (error.response.status == 400) {
                     opensweetalertdanger("There are some missing values!")
-                }else if(error.response.status == 401){
+                } else if (error.response.status == 401) {
                     opensweetalertdanger("Something went wrong getting the invoice!")
-                }else if(error.response.status == 402){
-                    opensweetalertdanger("Your payment was unsuccessful. Please try again later")     
+                } else if (error.response.status == 402) {
+                    opensweetalertdanger("Your payment was unsuccessful. Please try again later")
                 }
             })
         }
@@ -108,6 +108,10 @@ function RamazanLandingPage(props) {
         } else {
             setLoading(false)
         }
+        const script = document.createElement("script");
+        script.src = "https://checkout.foree.co/checkout.js";
+        script.async = true;
+        document.body.appendChild(script);
     }, []);
     let mobile_style = { marginTop: isMobile ? "2rem" : "", width: isMobile ? "100%" : "" };
     let impact_mobile_style = { marginTop: isMobile ? "0rem" : "5rem" };
@@ -117,7 +121,7 @@ function RamazanLandingPage(props) {
                 <ClipLoader size={80} color="#00ABBD" />
             </div> : <div>
                 <div className="ramazan-banner">
-                    <RamazanBanner isMobile={isMobile} notification = {props.notification}/>
+                    <RamazanBanner isMobile={isMobile} notification={props.notification} />
                 </div>
 
                 <Container>
@@ -125,7 +129,7 @@ function RamazanLandingPage(props) {
                         <Col xs lg="12">
                             <div className="ramazan-header">
                                 <RamazanHeader isMobile={isMobile} />
-                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" isMobile = {isMobile} scrolltoRegistrationForm={scrolltoRegistrationForm} />
+                                <SignUpButtonRamazanProgram buttontext="Sign Me Up!" isMobile={isMobile} scrolltoRegistrationForm={scrolltoRegistrationForm} />
                             </div>
                         </Col>
                     </Row>
@@ -134,7 +138,7 @@ function RamazanLandingPage(props) {
                             <div className="ramazanprogramdetails">
                                 <RamazanProgramDetails isMobile={isMobile} />
                                 <div style={{ marginTop: "2rem" }}>
-                                    <SignUpButtonRamazanProgram buttontext="Sign Me Up!" isMobile = {isMobile} scrolltoRegistrationForm={scrolltoRegistrationForm} />
+                                    <SignUpButtonRamazanProgram buttontext="Sign Me Up!" isMobile={isMobile} scrolltoRegistrationForm={scrolltoRegistrationForm} />
                                 </div>
                             </div>
                         </Col>

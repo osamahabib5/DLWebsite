@@ -86,7 +86,7 @@ function App() {
             <CourseDetails />
           </Route>
           <Route path="/programs">
-            <CoursePage />
+            <CoursePage notification={notification}/>
           </Route>
           {/* <Route path="/pricing/:id" children={<BookaDemo />} /> */}
           <Route path="/pricing">

@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Toolbar.css'
 import Logo from '../logo/d&llogo.png'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import youtube from "./youtube.png";
+import fb from "./facebook.png";
+import insta from "./instagram.png";
 import {
     Link
 } from "react-router-dom";
@@ -33,12 +35,12 @@ const Toolbar = (props) => {
                         {/* <li><Link to="/contact">Contact Us</Link></li> */}
                         <li><Link to="/becometutor">Become a Tutor</Link></li>
                         <li><a href="https://www.youtube.com/channel/UCCOxYRM-2PQdvRWP7awc9kA" target="__blank">
-                            <img src="youtube.png" style={{ width: "20px", height: "20px" }} /></a></li>
+                            <img src={youtube} style={{ width: "20px", height: "20px" }} /></a></li>
                         <li><a href="https://www.facebook.com/dotandlinecentres/" target="__blank">
-                            <img src="facebook.png" style={{ width: "20px", height: "20px" }} />
+                            <img src={fb} style={{ width: "20px", height: "20px" }} />
                         </a></li>
                         <li><a href="https://www.instagram.com/dotandlinecentres/" target="__blank">
-                            <img src="instagram.png" style={{ width: "20px", height: "20px" }} />
+                            <img src={insta} style={{ width: "20px", height: "20px" }} />
                         </a></li>
                     </ul>
 

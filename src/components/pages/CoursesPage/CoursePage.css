@@ -2,10 +2,7 @@
     background: #EDF0F5;
 } */
 
-.Courses .find-a-tutor {
-    background: #EDF0F5;
-    padding: 1rem;
-}
+
 
 .coursesimage .card-img-overlay {
     position: absolute;
@@ -83,6 +80,15 @@
     }
     .kits-details {
         display: none;
+    }
+    .Courses .find-a-tutor {
+        background: #EDF0F5;
+        padding: 1rem;
+    }
+    .coursesimage .programstitle .card-title{
+        margin-top: 1rem;
+        width: 800px;
+        line-height: 40px;
     }
     .programs .card-deck {
         margin-top: 6rem;
@@ -164,10 +170,13 @@
         font-size: 24px;
         padding: 1rem;
         text-align: center;
-        color: #00ABBD;
+        color: white;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .Courses .find-a-tutor {
+        margin-top: 2rem;
     }
     .coursesimage .overlaycoursesheading {
         height: 200px;

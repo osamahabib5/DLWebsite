@@ -87,17 +87,16 @@
         margin-top: -2rem;
     }
     .tutor-info {
-        margin-left: 1rem
+        width: 100%;
+        margin-top: 2rem;
+        /* margin-left: 1rem */
+        padding: 1rem;
     }
     .Tutor-Name {
         display: none;
     }
     .tutor-intro .card {
         width: 12rem;
-    }
-    .tutor-info {
-        width: 100%;
-        margin-top: 3.5rem;
     }
     .tutor-info .row {
         flex-direction: column;

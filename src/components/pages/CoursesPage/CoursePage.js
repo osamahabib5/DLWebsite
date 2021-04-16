@@ -10,7 +10,7 @@ import ReactPixel from 'react-facebook-pixel';
 import VideoComponents from './BackgroundImage/VideoComponents/VideoComponents';
 import OurApproachDetails from "./OurApproachDetails";
 import OurApproach from '../../OurApproach/OurApproach';
-function CoursePage() {
+function CoursePage(props) {
     const [source, setsource] = useState(videos[0]);
     const [play, startplaying] = useState(false);
     const [playpopup, startpopup] = useState(false);
@@ -70,7 +70,7 @@ function CoursePage() {
 
         <div className="Courses">
             <div className="coursesimage">
-                <BackgroundImage changeVideo={changeVideo} />
+                <BackgroundImage changeVideo={changeVideo} notification={props.notification} />
             </div>
             <div className="programs">
                 <VideoComponents changeVideo={changeVideo} />
@@ -104,7 +104,7 @@ function CoursePage() {
                     coursespage = "true"
                     isMobile={isMobile}
                     cardsno={4}
-                    mobilecards={2}
+                    mobilecards={1}
                     topSpacing = "0rem"
                 />
             </div>
