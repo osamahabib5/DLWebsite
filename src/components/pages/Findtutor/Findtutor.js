@@ -107,7 +107,7 @@ function Findtutor(props) {
             <div>
 
             </div>
-            <div className="BecomeTutor">
+            <div className="BecomeTutor" style = {{marginTop: "4rem"}}>
                 <BecomeaTutor image={Image} findtutor="true" height={440} />
             </div>
         </div>

@@ -6,7 +6,7 @@ function BecomeTutorHeader(props) {
     const cookies = new Cookies();
     return (
         <Card className="bg-dark text-white" >
-            <Card.Img src={tutorpage} alt="Card image" style = {{height: props.isMobile ? "225px" : "560px",marginTop: props.isMobile && !cookies.get("notification") ? "0rem " :!props.notification || cookies.get("notification") && !props.isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && props.isMobile ? "3.4rem": "3.4rem"}}/>
+            <Card.Img src={tutorpage} alt="Card image" style = {{height: props.isMobile ? "225px" : "560px",marginTop: (props.isMobile && !cookies.get("notification")) ? "0rem " :!props.notification || (cookies.get("notification") && !props.isMobile) ? "3.4rem" : !props.notification || (cookies.get("notification") && props.isMobile) ? "3.4rem": "3.4rem"}}/>
             <Card.ImgOverlay style = {{position: props.isMobile ? "relative" : "absolute", backgroundColor: props.isMobile ? "#00ABBD" : ""}}>
                 <Container style={{ marginLeft: props.isMobile ? "0rem" : "6rem", marginTop: props.isMobile ? "0rem" : "8rem" }}>
                     <Row >

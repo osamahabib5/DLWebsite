@@ -7,13 +7,16 @@ import baseUrl from "../../baseUrl/baseUrl";
 
 
 const NotificationToast = (props) => {
-    const [notificationtext, setnotificationtext] = useState(null);
-    useEffect(async () => {
+    const getNotificationData = async () => {
         await axios.get(baseUrl + "/api/getInfo/notification").then(response => {
             setnotificationtext(response.data.data.notification_toast)
         }).catch(error => {
             console.log("Error: " + error)
         })
+    }
+    const [notificationtext, setnotificationtext] = useState(null);
+    useEffect(() => {
+        getNotificationData();
     }, [notificationtext])
     return (
         <div className="notification_bar">

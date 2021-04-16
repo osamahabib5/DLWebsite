@@ -6,12 +6,15 @@ import baseUrl from '../../baseUrl/baseUrl';
 import axios from 'axios';
 const NotificationToastMobile = (props) => {
     const [notificationtext, setnotificationtext] = useState("");
-    useEffect(async () => {
+    const getNotificationData = async () => {
         await axios.get(baseUrl + "/api/getInfo/notification").then(response => {
             setnotificationtext(response.data.data.notification_toast)
         }).catch(error => {
             console.log("Error: " + error)
         })
+    }
+    useEffect(() => {
+        getNotificationData();
     }, [notificationtext])
     return (
         <div className="notification-mobile" onClick={props.click}>

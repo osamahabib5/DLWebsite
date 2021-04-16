@@ -16,6 +16,7 @@ function CardBody(props) {
             type: 'warning',
         })
     }
+    const [clearFilter, setclearFilters] = useState(false);
     const { setresults, startLoading, stopLoading, fetched_grades, fetchGrades, subjects_list, fetchSubjects, tutortype } = useContext(TutorsContext)
     const [filter, showfilters] = useState(false);
     const animatedComponents = makeAnimated();
@@ -23,7 +24,7 @@ function CardBody(props) {
     const filter_url = baseUrl + '/api/teachers/search'
     const grade_url = baseUrl + '/api/getGrades';
     const [morefilters, setmorefilters] = useState(true);
-    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: [], grade: "Grade 1", teaching_mode: "online", tutor_type: tutortype ? tutortype : "" });
+    const [filters, fillFilters] = useState({ teacher_name: "", budget: 0, subjects: [], grade: "", teaching_mode: "online", tutor_type: tutortype ? tutortype : "" });
     // const { subjects } = filters;
     const heightMarks = {
         1000: "1000",
@@ -39,9 +40,16 @@ function CardBody(props) {
         50000: "50000"
 
     };
+    const verifyFiltersLength = (str)=>{
+        if (str.length > 0){
+            return true;
+        }
+        return false;
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!filters.teacher_name && filters.subjects.length == 0 && !filters.grade && !filters.teaching_mode && !filters.tutor_type) {
+        if (!verifyFiltersLength(filters.teacher_name) && filters.subjects.length == 0 && !verifyFiltersLength(filters.grade) 
+        && !verifyFiltersLength(filters.teaching_mode) && !verifyFiltersLength(filters.tutor_type)) {
             opensweetalertdanger("Please fill any one of the fields!")
         }
         else {
@@ -56,6 +64,7 @@ function CardBody(props) {
                     setresults(item);
                     props.scrolltotutors();
                     stopLoading();
+                    setclearFilters(true)
                 })
                 .catch(function (error) {
                     console.log("Error's Response: " + error);
@@ -98,11 +107,11 @@ function CardBody(props) {
             subjects: [{}],
             grade: "",
             tutor_type: "",
-            teaching_mode: "null"
+            teaching_mode: "online"
         })
         stopLoading();
     }
-    useEffect(async () => {
+    const getApiData = async () => {
         const response = await fetch(subjects_url);
         const data = await response.json();
         const item = data.data;
@@ -111,11 +120,14 @@ function CardBody(props) {
             "label": d
         }))
         fetchSubjects(options)
-
         const grades_response = await fetch(grade_url);
         const grades_data = await grades_response.json();
         const gradeslist = grades_data.data
         fetchGrades(gradeslist)
+    }
+    useEffect(()=>{
+        getApiData()
+        setclearFilters(false);
     }, [])
     return (
         <Form>
@@ -196,16 +208,16 @@ function CardBody(props) {
             </Form.Row>
             <Form.Row bsPrefix="justify-content-md-center">
                 <Col />
-                {tutortype ? <Col xs lg={8}>
+                {/* {tutortype === "standard" || tutortype === "super"? <Col xs lg={8}>
                     <p className="advancedfilters" style = {{textAlign :"center"}}>
-                        You are looking at {tutortype && tutortype === "standard" ? "Standard Tutors" : tutortype && tutortype === "super" ? "Super Tutors" : ""}
+                        You are looking at {tutortype} tutors.
                     </p>
-                </Col> : ""}
-                <Col xs lg={4}>
+                </Col> : ""} */}
+                {clearFilter ? <Col xs lg={4}>
                     <p className="advancedfilters" onClick={clearFilters}>
                         Clear Filters
                     </p>
-                </Col>
+                </Col> : ""}
             </Form.Row>
             <Form.Row>
 
@@ -226,7 +238,7 @@ function CardBody(props) {
                         marks={heightMarks}
                     />
                 </Col>
-                        
+
             </Form.Row> : ''}
         </Form>
     )

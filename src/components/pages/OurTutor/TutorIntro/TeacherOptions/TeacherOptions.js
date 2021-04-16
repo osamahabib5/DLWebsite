@@ -3,7 +3,7 @@ import { Col, Row, Container } from 'react-bootstrap';
 import ReviewPopup from './ReviewPopup/ReviewPopup';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { TutorsContext } from '../../../../../Provider';
-function TeacherOptions() {
+function TeacherOptions(props) {
     let history = useHistory();
     let { id } = useParams();
     let { getTeacherId } = useContext(TutorsContext);
@@ -31,7 +31,7 @@ function TeacherOptions() {
                     <div className="d-flex justify-content-center" style={{ flexDirection: "column" }}>
 
                         <button className="btn button-cta button-blue" onClick={handleShow}>Leave a review</button>
-                        <div style={{ marginTop: "4rem" }}></div>
+                        <div style={{ marginTop: props.isMobile ? "4rem" : "1rem" }}></div>
                         <Link
                             to={{
                                 pathname: "/pricing",
@@ -40,10 +40,10 @@ function TeacherOptions() {
                             }}
                         ><button className="btn button-cta button-blue"
                         style = {{
-                            position:"fixed",
-                            left: "0rem",
-                            bottom: "0rem",
-                            width: "100%"
+                            position:props.isMobile ? "fixed" : "",
+                            left: props.isMobile ? "0rem" : "",
+                            bottom: props.isMobile ? "0rem" : "",
+                            width: props.isMobile ?  "100%" : ""
                         }}
                         >Book a Demo</button></Link>
                         <div style={{ marginTop: "1rem" }}></div>

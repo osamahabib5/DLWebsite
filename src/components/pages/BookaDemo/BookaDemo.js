@@ -14,7 +14,6 @@ import NavigateDemo from './NavigateDemo'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import ConfirmAppointment from './ConfirmAppointment'
 import Cookies from 'universal-cookie';
-import GoToTutorsPage from './GoToTutorsPage'
 import initFontAwesome from '../../initFontAwesome/initFontAwesome'
 function BookaDemo(props) {
     const scrollToPackage = useRef(null);
@@ -141,7 +140,6 @@ function BookaDemo(props) {
         setnavigation(false);
     }
     const SetDemoFlow = () => {
-        console.log("I am here!")
         if (id) {
             getTeacherId(id);
             showAppointmentPage();
@@ -163,7 +161,7 @@ function BookaDemo(props) {
             if (state.TeacherFunnel) {
                 setSubscription("3_month")
                 if (cookies.get('leadid')) {
-                    if (fee_amount == 0) {
+                    if (fee_amount === 0) {
                         showfeecalculator();
                         setnavigation(true);
                         setpackages(true);
@@ -185,18 +183,24 @@ function BookaDemo(props) {
             }
         }
     }
-
     const fetchlocation = async () => {
-        await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
-            .then(function (response) {
-                return response.json()
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            }).then(data => {
-                setParentLocation(data.country_name);
-                setParentCity(data.city ? data.city : "");
-            })
+        try {
+            await fetch('https://geolocation-db.com/json/35651dd0-7ac4-11eb-8099-0d44d45b74ca')
+                .then(function (response) {
+                    return response.json()
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                }).then(data => {
+                    setParentLocation(data.country_name);
+                    setParentCity(data.city ? data.city : "");
+                })
+        }
+        catch (error) {
+            console.log("Error while getting country information " + error)
+            setParentLocation("Pakistan");
+            setParentCity("Karachi");
+        }
     }
     const handleBackButton = history.listen((loc, action) => {
         if (action === "POP") {
@@ -266,7 +270,7 @@ function BookaDemo(props) {
         handleBackButton();
     }, [state])
     return (
-        <div className="bookademo" style={{ marginTop: isMobile && !cookies.get("notification") ? "0rem " : !props.notification || cookies.get("notification") && !isMobile ? "3.4rem" : !props.notification || cookies.get("notification") && isMobile ? "3.4rem" : "3.4rem" }}>
+        <div className="bookademo" style={{ marginTop: (isMobile && !cookies.get("notification")) ? "0rem " : !props.notification || (cookies.get("notification") && !isMobile) ? "3.4rem" : !props.notification || (cookies.get("notification") && isMobile) ? "3.4rem" : "3.4rem" }}>
             <Container>
                 {shownavigation ? <Row>
                     <Col>
@@ -283,7 +287,6 @@ function BookaDemo(props) {
                             LeadAlreadyFilled={LeadAlreadyFilled}
                             confirmappointment={confirmappointment}
                             hideAppointmentConfirmation={hideAppointmentConfirmation}
-                            showfeecalculator={showfeecalculator}
                             isMobile={isMobile}
                         />
                     </Col>
@@ -306,8 +309,7 @@ function BookaDemo(props) {
                     <Col>
                         <div className="packages" style={{ padding: isMobile ? "0.5rem" : "" }}>
                             <Packages parent_country={parent_country} showLeadsForm={showLeadsForm} showfeecalculator={showfeecalculator} isMobile={isMobile}
-                                PricingwithLeadId={PricingwithLeadId} isMobile={isMobile}
-                                showfeecalculator={showfeecalculator}
+                                PricingwithLeadId={PricingwithLeadId}
                             />
                         </div>
                     </Col>
@@ -325,7 +327,7 @@ function BookaDemo(props) {
                         <SelectedPricePackage isMobile={isMobile} />
                     </Col>
                 </Row> : ''}
-                {successfullead ? <Row style = {{flexDirection : isMobile ? "column":""}}>
+                {successfullead ? <Row style={{ flexDirection: isMobile ? "column" : "" }}>
                     {/* {isMobile ? <Col>
                             <GoToTutorsPage showfeecalculator = {showfeecalculator} showAppointmentPageTutor={showAppointmentPageTutor} />
                         </Col> : ""} */}
@@ -355,9 +357,9 @@ function BookaDemo(props) {
                     <Col>
                         <div className="booking-demo-appointment">
                             <AppointmentBooking showScheduleDemo={showScheduleDemo}
-                                showappointmentpage={showappointmentpage} 
-                                isMobile = {isMobile}
-                                />
+                                showappointmentpage={showappointmentpage}
+                                isMobile={isMobile}
+                            />
                         </div>
                     </Col>
                 </Row> : ""}

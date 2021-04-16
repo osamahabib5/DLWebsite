@@ -128,7 +128,7 @@ function TeacherSignUp(props) {
                 clearForm();
             }).catch(error => {
                 setLoading(false);
-                if (error.response.status == 400) {
+                if (error.response.status === 400) {
                     setconfirmationmessage("You already have an account with this email!")
                 }
             })

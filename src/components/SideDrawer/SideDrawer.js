@@ -11,9 +11,9 @@ function SideDrawer(props) {
     if (props.show) {
         drawerClasses = "sidedrawer open"
     }
-    const closeDrawer = () => {
-        drawerClasses = "sidedrawer"
-    }
+    // const closeDrawer = () => {
+    //     drawerClasses = "sidedrawer"
+    // }
     const [footervalues, setfootervalues] = useState({ address: '', phone_1: '', phone_2: '' })
     useEffect(() => {
         axios.get(baseUrl + "/api/getInfo/footer").then((response) => {

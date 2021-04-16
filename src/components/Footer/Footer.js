@@ -8,7 +8,7 @@ import {
 import baseUrl from '../../baseUrl/baseUrl';
 import axios from 'axios';
 
-function Footer(props) {
+function Footer() {
     const [footervalues, setfootervalues] = useState({ address: '', phone_1: '', phone_2: '' })
     useEffect(() => {
         axios.get(baseUrl + "/api/getInfo/footer").then((response) => {
@@ -30,7 +30,7 @@ function Footer(props) {
                 <Col className="d-flex justify-content-end">
                     <ul className="list-group list-group-horizontal">
                         {/* <li className="list-group-item"><Link to = "/aboutus">About Our Company</Link></li> */}
-                        <li className="list-group-item"><Link to="/contact">Contact</Link></li>
+                        <li className="list-group-item"><Link to="/contact">Contact Us</Link></li>
                     </ul></Col>
             </Row>
         </Container>

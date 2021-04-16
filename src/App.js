@@ -29,7 +29,6 @@ import { fab, faTwitterSquare, faFacebook, faLinkedin, faGithub, faYoutube, faIn
 function App() {
   const cookies = new Cookies();
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
-  const [toggleFooter, setToggleFooter] = useState(true);
   const [notification, setNotification] = useState(true);
   //Toggle the SideDrawer 
   const handleDrawerToggleClick = () => {
@@ -39,10 +38,6 @@ function App() {
   //Click on the backdrop to make it and sidedrawer go away
   const handleBackdropClick = () => {
     setSideDrawerOpen(false)
-  }
-  //Hide the footer when sidedrawer is opened
-  const handleFooterClick = () => {
-    setToggleFooter(false)
   }
   const closenotifications = () => {
     setNotification(false);
@@ -64,19 +59,16 @@ function App() {
   if (sideDrawerOpen) {
     backdrop = <Backdrop click={handleBackdropClick} />
   } else {
-    footer = <Footer show={handleFooterClick} />
+    footer = <Footer  />
   }
   if (notification) {
     Notification = <NotificationToast click={closenotifications} />
     MobileNotification = <NotificationToastMobile click={closenotifications} />
   }
   useEffect(() => {
-    // console.log("Ramazan Page here!")
-    // initFontAwesome();
     library.add(fab, faTwitterSquare, faFacebook, faLinkedin, faGithub, faYoutube, faInstagram)
     mobileview();
     window.addEventListener("resize", mobileview);
-
     window.scrollTo(0, 0)
   }, []);
   return (
@@ -96,11 +88,11 @@ function App() {
           </Route>
           {/* <Route path="/pricing/:id" children={<BookaDemo />} /> */}
           <Route path="/pricing">
-            <BookaDemo notification={notification}/>
+            <BookaDemo notification={notification} />
           </Route>
-          <Route path="/tutors/:id" children={<OurTutor notification={notification}/>} />
+          <Route path="/tutors/:id" children={<OurTutor notification={notification} />} />
           <Route path="/tutors">
-            <Findtutor notification={notification}/>
+            <Findtutor notification={notification} />
           </Route>
 
           <Route path="/becometutor">
@@ -108,17 +100,17 @@ function App() {
           </Route>
 
           <Route path="/aboutus">
-            <About notification={notification}/>
+            <About notification={notification} />
           </Route>
           <Route path="/contact">
             <ContactPage notification={notification} />
           </Route>
           <Route path="/ramadan">
-            <RamazanLandingPage notification={notification}/>
+            <RamazanLandingPage notification={notification} />
           </Route>
           <Route path="/">
-            {/* <HomePage notification={notification} /> */}
-            <RamazanLandingPage notification={notification}/>
+            <HomePage notification={notification} />
+            {/* <RamazanLandingPage notification={notification}/> */}
           </Route>
         </Switch>
 

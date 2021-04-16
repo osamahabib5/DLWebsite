@@ -42,13 +42,14 @@ function Tutors(props) {
             scrollTotheForm();
         }
     }
+    const {dataarr} = props;
     useEffect(() => {
         if (state && state.findtutors){
             setTutorType("standard")
         }
         mobileview();
         window.addEventListener("resize", mobileview);
-    }, [props.dataarr]);
+    }, []);
 
     const rowslength = isMobile ? 2 : 4;
     const rows = [...Array(Math.ceil(props.dataarr.length / rowslength))];

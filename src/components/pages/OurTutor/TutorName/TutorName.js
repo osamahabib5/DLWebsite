@@ -44,7 +44,7 @@ function TutorName(props) {
                         <p className="country">{props.location}</p>
                     </div>
                     <div className="p-2 bd-highlight">
-                        {props.super_tutor == 1 ? <img src={SuperTutor} className="img-rank" /> : ''}
+                        {props.super_tutor === 1 ? <img src={SuperTutor} className="img-rank" /> : ''}
                     </div>
                 </div>
                 <div className="row">

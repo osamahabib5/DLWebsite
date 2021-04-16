@@ -6,8 +6,7 @@ import ChangeLocation from '../../../ChangeLocation/ChangeLocation';
 import Available_Packages from '../Available_Packages';
 import GoToTutorsPage from '../GoToTutorsPage';
 function SelectedPricePackage(props) {
-    const { opted_package, fee_amount, confirmpricing, result_type, parent_country, setOptedPackage, USDtoPKR } = useContext(TutorsContext);
-    const cookies = new Cookies();
+    const { opted_package, fee_amount,  result_type, parent_country, setOptedPackage, USDtoPKR } = useContext(TutorsContext);
     // const USDtoPKR = parseInt(cookies.get("PKRtoUSD"));
     useEffect(() => {
         if (result_type === "pricing") {
@@ -17,7 +16,7 @@ function SelectedPricePackage(props) {
                 setOptedPackage(3);
             }
         }
-    }, [parent_country])
+    }, [parent_country, result_type])
     return (
         <div className="selectedpackage">
             <Card style={Available_Packages[opted_package].styling} key={Available_Packages[opted_package].id}>

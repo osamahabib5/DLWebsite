@@ -13,7 +13,7 @@ function TutorIntro(props) {
                 <Card.Img as={Image} src={props.image} alt="loading" fluid={true} />
                 <Card.Body>
                     <div className = "teacheroptions">
-                        <TeacherOptions />
+                        <TeacherOptions isMobile = {props.isMobile}/>
                     </div>
                 </Card.Body>
             </Card>

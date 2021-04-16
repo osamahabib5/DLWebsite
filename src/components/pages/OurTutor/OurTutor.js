@@ -11,12 +11,21 @@ import TeacherOptions from './TutorIntro/TeacherOptions/TeacherOptions';
 import axios from 'axios';
 import baseUrl from '../../../../src/baseUrl/baseUrl';
 import avatar from './TutorIntro/Images/avatar.jpg';
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { TutorsContext } from '../../../Provider';
 function OurTutor() {
-    const {fee_amount, setResultType} = useContext(TutorsContext)
+    const [isMobile, setisMobile] = useState(false);
+    const mobileview = () => {
+        if (window.innerWidth >= 769) {
+            setisMobile(false);
+        }
+        if (window.innerWidth < 769) {
+            setisMobile(true);
+        }
+    }
+    const { fee_amount, setResultType, setTutorType } = useContext(TutorsContext)
     let { id } = useParams();
-    const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [], course_packages: []})
+    const [form, setform] = useState({ name: '', bio: '', location: '', active_students: '', lifetime_hours: '', programs: [], reviews: [], image: '', average_rating: 0, super_tutor: 0, teaching_methods: [], course_packages: [] })
     const [apiurl, setUrl] = useState(baseUrl + '/api/teacher/profile/')
     async function getUser() {
         await axios.get(apiurl + id)
@@ -42,11 +51,19 @@ function OurTutor() {
             });
     }
     useEffect(() => {
+
         getUser();
+        mobileview();
+        window.addEventListener("resize", mobileview);
         window.scrollTo(0, 0)
-        if (fee_amount > 0){
+        if (fee_amount > 0) {
             setResultType("teachers")
-        } else{
+        } else {
+            if (form.super_tutor === 1) {
+                setTutorType("super")
+            } else {
+                setTutorType("standard")
+            }
             setResultType("pricing")
         }
     }, [fee_amount]);
@@ -58,7 +75,7 @@ function OurTutor() {
                         <div className="d-flex flex-row bd-highlight mb-3">
                             <div className="p-2 bd-highlight">
                                 <div className="tutor-intro">
-                                    <TutorIntro image={form.image == null ? avatar : form.image} />
+                                    <TutorIntro isMobile={isMobile} image={form.image == null ? avatar : form.image} />
                                 </div>
                             </div>
                             <div className="p-2 bd-highlight">
@@ -90,7 +107,7 @@ function OurTutor() {
                             {form.reviews.length != 0 ? <PersonalReviews reviews={form.reviews} /> : ''}
                         </div>
                         <div className="teacher-option">
-                            <TeacherOptions />
+                            <TeacherOptions isMobile={isMobile} />
                         </div>
                     </div>
                 </div>

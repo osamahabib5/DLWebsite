@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import baseUrl from "../../../../baseUrl/baseUrl";
@@ -65,10 +65,11 @@ function Leads(props) {
             })
         }
     }
+    const {fetchlocation} = props;
     useEffect(() => {
         window.scrollTo(0, 0)
         if (!parent_country) {
-            props.fetchlocation();
+            fetchlocation();
         };
     }, [])
     return (
