@@ -73,7 +73,7 @@ function HomePage(props) {
                     approachcontent="What Sets Dot & Line Apart ?"
                     details="With a strong network of expert tutors, a vast student body and over 100,000 classes conducted globally, quality online learning is our forte."
                     isMobile={isMobile}
-                    cardsno={4}
+                    cardsno={3}
                     mobilecards={1}
                     homepage="true"
                 />

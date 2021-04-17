@@ -103,7 +103,7 @@ function CoursePage(props) {
                     details = ""
                     coursespage = "true"
                     isMobile={isMobile}
-                    cardsno={4}
+                    cardsno={3}
                     mobilecards={1}
                     topSpacing = "0rem"
                 />

@@ -22,20 +22,22 @@ function OurApproach(props) {
                 <p className="details">{props.details}</p>
             </div>
             <div className="p-2 bd-highlight" style = {{marginBottom: props.coursespage ? "3rem": ""}}>
-                <CardDeck style={{ margin: "auto" }} >
+                <CardDeck style={{ margin: "auto",
+                marginBottom : (props.coursespage && !props.isMobile) ? "4rem" : ""
+            }} >
                     <Row xs={props.mobilecards} md={props.cardsno} className={props.isMobile ? "justify-content-md-center" : ""} style={{ flexDirection: props.isMobile ? "row" : "", maxWidth: "100%", margin: props.isMobile ? "" : "auto" }}>
                         {props.displayinfo.map((data, index) => {
-                            let setMargin = index*3;
+                            let setMargin = index*2;
                             return (
                                 <Col key={data.id}>
                                     
                                     <Card key={data.id} style={{
                                         background: (props.coursespage && !props.isMobile) ? "" : "", height:(props.coursespage && !props.isMobile) ? "510px" : "",
-                                        marginBottom: (props.coursespage && !props.isMobile) ? "2rem" : "",
+                                        marginBottom: (props.coursespage && !props.isMobile) ? "0rem" : "",
                                         // border: props.coursespage ? "2px solid black" : "",
                                         // borderRadius: props.coursespage ? "2rem" : "",
                                         marginTop: (props.coursespage && !props.isMobile) ? setMargin + "rem" : "",
-                                        // width: props.coursespage ? "280px" : "",
+                                        width: props.coursespage ? "100%" : "",
                                         marginRight: (props.coursespage && !props.isMobile) ? "1rem" : "",
                                     }}>
                                         {props.coursespage ? <p className="Approach-content" style = {{marginTop: "0rem",
@@ -45,12 +47,12 @@ function OurApproach(props) {
                                         margin : props.isMobile ? "auto" : ""
                                     }} />
                                         <Card.Body style={{ marginTop: props.cardBodySpacing }}>
-                                            <Card.Title><p className="title" style={{ height: props.coursespage ? "50px" : "30px",
+                                            <Card.Title><p className="title" style={{ height: props.coursespage ? "90px" : "30px",
                                         textAlign :  props.isMobile ? "center" : ""
                                         }}>{data.title}</p></Card.Title>
                                             {!props.homepage ? <Card.Title style={{ 
                                                 marginTop:props.isMobile ?  "0rem":
-                                                 "4rem",
+                                                 "3rem",
                                             textAlign :  props.isMobile ? "center" : "" }}><p className="title"
                                                 style={{ fontSize: "15px" }}>{data.description}</p></Card.Title> : ""}
                                         </Card.Body>
